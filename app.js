@@ -50,7 +50,7 @@ app.use(session({
 
 // passport
 app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.session())
 
 // set globals
 app.use(function (req, res, next) {
