@@ -1,11 +1,28 @@
+body {
+    font-family: "multi-display",sans-serif;
+}
+
+
+.section {
+    height: 260px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border: 1px solid pink;
+}
 
 .link__btn {
     height: 35px;
-    width: 210px;
+    width: 235px;
     padding: 13px;
     border-radius: 4px;
 
-    font-family: "multi-display",sans-serif;
+    
+    font-size: 22px;
+    font-weight: 300;
     text-decoration: none;
     color: #fafafa;
 }
