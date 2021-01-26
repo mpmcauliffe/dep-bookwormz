@@ -3,7 +3,7 @@ const express           = require('express')
 const mongoose          = require('mongoose')
 const dotenv            = require('dotenv')
 const morgan            = require('morgan')
-// const exphbs            = require('express-handlebars')
+const exphbs            = require('express-handlebars')
 const passport          = require('passport')
 const session           = require('express-session')
 const MongoStore        = require('connect-mongo')(session)
@@ -31,14 +31,14 @@ app.use(express.json())
 /* 🍔 helper */
 // const { formatDate, truncate, stripTags, editIcon, select, } = require('./helpers/hbs')
 // // handlebars
-// app.engine(
-//     '.hbs', 
-//     exphbs({ 
-//         helpers: { formatDate, stripTags, truncate, editIcon, select, }, 
-//         defaultLayout: 'main', 
-//         extname: '.hbs' 
-//     }))
-// app.set('view engine', '.hbs')
+app.engine(
+    '.hbs', 
+    exphbs({ 
+        //helpers: { formatDate, stripTags, truncate, editIcon, select, }, 
+        defaultLayout: 'main', 
+        extname: '.hbs' 
+    }))
+app.set('view engine', '.hbs')
 
 // session
 app.use(session({
@@ -50,7 +50,7 @@ app.use(session({
 
 // passport
 app.use(passport.initialize())
-// app.use(passport.session())
+app.use(passport.session())
 
 // set globals
 app.use(function (req, res, next) {
@@ -69,4 +69,4 @@ if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
 
 /* PORT SETUP */
 const PORT = process.env.PORT || 5000
-app.listen(PORT, console.log(`Running in ${process.env.NODE_ENV} mode \n. . .on port ${PORT}`))
+app.listen(PORT, console.log(`Running in ${process.env.NODE_ENV} mode \n. . .on http://localhost:${PORT}`))
