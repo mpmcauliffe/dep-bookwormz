@@ -3,6 +3,7 @@ const passport = require('passport')
 const router = express.Router()
 
 
+/* GOOGLE AUTH RTE */
 // @desc Auth with Google
 // @route GET /auth/google
 // see more here http://www.passportjs.org/packages/passport-google-oauth20/
@@ -20,6 +21,25 @@ router.get(
     (req, res) => { res.redirect('/dashboard') }
 )
 
+
+/* FACEBOOK AUTH RTE */
+// @desc Auth with Facebook
+// @route GET /auth/facebook
+// see more here http://www.passportjs.org/packages/passport-facebook/
+router.get('/facebook', passport.authenticate('facebook'))
+
+router.get('/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/' }),
+    function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+})
+
+
+/* TWITTER AUTH RTE */
+
+
+/* LOGOUT RTE */
 // @desc Logout user
 // @route /auth/logout
 router.get('/logout', (req, res) => {

@@ -3,17 +3,18 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 
 // from http://www.passportjs.org/packages/passport-facebook/
-module.exports = funtion(passport) {
+module.exports = function(passport) {
     passport.use(new FacebookStrategy({
-        clientID: FACEBOOK_APP_ID,
-        clientSecret: FACEBOOK_APP_SECRET,
-        callbackURL: "http://localhost:3000/auth/facebook/callback",
-    },
-    function(accessToken, refreshToken, profile, cb) {
-        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        return cb(err, user);
-        })
-    }
+            clientID: process.env.FACEBOOK_APP_ID,
+            clientSecret: process.env.FACEBOOK_APP_SECRET,
+            callbackURL: '/facebook/callback',
+            profileFields: ['id', 'displayName', 'name', 'picture.type(large)', 'email'],
+        },
+        function(accessToken, refreshToken, profile, cb) {
+            User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+                return cb(err, user);
+            })
+        }
     ))
 }
 
