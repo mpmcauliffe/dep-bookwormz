@@ -10,8 +10,8 @@ const MongoStore        = require('connect-mongo')(session)
 
 const connectDB         = require('./config/db')
 
-
 const app               = express()
+
 
 /* ENVIRONMENT VARIABLE SETUP */
 dotenv.config({ path: './config/config.env' })
