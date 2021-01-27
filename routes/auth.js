@@ -32,11 +32,22 @@ router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/')
 })
 
 
 /* TWITTER AUTH RTE */
+// @desc Auth with Twitter
+// @route GET /auth/twitter
+// see more here http://www.passportjs.org/packages/passport-twitter/
+router.get('/twitter', passport.authenticate('twitter'));
+
+router.get('/twitter/callback', 
+    passport.authenticate('twitter', { failureRedirect: '/' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/')
+})
 
 
 /* LOGOUT RTE */

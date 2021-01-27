@@ -6,8 +6,6 @@ const { ensureAuth, ensureGuest, } = require('../middleware/auth')
 const router = express.Router()
 
 
-const secret = 'GYpcbRhioeeF8t6*gy8&^f47^gYaL&ry^7&FOFykAf*bka.q7gkTyfgDsbEQ&qqY&b6qf)hHk^ref4ofg(fa4qL4argYGeb7qEYuEy,bg44AWr'
-
 // @desc Login/Landing page
 // @route GET /
 router.get('/', ensureGuest, (req, res) => {

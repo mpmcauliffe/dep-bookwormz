@@ -2,6 +2,7 @@ const FacebookStrategy = require('passport-facebook')
 const mongoose = require('mongoose')
 const User = require('../models/User')
 
+
 // from http://www.passportjs.org/packages/passport-facebook/
 module.exports = function(passport) {
     passport.use(new FacebookStrategy({
