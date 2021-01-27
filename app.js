@@ -20,7 +20,8 @@ dotenv.config({ path: './config/config.env' })
 connectDB()
 
 /* PASSPORT SETUP */
-require('./config/passport')(passport)
+require('./config/passportGoogle')(passport)
+require('./config/passportFacebook')(passport)
 
 
 /* MIDDLEWARE */
