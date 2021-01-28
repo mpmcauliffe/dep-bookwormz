@@ -9,7 +9,7 @@ module.exports = {
     },
     ensureGuest: function (req, res, next) {
         if (req.isAuthenticated()) {
-            res.redirect('http://localhost:3000')
+            res.redirect('http://localhost:5000')
         } else {
             return next()
         }

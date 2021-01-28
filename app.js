@@ -47,6 +47,7 @@ app.use(session({
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
+    // cookie: { secure: false },
     store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
@@ -72,3 +73,12 @@ if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
 /* PORT SETUP */
 const PORT = process.env.PORT || 5000
 app.listen(PORT, console.log(`Running in ${process.env.NODE_ENV} mode \n. . .on http://localhost:${PORT}`))
+
+
+
+//Deploying this app on heroku
+// remove cross-env from start script while deploying app on heroku
+// this will help
+
+// Add your app uri (domain on which you are going to host your webapp) to Google O auth ' s authorized urls by this change your url is verified to use Google O auth service
+//  it will take some time  !!!
