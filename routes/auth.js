@@ -17,8 +17,10 @@ router.get('/google', passport.authenticate(
 // @route GET /auth/google/callback
 router.get('/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }),
-    (req, res) => { res.redirect('http://localhost:3000') }
-)
+    (req, res) => { 
+    // res.redirect('http://localhost:3000') 
+    res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+})
 
 
 /* FACEBOOK AUTH RTE */
@@ -31,7 +33,8 @@ router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000')
+    //res.redirect('http://localhost:3000')
+    res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 
@@ -45,7 +48,8 @@ router.get('/twitter/callback',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
         // Successful authentication, redirect home.
-        res.redirect('http://localhost:3000')
+        // res.redirect('http://localhost:3000')
+        res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 
