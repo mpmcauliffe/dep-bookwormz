@@ -1,5 +1,5 @@
 {
-  "name": "bookwormz-port",
+  "name": "bookwormz-api",
   "version": "1.0.0",
   "description": "backend and passport for Bookwormz project",
   "main": "app.js",
