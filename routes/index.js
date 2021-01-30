@@ -14,6 +14,7 @@ router.get('/', ensureGuest, (req, res) => {
     })
 })
 
+
 // @desc Login/Landing page
 // @route GET /dashboard
 router.get('/dashboard', async (req, res) => {
