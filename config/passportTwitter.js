@@ -1,6 +1,7 @@
 const TwitterStrategy = require('passport-twitter').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
+const userPass = require('../mongoose/userPass')
 
 
 let trustProxy = false
@@ -20,11 +21,8 @@ module.exports = function(passport) {
             proxy: trustProxy,
         },
         function(accessToken, tokenSecret, profile, cb) {
-                // User.findOrCreate({ twitterId: profile.id }, function (err, user) {
-                //     return cb(err, user)
-                // })
                 console.log(profile)
-                return cb(null, profile)
+                userPass(profile, profile._json['email'], cb)
         }
     ))
 
@@ -32,9 +30,9 @@ module.exports = function(passport) {
         done(null, user.id)
     })
       
-    
-    passport.deserializeUser(function(obj, cb) {
-        cb(null, obj)
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => {
+            done(err, user)
+        })
     })
-    
 }

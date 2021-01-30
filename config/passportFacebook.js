@@ -1,7 +1,14 @@
 const FacebookStrategy = require('passport-facebook').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
+const userPass = require('../mongoose/userPass')
 
+
+let trustProxy = false
+if (process.env.DYNO) {
+    // Apps on heroku are behind a trusted proxy
+    trustProxy = true
+}
 
 // from http://www.passportjs.org/packages/passport-facebook/
 module.exports = function(passport) {
@@ -10,15 +17,21 @@ module.exports = function(passport) {
             clientSecret: process.env.FACEBOOK_APP_SECRET,
             callbackURL: '/auth/facebook/callback',
             profileFields: ['id', 'displayName', 'name', 'picture.type(large)', 'email'],
+            proxy: trustProxy,
         },
         function(accessToken, refreshToken, profile, cb) {
-            // User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-            //     return cb(err, user);
-            // })
-            cb(null, profile)
-            //console.log(profile._json['email'])
-            console.log(profile)
+            userPass(profile, profile._json['email'], cb)
         }
     ))
+
+    passport.serializeUser((user, done) => {
+        done(null, user.id)
+    })
+      
+    passport.deserializeUser((id, done) => {
+        User.findById(id, (err, user) => {
+            done(err, user)
+        })
+    })
 }
 

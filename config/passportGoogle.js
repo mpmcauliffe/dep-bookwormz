@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const User = require('../models/User')
 const userPass = require('../mongoose/userPass')
 
+
 // from http://www.passportjs.org/packages/passport-google-oauth20/
 module.exports = function(passport) {
     passport.use(new GoogleStrategy({
