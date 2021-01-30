@@ -7,19 +7,17 @@ const router = express.Router()
 // @desc Auth with Google
 // @route GET /auth/google
 // see more here http://www.passportjs.org/packages/passport-google-oauth20/
-router.get('/google', passport.authenticate(
-    'google', 
-    { scope: 
-        ['profile', 'email', 'https://www.googleapis.com/auth/books'] 
-    }))
+router.get('/google', passport.authenticate('google', 
+    { scope: ['profile', 'email', 'https://www.googleapis.com/auth/books'] }
+))
 
 // @desc Google auth callback
 // @route GET /auth/google/callback
 router.get('/google/callback', 
     passport.authenticate('google', { failureRedirect: '/' }),
     (req, res) => { 
-    // res.redirect('http://localhost:3000') 
-    res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+    res.redirect('http://localhost:3000') 
+    // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 
@@ -27,14 +25,14 @@ router.get('/google/callback',
 // @desc Auth with Facebook
 // @route GET /auth/facebook
 // see more here http://www.passportjs.org/packages/passport-facebook/
-router.get('/facebook', passport.authenticate('facebook'))
+router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }))
 
 router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
     // Successful authentication, redirect home.
-    //res.redirect('http://localhost:3000')
-    res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+    res.redirect('http://localhost:3000')
+    // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 
@@ -48,8 +46,8 @@ router.get('/twitter/callback',
     passport.authenticate('twitter', { failureRedirect: '/' }),
     function(req, res) {
         // Successful authentication, redirect home.
-        // res.redirect('http://localhost:3000')
-        res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+        res.redirect('http://localhost:3000')
+        // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 

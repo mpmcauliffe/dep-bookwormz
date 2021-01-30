@@ -16,6 +16,7 @@ module.exports = function(passport) {
             //     return cb(err, user);
             // })
             cb(null, profile)
+            //console.log(profile._json['email'])
             console.log(profile)
         }
     ))
