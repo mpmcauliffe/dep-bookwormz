@@ -16,11 +16,11 @@ module.exports = function(passport) {
 
     // from http://www.passportjs.org/docs/
     passport.serializeUser((user, done) => {
-        done(null, user.id)
+        done(null, user._json.email)
     })
       
-    passport.deserializeUser((id, done) => {
-        User.findById(id, (err, user) => {
+    passport.deserializeUser((email, done) => {
+        User.findOne({ email }, (err, user) => {
             done(err, user)
         })
     })

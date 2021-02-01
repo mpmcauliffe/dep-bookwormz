@@ -10,7 +10,7 @@ module.exports = async (incomimgUser, email, action) => {
             console.log('create user')
             const newUser = {
                 email,
-                googleId: incomimgUser.id,
+                userId: incomimgUser.id,
                 displayName: incomimgUser.displayName,
                 firstName: incomimgUser.name.givenName,
                 lastName: incomimgUser.name.familyName,

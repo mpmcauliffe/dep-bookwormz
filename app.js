@@ -20,13 +20,12 @@ dotenv.config({ path: './config/config.env' })
 connectDB()
 
 /* PASSPORT SETUP */
-require('./passport/passportJSON')(passport)
+//require('./passport/passportJSON')(passport)
 require('./passport/passportGoogle')(passport)
 require('./passport/passportFacebook')(passport)
 require('./passport/passportTwitter')(passport)
 
 
-/* MIDDLEWARE */
 // bodyparser
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

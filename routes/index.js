@@ -1,5 +1,7 @@
 const express = require('express')
 const { ensureAuth, ensureGuest, } = require('../middleware/auth')
+const jwt = require('jsonwebtoken')
+const createJWT = require('../middleware/createJWT')
 //const jwt = require('jsonwebtoken')
 //const Story = require('../models/Story')
 
@@ -17,20 +19,27 @@ router.get('/', ensureGuest, (req, res) => {
 
 // @desc Login/Landing page
 // @route GET /dashboard
-router.get('/dashboard', async (req, res) => {
-    // console.log(req.user)
-    //const token = jwt.sign({ ...profile.id }, secret, { expiresIn: '7 days' })
-    // try {
-    //     const stories = await Story.find({ user: req.user.id }).lean()
-    //     res.render('dashboard', {
-    //         name: req.user.displayName,
-    //         stories,
-    //     })
-
-    // } catch (e) {
-    //     console.error(e)   
-    //     res.render('error/500')
-    // }
+router.get('/userkey', ensureAuth, async (req, res) => {
+    const secret      = process.env.JWT_SECRET
+    
+    try {
+        const payload = {
+            user: {
+                mongoId: req.user._id,
+            }
+        }
+        
+        const token = jwt.sign(payload, secret, { httpOnly: false, }, (err, token) => {
+            res.send(`<h3>${token}</h3>`)
+            res.cookie('jwt', token)
+        })
+    
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+    
+    
 })
 
 
