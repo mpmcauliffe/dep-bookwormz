@@ -20,24 +20,28 @@ router.get('/', ensureGuest, (req, res) => {
 // @desc Login/Landing page
 // @route GET /dashboard
 router.get('/userkey', ensureAuth, async (req, res) => {
-    const secret      = process.env.JWT_SECRET
+    const rawCookies = req.headers.cookie.split('; ')
+    console.log(rawCookies)
+    res.send(`<h3>userkey</h3>`)
     
-    try {
-        const payload = {
-            user: {
-                mongoId: req.user._id,
-            }
-        }
+    // const secret      = process.env.JWT_SECRET
+    
+    // try {
+    //     const payload = {
+    //         user: {
+    //             mongoId: req.user._id,
+    //         }
+    //     }
         
-        const token = jwt.sign(payload, secret, { httpOnly: false, }, (err, token) => {
-            res.send(`<h3>${token}</h3>`)
-            res.cookie('jwt', token)
-        })
+    //     const token = jwt.sign(payload, secret, { httpOnly: false, }, (err, token) => {
+    //         res.send(`<h3>${token}</h3>`)
+    //         res.cookie('jwt', token)
+    //     })
     
-    } catch (e) {
-        console.log(e)
-        throw e
-    }
+    // } catch (e) {
+    //     console.log(e)
+    //     throw e
+    // }
     
     
 })

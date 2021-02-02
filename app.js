@@ -1,6 +1,7 @@
 const path              = require('path')
 const express           = require('express')
 const mongoose          = require('mongoose')
+const bodyParser        = require('body-parser')
 const dotenv            = require('dotenv')
 const morgan            = require('morgan')
 const exphbs            = require('express-handlebars')
@@ -20,13 +21,10 @@ dotenv.config({ path: './config/config.env' })
 connectDB()
 
 /* PASSPORT SETUP */
-//require('./passport/passportJSON')(passport)
-require('./passport/passportGoogle')(passport)
-require('./passport/passportFacebook')(passport)
-require('./passport/passportTwitter')(passport)
+require('./config/passportGoogle')(passport)
 
 
-// bodyparser
+/* BODYPARSER */
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
