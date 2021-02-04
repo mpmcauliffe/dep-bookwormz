@@ -4,12 +4,12 @@ module.exports = {
         if (req.isAuthenticated()) {
             return next()
         } else {
-            res.redirect('/')
+            res.redirect('http://localhost:3000')
         }
     },
     ensureGuest: function (req, res, next) {
         if (req.isAuthenticated()) {
-            res.redirect('http://localhost:5000')
+            res.redirect('http://localhost:3000')
         } else {
             return next()
         }

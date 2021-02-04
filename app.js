@@ -31,14 +31,14 @@ app.use(express.json())
 /* 🍔 helper */
 // const { formatDate, truncate, stripTags, editIcon, select, } = require('./helpers/hbs')
 // // handlebars
-app.engine(
-    '.hbs', 
-    exphbs({ 
-        //helpers: { formatDate, stripTags, truncate, editIcon, select, }, 
-        defaultLayout: 'main', 
-        extname: '.hbs' 
-    }))
-app.set('view engine', '.hbs')
+// app.engine(
+//     '.hbs', 
+//     exphbs({ 
+//         //helpers: { formatDate, stripTags, truncate, editIcon, select, }, 
+//         defaultLayout: 'main', 
+//         extname: '.hbs' 
+//     }))
+// app.set('view engine', '.hbs')
 
 // session
 app.use(session({
@@ -70,7 +70,7 @@ if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
 
 /* PORT SETUP */
 const PORT = process.env.PORT || 5000
-app.listen(PORT, console.log(`Running in ${process.env.NODE_ENV} mode \n. . .on http://localhost:${PORT}`))
+app.listen(PORT, console.log(`Running in ${process.env.NODE_ENV} mode 🐻 \n. . .on http://localhost:${PORT}`))
 
 
 

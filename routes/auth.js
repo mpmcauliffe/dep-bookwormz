@@ -1,5 +1,6 @@
 const express = require('express')
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 const router = express.Router()
 
 
@@ -17,11 +18,33 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     
     (req, res) => {
-    // console.log('google CB') 
-    res.redirect('/userkey')
-    // res.redirect('http://localhost:3000') 
-    // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
-})
+        const secret      = process.env.JWT_SECRET
+    
+        try {
+            const payload = {
+                user: {
+                    mongoId: req.user._id,
+                }
+            }
+            
+            const token = jwt.sign(payload, secret, (err, token) => {
+                //res.send(`<h3>${token}</h3>`)
+                console.log(token)
+                res.cookie('jwt', token)
+                res.redirect('http://localhost:3000/userkey')
+            })
+        
+        } catch (e) {
+            console.log(e)
+            throw e
+        }
+
+        // console.log('google CB') 
+        
+        // res.redirect('http://localhost:3000') 
+        // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+    }
+)
 
 
 /* FACEBOOK AUTH RTE */

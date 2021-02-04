@@ -24,24 +24,7 @@ router.get('/userkey', ensureAuth, async (req, res) => {
     //console.log(rawCookies)
     res.send(`<h3>userkey</h3>`)
     
-    // const secret      = process.env.JWT_SECRET
-    
-    // try {
-    //     const payload = {
-    //         user: {
-    //             mongoId: req.user._id,
-    //         }
-    //     }
-        
-    //     const token = jwt.sign(payload, secret, { httpOnly: false, }, (err, token) => {
-    //         res.send(`<h3>${token}</h3>`)
-    //         res.cookie('jwt', token)
-    //     })
-    
-    // } catch (e) {
-    //     console.log(e)
-    //     throw e
-    // }
+   
     
     
 })
