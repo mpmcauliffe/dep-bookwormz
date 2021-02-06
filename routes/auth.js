@@ -31,7 +31,7 @@ router.get('/google/callback',
                 //res.send(`<h3>${token}</h3>`)
                 console.log(token)
                 res.cookie('jwt', token)
-                res.redirect('http://localhost:3000/userkey')
+                res.redirect('http://localhost:3000/userlogin')
             })
         
         } catch (e) {
