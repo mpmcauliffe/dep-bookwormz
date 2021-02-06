@@ -1,7 +1,30 @@
 const express = require('express')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const { ensureAuth, ensureGuest, } = require('../middleware/auth')
+
 const router = express.Router()
+
+
+router.get('/token', ensureAuth, (req, res) => {
+    const secret      = process.env.JWT_SECRET
+    
+    try {
+        const payload = {
+            user: {
+                mongoId: req.user._id,
+            }
+        }
+        const token = jwt.sign(payload, secret, (err, token) => {
+            //res.send(`<h3>${token}</h3>`)
+            //console.log(token)
+            res.json({ token })
+        })
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
 
 
 /* GOOGLE AUTH RTE */
@@ -18,27 +41,8 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     
     (req, res) => {
-        const secret      = process.env.JWT_SECRET
-    
-        try {
-            const payload = {
-                user: {
-                    mongoId: req.user._id,
-                }
-            }
-            
-            const token = jwt.sign(payload, secret, (err, token) => {
-                //res.send(`<h3>${token}</h3>`)
-                console.log(token)
-                res.cookie('jwt', token)
-                res.redirect('http://localhost:3000/userlogin')
-            })
         
-        } catch (e) {
-            console.log(e)
-            throw e
-        }
-
+        res.redirect('http://localhost:3000/userlogin')
         // console.log('google CB') 
         
         // res.redirect('http://localhost:3000') 

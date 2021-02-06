@@ -7,6 +7,7 @@ const morgan            = require('morgan')
 const exphbs            = require('express-handlebars')
 const passport          = require('passport')
 const session           = require('express-session')
+const cors              = require('cors')
 const MongoStore        = require('connect-mongo')(session)
 
 const connectDB         = require('./config/db')
@@ -23,6 +24,8 @@ connectDB()
 /* PASSPORT SETUP */
 require('./config/passportGoogle')(passport)
 
+/* CORS */
+app.use(cors())
 
 /* BODYPARSER */
 app.use(express.urlencoded({ extended: false }))
