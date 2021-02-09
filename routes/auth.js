@@ -6,9 +6,12 @@ const { ensureAuth, ensureGuest, } = require('../middleware/auth')
 const router = express.Router()
 
 
+/* ASSIGN TOKEN */
+// @desc sends token
+// @route /auth/token
 router.get('/token', ensureAuth, (req, res) => {
     const secret      = process.env.JWT_SECRET
-    
+
     try {
         const payload = {
             user: {
@@ -24,6 +27,16 @@ router.get('/token', ensureAuth, (req, res) => {
         console.log(e)
         throw e
     }
+})
+
+/* LOGOUT RTE */
+// @desc Logout user
+// @route /auth/logout
+router.get('/logout', (req, res) => {
+    req.session.destroy(e => {
+        console.error(e)
+        res.clearCookie('connect.sid', { path: 'http://localhost:3000/' });
+    })
 })
 
 
@@ -42,7 +55,7 @@ router.get('/google/callback',
     
     (req, res) => {
         
-        res.redirect('http://localhost:3000/userlogin')
+        res.redirect('http://localhost:3000/userauth')
         // console.log('google CB') 
         
         // res.redirect('http://localhost:3000') 
@@ -78,15 +91,6 @@ router.get('/twitter/callback',
         // Successful authentication, redirect home.
         res.redirect('http://localhost:3000')
         // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
-})
-
-
-/* LOGOUT RTE */
-// @desc Logout user
-// @route /auth/logout
-router.get('/logout', (req, res) => {
-    req.logout()
-    res.redirect('http://localhost:3000')
 })
 
 
