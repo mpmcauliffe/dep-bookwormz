@@ -6,7 +6,7 @@ import { LOGIN, LOGOUT, ERROR, } from '../types'
 export const login = history => async dispatch => {
     try {
         const res = await axios.get('/auth/token')
-       
+        console.log(res)
         if (typeof res.data.token === 'undefined') {
             history.push('/')
             dispatch({ type: ERROR })

@@ -18,6 +18,7 @@ router.get('/token', ensureAuth, (req, res) => {
                 mongoId: req.user._id,
             }
         }
+        console.log(payload)
         const token = jwt.sign(payload, secret, (err, token) => {
             //res.send(`<h3>${token}</h3>`)
             //console.log(token)
