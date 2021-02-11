@@ -65,8 +65,11 @@ app.use(function (req, res, next) {
 // express
 // app.use(express.static(path.join(__dirname, 'public')))
 // app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
 // app.use('/stories', require('./routes/stories'))
+process.env.NODE_ENV === 'production' 
+    ? app.use('https://bookwormz-api.herokuapp.com/auth', require('./routes/auth'))
+    : app.use('/auth', require('./routes/auth'))
+
 
 /* MORGAN SETUP */
 if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
@@ -74,7 +77,6 @@ if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
 /* DEPLOYMENT STATIC SETUP */ /*** FOR HEROKU ***/
 app.use(express.static(path.join(__dirname,'bookwormz', 'build')))
 if (process.env.NODE_ENV === 'production') { 
-    // app.use(express.static('bookwormz/build'))
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'bookwormz', 'build', 'index.html')))
 }
 
