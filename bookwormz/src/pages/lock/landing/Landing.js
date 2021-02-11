@@ -1,11 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 import { LandingContainer, } from './Landing.comp'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 const Landing_proto = ({ isAuthenticated, error, history }) => {
+    const getAuth = async () => {
+        await axios.get('/auth/google')
+    }
+
 
     if (isAuthenticated) {
         history.push('/dashboard')
@@ -27,8 +32,9 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
             
             <section className='container__links'>
                 <a 
-                    // href='http://localhost:5000/auth/google' 
-                    href='/auth/google' 
+                    //href='http://localhost:5000/auth/google' 
+                    href='https://bookwormz-api.herokuapp.com/auth/google' 
+                    //onClick={getAuth}
                     className='link__btn link__btn-google'>
                     <i className='fab fa-google left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Google
