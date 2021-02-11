@@ -8,7 +8,8 @@
     "server": "cross-env NODE_ENV=development nodemon app",
     "client": "npm start --prefix bookwormz",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node app.js"
+    "start": "node app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix bookwormz && npm run build --prefix bookwormz"
   },
   "repository": {
     "type": "git",
