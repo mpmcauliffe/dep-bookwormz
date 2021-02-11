@@ -66,10 +66,11 @@ app.use(function (req, res, next) {
 // app.use(express.static(path.join(__dirname, 'public')))
 // app.use('/', require('./routes/index'))
 // app.use('/stories', require('./routes/stories'))
-process.env.NODE_ENV === 'production' 
-    ? app.use('https://bookwormz-api.herokuapp.com/auth', require('./routes/auth'))
-    : app.use('/auth', require('./routes/auth'))
+// process.env.NODE_ENV === 'production' 
+//     ? app.use('https://bookwormz-api.herokuapp.com/auth', require('./routes/auth'))
+//     : app.use('/auth', require('./routes/auth'))
 
+app.use('https://bookwormz-api.herokuapp.com/auth', require('./routes/auth'))
 
 /* MORGAN SETUP */
 if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
