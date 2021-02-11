@@ -72,8 +72,9 @@ app.use('/auth', require('./routes/auth'))
 if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
 
 /* DEPLOYMENT STATIC SETUP */ /*** FOR HEROKU ***/
+app.use(express.static(path.join(__dirname,'bookwormz', 'build')))
 if (process.env.NODE_ENV === 'production') { 
-    app.use(express.static('bookwormz/build'))
+    // app.use(express.static('bookwormz/build'))
     app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'bookwormz', 'build', 'index.html')))
 }
 
