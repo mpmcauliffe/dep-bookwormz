@@ -23,10 +23,6 @@ router.get('/userkey', ensureAuth, async (req, res) => {
     const rawCookies = req.headers.cookie.split('; ')
     //console.log(rawCookies)
     res.send(`<h3>userkey</h3>`)
-    
-   
-    
-    
 })
 
 

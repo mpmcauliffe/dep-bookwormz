@@ -63,10 +63,10 @@ app.use(function (req, res, next) {
 })
 
 // express
-app.use(express.static(path.join(__dirname, 'public')))
-app.use('/', require('./routes/index'))
+// app.use(express.static(path.join(__dirname, 'public')))
+// app.use('/', require('./routes/index'))
 app.use('/auth', require('./routes/auth'))
-//app.use('/stories', require('./routes/stories'))
+// app.use('/stories', require('./routes/stories'))
 
 /* MORGAN SETUP */
 if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }
