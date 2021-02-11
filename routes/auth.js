@@ -54,10 +54,10 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     
     (req, res) => {
-        process.env.NODE_ENV === 'production'
-            ? res.redirect('https://bookwormz-api.herokuapp.com/userauth')
-            : res.redirect('http://localhost:3000/userauth')
-        // res.redirect('https://bookwormz-api.herokuapp.com/userauth')
+        // process.env.NODE_ENV === 'production'
+        //     ? res.redirect('https://bookwormz-api.herokuapp.com/userauth')
+        //     : res.redirect('http://localhost:3000/userauth')
+        res.redirect('https://bookwormz-api.herokuapp.com/userauth')
         // res.redirect('http://localhost:3000') 
         // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
     }
