@@ -18,12 +18,15 @@ router.get('/token', ensureAuth, (req, res) => {
                 mongoId: req.user._id,
             }
         }
-        console.log(payload)
-        const token = jwt.sign(payload, secret, (err, token) => {
-            //res.send(`<h3>${token}</h3>`)
-            //console.log(token)
-            res.json({ token })
-        })
+        res.send({ "bears": "are cute" })
+
+        // console.log(payload)
+        // const token = jwt.sign(payload, secret, (err, token) => {
+        //     if (err) { console.log(err) }
+        //     //res.send(`<h3>${token}</h3>`)
+        //     //console.log(token)
+        //     res.json({ token })
+        // })
     } catch (e) {
         console.log(e)
         throw e
