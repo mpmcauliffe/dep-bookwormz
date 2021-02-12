@@ -4,7 +4,7 @@ import { Route, Switch,
 import { AnimatePresence, } from 'framer-motion'
 
 import { Provider } from 'react-redux'
-import store from './store'
+import store from './redux/store/store'
 
 import { Books, Dashboard, Clubs, Landing, 
     UserAuth, } from './pages'

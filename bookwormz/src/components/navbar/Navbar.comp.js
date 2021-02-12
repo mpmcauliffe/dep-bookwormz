@@ -30,3 +30,34 @@ export const NavLogo = styled.img`
 
     @media (min-width: 601px) { height: 6rem; margin-right: 3rem; }
 `
+
+export const SideMenu = styled.div`
+    position: ${p => p.showMenu ? 'fixed' : 'absolute'};
+    left: ${p => p.showMenu ? 0 : '-60vw'};
+    z-index: 10;
+    height: 100vh;
+    width: 50vw;
+
+    background: ${p => p.theme.silver};
+    transition: left 1s;
+    transition-timing-function: cubic-bezier(1,0,.01,1);
+
+    @media (min-width: 601px) { width: 33vw; }
+    @media (min-width: 1024px) { width: 13vw; }
+`
+export const ShadeScreen = styled.div`
+    position: ${p => p.showScreen ? 'fixed' : 'absolute'};
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+
+    overflow-y: hidden;
+    
+    background: #000;  
+    pointer-events: ${p => p.showScreen ? 'all' : 'none'};
+    opacity: ${p => p.showScreen ? .95 : 0}; 
+    transition: opacity 500ms;
+    transition-timing-function: cubic-bezier(1,0,.01,1);
+`

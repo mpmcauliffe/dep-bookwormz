@@ -1,25 +1,42 @@
-import React, { Fragment, } from 'react'
+import React, { Fragment, useState, } from 'react'
 import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { NavLogo, NavMenuLeft, } from './Navbar.comp'         
+import { NavLogo, NavMenuLeft, ShadeScreen, SideMenu, } from './Navbar.comp'         
 
 
 const Navbar_proto = ({ isAuthenticated, }) => {
+    const [isMenuVisible, setIsMenuVisible] = useState(false)
+
+    const toggleMenu = () => {
+        setIsMenuVisible(!isMenuVisible)
+        console.log(isMenuVisible)
+    }
+
 
     if (!isAuthenticated) { return null }
-
+// {isMenuVisible &&}
     return (
         <Fragment>
-            <ul 
-                id='burger-menu' 
-                className='sidenav'
-                style={{ width: '20rem', }} >
-                <li><a href='#!'>
-                    Account <i className='far fa-user secondary-content' /></a></li>
-                <li><Link to='/userauth'>
-                    Logout <i className='fas fa-sign-out-alt secondary-content' /></Link></li>
-            </ul>
+            
+            <ShadeScreen 
+                    onClick={toggleMenu}
+                    showScreen={isMenuVisible} />
+
+            <SideMenu 
+                onClick={toggleMenu}
+                showMenu={isMenuVisible}>
+                <ul 
+                    id='burger-menu' 
+                    className='sidenav'
+                    style={{ width: '20rem', }}>
+                    
+                    <li><a href='#!'>
+                        Account <i className='far fa-user secondary-content' /></a></li>
+                    <li><Link to='/userauth'>
+                        Logout <i className='fas fa-sign-out-alt secondary-content' /></Link></li>
+                </ul>
+            </SideMenu>
 
             <nav className='grey darken-3'>
                 <div className='nav-wrapper'>
@@ -35,8 +52,9 @@ const Navbar_proto = ({ isAuthenticated, }) => {
                 
                 <NavMenuLeft className='left '>
                     <li><a
-                        className='sidenav-trigger show-on-large' 
-                        href='#!' data-target='burger-menu'>
+                        href='#!' //data-target='burger-menu'
+                        onClick={toggleMenu}
+                        className='sidenav-trigger show-on-large'>
                     <i className='fas fa-bars' /></a></li>
                 
                     <li><Link 
