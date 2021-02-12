@@ -5,7 +5,7 @@ import { LOGIN, LOGOUT, ERROR, } from '../types'
 /* authenticates user */
 export const login = history => async dispatch => {
     try {
-        const res = await axios.get('https://bookwormz-api.herokuapp.com/auth/token')
+        const res = await axios.get('/auth/token')
         console.log(res)
         if (typeof res.data.token === 'undefined') {
             history.push('/')
