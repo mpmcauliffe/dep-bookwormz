@@ -18,23 +18,20 @@ const Navbar_proto = ({ isAuthenticated, }) => {
 // {isMenuVisible &&}
     return (
         <Fragment>
-            
             <ShadeScreen 
-                    onClick={toggleMenu}
-                    showScreen={isMenuVisible} />
-
+                onClick={toggleMenu}
+                showScreen={isMenuVisible} />
             <SideMenu 
                 onClick={toggleMenu}
                 showMenu={isMenuVisible}>
-                <ul 
-                    id='burger-menu' 
-                    className='sidenav'
-                    style={{ width: '20rem', }}>
+                
+                <ul className='nav-items nav-item'>
                     
                     <li><a href='#!'>
-                        Account <i className='far fa-user secondary-content' /></a></li>
+                        Account&nbsp;&nbsp;<i className='far fa-user secondary-content' /></a></li>
+
                     <li><Link to='/userauth'>
-                        Logout <i className='fas fa-sign-out-alt secondary-content' /></Link></li>
+                        Logout&nbsp;&nbsp;<i className='fas fa-sign-out-alt secondary-content' /></Link></li>
                 </ul>
             </SideMenu>
 

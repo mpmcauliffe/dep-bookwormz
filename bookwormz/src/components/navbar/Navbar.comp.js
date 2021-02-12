@@ -38,12 +38,27 @@ export const SideMenu = styled.div`
     height: 100vh;
     width: 50vw;
 
+    padding: 1rem 3rem 1rem 1rem;
+
     background: ${p => p.theme.silver};
     transition: left 1s;
     transition-timing-function: cubic-bezier(1,0,.01,1);
 
-    @media (min-width: 601px) { width: 33vw; }
-    @media (min-width: 1024px) { width: 13vw; }
+    .nav-items {
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+
+    .nav-item li a, .nav-item li i {
+        font-size: 2.5rem;
+        color: ${p => p.theme.primary};
+    }
+
+    @media (min-width: 601px) { width: 25vw; }
+    @media (min-width: 1024px) { width: 15vw; }
 `
 export const ShadeScreen = styled.div`
     position: ${p => p.showScreen ? 'fixed' : 'absolute'};
