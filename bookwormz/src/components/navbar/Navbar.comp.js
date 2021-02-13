@@ -41,7 +41,6 @@ export const NavLogoSm = styled.img`
     @media (min-width: 601px) { visibility: hidden; }
 `
 
-
 export const SideMenu = styled.div`
     position: ${p => p.showMenu ? 'fixed' : 'absolute'};
     left: ${p => p.showMenu ? 0 : '-60vw'};

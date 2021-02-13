@@ -7,7 +7,11 @@ const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
 // SEARCH BOOKs from google API
 export const searchBooks = searchQuery => async dispatch => {
     try {
-        const res = await axios.get(`${API_URL}${searchQuery}`)
+        const res = await axios.get(`${API_URL}${searchQuery}`,{
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }})
         console.log(res.data)
 
 

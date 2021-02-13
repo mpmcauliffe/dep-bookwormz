@@ -28,7 +28,7 @@ UserAuth_proto.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    logout: PropTypes.func.isRequired,
+    // logout: PropTypes.func.isRequired,
     isAuthenticated: state.auth.isAuthenticated,
 })
 

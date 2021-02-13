@@ -2,7 +2,7 @@ import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, BOOK_ERROR, } from '../types'
 
 
 const initialState = {
-    searchQuery: '',
+    bookSearchQuery: '',
     bookResults: [ ],
     bookError: '',
     isLoading: false,
