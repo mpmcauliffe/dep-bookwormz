@@ -1,45 +1,35 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { SearchContainer, SearchForm, } from './Search.comp'
 
 
-const SearchContainer = styled.div`
-    width: 100%;
-    margin-top: 1rem;
+export const Searchbar_proto = ({ searchFor }) => {
+    const [txt, setTxt] = useState('')
 
-    display: flex;
-    color: ${p => p.theme.primary};
+    const changeTxt = e => setTxt(e.target.value)
 
-    i {
-        position: absolute;
-        margin-right: 2rem;
-        color: ${p => p.theme.silver};
+    const onSubmit = e => {
+        e.preventDefault()
+        console.log(txt)
     }
-
-    .input-bar {
-        font-size: 3rem !important;
-        /* padding-bottom: 1rem !important; */
-        padding: 0 0 1rem 4rem !important;
-        border-bottom: .1rem solid ${p => p.theme.silver} !important;
-
-        &:focus { 
-            border-bottom: .3rem solid ${p => p.theme.ruby} !important; 
-            box-shadow: none !important;
-        } 
-    }
-    input:focus + i { color: ${p => p.theme.ruby}; }
-
-    @media (min-width: 601px) {
-        width: 60%;
-    }
-`
-
-export const Searchbar = () => {
 
 
     return (
-        <SearchContainer>
-            <input type='text' name='search' className='input-bar' />
-            <i className='fas fa-search fa-3x' />
-        </SearchContainer>
+        <SearchForm onSubmit={onSubmit}>
+            <SearchContainer>
+                <input 
+                    value={txt}
+                    onChange={changeTxt}
+                    type='text' 
+                    name='search' 
+                    className='input-bar' />
+                <i className='fas fa-search fa-3x' />
+            </SearchContainer>
+        </SearchForm>
     )
 }
+
+
+const Searchbar = connect(null, { })(Searchbar_proto)
+export { Searchbar }

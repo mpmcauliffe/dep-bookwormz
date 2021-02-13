@@ -24,12 +24,23 @@ export const NavMenuLeft = styled.ul`
         li:first-of-type { margin: 0 -1rem 0 .3rem; }
     }
 `
-export const NavLogo = styled.img`
-    height: 4.5rem;
-    margin: .5rem 1rem 0 ;
+export const NavLogoLg = styled.img`
+    height: 6rem;
+    margin: .5rem 1rem 0 3rem;
 
-    @media (min-width: 601px) { height: 6rem; margin-right: 3rem; }
+    visibility: hidden;
+
+    @media (min-width: 601px) { visibility: visible; }
 `
+export const NavLogoSm = styled.img`
+    height: 4.5rem;
+    margin: .5rem 1rem 0 3rem;
+
+    visibility: visible;
+
+    @media (min-width: 601px) { visibility: hidden; }
+`
+
 
 export const SideMenu = styled.div`
     position: ${p => p.showMenu ? 'fixed' : 'absolute'};
@@ -67,8 +78,6 @@ export const ShadeScreen = styled.div`
     height: 100vh;
     width: 100vw;
     z-index: 1;
-
-    overflow-y: hidden;
     
     background: #000;  
     pointer-events: ${p => p.showScreen ? 'all' : 'none'};

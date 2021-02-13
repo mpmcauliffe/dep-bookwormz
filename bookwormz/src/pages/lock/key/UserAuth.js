@@ -2,7 +2,7 @@ import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { login, logout } from '../../../redux/actions/authActions'
-import { SpinnerContainer } from './spinner'
+import { Spinner } from '../../../components'
 
 
 const UserAuth_proto = ({ login, logout, isAuthenticated, history, }) => {
@@ -16,11 +16,7 @@ const UserAuth_proto = ({ login, logout, isAuthenticated, history, }) => {
         }
     })
 
-    return (
-        <SpinnerContainer>
-            <div className='lds-dual-ring'></div>            
-        </SpinnerContainer>
-    )
+    return <Spinner />
 }
 
 

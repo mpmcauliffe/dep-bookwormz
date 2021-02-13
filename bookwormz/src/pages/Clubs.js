@@ -15,7 +15,7 @@ export const Clubs = () => {
             
             <MainContent>
                 <HeaderSection>
-                    <h1>Groups</h1>
+                    <h1>Clubs</h1>
                     <Searchbar />
                 </HeaderSection>
                 

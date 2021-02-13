@@ -1,10 +1,11 @@
-import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, } from '../types'
+import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, BOOK_ERROR, } from '../types'
 
 
 const initialState = {
     searchQuery: '',
     bookResults: [ ],
     bookError: '',
+    isLoading: false,
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export

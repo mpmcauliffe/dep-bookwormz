@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store/store'
 
 import { Books, Dashboard, Clubs, Landing, 
-    UserAuth, } from './pages'
+    UserAuth, UserAccount, } from './pages'
 import { Navbar, SecureRoute, } from './components'
 import setAuthToken from './utils/setAuthToken'
 
@@ -54,6 +54,11 @@ function App(props) {
                             exact
                             path='/clubs'
                             component={Clubs} />
+
+                        <SecureRoute
+                            exact
+                            path='/useraccount'
+                            component={UserAccount} />
                     </Switch>
                 </AnimatePresence>
             </Router>

@@ -2,7 +2,8 @@ import React, { Fragment, useState, } from 'react'
 import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { NavLogo, NavMenuLeft, ShadeScreen, SideMenu, } from './Navbar.comp'         
+import { NavLogoLg, NavLogoSm, NavMenuLeft, 
+    ShadeScreen, SideMenu, } from './Navbar.comp'         
 
 
 const Navbar_proto = ({ isAuthenticated, }) => {
@@ -27,8 +28,8 @@ const Navbar_proto = ({ isAuthenticated, }) => {
                 
                 <ul className='nav-items nav-item'>
                     
-                    <li><a href='#!'>
-                        Account&nbsp;&nbsp;<i className='far fa-user secondary-content' /></a></li>
+                    <li><Link to='/useraccount'>
+                        Account&nbsp;&nbsp;<i className='far fa-user secondary-content' /></Link></li>
 
                     <li><Link to='/userauth'>
                         Logout&nbsp;&nbsp;<i className='fas fa-sign-out-alt secondary-content' /></Link></li>
@@ -39,12 +40,14 @@ const Navbar_proto = ({ isAuthenticated, }) => {
                 <div className='nav-wrapper'>
                 <Link 
                     to='/dashboard'>
-                    <NavLogo 
+                    <NavLogoLg 
                         alt='BKW_LOGO'
                         className='right brand-logo'
-                        src={window.innerWidth < 481 
-                            ? require(`./img/bkw-abbr_light.png`).default
-                            : require(`./img/bkw-sm_light.png`).default} />    
+                        src={require(`./img/bkw-sm_light.png`).default} />    
+                    <NavLogoSm 
+                        alt='BKW_LOGO'
+                        className='right brand-logo'
+                        src={require(`./img/bkw-abbr_light.png`).default} />
                 </Link>
                 
                 <NavMenuLeft className='left '>

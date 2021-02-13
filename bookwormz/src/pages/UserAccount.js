@@ -4,8 +4,7 @@ import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, } from '../components'
 
 
-export const Dashboard = () => {
-
+export const UserAccount = () => {
     return (
         <motion.div
             exit={pageVariants.out} 
@@ -16,12 +15,11 @@ export const Dashboard = () => {
             
             <MainContent>
                 <HeaderSection>
-                    <h1>Dashboard</h1>
+                    <h1>Your Account</h1>
                 </HeaderSection>
-                <div style={{ height: '60rem', width: '100%', backgroundColor: '#dfdf22' }} />
+                <div style={{ height: '60rem', width: '100%', backgroundColor: '#22bb22' }} />
             </MainContent>
             
         </motion.div>
-        
     )
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 // see https://loading.io/css/ for cool CSS spinners
-export const SpinnerContainer = styled.div`
+const SpinnerContainer = styled.div`
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -35,3 +35,11 @@ export const SpinnerContainer = styled.div`
         }
     }
 `
+
+export const Spinner = () => {
+    return (
+        <SpinnerContainer>
+            <div className='lds-dual-ring'></div>            
+        </SpinnerContainer>
+    )
+}

@@ -4,9 +4,9 @@ import { createGlobalStyle, } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
+        overflow-x: hidden;
     }
     body {
-        overflow-x: hidden;
         font-family: "aileron",sans-serif;
     }
     h1 {

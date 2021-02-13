@@ -4,7 +4,9 @@ import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, Searchbar, } from '../components'
 
 
-export const Books = () => {
+export const Books = props => {
+    console.log(props.children)
+
     return (
         <motion.div 
             exit={pageVariants.out} 
@@ -15,7 +17,7 @@ export const Books = () => {
                 <MainContent>
                     <HeaderSection>
                         <h1>Books</h1>
-                        <Searchbar />
+                        <Searchbar searchFor='books' />
                     </HeaderSection>
                     <div style={{ height: '60rem', width: '100%', backgroundColor: '#982233' }} />
                 </MainContent>
