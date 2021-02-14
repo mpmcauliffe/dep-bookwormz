@@ -1,25 +1,35 @@
 import React, { useState, useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { searchBooks, } from '../../redux/actions/bookActions'
+import { searchBooks, setLoading, } from '../../redux/actions/bookActions'
 import { SearchContainer, SearchForm, } from './Search.comp'
 
 
-export const Searchbar_proto = ({ searchBooks, searchFor, bookSearchQuery, }) => {
+export const Searchbar_proto = ({ 
+    searchBooks, setLoading,
+    searchFor, queryString, 
+}) => {
     const [txt, setTxt] = useState('')
 
     const changeTxt = e => setTxt(e.target.value)
 
     const onSubmit = e => {
         e.preventDefault()
-        searchBooks(txt)
+        setLoading()
+
+        if (searchFor === 'books') {
+            searchBooks(txt)
+            return
+        }
+
+        return
     }
 
     useEffect(() => {
-        if (bookSearchQuery.length > 0) {
-            setTxt(bookSearchQuery)
+        if (queryString.length > 0) {
+            setTxt(queryString)
         }
-    }, [bookSearchQuery])
+    }, [queryString])
 
 
     return (
@@ -40,13 +50,14 @@ export const Searchbar_proto = ({ searchBooks, searchFor, bookSearchQuery, }) =>
 
 Searchbar_proto.propTypes = {
     searchBooks: PropTypes.func,
-    searchFor: PropTypes.string,
-    bookSearchQuery: PropTypes.string.isRequired,
+    setLoading: PropTypes.func.isRequired,
+    searchFor: PropTypes.string.isRequired,
+    queryString: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = state => ({
-    bookSearchQuery: state.books.bookSearchQuery,
-})
+// const mapStateToProps = state => ({
+//     queryString: state.books.bookSearchQuery,
+// })
 
-const Searchbar = connect(mapStateToProps, { searchBooks })(Searchbar_proto)
+const Searchbar = connect(null, { searchBooks, setLoading, })(Searchbar_proto)
 export { Searchbar }

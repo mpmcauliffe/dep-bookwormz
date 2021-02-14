@@ -16,7 +16,7 @@ export const Clubs = () => {
             <MainContent>
                 <HeaderSection>
                     <h1>Clubs</h1>
-                    <Searchbar />
+                    <Searchbar searchFor='clubs' />
                 </HeaderSection>
                 
                 <div style={{ height: '60rem', width: '100%', backgroundColor: '#453299' }} />

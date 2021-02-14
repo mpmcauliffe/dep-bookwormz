@@ -9,3 +9,6 @@ export const ADD_BOOK_TO_PROFILE   = 'ADD_BOOK_TO_PROFILE'
 export const BOOK_ERROR            = 'BOOK_ERROR'
 
 /* CLUB TYPES */
+
+
+export const SET_LOADING           = 'SET_LOADING'
