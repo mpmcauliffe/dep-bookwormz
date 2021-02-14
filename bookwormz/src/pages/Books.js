@@ -4,8 +4,7 @@ import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, Searchbar, } from '../components'
 
 
-export const Books = props => {
-    console.log(props.children)
+export const Books = () => {
 
     return (
         <motion.div 
