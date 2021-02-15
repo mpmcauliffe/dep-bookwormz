@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         font-family: "aileron",sans-serif;
+        overflow-x: hidden;
     }
     h1 {
         font-size: 6rem;

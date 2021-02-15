@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 
 export const MainContent = styled.main`
-    width: 99vw;
-    padding: 1rem;
+    width: 100vw;
+    padding: 1rem 0;
     margin: 1rem auto;
 
     @media (min-width: 601px) { 
@@ -15,6 +15,7 @@ export const MainContent = styled.main`
 export const HeaderSection = styled.section`
     display: flex;
     flex-direction: column;
+    padding: 0 1rem;
 
     h1 {
         font-size: 3.7rem; 

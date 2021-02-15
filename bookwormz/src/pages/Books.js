@@ -1,15 +1,12 @@
-import React, { useEffect, } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { HeaderSection, MainContent, Searchbar, } from '../components'
+import { BookShelf, HeaderSection, MainContent, Searchbar, } from '../components'
 
 
-export const Books_proto = ({ bookResults, bookSearchQuery, }) => {
-
-    useEffect(() => { }, [bookResults])
-
+export const Books_proto = ({ bookSearchQuery, }) => {
 
     return (
         <motion.div 
@@ -25,7 +22,9 @@ export const Books_proto = ({ bookResults, bookSearchQuery, }) => {
                             searchFor='books'
                             queryString={bookSearchQuery} />
                     </HeaderSection>
-                    <div style={{ height: '60rem', width: '100%', backgroundColor: '#982233' }} />
+                    <BookShelf />
+                    {/* <div style={{ height: '60rem', width: '100%', backgroundColor: '#982233' }} /> */}
+                    
                 </MainContent>
         </motion.div>        
     )
@@ -33,12 +32,10 @@ export const Books_proto = ({ bookResults, bookSearchQuery, }) => {
 
 
 Books_proto.propTypes = {
-    bookResults: PropTypes.array.isRequired,
     bookSearchQuery: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
-    bookResults: state.books.bookResults,
     bookSearchQuery: state.books.bookSearchQuery,
 })
 

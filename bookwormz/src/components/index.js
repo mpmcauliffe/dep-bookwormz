@@ -1,3 +1,4 @@
+export * from './bookShelf/BookShelf'
 export * from './layouts/containers'
 export * from './navbar/Navbar'
 export * from './search/Searchbar'
