@@ -2,12 +2,12 @@ import styled from 'styled-components'
 
 
 export const BookStack = styled.section`
-    width: 100%;
+    /* width: 100%; */
     margin-top: 7rem;
 
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: .1rem;
+    grid-gap: .5rem;
 
     @media(min-width: 980px) { 
         grid-template-columns: 1fr 1fr;
@@ -19,7 +19,7 @@ export const BookStack = styled.section`
     } */
 `
 export const BookCover = styled.div`
-    width: 100%;
+    /* width: 100%; */
     height: 15rem;
     padding: .2rem;
 
@@ -34,6 +34,10 @@ export const BookCover = styled.div`
 
     cursor: pointer;
 
+    .right-cell {
+        display: grid;
+        grid-template-rows: 3fr 1fr 1fr;
+    }
     .cover { height: 14.6rem; width: 10rem; }
     .title { font-size: 3rem; margin: 0; }
     .subtitle { margin: .5rem 0; }
@@ -41,7 +45,8 @@ export const BookCover = styled.div`
 
     @media(min-width: 1140px) { 
         height: 19rem; 
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 15rem 2fr;
+        .right-cell { grid-template-rows: 4fr 1fr 1fr; }
         .cover { height: 18.6rem; width: 13rem; }    
     }
 `
