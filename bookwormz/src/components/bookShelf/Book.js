@@ -7,7 +7,7 @@ export const Book = props => {
     const { title, subtitle, authors, publisher, publisherDate, 
         description, pageCount, printedPageCount, categories, image } = props
 
-    //console.log(image)    
+    console.log(image)    
 
 
     return (

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
     BOOK_ERROR, SET_LOADING, } from '../types'
-import { res } from '../../components/bookShelf/sample'
+//import { res } from '../../components/bookShelf/sample'
 
 
 const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
@@ -11,9 +11,9 @@ export const searchBooks = searchString => async dispatch => {
     //setLoading()
     
     try {
-        // const res = await axios.get(`${API_URL}${searchString}`)
+        const res = await axios.get(`${API_URL}${searchString}`)
 
-        // console.log(res.data.items)
+        console.log(res.data.items)
         if (typeof res.data.items === 'undefined') {
             dispatch({ type: BOOK_ERROR })
             return
