@@ -23,7 +23,17 @@ console.log(bookResults)
     return (
         <BookStack>
             {bookResults.map(book => (
-                <Book />
+                <Book
+                    title={book.volumeInfo.title}
+                    subtitle={book.volumeInfo.subtitle}
+                    authors={book.volumeInfo.authors}
+                    publisher={book.volumeInfo.publisher}
+                    publisherDate={book.volumeInfo.publisherDate}
+                    description={book.volumeInfo.description}
+                    pageCount={book.volumeInfo.pageCount}
+                    printedPageCount={book.volumeInfo.printedPageCount}
+                    categories={book.volumeInfo.categories}
+                    image={book.volumeInfo.imageLinks.small} />
             ))
 
             }

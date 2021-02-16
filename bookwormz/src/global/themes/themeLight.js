@@ -2,6 +2,7 @@ export const Theme = {
     primary: '#424242',
 
     silver: '#c7c5c7',
+    lightSilver: '#e9e9e9',
 
     ruby: '#982233',
 

@@ -127,5 +127,6 @@ export const res = {
             },
         kind: 'some string with some information',
         totalItems: 48924625346574028,
+        randId: Math.floor(100000 + Math.random() * 900000),
     }    
 }
