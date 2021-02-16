@@ -60,8 +60,8 @@ router.get('/google/callback',
         // process.env.NODE_ENV === 'production'
         //     ? res.redirect('https://bookwormz-api.herokuapp.com/userauth')
         //     : res.redirect('http://localhost:3000/userauth')
-        res.redirect('https://bookwormz-api.herokuapp.com/userauth')
-        // res.redirect('https://localhost:3000/userauth')
+        // res.redirect('https://bookwormz-api.herokuapp.com/userauth')
+        res.redirect('http://localhost:3000/userauth')
     }
 )
 

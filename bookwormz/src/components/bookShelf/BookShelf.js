@@ -33,7 +33,7 @@ console.log(bookResults)
                     pageCount={book.volumeInfo.pageCount}
                     printedPageCount={book.volumeInfo.printedPageCount}
                     categories={book.volumeInfo.categories}
-                    image={book.volumeInfo.imageLinks.small} />
+                    image={book.volumeInfo.imageLinks.thumbnail} />
             ))
 
             }

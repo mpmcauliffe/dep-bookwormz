@@ -11,9 +11,9 @@ export const searchBooks = searchString => async dispatch => {
     //setLoading()
     
     try {
-        const res = await axios.get(`${API_URL}${searchString}`)
+        // const res = await axios.get(`${API_URL}${searchString}`)
 
-        console.log(res.data.items)
+        // console.log(res.data.items)
         if (typeof res.data.items === 'undefined') {
             dispatch({ type: BOOK_ERROR })
             return

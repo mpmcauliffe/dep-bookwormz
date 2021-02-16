@@ -21,21 +21,27 @@ export const BookStack = styled.section`
 export const BookCover = styled.div`
     width: 100%;
     height: 15rem;
-    padding: .5rem;
+    padding: .2rem;
 
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 12rem 2fr;
     grid-gap: .3rem;
 
-    background: ${p => p.theme.lightSilver};
+    /* background: ${p => p.theme.lightSilver}; */
+    background: radial-gradient(circle, rgba(233,233,233,1) 0%, rgba(199,197,199,1) 77%);
+    border-top: .1rem solid ${p => p.theme.lightSilver};
+    border-bottom: .1rem solid ${p => p.theme.silver};
 
-    .cover { width: 70%; }
+    cursor: pointer;
+
+    .cover { height: 14.6rem; width: 10rem; }
     .title { font-size: 3rem; margin: 0; }
+    .subtitle { margin: .5rem 0; }
     .author { font-size: 1.5rem; margin: .5rem 0; }
 
     @media(min-width: 1140px) { 
-        height: 27rem; 
+        height: 19rem; 
         grid-template-columns: 1fr 2fr;
-        .cover { width: 80%; }    
+        .cover { height: 18.6rem; width: 13rem; }    
     }
 `

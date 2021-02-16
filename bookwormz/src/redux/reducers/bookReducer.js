@@ -15,8 +15,8 @@ export default (state = initialState, action) => {
         case SEARCH_BOOKS: 
             return {
                 ...state,
-                bookResults: [...action.payload.books],
-                // bookResults: [...Array(7)].map((_, i) => action.payload.books),
+                // bookResults: [...action.payload.books],
+                bookResults: [...Array(7)].map((_, i) => action.payload.books),
                 bookSearchQuery: action.payload.searchString,
                 isLoading: false,
             }
