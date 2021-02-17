@@ -1,5 +1,6 @@
 import React from 'react'
 import { BookCover, } from './Books.comp'
+import { truncate } from '../../helpers/truncate'
 
 
 export const Book = props => {
@@ -15,7 +16,7 @@ export const Book = props => {
 
             <img src={`${image}`} alt='book-cover' className='cover' />
             <div className='right-cell'>
-                <p className='title'>{title}</p>
+                <p className='title'>{truncate(title)}</p>
                 <p className='subtitle'>{subtitle}</p>
                 <p className='author'>{authors}</p>
             </div>
