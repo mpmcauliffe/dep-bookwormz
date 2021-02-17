@@ -1,7 +1,7 @@
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
-const userPass = require('../mongoose/userPass')
+const userPass = require('../helpers/userPass')
 
 
 // from http://www.passportjs.org/packages/passport-google-oauth20/
