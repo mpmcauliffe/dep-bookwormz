@@ -18,11 +18,11 @@ import { BookStack, } from './Books.comp'
 
 export const BookShelf_proto = ({ bookResults, }) => {
     useEffect(() => { }, [bookResults])
-console.log(bookResults)
+//console.log(bookResults)
 
     return (
-        <BookStack>
-            {bookResults.map(book => (
+        <BookStack> 
+        {/* */}{bookResults.map(book => (
                 <Book
                     title={book.volumeInfo.title}
                     subtitle={book.volumeInfo.subtitle}
@@ -36,7 +36,8 @@ console.log(bookResults)
                     image={book.volumeInfo.imageLinks.thumbnail} />
             ))
 
-            }
+            } 
+            
         </BookStack>
     )
 }
