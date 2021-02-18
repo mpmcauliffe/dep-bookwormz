@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { searchBooks, setLoading, } from '../../redux/actions/bookActions'
 import { SearchContainer, SearchForm, } from './Search.comp'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 export const Searchbar_proto = ({ 
@@ -16,6 +17,12 @@ export const Searchbar_proto = ({
     const onSubmit = e => {
         e.preventDefault()
         setLoading()
+
+        if (searchFor === 'books' && txt === 'book') {
+            // because Google Books API is poorly designed
+            M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
+            return
+        }
 
         if (searchFor === 'books') {
             searchBooks(txt)

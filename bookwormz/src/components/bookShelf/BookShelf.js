@@ -22,7 +22,7 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
     useEffect(() => { }, [bookResults, isLoading])
 
     if (isLoading) { return <Spinner /> }
-//objectNullValueCheck(bookResults.volumeInfo)
+
     return (
         <BookStack> 
         {/* */}{bookResults.map(book => (
@@ -37,7 +37,7 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
                     pageCount={book.volumeInfo.pageCount}
                     printedPageCount={book.volumeInfo.printedPageCount}
                     categories={book.volumeInfo.categories}
-                    image={objectNullValueCheck(book.volumeInfo)} />
+                    image={book.volumeInfo.imageLinks.thumbnail} />
                 ))
             } 
             

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
     BOOK_ERROR, SET_LOADING, } from '../types'
-// import M from 'materialize-css/dist/js/materialize.min.js'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 // SEARCH BOOKs from google API
@@ -14,6 +14,7 @@ export const searchBooks = (searchString) => async dispatch => {
         // console.log(res.data.items)
         if (typeof res.data.items === 'undefined') {
             dispatch({ type: BOOK_ERROR })
+            M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
             return
         }
 
