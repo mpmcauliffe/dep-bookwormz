@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Book, } from './Book'
 import { Spinner } from '../../components'
 import { BookStack, } from './Books.comp'
+import { objectNullValueCheck } from '../../helpers/objectNullValueCheck'
 
 // res.volumeInfo.title                 STR
 // res.volumeInfo.subtitle              STR
@@ -20,9 +21,8 @@ import { BookStack, } from './Books.comp'
 export const BookShelf_proto = ({ bookResults, isLoading, }) => {
     useEffect(() => { }, [bookResults, isLoading])
 
-
     if (isLoading) { return <Spinner /> }
-
+//objectNullValueCheck(bookResults.volumeInfo)
     return (
         <BookStack> 
         {/* */}{bookResults.map(book => (
@@ -37,9 +37,8 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
                     pageCount={book.volumeInfo.pageCount}
                     printedPageCount={book.volumeInfo.printedPageCount}
                     categories={book.volumeInfo.categories}
-                    image={book.volumeInfo.imageLinks.thumbnail} />
-            ))
-
+                    image={objectNullValueCheck(book.volumeInfo)} />
+                ))
             } 
             
         </BookStack>

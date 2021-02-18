@@ -3,7 +3,7 @@ import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { NavLogoLg, NavLogoSm, NavMenuLeft, 
-    ShadeScreen, SideMenu, } from './Navbar.comp'         
+    ShadeScreen, SideMenu, } from './Navbar.comp'      
 
 
 const Navbar_proto = ({ isAuthenticated, }) => {
@@ -16,7 +16,7 @@ const Navbar_proto = ({ isAuthenticated, }) => {
 
 
     if (!isAuthenticated) { return null }
-// {isMenuVisible &&}
+
     return (
         <Fragment>
             <ShadeScreen 

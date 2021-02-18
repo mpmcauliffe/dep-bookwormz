@@ -30,14 +30,12 @@ export const searchBooks = (searchString) => async dispatch => {
         console.error(eMessage)
 
         const eCode = eMessage.match(/\d+/)
-        if (eCode[0] === '401') {
-             eOut = 'Something went wrong. Please try logging in again.'
-            //  setTimeout(() => {
-            //       M.toast({ html: eOut, classes: 'red accent-4 rounded', displayLength: 5000 })
-            //  }, 1000);
-            
-            window.location.replace('/')
-             return
+        if (eCode !== null) {
+            if (eCode[0] === '401') {
+                // eOut = 'Something went wrong. Please try logging in again.'
+                window.location.replace('/')
+                return
+            }
         }
 
         dispatch({ type: BOOK_ERROR, payload: eOut, })     

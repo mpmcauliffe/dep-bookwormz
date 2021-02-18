@@ -29,7 +29,7 @@ export const BookCover = styled.div`
 
     /* background: ${p => p.theme.lightSilver}; */
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 77%);
-    border-top: .1rem solid ${p => p.theme.lightSilver};
+    border-top: .1rem solid #fcfcfc;
     border-bottom: .1rem solid ${p => p.theme.silver};
 
     cursor: pointer;
@@ -41,7 +41,7 @@ export const BookCover = styled.div`
     .cover { height: 14.6rem; width: 10rem; }
     .title { font-size: 1.6rem; margin: 0; }
     .subtitle { font-size: 1.4rem margin: .5rem 0; }
-    .author { font-size: 1.2rem; margin: .5rem 0; }
+    .author { font-size: 1.4rem; margin: .5rem 0; }
 
     @media(min-width: 601px) {
         .title { font-size: 2.2rem; }
@@ -58,4 +58,20 @@ export const BookCover = styled.div`
         .subtitle { font-size: 2.3rem; }
         .author { font-size: 1.9rem }
     }
+`
+
+export const ModalShade = styled.div`
+    position: ${p => p.showModalShade ? 'fixed' : 'absolute'};
+    top: -10rem;
+    left: -1rem;
+    height: 200rem;
+    /* height: ${p => p.shadeHeight}; */
+    width: 105vw;
+    z-index: 20;
+    
+    background: #000;  
+    pointer-events: ${p => p.showModalShade ? 'all' : 'none'};
+    opacity: ${p => p.showModalShade ? .95 : 0}; 
+    transition: opacity 500ms;
+    transition-timing-function: cubic-bezier(1,0,.01,1);
 `

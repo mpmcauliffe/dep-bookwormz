@@ -74,7 +74,7 @@ export const ShadeScreen = styled.div`
     position: ${p => p.showScreen ? 'fixed' : 'absolute'};
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 133vh;
     width: 100vw;
     z-index: 1;
     

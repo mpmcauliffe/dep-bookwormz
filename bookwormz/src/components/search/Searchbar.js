@@ -26,7 +26,7 @@ export const Searchbar_proto = ({
     }
 
     useEffect(() => {
-        if (queryString.length > 0) {
+        if (typeof queryString !== 'undefined' && queryString.length > 0) {
             setTxt(queryString)
         }
     }, [queryString])
