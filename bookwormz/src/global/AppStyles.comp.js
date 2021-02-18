@@ -18,6 +18,6 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 1.9rem;
     }
     p {
-        font-size: 1.9rem;
+        font-size: 1.5rem;
     }
 `

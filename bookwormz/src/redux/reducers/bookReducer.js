@@ -28,9 +28,10 @@ export default (state = initialState, action) => {
             }
 
         case BOOK_ERROR:
+            console.log(action.payload)
             return {
                 ...state,
-                bookError: 'Something went wrong.',
+                bookError: action.payload,
             }
 
         default:

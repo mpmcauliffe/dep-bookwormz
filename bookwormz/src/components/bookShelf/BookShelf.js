@@ -2,6 +2,7 @@ import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Book, } from './Book'
+import { Spinner } from '../../components'
 import { BookStack, } from './Books.comp'
 
 // res.volumeInfo.title                 STR
@@ -16,14 +17,17 @@ import { BookStack, } from './Books.comp'
 // res.volumeInfo.imageLinks.thumbnail  LNK
 // res.volumeInfo.imageLinks.small      LNK
 
-export const BookShelf_proto = ({ bookResults, }) => {
-    useEffect(() => { }, [bookResults])
-//console.log(bookResults)
+export const BookShelf_proto = ({ bookResults, isLoading, }) => {
+    useEffect(() => { }, [bookResults, isLoading])
+
+
+    if (isLoading) { return <Spinner /> }
 
     return (
         <BookStack> 
         {/* */}{bookResults.map(book => (
                 <Book
+                    key={book.id}
                     title={book.volumeInfo.title}
                     subtitle={book.volumeInfo.subtitle}
                     authors={book.volumeInfo.authors}
@@ -45,10 +49,13 @@ export const BookShelf_proto = ({ bookResults, }) => {
 
 BookShelf_proto.propTypes = {
     bookResults: PropTypes.array.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+
 }
 
 const mapStateToProps = state => ({
     bookResults: state.books.bookResults,
+    isLoading: state.books.isLoading,
 })
 
 const BookShelf = connect(mapStateToProps, {  })(BookShelf_proto)
