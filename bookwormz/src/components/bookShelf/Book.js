@@ -1,32 +1,32 @@
 import React, { Fragment, useState, } from 'react'
-import { BookCover, ModalShade, } from './Books.comp'
+import { BookCover, } from './Books.comp'
 import { truncate } from '../../helpers/truncate'
 
 
 export const Book = props => {
-    const { title, subtitle, authors, publisher, publisherDate, 
+    const { title, subtitle, authors, publisher, publisherDate, infoLink,
         description, pageCount, printedPageCount, categories, image } = props   
 
-    const [isModalToggled, setIsModalToggled] = useState(false)
+    const [isBookOpen, setIsBookOpen] = useState(false)
     //const [scrollHeight, setScrollHeight] = useState(0)
  
 
-    const toggleModal = () => {
-        // console.log(isModalToggled)
-        // console.log(document.body.scrollHeight)
-        // setScrollHeight(document.body.scrollHeight)
-        setIsModalToggled(!isModalToggled)
+    const OpenBook = () => {
+        setIsBookOpen(!isBookOpen)
     }
 
 
     return (
         <Fragment>
-            <ModalShade 
+            {/*<ModalShade 
                 onClick={toggleModal}
                 // shadeHeight={scrollHeight}
                 showModalShade={isModalToggled} />
-            {/*  */}
-            <BookCover onClick={toggleModal}>
+            <BookModal 
+                onClick={toggleModal}
+                showModal={isModalToggled}></BookModal>
+              */}
+            <BookCover onClick={OpenBook} isBookOpen={isBookOpen}>
                 <img src={`${image}`} alt='book-cover' className='cover' />
                 <div className='right-cell'>
                     <p className='title'>{truncate(title)}</p>
@@ -47,6 +47,30 @@ export const Book = props => {
                                         : null
                                 })}
                     </div>
+                </div>
+                <div className='body'>
+                    <p><strong>Description</strong></p>
+                    <p>{truncate(description, 1000)}</p>
+                    <br/><br/>
+                    <p><strong>Categories</strong></p>
+                    <Fragment>
+                        {Array.isArray(categories)
+                            && categories.map(category => <span 
+                                key={category}
+                                className='info'>
+                                {category}&nbsp;&nbsp;&nbsp;&nbsp;</span>)
+                        }
+                    </Fragment>
+                    <br/><br/><br/><br/>
+                    <p><strong>Page Count</strong></p>
+                    <span className='info'>Digital: {pageCount}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span className='info'>Print: {printedPageCount}</span>
+                    <br/><br/><br/><br/>
+                    <p><strong>Publisher</strong></p>
+                    <span className='info'>{publisher}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span className='info'>{publisherDate}</span>
+                    <br/><br/><br/><br/>
+                    <span className='info'><a href={`${infoLink}`}>View on Google Books</a></span>
                 </div>
             </BookCover>
         </Fragment>
