@@ -29,7 +29,7 @@ export const Book = props => {
             <BookCover onClick={OpenBook} isBookOpen={isBookOpen}>
                 <img src={`${image}`} alt='book-cover' className='cover' />
                 <div className='right-cell'>
-                    <p className='title'>{truncate(title)}</p>
+                    <p className='title'><strong>{truncate(title)}</strong></p>
                     
                     <p className='subtitle'><em>{truncate(subtitle, 55)}</em></p>
                     <div>

@@ -14,10 +14,20 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 6rem;
         font-weight: 600;
     }
-    h5 {
-        font-size: 1.9rem;
-    }
     p {
         font-size: 1.5rem;
     }
+    .toast {
+        font-size: 2rem !important;
+        color: #fff;
+    }
+    #toast-container {
+         top: 6rem !important;
+         left: 5rem !important;
+    }
 `
+
+// top: auto !important;
+//         right: auto !important;
+//         bottom: 10%;
+//         left:7%; 

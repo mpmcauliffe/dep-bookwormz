@@ -58,7 +58,7 @@ router.get('/google/callback',
     
     (req, res) => {
         res.redirect('https://bookwormz-api.herokuapp.com/userauth')
-        //res.redirect('http://localhost:3000/userauth')
+        // res.redirect('http://localhost:3000/userauth')
     }
 )
 

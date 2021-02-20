@@ -31,12 +31,14 @@ const expandPaddingLarge = keyframes`
 
 export const BookCover = styled.div`
     /* SIZE & POSITION; */
-    height: ${p => p.isBookOpen ? '81rem' : '16rem'};
+    height: ${p => p.isBookOpen ? '103rem' : '16rem'};
     padding: .5rem;
+    overflow-y: hidden; /* to prevent 2nd scroll bar from appearing upon book opening */
 
     /* INTERNAL DYNAMICS */
     display: grid;
     /* grid-template-columns: ${p => p.isBookOpen ? '1fr 2fr' : '12rem 2fr'}; */
+    grid-template-rows: ${p => p.isBookOpen ? '1fr 5fr' : '1fr'};
     grid-template-columns: 12rem 2fr;
     grid-gap: .3rem;
 
@@ -50,7 +52,7 @@ export const BookCover = styled.div`
     transition: height 500ms;
     transition-timing-function: cubic-bezier(1,0,.01,1);
 
-
+    /* CLASSES */
     .right-cell { display: grid; grid-template-rows: 5rem 7rem 4rem; }
     .cover { height: 14.6rem; width: 10rem; }
     .title { font-size: 1.6rem; margin: 0; }
@@ -67,9 +69,10 @@ export const BookCover = styled.div`
         .info { font-size: 1.4rem; }
     }
 
+    /* MEDIA QUERIES */
     @media(min-width: 601px) {
-        grid-template-rows: ${p => p.isBookOpen ? '1fr 3fr' : '1fr'};
-
+        
+        height: ${p => p.isBookOpen ? '81rem' : '16rem'};
         .title { font-size: 2.2rem; }
         .subtitle { font-size: 1.9rem; }
         .author { font-size: 1.7rem }
