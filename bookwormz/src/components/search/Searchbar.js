@@ -18,11 +18,11 @@ export const Searchbar_proto = ({
         e.preventDefault()
         setLoading()
 
-        if (searchFor === 'books' && txt === 'book') {
-            // because Google Books API is poorly designed
-            M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
-            return
-        }
+        // if (searchFor === 'books' && txt === 'book') {
+        //     // because Google Books API is poorly designed
+        //     M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
+        //     return
+        // }
 
         if (searchFor === 'books') {
             searchBooks(txt)

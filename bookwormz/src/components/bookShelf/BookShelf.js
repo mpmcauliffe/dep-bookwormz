@@ -38,7 +38,9 @@ console.log(bookResults)
                     printedPageCount={book.volumeInfo.printedPageCount}
                     categories={book.volumeInfo.categories}
                     infoLink={book.volumeInfo.infoLink}
-                    image={book.volumeInfo.imageLinks.thumbnail} />
+                    image={typeof book.volumeInfo.imageLinks !== 'undefined' 
+                        ? book.volumeInfo.imageLinks.thumbnail
+                        : null } />
                 ))
             } 
             
