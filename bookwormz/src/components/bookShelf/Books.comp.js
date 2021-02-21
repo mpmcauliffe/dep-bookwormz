@@ -53,7 +53,7 @@ export const BookCover = styled.div`
     transition-timing-function: cubic-bezier(1,0,.01,1);
 
     /* CLASSES */
-    .right-cell { display: grid; grid-template-rows: 5rem 7rem 4rem; }
+    .right-cell { display: grid; grid-template-rows: 5rem 4rem 5rem; }
     .cover { height: 14.6rem; width: 10rem; }
     .title { font-size: 1.6rem; margin: 0; }
     .subtitle { font-size: 1.4rem margin: .5rem 0; }
@@ -71,30 +71,20 @@ export const BookCover = styled.div`
 
     /* MEDIA QUERIES */
     @media(min-width: 601px) {
-        
         height: ${p => p.isBookOpen ? '81rem' : '16rem'};
         .title { font-size: 2.2rem; }
         .subtitle { font-size: 1.9rem; }
         .author { font-size: 1.7rem }
-
-        /* animation: ${p => p.isBookOpen ? css`${expandColumnsLarge} 0` : ''};
-        animation-delay: 4000ms; */
-        /* .title, .subtitle, .author { animation: ${p => p.isBookOpen ? css`${expandPaddingLarge} 700ms ease` : ''}}; */
     }
 
     @media(min-width: 1140px) { 
         height: ${p => p.isBookOpen ? '81rem' : '21rem'}; 
-        /* grid-template-columns: ${p => p.isBookOpen ? '2fr 4fr' : '15rem 4fr'}; */
         grid-template-columns: 15rem 4fr;
         .right-cell { grid-template-rows: 7rem 8rem 6rem; }
         .cover { height: 18.6rem; width: 13rem; }    
         .title { font-size: 2.6rem; }
         .subtitle { font-size: 2.3rem; }
         .author { font-size: 1.9rem }
-
-        /* animation: ${p => p.isBookOpen ? css`${expandColumnsLarge} 0` : ''};
-        animation-delay: 400ms;
-        .title, .subtitle, .author { animation: ${p => p.isBookOpen ? css`${expandPaddingLarge} 700ms ease` : ''}}; */
     }
 `
 

@@ -1,18 +1,22 @@
 import React, { Fragment, useState, } from 'react'
 import { BookCover, } from './Books.comp'
+import { GreenButton, } from '../../components'
 import { truncate } from '../../helpers/truncate'
 
 
 export const Book = props => {
-    const { title, subtitle, authors, publisher, publisherDate, infoLink,
+    const { bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image } = props   
 
     const [isBookOpen, setIsBookOpen] = useState(false)
     //const [scrollHeight, setScrollHeight] = useState(0)
- 
 
-    const OpenBook = () => {
-        setIsBookOpen(!isBookOpen)
+    const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
+
+    const addBookToQueue = e => {
+        // setIsBookOpen(!isBookOpen)
+        console.log(e.target.name)
+        e.stopPropagation()
     }
 
 
@@ -26,12 +30,13 @@ export const Book = props => {
                 onClick={toggleModal}
                 showModal={isModalToggled}></BookModal>
               */}
-            <BookCover onClick={OpenBook} isBookOpen={isBookOpen}>
+            <BookCover onClick={(e) => OpenBook(e, this)} isBookOpen={isBookOpen}>
                 <img src={`${image}`} alt='book-cover' className='cover' />
                 <div className='right-cell'>
                     <p className='title'><strong>{truncate(title)}</strong></p>
                     
-                    <p className='subtitle'><em>{truncate(subtitle, 55)}</em></p>
+                    {/* <p className='subtitle'><em>{truncate(subtitle, 55)}</em></p> */}
+                    
                     <div>
                         {Array.isArray(authors) 
                             && authors.map((author, i) => {
@@ -40,12 +45,19 @@ export const Book = props => {
                                         key={`${author}_${i}`}
                                         className='author'>
                                         {truncate(author, 25)}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    : i === 3
+                                    : i === 4
                                         ? <span
                                             key='author' 
                                             className='author'>...</span>
                                         : null
                                 })}
+                    </div>
+                    <div>
+                        <GreenButton
+                            name={bookId}
+                            onClick={addBookToQueue}
+                            style={{ float: 'right' }} >
+                        Add Book</GreenButton>
                     </div>
                 </div>
                 <div className='body'>
