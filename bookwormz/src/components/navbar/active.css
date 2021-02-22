@@ -1,0 +1,19 @@
+.active > li {
+    color: #132226;
+}
+
+.active > div  {
+    /* position: absolute; */
+    position: relative;
+    /* display: block; */
+    top: 0;
+
+    height: .6rem;
+    width: 100%;
+    
+    content: '';
+    background: #ff004d;
+
+    /* transition: 2s; */
+    animation: growRight 500ms;
+}

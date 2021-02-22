@@ -43,4 +43,8 @@ export const searchBooks = (searchString) => async dispatch => {
     }
 }
 
+export const addBook = bookId => async dispatch => {
+    console.log(bookId)
+}
+
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

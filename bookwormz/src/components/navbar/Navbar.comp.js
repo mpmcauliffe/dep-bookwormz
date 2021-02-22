@@ -6,6 +6,8 @@ export const NavMenuLeft = styled.ul`
         color: #e0e0e0; // #6b1f39;
         font-weight: 300;
         &:hover { background: transparent; }
+
+        &::after { height: .2rem; width: 100%; background: ${p => p.theme.silver} }
     }
 
     li:first-of-type { margin: 0 0 1rem -2rem; }
@@ -20,9 +22,7 @@ export const NavMenuLeft = styled.ul`
         li:first-of-type { margin: 0 -3.3rem 0 .3rem; }
     }
 
-    @media (min-width: 769px) {
-        li:first-of-type { margin: 0 -1rem 0 .3rem; }
-    }
+    @media (min-width: 769px) { li:first-of-type { margin: 0 -1rem 0 .3rem; } }
 `
 export const NavLogoLg = styled.img`
     height: 6rem;

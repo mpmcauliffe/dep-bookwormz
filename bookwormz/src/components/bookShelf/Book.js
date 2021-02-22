@@ -1,34 +1,31 @@
 import React, { Fragment, useState, } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { addBook } from '../../redux/actions/bookActions'
 import { BookCover, } from './Books.comp'
 import { GreenButton, } from '../../components'
 import { truncate } from '../../helpers/truncate'
 
 
-export const Book = props => {
-    const { bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
-        description, pageCount, printedPageCount, categories, image } = props   
-
+export const Book_proto = ({ 
+    addBook,
+    bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
+    description, pageCount, printedPageCount, categories, image, 
+}) => { 
     const [isBookOpen, setIsBookOpen] = useState(false)
     //const [scrollHeight, setScrollHeight] = useState(0)
 
     const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
 
     const addBookToQueue = e => {
-        // setIsBookOpen(!isBookOpen)
-        console.log(e.target.name)
+        addBook(e.target.name)
         e.stopPropagation()
     }
 
 
     return (
         <Fragment>
-            {/*<ModalShade 
-                onClick={toggleModal}
-                // shadeHeight={scrollHeight}
-                showModalShade={isModalToggled} />
-            <BookModal 
-                onClick={toggleModal}
-                showModal={isModalToggled}></BookModal>
+            {/*
               */}
             <BookCover onClick={(e) => OpenBook(e, this)} isBookOpen={isBookOpen}>
                 <img src={`${image}`} alt='book-cover' className='cover' />
@@ -89,3 +86,29 @@ export const Book = props => {
         
     )
 }
+// addBook,
+//     bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
+//     description, pageCount, printedPageCount, categories, image, 
+
+Book_proto.propTypes = {
+    addBook: PropTypes.func.isRequired,
+    bookId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    authors: PropTypes.array,
+    publisher: PropTypes.string,
+    publisherDate: PropTypes.string,
+    infoLink: PropTypes.string,
+    description: PropTypes.string,
+    pageCount: PropTypes.number,
+    printedPageCount: PropTypes.number,
+    categories: PropTypes.array,
+    image: PropTypes.string,
+}
+
+// const mapStateToProps = state => ({
+//     queryString: state.books.bookSearchQuery,
+// })
+
+const Book = connect(null, { addBook, })(Book_proto)
+export { Book }

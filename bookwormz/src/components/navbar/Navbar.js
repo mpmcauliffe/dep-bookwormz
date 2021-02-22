@@ -1,12 +1,15 @@
 import React, { Fragment, useState, } from 'react'
-import { Link, } from 'react-router-dom'
+import { Link, useLocation, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { NavLogoLg, NavLogoSm, NavMenuLeft, 
-    ShadeScreen, SideMenu, } from './Navbar.comp'      
+    ShadeScreen, SideMenu, } from './Navbar.comp'  
+import './active.css'    
 
 
 const Navbar_proto = ({ isAuthenticated, }) => {
+    const location = useLocation()
+console.log(location.pathname)
     const [isMenuVisible, setIsMenuVisible] = useState(false)
 
     const toggleMenu = () => {
@@ -27,7 +30,6 @@ const Navbar_proto = ({ isAuthenticated, }) => {
                 showMenu={isMenuVisible}>
                 
                 <ul className='nav-items nav-item'>
-                    
                     <li><Link to='/useraccount'>
                         Account&nbsp;&nbsp;<i className='far fa-user secondary-content' /></Link></li>
 
@@ -58,9 +60,10 @@ const Navbar_proto = ({ isAuthenticated, }) => {
                     <i className='fas fa-bars' /></a></li>
                 
                     <li><Link 
-                        to='/Clubs'>
+                        to='/clubs'>
                             <i className='fas fa-users' />
-                            <span>&nbsp;&nbsp;Clubs</span></Link></li>
+                            <span>&nbsp;&nbsp;Clubs</span></Link>
+                            <div /></li>
                     <li><Link 
                         to='/books'>
                             <i className='fas fa-book' />
