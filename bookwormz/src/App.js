@@ -15,7 +15,9 @@ import 'materialize-css/dist/css/materialize.min.css'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
-if(localStorage.token) { setAuthToken(localStorage.token) }
+if (localStorage.token) {
+    console.log('set auth token') 
+    setAuthToken(localStorage.token) }
 
 function App(props) {
     // const location = useLocation()  // 

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, ERROR, } from '../types'
+import { LOGIN, LOGOUT, ERROR, TRIGGER_AUTH_ERROR, } from '../types'
 
 
 const initialState = {
@@ -28,10 +28,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                bookError: 'Something went wrong.',
-                // error: `This would tell you something useful, but Materialize doesn't`
-                //     + ` provide a way to customize this Toast for practical usage.`
-                //     + ` But HEY, I'm rounded.`
+                error: 'Something went wrong.',
+            }
+
+        case TRIGGER_AUTH_ERROR:
+            return {
+                ...state,
+                isAuthenticated: false,
+                error: action.payload,
             }
 
         default:

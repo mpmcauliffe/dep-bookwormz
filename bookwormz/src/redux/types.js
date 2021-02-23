@@ -2,6 +2,7 @@
 export const LOGIN                 = 'LOGIN'
 export const LOGOUT                = 'LOGOUT'
 export const ERROR                 = 'ERROR'
+export const TRIGGER_AUTH_ERROR    = 'TRIGGER_AUTH_ERROR'
 
 /* BOOK TYPES */
 export const SEARCH_BOOKS          = 'SEARCH_BOOKS'

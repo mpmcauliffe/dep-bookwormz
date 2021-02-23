@@ -1,11 +1,14 @@
 import React, { useEffect, } from 'react'
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { login, logout } from '../../../redux/actions/authActions'
 import { Spinner } from '../../../components'
 
 
-const UserAuth_proto = ({ login, logout, isAuthenticated, history, }) => {
+const UserAuth_proto = ({ login, logout, isAuthenticated, }) => {
+    const history = useHistory()
+
     useEffect(() => {
         if (!isAuthenticated) {
             console.log('login')

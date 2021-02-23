@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { LOGIN, LOGOUT, ERROR, } from '../types'
+import setAuthToken from '../../utils/setAuthToken'
+import { LOGIN, LOGOUT, ERROR, TRIGGER_AUTH_ERROR, } from '../types'
 
 
 /* authenticates user */
@@ -14,6 +15,7 @@ export const login = history => async dispatch => {
         }
         
         localStorage.setItem('token', res.data.token)
+        setUser()
         history.push('/dashboard')    
         dispatch({ type: LOGIN })
         
@@ -40,4 +42,20 @@ export const logout = history => async dispatch => {
         dispatch({ type: ERROR })
     }
 }
+
+export const triggerAuthError = (type, message, history) => dispatch => {
+    if (type === '1') {
+        history.push('/') 
+        dispatch({ type: TRIGGER_AUTH_ERROR, payload: message })
+    }
+    dispatch({ type: TRIGGER_AUTH_ERROR, payload: 'Something went wrong.' })
+}
+
+/* SET USER */
+const setUser = () => {
+    if(localStorage.token) {
+        setAuthToken(localStorage.token)
+    }
+}
+
 
