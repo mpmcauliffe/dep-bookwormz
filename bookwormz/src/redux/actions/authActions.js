@@ -47,8 +47,9 @@ export const triggerAuthError = (type, message, history) => dispatch => {
     if (type === '1') {
         history.push('/') 
         dispatch({ type: TRIGGER_AUTH_ERROR, payload: message })
+    } else {
+        dispatch({ type: TRIGGER_AUTH_ERROR, payload: 'Something went wrong.' })
     }
-    dispatch({ type: TRIGGER_AUTH_ERROR, payload: 'Something went wrong.' })
 }
 
 /* SET USER */
