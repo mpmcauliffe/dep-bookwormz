@@ -43,9 +43,11 @@ export const BookCover = styled.div`
     grid-gap: .3rem;
 
     /* COLORS */
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(241,241,241,1) 77%);
-    border-top: .1rem solid #fcfcfc;
-    border-bottom: .1rem solid ${p => p.theme.silver};
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 77%);
+    /* border-top: .1rem solid #fcfcfc;
+    border-bottom: .1rem solid ${p => p.theme.silver}; */
+    border: .1rem solid #dedede;
+    border-radius: 1rem;
 
     /* ANIMATION & EFFECTS */
     cursor: pointer;

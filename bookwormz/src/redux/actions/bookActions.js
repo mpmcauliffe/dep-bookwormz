@@ -4,6 +4,8 @@ import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
+const config = { headers: { 'Content-Type': 'application/json' } }
+
 // SEARCH BOOKs from google API
 export const searchBooks = (searchString) => async dispatch => {
     setLoading()
@@ -45,6 +47,16 @@ export const searchBooks = (searchString) => async dispatch => {
 
 export const addBook = bookId => async dispatch => {
     console.log(bookId)
+    
+    try {
+        const res = await axios.post(`/books/addbook/${bookId}`, config) 
+        console.log(res)
+        dispatch({ type: ADD_BOOK_TO_PROFILE })
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.', })
+    }
 }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

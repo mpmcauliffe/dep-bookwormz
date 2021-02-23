@@ -28,7 +28,11 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-    }
+    },
+    books: {
+        type: [String],
+        required: true,
+    },
 })
 
 

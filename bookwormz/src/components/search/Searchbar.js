@@ -23,7 +23,7 @@ export const Searchbar_proto = ({
         setLoading()
         
         if (!checkUser()) {
-            triggerAuthError('1', `Search cannot be completed. Please try logging in again`, history)
+            triggerAuthError('1', `Search cannot be completed. Please try logging in again.`, history)
             // window.location.reload()
             return
         } 

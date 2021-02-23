@@ -43,13 +43,9 @@ export const logout = history => async dispatch => {
     }
 }
 
-export const triggerAuthError = (type, message, history) => dispatch => {
-    if (type === '1') {
-        history.push('/') 
-        dispatch({ type: TRIGGER_AUTH_ERROR, payload: message })
-    } else {
-        dispatch({ type: TRIGGER_AUTH_ERROR, payload: 'Something went wrong.' })
-    }
+export const triggerAuthError = (message = 'Something went wrong.', history) => dispatch => {
+    history.push('/') 
+    dispatch({ type: TRIGGER_AUTH_ERROR, payload: message })
 }
 
 /* SET USER */
