@@ -8,7 +8,7 @@ const API_URL = 'https://www.googleapis.com/books/v1/volumes?q='
 
 
 //verification,
-router.get('/booksearch/:urlSearchString', verification, (req, res) => {
+router.get('/booksearch/:urlSearchString', (req, res) => {
     const { urlSearchString } = req.params
     const searchString = urlSearchString.replace(/_/g, " ")
 
