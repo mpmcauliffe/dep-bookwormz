@@ -18,7 +18,7 @@ export const Book_proto = ({
     const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
 
     const addBookToQueue = e => {
-        addBook(e.target.name)
+        addBook(e.target.name, e.target.title)
         e.stopPropagation()
     }
 
@@ -52,6 +52,7 @@ export const Book_proto = ({
                     <div>
                         <GreenButton
                             name={bookId}
+                            title={title}
                             onClick={addBookToQueue}
                             style={{ float: 'right' }} >
                         Add Book</GreenButton>

@@ -45,8 +45,8 @@ export const searchBooks = (searchString) => async dispatch => {
     }
 }
 
-export const addBook = bookId => async dispatch => {
-    console.log(bookId)
+export const addBook = (bookId, title) => async dispatch => {
+    console.log(title)
     
     try {
         const res = await axios.post(`/books/addbook/${bookId}`, config) 

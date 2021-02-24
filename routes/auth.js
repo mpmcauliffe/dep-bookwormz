@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const User = require('../models/User')
 const { ensureAuth, ensureGuest, } = require('../middleware/auth')
 
 const router = express.Router()
@@ -11,11 +12,12 @@ const router = express.Router()
 // @route /auth/token
 router.get('/token', ensureAuth, (req, res) => {
     const secret      = process.env.JWT_SECRET
-
+    const userId      = req.user._id
+console.log(req.user.email)
     try {
         const payload = {
             user: {
-                mongoId: req.user._id,
+                email: req.user.email,
             }
         }
         //res.send({ "bears": "are cute" })
@@ -57,8 +59,8 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     
     (req, res) => {
-        res.redirect('https://bookwormz-api.herokuapp.com/userauth')
-        // res.redirect('http://localhost:3000/userauth')
+        // res.redirect('https://bookwormz-api.herokuapp.com/userauth')
+        res.redirect('http://localhost:3000/userauth')
     }
 )
 
