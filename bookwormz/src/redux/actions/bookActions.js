@@ -47,11 +47,10 @@ export const searchBooks = (searchString) => async dispatch => {
 
 export const addBook = bookInfo => async dispatch => {    
     try {
-        console.log(bookInfo)
         const res = await axios.post(`/books/addbook/`, bookInfo, config) 
-        console.log(res)
+        // console.log(res)
 
-        if (res.data.id.length > 0) {
+        if (res.status === 200) {
             M.toast({ html: `${bookInfo.title} added to your books.`, classes: 'green darken-3 rounded', displayLength: 5000 })
             dispatch({ type: ADD_BOOK_TO_PROFILE })
             return
