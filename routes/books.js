@@ -36,7 +36,7 @@ router.post('/addbook/', verification, async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
-
+        console.log(user)
         user.books.push(book)
         await user.save()
 
