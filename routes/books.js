@@ -27,16 +27,16 @@ router.post('/addbook/', verification, async (req, res) => {
 
     const { bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, } = req.body
-console.log('token', req.headers['x-auth-token'])
+
     const email = getEmail(req.headers['x-auth-token'])
-console.log('email', email)
+
     const book = new Book({ bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, })
 
     try {
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
-        console.log(user)
+
         user.books.push(book)
         await user.save()
 
