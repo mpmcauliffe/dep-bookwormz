@@ -59,8 +59,8 @@ router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/' }),
     
     (req, res) => {
-        // res.redirect('https://bookwormz-api.herokuapp.com/userauth')
-        res.redirect('http://localhost:3000/userauth')
+        res.redirect('https://bookwormz-api.herokuapp.com/userauth')
+        // res.redirect('http://localhost:3000/userauth')
     }
 )
 
@@ -75,7 +75,7 @@ router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('http://localhost:3000')
+    // res.redirect('http://localhost:3000')
     // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 

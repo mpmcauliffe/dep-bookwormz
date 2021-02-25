@@ -56,10 +56,12 @@ export const addBook = bookInfo => async dispatch => {
             return
         }
         dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.' })
+        M.toast({ html: `Server error.`, classes: 'red accent-4 rounded', displayLength: 5000 })
 
     } catch (e) {
         console.log(e)
         dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.', })
+        M.toast({ html: `Application error.`, classes: 'red accent-4 rounded', displayLength: 5000 })
     }
 }
 
