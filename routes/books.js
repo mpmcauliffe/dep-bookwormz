@@ -22,14 +22,14 @@ router.get('/booksearch/:urlSearchString', verification, (req, res) => {
 })
 
 router.post('/addbook/', verification, async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     if (!req.body.bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) }
 
     const { bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, } = req.body
-
+console.log('token', req.headers['x-auth-token'])
     const email = getEmail(req.headers['x-auth-token'])
-
+console.log('email', email)
     const book = new Book({ bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, })
 
