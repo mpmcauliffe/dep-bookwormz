@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
+const Schema = mongoose.Schema
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     email: {
         type: String,
         required: true,
@@ -29,10 +30,10 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    books: {
-        type: [String],
-        required: true,
-    },
+    books:[{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Book'
+    }],
 })
 
 

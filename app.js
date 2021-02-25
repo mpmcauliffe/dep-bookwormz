@@ -31,18 +31,6 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-/* 🍔 helper */
-// const { formatDate, truncate, stripTags, editIcon, select, } = require('./helpers/hbs')
-// // handlebars
-// app.engine(
-//     '.hbs', 
-//     exphbs({ 
-//         //helpers: { formatDate, stripTags, truncate, editIcon, select, }, 
-//         defaultLayout: 'main', 
-//         extname: '.hbs' 
-//     }))
-// app.set('view engine', '.hbs')
-
 // session
 app.use(session({
     secret: process.env.SECRET,

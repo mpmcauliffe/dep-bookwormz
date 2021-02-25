@@ -18,7 +18,9 @@ export const Book_proto = ({
     const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
 
     const addBookToQueue = e => {
-        addBook(e.target.name, e.target.title)
+        // addBook(e.target.name.trim(), e.target.title.trim())
+        addBook({ bookId, title, authors, publisher, publisherDate, infoLink, 
+            description, pageCount, printedPageCount, categories, image, })
         e.stopPropagation()
     }
 

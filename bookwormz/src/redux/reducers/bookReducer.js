@@ -5,7 +5,7 @@ import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
 const initialState = {
     bookSearchQuery: '',
     bookResults: [ ],
-    bookError: '',
+    bookMessage: '',
     isLoading: false,
 }
 
@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
             console.log(action.payload)
             return {
                 ...state,
-                bookError: action.payload,
+                bookMessage: action.payload,
             }
 
         default:

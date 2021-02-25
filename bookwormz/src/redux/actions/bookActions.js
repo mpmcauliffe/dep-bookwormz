@@ -45,13 +45,18 @@ export const searchBooks = (searchString) => async dispatch => {
     }
 }
 
-export const addBook = (bookId, title) => async dispatch => {
-    console.log(title)
-    
+export const addBook = bookInfo => async dispatch => {    
     try {
-        const res = await axios.post(`/books/addbook/${bookId}`, config) 
+        console.log(bookInfo)
+        const res = await axios.post(`/books/addbook/`, bookInfo, config) 
         console.log(res)
-        dispatch({ type: ADD_BOOK_TO_PROFILE })
+
+        if (res.data.id.length > 0) {
+            M.toast({ html: `${bookInfo.title} added to your books.`, classes: 'green darken-3 rounded', displayLength: 5000 })
+            dispatch({ type: ADD_BOOK_TO_PROFILE })
+            return
+        }
+        dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.' })
 
     } catch (e) {
         console.log(e)

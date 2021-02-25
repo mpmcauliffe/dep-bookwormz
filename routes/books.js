@@ -2,9 +2,10 @@ const express                           = require('express')
 const needle                            = require('needle')
 const { ensureAuth, ensureGuest, }      = require('../middleware/auth')
 const User                              = require('../models/User')
+const Book                              = require('../models/Book')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
-const { response } = require('express')
+
 
 const router                            = express.Router()
 const API_URL                           = 'https://www.googleapis.com/books/v1/volumes?q='
@@ -20,11 +21,15 @@ router.get('/booksearch/:urlSearchString', verification, (req, res) => {
     })
 })
 
-router.post('/addbook/:bookId', verification, async (req, res) => {
-    const { bookId }    = req.params
-    const email         = getEmail(req.headers['x-auth-token'])
+router.post('/addbook/', verification, async (req, res) => {
+    console.log(req.body)
+    const { bookId, title, authors, publisher, publisherDate, infoLink, 
+        description, pageCount, printedPageCount, categories, image, } = req.body
 
-    if (!bookId) { res.status(400) }
+    const email = getEmail(req.headers['x-auth-token'])
+
+    const book = new Book({ bookId, title, authors, publisher, publisherDate, infoLink, 
+        description, pageCount, printedPageCount, categories, image, })
 
     try {
         const user = await User.findOne({ email })
