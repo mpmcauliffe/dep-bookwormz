@@ -1,7 +1,15 @@
-import styled from 'styled-components'
+import styled, { keyframes, } from 'styled-components'
 
+
+const fadeIn = keyframes`
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+`
 
 export const LandingContainer = styled.div`
+    opacity: 1;
+    animation: ${fadeIn} 2s;
+
     .container__header {
         height: 333px;
         display: flex;
@@ -55,9 +63,3 @@ export const LandingContainer = styled.div`
     .link__btn-twitter {
         background: radial-gradient(circle, rgba(55,179,255,1) 35%, rgba(29,161,242,1) 79%, rgba(27,148,222,1) 100%);}
 `
-
-export const ErrorToast = styled.span`
-    font-size: 3rem;
-    color: #ff2233;
-` 
-

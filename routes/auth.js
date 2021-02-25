@@ -75,8 +75,8 @@ router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
     function(req, res) {
     // Successful authentication, redirect home.
-    // res.redirect('http://localhost:3000')
-    res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+    res.redirect('http://localhost:3000')
+    // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
 })
 
 
