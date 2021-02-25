@@ -23,6 +23,8 @@ router.get('/booksearch/:urlSearchString', verification, (req, res) => {
 
 router.post('/addbook/', verification, async (req, res) => {
     console.log(req.body)
+    if (!req.body.bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) }
+
     const { bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, } = req.body
 
@@ -33,10 +35,12 @@ router.post('/addbook/', verification, async (req, res) => {
 
     try {
         const user = await User.findOne({ email })
-        user.books.push(bookId)
+        if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
+
+        user.books.push(book)
         await user.save()
 
-        res.json({ id: bookId })
+        res.json(book)
 
     } catch (e) {
         console.log(e)
