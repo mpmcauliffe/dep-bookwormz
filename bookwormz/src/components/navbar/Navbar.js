@@ -3,7 +3,8 @@ import { Link, useLocation, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { NavLogoLg, NavLogoSm, NavMenuLeft, 
-    ShadeScreen, SideMenu, } from './Navbar.comp'  
+    ShadeScreen, SideMenu, } from './Navbar.comp'
+import M from 'materialize-css/dist/js/materialize.min.js'  
 import './active.css'    
 
 
@@ -81,10 +82,12 @@ const Navbar_proto = ({ isAuthenticated, }) => {
 
 Navbar_proto.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
+    bookMessage: PropTypes.string,
 }
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
+    bookMessage: state.books.bookMessage,
 })
 
 const Navbar = connect(mapStateToProps, { })(Navbar_proto)
