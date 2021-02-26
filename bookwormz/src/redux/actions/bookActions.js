@@ -51,17 +51,17 @@ export const addBook = bookInfo => async dispatch => {
         // console.log(res)
 
         if (res.status === 200) {
-            // M.toast({ html: `${bookInfo.title} added to your books.`, classes: 'green darken-3 rounded', displayLength: 5000 })
-            dispatch({ type: ADD_BOOK_TO_PROFILE, payload: { books: res.data, message: `${bookInfo.title} added to your books.` } })
+            dispatch({ 
+                type: ADD_BOOK_TO_PROFILE, 
+                payload: { book: res.data, message: `${bookInfo.title} added to your books.` } 
+            })
             return
         }
-        dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.' })
-        M.toast({ html: `Server error.`, classes: 'red accent-4 rounded', displayLength: 5000 })
+        dispatch({ type: BOOK_ERROR, payload: 'Request could not be completed.' })
 
     } catch (e) {
         console.log(e)
-        dispatch({ type: BOOK_ERROR, payload: 'Something went wrong.', })
-        M.toast({ html: `Application error.`, classes: 'red accent-4 rounded', displayLength: 5000 })
+        dispatch({ type: BOOK_ERROR, payload: 'Request could not be completed.' })
     }
 }
 

@@ -1,12 +1,18 @@
 import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
     BOOK_ERROR, SET_LOADING, } from '../types'
 
-
+//M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
 const initialState = {
     bookSearchQuery: '',
+    myBooks: [ ],
     bookResults: [ ],
-    bookMessage: '',
     isLoading: false,
+    bookMessage: {
+        message: '',
+        style: '',
+        timeDisplay: null,
+    },
+    
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -26,12 +32,27 @@ export default (state = initialState, action) => {
                 ...state,
                 isLoading: true,
             }
+        
+        case ADD_BOOK_TO_PROFILE:
+            return {
+                ...state,
+                myBooks: state.myBooks.push(action.payload.book),
+                bookMessage: {
+                    message: action.payload.message,
+                    style: 'green darken-3 rounded',
+                    timeDisplay: 5000,
+                },
+            }
 
         case BOOK_ERROR:
             console.log(action.payload)
             return {
                 ...state,
-                bookMessage: action.payload,
+                bookMessage: {
+                    message: action.payload,
+                    style: 'red accent-4 rounded',
+                    timeDisplay: 5000,
+                }
             }
 
         default:
