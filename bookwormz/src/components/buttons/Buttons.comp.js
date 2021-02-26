@@ -1,7 +1,26 @@
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
 
 
-export const GreenButton = styled.button`
+const ButtonGradient = ({ alertButton }) => {
+    if (alertButton) {
+        return css`
+            border-top: .1rem solid #f96161;
+            border-bottom: .1rem solid #380c0c;
+            background: radial-gradient(circle, 
+                rgba(215,27,27,1) 35%, rgba(194,27,27,1) 79%, rgba(173,31,31,1) 100%);
+        `
+    }
+    return css`
+        
+        border-top: .1rem solid #4ad040;
+        border-bottom: .1rem solid #10280f;
+        background: radial-gradient(circle, 
+            rgba(41,111,35,1) 35%, rgba(34,93,29,1) 79%, rgba(26,70,23,1) 100%);
+    `
+}
+
+export const AppButton = styled.button`
     height: 1rem;
     width: 13rem;
     padding: 1.5rem;
@@ -18,10 +37,8 @@ export const GreenButton = styled.button`
 
     border: none;
     cursor: pointer;
-    /* background: radial-gradient(circle, rgba(74,208,64,1) 35%, rgba(64,176,55,1) 79%, rgba(55,148,47,1) 100%); */
-    background: radial-gradient(circle, rgba(41,111,35,1) 35%, rgba(27,74,24,1) 79%, rgba(20,51,18,1) 100%);
-    border-top: .1rem solid #4ad040;
-    border-bottom: .1rem solid #10280f;
+
+    ${ButtonGradient}
 
     @media (min-width: 601px) {
         height: 1.5rem;
@@ -30,3 +47,7 @@ export const GreenButton = styled.button`
         font-size: 2.2rem;
     }
 `
+
+AppButton.propTypes = {
+    alertButton: PropTypes.bool,
+}

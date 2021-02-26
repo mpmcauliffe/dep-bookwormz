@@ -9,13 +9,11 @@ import './active.css'
 
 const Navbar_proto = ({ isAuthenticated, }) => {
     const location = useLocation()
-console.log(location.pathname)
+    console.log(`%cPATH: %c${location.pathname}`, 'font-weight: bold', 'color: green')
+
     const [isMenuVisible, setIsMenuVisible] = useState(false)
 
-    const toggleMenu = () => {
-        setIsMenuVisible(!isMenuVisible)
-        console.log(isMenuVisible)
-    }
+    const toggleMenu = () => setIsMenuVisible(!isMenuVisible)
 
 
     if (!isAuthenticated) { return null }

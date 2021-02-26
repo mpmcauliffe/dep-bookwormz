@@ -30,10 +30,14 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    books:[{ 
-        type: Schema.Types.ObjectId,
-        ref: 'Book'
-    }],
+    // books:[{ 
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Book'
+    // }],
+    books: {
+        type: [String],
+        required: true,
+    },
 })
 
 

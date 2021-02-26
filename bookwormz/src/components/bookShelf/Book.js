@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { addBook } from '../../redux/actions/bookActions'
 import { BookCover, } from './Books.comp'
-import { GreenButton, } from '../../components'
+import { AppButton, } from '../../components'
 import { truncate } from '../../helpers/truncate'
 
 
@@ -52,12 +52,12 @@ export const Book_proto = ({
                                 })}
                     </div>
                     <div>
-                        <GreenButton
+                        <AppButton
                             name={bookId}
                             title={title}
                             onClick={addBookToQueue}
                             style={{ float: 'right' }} >
-                        Add Book</GreenButton>
+                        Add Book</AppButton>
                     </div>
                 </div>
                 <div className='body'>

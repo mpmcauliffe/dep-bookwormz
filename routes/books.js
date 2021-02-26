@@ -34,10 +34,17 @@ router.post('/addbook/', verification, async (req, res) => {
         description, pageCount, printedPageCount, categories, image, })
 
     try {
+        const findBook = await Book.findOne({ bookId: book.bookId })
+        if (!findBook) {
+            console.log('book save')
+            await book.save()
+        }
+
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
 
-        user.books.push(book)
+        user.books.push(book.bookId)
+        console.log(user)
         await user.save()
 
         res.json(book)
