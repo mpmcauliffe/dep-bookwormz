@@ -19,7 +19,11 @@ export const Book_proto = ({
     const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
 
     const facilitateButtonAction = e => {
-        if (removeButton) { removeBook(bookId) }
+        if (removeButton) { 
+            removeBook(bookId, title) 
+            e.stopPropagation()
+            return
+        }
 
         addBook({ bookId, title, authors, publisher, publisherDate, infoLink, 
             description, pageCount, printedPageCount, categories, image, })

@@ -9,8 +9,9 @@ export const GET_MY_BOOKS                   = 'GET_MY_BOOKS'
 export const SEARCH_BOOKS                   = 'SEARCH_BOOKS'
 export const ADD_BOOK_TO_PROFILE            = 'ADD_BOOK_TO_PROFILE'
 export const REMOVE_BOOK_FROM_LIBRARY       = 'REMOVE_BOOK_FROM_LIBRARY'
-export const BOOK_ERROR                     = 'BOOK_ERROR'
+export const NO_BOOKS_TO_LOAD               = 'NO_BOOKS_TO_LOAD,'
 export const MESSAGE                        = 'MESSAGE'
+export const BOOK_ERROR                     = 'BOOK_ERROR'
 
 /* CLUB TYPES */
 

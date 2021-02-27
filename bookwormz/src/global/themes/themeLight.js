@@ -3,10 +3,11 @@ export const Theme = {
 
     silver: '#c7c5c7',
     lightSilver: '#e9e9e9',
-
+    shell: '#ededed',
+    
     ruby: '#982233',
 
-    // shell: '#ededed',
+    
     // unitGray: '#e6e6e6',
     // activeGray: '#e6a495',
     // activeGray: '#4a678b',

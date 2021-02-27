@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, BOOK_ERROR, MESSAGE, 
-    SET_LOADING, } from '../types'
-import M from 'materialize-css/dist/js/materialize.min.js'
+    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, 
+    SET_LOADING,  } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
+// GET BOOKS
 export const getBooks = () => async dispatch => {
     setLoading()
 
@@ -14,6 +14,17 @@ export const getBooks = () => async dispatch => {
         const res = await axios.get(`/books/mybooks/`)
         console.log(res)
         if (res.status === 200) {
+            if (typeof res.data.myBooks === 'string') { 
+                dispatch({ 
+                    type: MESSAGE,
+                    payload: { 
+                        message: `You have no books at this time`,
+                        style: 'amber darken-4 rounded'
+                    }  
+                })
+                return
+            }
+
             dispatch({ 
                 type: GET_MY_BOOKS, 
                 payload: { books: res.data } 
@@ -27,8 +38,8 @@ export const getBooks = () => async dispatch => {
     }
 }
 
-// SEARCH BOOKs from google API
-export const searchBooks = (searchString) => async dispatch => {
+// SEARCH BOOKS from google API
+export const searchBooks = searchString => async dispatch => {
     setLoading()
 
     const urlSearchString = searchString.replace(/ /g,"_")
@@ -36,8 +47,10 @@ export const searchBooks = (searchString) => async dispatch => {
         const res = await axios.get(`/books/booksearch/${urlSearchString}`)
         // console.log(res.data.items)
         if (typeof res.data.items === 'undefined') {
-            dispatch({ type: BOOK_ERROR })
-            M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
+            dispatch({ 
+                type: BOOK_ERROR, 
+                payload: `Please search for something else.`,
+            })
             return
         }
 
@@ -66,12 +79,13 @@ export const searchBooks = (searchString) => async dispatch => {
 }
 
 // Add book to profile
-export const addBook = bookInfo => async dispatch => {    
+export const addBook = bookInfo => async dispatch => {       
     try {
         const res = await axios.post(`/books/addbook/`, bookInfo, config) 
-        console.log(res)
+        //console.log(res)
 
         if (res.data.message === 'double') {
+            console.log(`%cBOOK ALREADY IN LIBRARY: %c${bookInfo.title}`, 'font-weight: bold', 'color: orange')
             dispatch({ 
                 type: MESSAGE, 
                 payload: { 
@@ -84,6 +98,7 @@ export const addBook = bookInfo => async dispatch => {
         }
 
         if (res.status === 200) {
+            console.log(`ADD: ${bookInfo.title}`, 'font-weight: bold', 'color: green')
             dispatch({ 
                 type: ADD_BOOK_TO_PROFILE, 
                 payload: { book: res.data, message: `${bookInfo.title} added to your books.` } 
@@ -98,9 +113,19 @@ export const addBook = bookInfo => async dispatch => {
     }
 }
 
-export const removeBook = bookId => async dispatch => {
+// REMOVE BOOK
+export const removeBook = (bookId, title) => async dispatch => {
     try {
-        console.log(bookId)
+        const res = await axios.delete(`/books/deletebook/${bookId}`)
+
+        if (res.status === 200) {
+            console.log(`%cREMOVE: %c${title}`, 'font-weight: bold', 'color: red')
+            dispatch({ 
+                type: REMOVE_BOOK_FROM_LIBRARY, 
+                payload: { book: res.data.removed, message: `${title} was removed from your books.` } 
+            })
+            return
+        }
     } catch (e) {
         console.log(e)
         dispatch({ type: BOOK_ERROR, payload: 'Book could not be deleted at this time.' })

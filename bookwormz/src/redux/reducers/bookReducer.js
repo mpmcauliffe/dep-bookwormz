@@ -1,5 +1,6 @@
-import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
-    BOOK_ERROR, MESSAGE, SET_LOADING, } from '../types'
+import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
+    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, 
+    SET_LOADING,  } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
 const initialState = {
@@ -33,12 +34,6 @@ export default (state = initialState, action) => {
                 bookSearchQuery: action.payload.searchString,
                 isLoading: false,
             }
-
-        case SET_LOADING:
-            return {
-                ...state,
-                isLoading: true,
-            }
         
         case ADD_BOOK_TO_PROFILE:
             return {
@@ -48,6 +43,27 @@ export default (state = initialState, action) => {
                     message: action.payload.message,
                     style: 'green darken-3 rounded',
                     timeDisplay: 5000,
+                },
+            }
+
+        case REMOVE_BOOK_FROM_LIBRARY:
+            return {
+                ...state,
+                myBooks: state.myBooks.filter(book => book.bookId !== action.payload.book),
+                bookMessage: {
+                    message: action.payload.message,
+                    style: 'green darken-3 rounded',
+                    timeDisplay: 5000,
+                },
+            }
+
+        case MESSAGE:
+            return {
+                ...state,
+                bookMessage: {
+                    message: action.payload.message,
+                    style: action.payload.style,
+                    timeDisplay: 6000,
                 },
             }
 
@@ -62,14 +78,10 @@ export default (state = initialState, action) => {
                 },
             }
 
-        case MESSAGE:
+        case SET_LOADING:
             return {
                 ...state,
-                bookMessage: {
-                    message: action.payload.message,
-                    style: action.payload.style,
-                    timeDisplay: 6000,
-                },
+                isLoading: true,
             }
 
         default:

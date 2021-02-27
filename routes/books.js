@@ -36,14 +36,15 @@ router.post('/addbook/', verification, async (req, res) => {
         description, pageCount, printedPageCount, categories, image, })
 
     try {
-        const findBook = await Book.findOne({ bookId: book.bookId })
-
+        
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
+        
+        const findBook = await Book.findOne({ bookId: book.bookId })
+        if (!findBook) { await book.save() }
 
-        //console.log(user)
-        if (!findBook) { 
-            await book.save() 
+        const doesUserHaveBook = user.books.some(book => book === bookId)
+        if (!doesUserHaveBook) {  
             user.books.push(book.bookId)
             await user.save()
             res.json(book)
@@ -73,6 +74,26 @@ router.get('/mybooks/', verification, async (req, res) => {
         }
         res.json(myBooks)
 
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+
+/* DELETE ONE OF MY BOOKS */
+router.delete('/deletebook/:bookId', verification, async (req, res) => {
+    const email = getEmail(req.headers['x-auth-token'])
+    const { bookId } = req.params
+    if (!email || !bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) }
+
+    try {
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        
+        user.books = user.books.filter(book => book !== bookId)
+        await user.save()
+
+        res.json({ 'removed': bookId })
     } catch (e) {
         console.log(e)
         throw e

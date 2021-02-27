@@ -1,8 +1,9 @@
 import React, { useEffect, } from 'react'
+import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Book, } from './Book'
-import { Spinner } from '../../components'
+import { EmptyNotification, Spinner } from '../../components'
 import { BookStack, } from './Books.comp'
 
 
@@ -10,9 +11,17 @@ export const MyBookShelf_proto = ({ myBooks, isLoading, }) => {
     useEffect(() => { }, [myBooks, isLoading])
 
     if (isLoading) { return <Spinner /> }
-    
-    console.log(myBooks)
-    
+    //console.log(myBooks)
+    if (myBooks.length < 1) { 
+        return (
+            <EmptyNotification library>
+                <span>You don't have any saved books.</span>&nbsp;&nbsp;
+                <Link to='/books'>
+                    <span className='trigger'>Search library.</span>
+                </Link>
+            </EmptyNotification>
+        ) 
+    } 
     
     return (
         <BookStack> 

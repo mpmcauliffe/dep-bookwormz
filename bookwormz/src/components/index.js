@@ -1,6 +1,7 @@
 export * from './bookShelf/BookShelf'
 export * from './bookShelf/MyBookShelf'
 export * from './buttons/Buttons.comp'
+export * from './EmptyNotification/EmptyNotification'
 export * from './layouts/containers'
 export * from './navbar/Navbar'
 export * from './search/Searchbar'
