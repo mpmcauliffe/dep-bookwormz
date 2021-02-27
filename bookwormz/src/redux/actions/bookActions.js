@@ -1,10 +1,30 @@
 import axios from 'axios'
-import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
+import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
     BOOK_ERROR, SET_LOADING, } from '../types'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
+
+export const getBooks = () => async dispatch => {
+    setLoading()
+
+    try {
+        const res = await axios.get(`/books/mybooks/`)
+        console.log(res)
+        if (res.status === 200) {
+            dispatch({ 
+                type: GET_MY_BOOKS, 
+                payload: { books: res.data } 
+            })
+            return
+        }
+        dispatch({ type: BOOK_ERROR, payload: 'Cannot retieve your library at this time.' })
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: BOOK_ERROR, payload: 'Cannot retieve your library at this time.' })
+    }
+}
 
 // SEARCH BOOKs from google API
 export const searchBooks = (searchString) => async dispatch => {
@@ -45,6 +65,7 @@ export const searchBooks = (searchString) => async dispatch => {
     }
 }
 
+// Add book to profile
 export const addBook = bookInfo => async dispatch => {    
     try {
         const res = await axios.post(`/books/addbook/`, bookInfo, config) 

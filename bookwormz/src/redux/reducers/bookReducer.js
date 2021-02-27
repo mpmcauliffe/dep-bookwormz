@@ -1,4 +1,4 @@
-import { SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
+import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
     BOOK_ERROR, SET_LOADING, } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
@@ -18,6 +18,12 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
     switch(action.type) {
+        case GET_MY_BOOKS:
+            return {
+                ...state,
+                myBooks: [...action.payload.books],
+            }
+
         case SEARCH_BOOKS: 
             return {
                 ...state,
