@@ -18,6 +18,7 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
         <BookStack> 
         {/* */}{bookResults.map(book => (
                 <Book
+                    removeButton={false}
                     key={book.id}
                     bookId={book.id}
                     title={book.volumeInfo.title}

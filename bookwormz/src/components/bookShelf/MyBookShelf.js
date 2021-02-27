@@ -11,27 +11,28 @@ export const MyBookShelf_proto = ({ myBooks, isLoading, }) => {
 
     if (isLoading) { return <Spinner /> }
     
-    // console.log(bookResults)
+    console.log(myBooks)
     
     
     return (
         <BookStack> 
         {/* */}{myBooks.map(book => (
                 <Book
-                    key={book.id}
-                    bookId={book.id}
-                    title={book.volumeInfo.title}
-                    subtitle={book.volumeInfo.subtitle}
-                    authors={book.volumeInfo.authors}
-                    publisher={book.volumeInfo.publisher}
-                    publisherDate={book.volumeInfo.publisherDate}
-                    description={book.volumeInfo.description}
-                    pageCount={book.volumeInfo.pageCount}
-                    printedPageCount={book.volumeInfo.printedPageCount}
-                    categories={book.volumeInfo.categories}
-                    infoLink={book.volumeInfo.infoLink}
-                    image={typeof book.volumeInfo.imageLinks !== 'undefined' 
-                        ? book.volumeInfo.imageLinks.thumbnail
+                    removeButton={true}
+                    key={book.bookId}
+                    bookId={book.bookId}
+                    title={book.title}
+                    subtitle={book.subtitle}
+                    authors={book.authors}
+                    publisher={book.publisher}
+                    publisherDate={book.publisherDate}
+                    description={book.description}
+                    pageCount={book.pageCount}
+                    printedPageCount={book.printedPageCount}
+                    categories={book.categories}
+                    infoLink={book.infoLink}
+                    image={typeof book.image !== 'undefined' 
+                        ? book.image
                         : null } />
                 ))
             } 

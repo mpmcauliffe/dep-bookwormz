@@ -24,7 +24,7 @@ export const Dashboard_proto = ({ getBooks, myBooks, isLoading, bookMessage, }) 
                     <h1>Dashboard</h1>
                 </HeaderSection>
                 {/* <div style={{ height: '60rem', width: '100%', backgroundColor: '#dfdf22' }} /> */}
-                
+                <h3>My Books</h3>
                 <MyBookShelf />
             </MainContent>
             

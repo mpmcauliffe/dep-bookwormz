@@ -11,6 +11,7 @@ export const Book_proto = ({
     addBook,
     bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
     description, pageCount, printedPageCount, categories, image, 
+    removeButton,
 }) => { 
     const [isBookOpen, setIsBookOpen] = useState(false)
     //const [scrollHeight, setScrollHeight] = useState(0)
@@ -56,8 +57,9 @@ export const Book_proto = ({
                             name={bookId}
                             title={title}
                             onClick={addBookToQueue}
-                            style={{ float: 'right' }} >
-                        Add Book</AppButton>
+                            style={{ float: 'right' }}
+                            alertButton={removeButton} >
+                        {removeButton ? 'Remove' : 'Add Book'}</AppButton>
                     </div>
                 </div>
                 <div className='body'>
@@ -107,6 +109,8 @@ Book_proto.propTypes = {
     printedPageCount: PropTypes.number,
     categories: PropTypes.array,
     image: PropTypes.string,
+
+    removeButton: PropTypes.bool.isRequired,
 }
 
 // const mapStateToProps = state => ({

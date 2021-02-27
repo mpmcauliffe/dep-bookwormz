@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 myBooks: [...action.payload.books],
+                isLoading: false,
             }
 
         case SEARCH_BOOKS: 
@@ -42,7 +43,7 @@ export default (state = initialState, action) => {
         case ADD_BOOK_TO_PROFILE:
             return {
                 ...state,
-                myBooks: state.myBooks.push(action.payload.book),
+                myBooks: [...state.myBooks, action.payload.book],
                 bookMessage: {
                     message: action.payload.message,
                     style: 'green darken-3 rounded',
