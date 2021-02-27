@@ -1,5 +1,5 @@
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
-    BOOK_ERROR, SET_LOADING, } from '../types'
+    BOOK_ERROR, MESSAGE, SET_LOADING, } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
 const initialState = {
@@ -59,7 +59,17 @@ export default (state = initialState, action) => {
                     message: action.payload,
                     style: 'red accent-4 rounded',
                     timeDisplay: 5000,
-                }
+                },
+            }
+
+        case MESSAGE:
+            return {
+                ...state,
+                bookMessage: {
+                    message: action.payload.message,
+                    style: action.payload.style,
+                    timeDisplay: 6000,
+                },
             }
 
         default:

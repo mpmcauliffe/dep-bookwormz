@@ -37,16 +37,19 @@ router.post('/addbook/', verification, async (req, res) => {
 
     try {
         const findBook = await Book.findOne({ bookId: book.bookId })
-        if (!findBook) { await book.save() }
 
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
 
-        user.books.push(book.bookId)
         //console.log(user)
-        await user.save()
-
-        res.json(book)
+        if (!findBook) { 
+            await book.save() 
+            user.books.push(book.bookId)
+            await user.save()
+            res.json(book)
+            return
+        }
+        res.json({ 'message': 'double' })        
 
     } catch (e) {
         console.log(e)

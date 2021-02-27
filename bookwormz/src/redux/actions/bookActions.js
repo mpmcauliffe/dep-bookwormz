@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    BOOK_ERROR, SET_LOADING, } from '../types'
+    REMOVE_BOOK_FROM_LIBRARY, BOOK_ERROR, MESSAGE, 
+    SET_LOADING, } from '../types'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
@@ -60,7 +61,6 @@ export const searchBooks = (searchString) => async dispatch => {
                 return
             }
         }
-
         dispatch({ type: BOOK_ERROR, payload: eOut, })     
     }
 }
@@ -69,7 +69,19 @@ export const searchBooks = (searchString) => async dispatch => {
 export const addBook = bookInfo => async dispatch => {    
     try {
         const res = await axios.post(`/books/addbook/`, bookInfo, config) 
-        // console.log(res)
+        console.log(res)
+
+        if (res.data.message === 'double') {
+            dispatch({ 
+                type: MESSAGE, 
+                payload: { 
+                    book: res.data, 
+                    message: `${bookInfo.title} was previously added to your books.`, 
+                    style: 'amber darken-4 rounded'
+                } 
+            })
+            return
+        }
 
         if (res.status === 200) {
             dispatch({ 
@@ -83,6 +95,15 @@ export const addBook = bookInfo => async dispatch => {
     } catch (e) {
         console.log(e)
         dispatch({ type: BOOK_ERROR, payload: 'Request could not be completed.' })
+    }
+}
+
+export const removeBook = bookId => async dispatch => {
+    try {
+        console.log(bookId)
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: BOOK_ERROR, payload: 'Book could not be deleted at this time.' })
     }
 }
 

@@ -1,14 +1,14 @@
 import React, { Fragment, useState, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { addBook } from '../../redux/actions/bookActions'
+import { addBook, removeBook, } from '../../redux/actions/bookActions'
 import { BookCover, } from './Books.comp'
 import { AppButton, } from '../../components'
 import { truncate } from '../../helpers/truncate'
 
 
 export const Book_proto = ({ 
-    addBook,
+    addBook, removeBook,
     bookId, title, subtitle, authors, publisher, publisherDate, infoLink, 
     description, pageCount, printedPageCount, categories, image, 
     removeButton,
@@ -18,8 +18,9 @@ export const Book_proto = ({
 
     const OpenBook = (e, element) => setIsBookOpen(!isBookOpen)
 
-    const addBookToQueue = e => {
-        // addBook(e.target.name.trim(), e.target.title.trim())
+    const facilitateButtonAction = e => {
+        if (removeButton) { removeBook(bookId) }
+
         addBook({ bookId, title, authors, publisher, publisherDate, infoLink, 
             description, pageCount, printedPageCount, categories, image, })
         e.stopPropagation()
@@ -56,9 +57,9 @@ export const Book_proto = ({
                         <AppButton
                             name={bookId}
                             title={title}
-                            onClick={addBookToQueue}
+                            alertButton={removeButton}
                             style={{ float: 'right' }}
-                            alertButton={removeButton} >
+                            onClick={facilitateButtonAction}>
                         {removeButton ? 'Remove' : 'Add Book'}</AppButton>
                     </div>
                 </div>
@@ -97,6 +98,7 @@ export const Book_proto = ({
 
 Book_proto.propTypes = {
     addBook: PropTypes.func.isRequired,
+    removeBook: PropTypes.func.isRequired,
     bookId: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
@@ -117,5 +119,5 @@ Book_proto.propTypes = {
 //     queryString: state.books.bookSearchQuery,
 // })
 
-const Book = connect(null, { addBook, })(Book_proto)
+const Book = connect(null, { addBook, removeBook, })(Book_proto)
 export { Book }
