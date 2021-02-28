@@ -8,6 +8,7 @@ const initialState = {
     myBooks: [ ],
     bookResults: [ ],
     isLoading: false,
+    shelfHeight: 100,
     bookMessage: {
         message: '',
         style: '',

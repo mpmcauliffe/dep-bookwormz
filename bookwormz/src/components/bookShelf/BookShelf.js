@@ -11,11 +11,11 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
 
     if (isLoading) { return <Spinner /> }
     
-    // console.log(bookResults)
+    //console.log(bookResults)
     
     
     return (
-        <BookStack> 
+        <BookStack isBookShelfOpen={true}> 
         {/* */}{bookResults.map(book => (
                 <Book
                     removeButton={false}

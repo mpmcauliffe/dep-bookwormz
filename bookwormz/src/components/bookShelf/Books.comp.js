@@ -1,32 +1,24 @@
-import styled, { keyframes, css } from 'styled-components'
+import styled from 'styled-components'
 
 
 export const BookStack = styled.section`
-    /* width: 100%; */
+    height: ${p => p.isBookShelfOpen ? `auto` : 0};
+    min-height: ${p => p.isBookShelfOpen ? `${p.openHeight}rem` : 0}; 
     margin-top: 7rem;
 
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: .3rem;
 
-    @media(min-width: 980px) { 
-        /* grid-template-columns: 1fr 1fr; */
-        grid-gap: .5rem; 
-    }
-    /* @media(min-width: 1140px) { 
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 1.5rem; 
-    } */
-`
+    overflow-y: hidden; /* to prevent 2nd scroll bar from appearing upon book opening */
 
-const expandColumnsLarge = keyframes`
-    from { grid-template-columns: 12rem 2fr; }
-    to { grid-template-columns: 1fr 1fr; }
-`
-const expandPaddingLarge = keyframes`
-    0% { padding-left: 0; }
-    50% { padding-left: 20%; }
-    100%: { padding-left: 0; }
+    /* transform-origin: top center;
+    transform: ${p => p.isBookShelfOpen ? 'scaleY(1)' : 'scaleY(0)'};
+    transition: transform 100ms; */
+
+    transition: min-height 500ms;
+
+    @media(min-width: 980px) { grid-gap: .5rem; }
 `
 
 export const BookCover = styled.div`
@@ -37,15 +29,12 @@ export const BookCover = styled.div`
 
     /* INTERNAL DYNAMICS */
     display: grid;
-    /* grid-template-columns: ${p => p.isBookOpen ? '1fr 2fr' : '12rem 2fr'}; */
     grid-template-rows: ${p => p.isBookOpen ? '1fr 5fr' : '1fr'};
     grid-template-columns: 12rem 2fr;
     grid-gap: .3rem;
 
     /* COLORS */
     background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(251,251,251,1) 77%);
-    /* border-top: .1rem solid #fcfcfc;
-    border-bottom: .1rem solid ${p => p.theme.silver}; */
     border: .1rem solid #dedede;
     border-radius: 1rem;
 
@@ -67,7 +56,6 @@ export const BookCover = styled.div`
         opacity: ${p => p.isBookOpen ? 1 : 0};
         transition: opacity 600ms;
         transition-timing-function: cubic-bezier(1,0,.01,1);
-
         .info { font-size: 1.4rem; }
     }
 
@@ -89,51 +77,20 @@ export const BookCover = styled.div`
         .author { font-size: 1.9rem }
     }
 `
+export const CascadeArrowContainer = styled.div`
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+`
+export const CascadeArrow = styled.i`
+    margin: 3rem 1rem 0 0;
+    color: ${p => p.theme.primary};
+    cursor: pointer;
 
+    transform: ${p => p.isBookShelfOpen ? 'rotate(180deg)' : ''};
+    transform-origin: bottom center;
+    transition: transform 500ms linear;
 
-
-// export const ModalShade = styled.div`
-//     position: ${p => p.showModalShade ? 'fixed' : 'absolute'};
-//     top: -10rem;
-//     left: -1rem;
-//     height: 200rem;
-//     /* height: ${p => p.shadeHeight}; */
-//     width: 105vw;
-//     z-index: 20;
-    
-//     background: #000;  
-//     pointer-events: ${p => p.showModalShade ? 'all' : 'none'};
-//     opacity: ${p => p.showModalShade ? .95 : 0}; 
-//     transition: opacity 500ms;
-//     transition-timing-function: cubic-bezier(1,0,.01,1);
-// `
-/*export const BookModal = styled.div`
-    position: ${p => p.showModal ? 'sticky' : 'absolute'};
-    top: 0;
-    right: ${p => p.showModal ? '5vw' : '-200vw'};
-    z-index: 30;
-    height: 100vh;
-    width: 90vw;
-
-    padding: 1rem 3rem 1rem 1rem;
-
-    background: ${p => p.theme.silver};
-    transition: right 1s;
-    transition-timing-function: cubic-bezier(1,0,.01,1);
-
-    .nav-items {
-        height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-    }
-
-    .nav-item li a, .nav-item li i {
-        font-size: 2.5rem;
-        color: ${p => p.theme.primary};
-    }
-
-     @media (min-width: 601px) { width: 25vw; }
-    @media (min-width: 1024px) { width: 15vw; } 
-`*/
+    @media (min-width: 601px) { margin: 0 0 0 0; }
+`

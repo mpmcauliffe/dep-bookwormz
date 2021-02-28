@@ -6,7 +6,7 @@ import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE,
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
-// GET BOOKS
+// GET MY BOOKS
 export const getBooks = () => async dispatch => {
     setLoading()
 

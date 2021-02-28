@@ -16,8 +16,10 @@ const API_URL                           = 'https://www.googleapis.com/books/v1/v
 router.get('/booksearch/:urlSearchString', verification, (req, res) => {
     const { urlSearchString } = req.params
     const searchString = urlSearchString.replace(/_/g, " ")
+    // &maxResults=40
 
-    needle.get(`${API_URL}${searchString}`, (err, response) => {
+    needle.get(`${API_URL}${searchString}&maxResults=20`, (err, response) => {
+        // console.log(response.body)
         res.json(response.body)
     })
 })
