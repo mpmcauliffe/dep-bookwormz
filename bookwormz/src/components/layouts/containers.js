@@ -17,7 +17,7 @@ export const MainContent = styled.main`
 export const HeaderSection = styled.section`
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
 
     h1 {
         font-size: 3.7rem; 

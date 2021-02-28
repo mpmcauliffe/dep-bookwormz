@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         font-family: "aileron",sans-serif;
         overflow-x: hidden;
+        padding-bottom: 25rem;
     }
     h1 {
         font-size: 6rem;

@@ -8,7 +8,7 @@ import store from './redux/store/store'
 
 import { Books, Dashboard, Clubs, Landing, 
     UserAuth, UserAccount, } from './pages'
-import { Navbar, SecureRoute, } from './components'
+import { AnchorButton, Navbar, SecureRoute, } from './components'
 import setAuthToken from './utils/setAuthToken'
 
 import 'materialize-css/dist/css/materialize.min.css'
@@ -63,6 +63,7 @@ function App(props) {
                             component={UserAccount} />
                     </Switch>
                 </AnimatePresence>
+                <AnchorButton />
             </Router>
         </Provider>
         

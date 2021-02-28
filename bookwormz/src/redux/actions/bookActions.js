@@ -12,13 +12,13 @@ export const getBooks = () => async dispatch => {
 
     try {
         const res = await axios.get(`/books/mybooks/`)
-        console.log(res)
+        // console.log(res)
         if (res.status === 200) {
             if (typeof res.data.myBooks === 'string') { 
                 dispatch({ 
                     type: MESSAGE,
                     payload: { 
-                        message: `You have no books at this time`,
+                        message: `You're library is currently empty.`,
                         style: 'amber darken-4 rounded'
                     }  
                 })

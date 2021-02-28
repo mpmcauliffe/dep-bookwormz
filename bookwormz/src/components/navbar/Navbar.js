@@ -48,7 +48,7 @@ const Navbar_proto = ({ isAuthenticated, bookMessage, }) => {
                 </ul>
             </SideMenu>
 
-            <nav className='grey darken-3'>
+            <nav className='grey darken-3'  id='top'>
                 <div className='nav-wrapper'>
                 <Link 
                     to='/dashboard'>
