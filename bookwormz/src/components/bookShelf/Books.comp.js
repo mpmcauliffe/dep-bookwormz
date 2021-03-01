@@ -1,5 +1,10 @@
-import styled from 'styled-components'
+import styled, { keyframes, } from 'styled-components'
 
+
+const fadeIn = keyframes`
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+`
 
 export const BookStack = styled.section`
     height: ${p => p.isBookShelfOpen ? `auto` : 0};
@@ -42,6 +47,9 @@ export const BookCover = styled.div`
     cursor: pointer;
     transition: height 500ms;
     transition-timing-function: cubic-bezier(1,0,.01,1);
+
+    opacity: 1;
+    animation: ${fadeIn} 500ms;
 
     /* CLASSES */
     .right-cell { display: grid; grid-template-rows: 5rem 4rem 5rem; }

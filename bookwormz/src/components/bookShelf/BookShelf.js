@@ -10,7 +10,6 @@ export const BookShelf_proto = ({ bookResults, isLoading, }) => {
     useEffect(() => { }, [bookResults, isLoading])
 
     if (isLoading) { return <Spinner /> }
-    
     //console.log(bookResults)
     
     

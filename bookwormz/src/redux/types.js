@@ -16,4 +16,10 @@ export const BOOK_ERROR                     = 'BOOK_ERROR'
 /* CLUB TYPES */
 
 
+/* ACCOUNT TYPES */
+export const UPDATE_PROFILE_PICTURE     = 'UPDATE_PROFILE_PICTURE'
+export const UPDATE_DISPLAY_NAME        = 'UPDATE_DISPLAY_NAME'
+export const UPDATE_EMAIL_ADDRESS       = 'UPDATE_EMAIL_ADDRESS'
+export const DELETE_ACCOUNT             = 'DELETE_ACCOUNT'
+
 export const SET_LOADING      = 'SET_LOADING'
