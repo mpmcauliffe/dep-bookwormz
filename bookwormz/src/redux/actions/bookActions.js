@@ -98,7 +98,7 @@ export const addBook = bookInfo => async dispatch => {
         }
 
         if (res.status === 200) {
-            console.log(`ADD: ${bookInfo.title}`, 'font-weight: bold', 'color: green')
+            console.log(`%cADD: %c${bookInfo.title}`, 'font-weight: bold', 'color: green')
             dispatch({ 
                 type: ADD_BOOK_TO_PROFILE, 
                 payload: { book: res.data, message: `${bookInfo.title} added to your books.` } 

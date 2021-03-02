@@ -15,6 +15,9 @@ module.exports = async (incomimgUser, email, action) => {
                 firstName: incomimgUser.name.givenName,
                 lastName: incomimgUser.name.familyName,
                 image: incomimgUser.photos[0].value,
+                secondDisplayName: '',
+                secondaryImage: '',
+
             }
             await User.create(newUser)
         }

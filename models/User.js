@@ -15,6 +15,9 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
+    secondDisplayName: {
+        type: String,
+    },
     firstName: {
         type: String,
         required: true,
@@ -24,6 +27,10 @@ const UserSchema = new Schema({
         required: true,
     },
     image: {
+        type: String,
+        required: true,
+    },
+    secondaryImage: {
         type: String,
     },
     createdAt: {
