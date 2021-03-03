@@ -2,14 +2,14 @@ import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
-import { getBooks, } from '../redux/actions/bookActions'
+import { getUserInfo } from '../redux/actions/accountActions'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { MyBookShelf, HeaderSection, MainContent, } from '../components'
 
 
-export const Dashboard_proto = ({ getBooks, myBooks, isLoading, bookMessage, }) => {
+export const Dashboard_proto = ({ getUserInfo, displayName, }) => {
 
-    useEffect(() => { getBooks() }, [])
+    useEffect(() => { getUserInfo() }, [])
 
     return (
         <motion.div
@@ -21,9 +21,11 @@ export const Dashboard_proto = ({ getBooks, myBooks, isLoading, bookMessage, }) 
             
             <MainContent>
                 <HeaderSection>
-                    <h1>Dashboard</h1>
+                    <h4>Dashboard</h4>
+                    
                 </HeaderSection>
                 {/* <div style={{ height: '60rem', width: '100%', backgroundColor: '#dfdf22' }} /> */}
+                <h3 className='subName'>Welcome {displayName}</h3>
                 <h3>My Books</h3>
                 <MyBookShelf />
             </MainContent>
@@ -35,19 +37,13 @@ export const Dashboard_proto = ({ getBooks, myBooks, isLoading, bookMessage, }) 
 
 
 Dashboard_proto.propTypes = {
-    myBooks: PropTypes.array.isRequired,
-    // getBooks: PropTypes.func.isRequired,
-    // isLoading: PropTypes.bool.isRequired,
-    bookMessage: PropTypes.object.isRequired,
+    getUserInfo: PropTypes.func.isRequired,
+    displayName: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
-    // bookSearchQuery: state.books.bookSearchQuery,
-    myBooks: state.books.myBooks,
-    // getBooks: state.books.getBooks,
-    // isLoading: state.books.isLoading,
-    bookMessage: state.books.bookMessage,
+    displayName: state.account.displayName,
 })
 
-const Dashboard = connect(mapStateToProps, { getBooks })(Dashboard_proto)
+const Dashboard = connect(mapStateToProps, { getUserInfo, })(Dashboard_proto)
 export { Dashboard }

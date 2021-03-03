@@ -17,7 +17,7 @@ export const Books_proto = ({ bookSearchQuery, }) => {
             transition={pageTransition}>
                 <MainContent>
                     <HeaderSection>
-                        <h1>Books</h1>
+                        <h4>Books</h4>
                         <Searchbar 
                             searchFor='books'
                             queryString={bookSearchQuery} />

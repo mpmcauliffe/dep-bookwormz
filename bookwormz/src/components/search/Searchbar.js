@@ -6,7 +6,6 @@ import { triggerAuthError, } from '../../redux/actions/authActions'
 import { searchBooks, setLoading, } from '../../redux/actions/bookActions'
 import { checkUser, } from '../../middleware/checkUser'
 import { SearchContainer, SearchForm, } from './Search.comp'
-import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 export const Searchbar_proto = ({ 
@@ -24,15 +23,8 @@ export const Searchbar_proto = ({
         
         if (!checkUser()) {
             triggerAuthError('1', `Search cannot be completed. Please try logging in again.`, history)
-            // window.location.reload()
             return
         } 
-
-        // if (searchFor === 'books' && txt === 'book') {
-        //     // because Google Books API is poorly designed
-        //     M.toast({ html: `Please search for something else.`, classes: 'red accent-4 rounded', displayLength: 5000 })
-        //     return
-        // }
 
         if (searchFor === 'books') {
             searchBooks(txt)

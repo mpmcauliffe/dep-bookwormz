@@ -5,7 +5,7 @@ import { GET_USER_INFO, UPDATE_PROFILE_PICTURE, UPDATE_DISPLAY_NAME,
 const initialState = {
     displayName: '',
     image: '',
-    secondDisplayName: '',
+    // secondaryDisplayName: '',
     secondaryImage: '',
     message: '',
 }
@@ -14,11 +14,13 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case GET_USER_INFO:
+            // console.log(action.payload.userInfo.image)
             return {
                 ...state,
-                image: action.payload.image,
-                secondDisplayName: action.payload.secondDisplayName,
-                secondaryImage: action.payload.secondaryImage,
+                displayName: action.payload.userInfo.displayName,
+                image: action.payload.userInfo.image,
+                // secondaryDisplayName: action.payload.userInfo.secondaryDisplayName,
+                secondaryImage: action.payload.userInfo.secondaryImage,
             }
 
         case UPDATE_PROFILE_PICTURE:

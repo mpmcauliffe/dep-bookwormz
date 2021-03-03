@@ -12,11 +12,11 @@ export const getUserInfo = () => async dispatch => {
 
     try {
         const res = await axios.get(`/users/myinfo/`)
-        // console.log(res)
+        // console.log(res.data)
         if (res.status === 200) {
             dispatch({ 
                 type: GET_USER_INFO, 
-                payload: { books: res.data } 
+                payload: { userInfo: res.data } 
             })
             return
         }

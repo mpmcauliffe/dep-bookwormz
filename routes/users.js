@@ -15,17 +15,17 @@ router.get('/myinfo', verification, async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
-        // console.log(user)
+    console.log(user)
 
         const userInfo = {
             // email: user.email,
-            displayName: user.displayName,
+            displayName: user.secondaryDisplayName.length > 0 ? user.secondaryDisplayName : user.displayName,
             image: user.image,
-            secondDisplayName: user.secondDisplayName, 
+            // secondaryDisplayName: user.secondaryDisplayName, 
             secondaryImage:  user.secondaryImage,
         }
 
-        res.json(userInfo)
+        res.send(userInfo)
 
     } catch (e) {
         console.log(e)

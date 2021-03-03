@@ -15,7 +15,7 @@ export const Clubs = () => {
             
             <MainContent>
                 <HeaderSection>
-                    <h1>Clubs</h1>
+                    <h4>Clubs</h4>
                     <Searchbar searchFor='clubs' />
                 </HeaderSection>
                 

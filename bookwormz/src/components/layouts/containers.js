@@ -6,7 +6,15 @@ export const MainContent = styled.main`
     padding: 1rem 0;
     margin: 1rem auto;
 
-    h3 { margin: 3rem 0 -4rem 0; }
+    h3 { 
+        margin: 3rem 0 -4rem 0; 
+        font-weight: 300;
+    }
+
+    .subName { 
+        font-weight: 400;
+        margin-bottom: 10rem;
+    }
 
     @media (min-width: 601px) { 
         width: 80vw;
@@ -19,8 +27,9 @@ export const HeaderSection = styled.section`
     flex-direction: column;
     /* padding: 0 1rem; */
 
-    h1 {
-        font-size: 3.7rem; 
+    h4 {
+        font-size: 2.2rem; 
+        font-weight: 600;
         color: ${p => p.theme.primary}; 
     }
     
@@ -31,6 +40,6 @@ export const HeaderSection = styled.section`
         justify-content: space-between;
         align-items: center;
         
-        h1 { font-size: 6rem; } 
+        /* h4 { font-size: 2.2rem; }  */
     }
 `
