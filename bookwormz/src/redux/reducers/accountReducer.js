@@ -14,7 +14,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case GET_USER_INFO:
-            // console.log(action.payload.userInfo.image)
+            console.log(action.payload.userInfo.image)
             return {
                 ...state,
                 displayName: action.payload.userInfo.displayName,

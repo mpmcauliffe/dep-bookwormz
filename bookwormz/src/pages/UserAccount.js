@@ -28,14 +28,21 @@ const UserInfoContainer = styled.section`
         text-align: center; 
     }
     p { 
+        font-size: 1.8rem;
         text-align: center;
-        cursor: pointer; 
     }
 `
 const FormContainer = styled.form`
-    /* height: ${p => p.toggleInputs ? '60.2rem' : '0'}; */
+    max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
     opacity: ${p => p.toggleInputs ? 1 : 0};
-    transition: opacity 5s;
+    transition: max-height 500ms;
+    transition: opacity 500ms;
+    transition-timing-function: cubic-bezier(1,0,.01,1);
+
+    div {
+        max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
+        transition: max-height 500ms;
+    }
 
     div hr {border-top: 1px dotted #aaa; }
         .update-info div { display: flex; }
@@ -72,11 +79,27 @@ const ProfileImage = styled.img`
 `
 
 export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
-    const [toggleInputs, setToggleInputs] = useState(false)
+    const [portrait, setPortrait]               = useState('')
+    const [newDisplayName, setNewDisplayName]   = useState('')
+    const [toggleInputs, setToggleInputs]       = useState(false)
 
     const toggleChangeInputs = () => setToggleInputs(!toggleInputs)
 
-    const onSubmit = e => console.log('submit!')
+    const onSubmit = e => {
+        e.preventDefault()
+
+        const data = []
+        if (portrait.length > 0) {
+            const isURL = portrait.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+
+            if (!isURL) {
+                return 
+            }
+            data.push(portrait)
+        }
+    }
+
+    const handleAccountDelete = () => console.log('DELETE!')
 
     useEffect(() => { getUserInfo() })
 
@@ -105,7 +128,9 @@ export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
                     </div>
                     <p 
                         onClick={toggleChangeInputs}
-                        style={{ color: '#aa00aa' }}>
+                        style={{ color: '#982233', 
+                                cursor: 'pointer',
+                                textDecoration: 'underline', }}>
                     Edit</p>
                     <FormContainer 
                         onSubmit={onSubmit}
@@ -130,10 +155,19 @@ export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
                             <AppButton 
                                 onClick={onSubmit}
                                 style={{ margin: '7rem 0 0 0' }} >Submit</AppButton>
-                            <hr/>
                         </div>
                     </FormContainer>
                 </UserInfoContainer>
+                <hr style={{ marginTop: '22rem',
+                                border: '.2rem dotted #D71B2D' }} />
+                <AppButton
+                    alertButton={true}
+                    onClick={handleAccountDelete}
+                    style={{ height: '5rem', 
+                                width: '24rem',
+                                margin: '10rem auto 0 auto',
+                                borderRadius: '5rem', }}>
+                    Delete Account</AppButton>
             </MainContent>
         </motion.div>
     )
