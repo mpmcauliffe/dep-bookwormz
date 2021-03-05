@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, AppButton, } from '../components'
-import { getUserInfo, updateUserInfo, } from '../redux/actions/accountActions'
+import { getUserInfo, updateUserInfo, revertUserInfo, } from '../redux/actions/accountActions'
 
 
 const UserInfoContainer = styled.section`
@@ -78,7 +78,10 @@ const ProfileImage = styled.img`
     border-radius: 50%;
 `
 
-export const UserAccount_proto = ({ getUserInfo, updateUserInfo, displayName, image, }) => {
+export const UserAccount_proto = ({ 
+    getUserInfo, updateUserInfo, revertUserInfo,
+    displayName, image, }) => {
+
     const [userInfo, setUserInfo]               = useState({
         portrait: '',
         newDisplayName: '',
@@ -100,6 +103,8 @@ export const UserAccount_proto = ({ getUserInfo, updateUserInfo, displayName, im
         }
         updateUserInfo(userInfo)
     }
+
+    const handleRevertClick = () => revertUserInfo()
 
     const handleAccountDelete = () => console.log('DELETE!')
 
@@ -163,6 +168,13 @@ export const UserAccount_proto = ({ getUserInfo, updateUserInfo, displayName, im
                             <AppButton 
                                 onClick={onSubmit}
                                 style={{ margin: '7rem 0 0 0' }} >Submit</AppButton>
+                            <p 
+                                onClick={handleRevertClick}
+                                style={{ color: '#982233', 
+                                        cursor: 'pointer',
+                                        marginTop: '15rem',
+                                        textDecoration: 'underline', }}>
+                                Revert to original portrait and display name</p>
                         </div>
                     </FormContainer>
                 </UserInfoContainer>
@@ -185,6 +197,7 @@ export const UserAccount_proto = ({ getUserInfo, updateUserInfo, displayName, im
 UserAccount_proto.propTypes = {
     getUserInfo: PropTypes.func.isRequired,
     updateUserInfo: PropTypes.func.isRequired,
+    revertUserInfo: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
@@ -194,7 +207,7 @@ const mapStateToProps = state => ({
     image: state.account.image,
 })
 
-const UserAccount = connect(mapStateToProps, { getUserInfo, updateUserInfo, })(UserAccount_proto)
+const UserAccount = connect(mapStateToProps, { getUserInfo, updateUserInfo, revertUserInfo, })(UserAccount_proto)
 export { UserAccount }
 
 // <i className='fas fa-signature' />

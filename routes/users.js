@@ -45,7 +45,7 @@ router.put('/updatinfo', verification, async (req, res) => {
     if (newDisplayName) updatedFields.secondaryDisplayName         = newDisplayName
 
     try {
-        res = await User.findOneAndUpdate({ email }, 
+        await User.findOneAndUpdate({ email }, 
             { '$set': { 
                 'secondaryImage': updatedFields.secondaryImage, 
                 'secondaryDisplayName': updatedFields.secondaryDisplayName,
@@ -53,8 +53,35 @@ router.put('/updatinfo', verification, async (req, res) => {
 
         //if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
         const user = await User.findOne({ email })
+        const userInfo = {
+            displayName: user.secondaryDisplayName,
+            image: user.secondaryImage,
+        }
+        
+        res.send(userInfo)
 
-        console.log(user)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ message: 'Server error' })
+    }
+
+})
+
+router.put('/revertinfo', verification, async (req, res) => {
+    console.log(req.body)
+
+    const email = getEmail(req.headers['x-auth-token'])
+    if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+
+    try {
+        await User.findOneAndUpdate({ email }, 
+            { '$set': { 
+                'secondaryImage': '', 
+                'secondaryDisplayName': '',
+        } })
+
+        //if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
+        const user = await User.findOne({ email })
        
         // const userInfo = {
         //     // email: user.email,
@@ -64,7 +91,12 @@ router.put('/updatinfo', verification, async (req, res) => {
         //     secondaryImage:  user.secondaryImage,
         // }
 
-        //res.send(userInfo)
+        const userInfo = {
+            displayName: user.displayName,
+            image: user.image,
+        }
+
+        res.send(userInfo)
 
     } catch (e) {
         console.log(e)

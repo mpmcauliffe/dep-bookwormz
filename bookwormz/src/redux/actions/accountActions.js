@@ -29,6 +29,25 @@ export const getUserInfo = () => async dispatch => {
 // UPDATE
 export const updateUserInfo = userInfo => async dispatch => {
     const res = await axios.put(`/users/updatinfo/`, userInfo, config)
+
+    console.log(
+        `%cUpdated ONE OR MORE OF THE FOLLOWING: %c${res.data.displayName} %cAND / OR YOUR PROFILE PORTRAIT`,
+        'font-weight: bold', 'color: green', 'font-weight: bold')
+
+    if (res.status === 200) {
+        dispatch({
+            type:   GET_USER_INFO,
+            payload: { userInfo: res.data }
+        })
+        return
+    }
+}
+
+// REVERT
+export const revertUserInfo = () => async dispatch => {
+    const res = await axios.put(`/users/revertinfo/`, config)
+
+    console.log(res)
 }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    
