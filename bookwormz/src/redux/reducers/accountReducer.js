@@ -1,11 +1,9 @@
-import { GET_USER_INFO, UPDATE_USER_INFO, DELETE_ACCOUNT, 
-    USER_MESSAGE, } from '../types'
+import { GET_USER_INFO, DELETE_ACCOUNT, USER_MESSAGE, } from '../types'
 
 
 const initialState = {
     displayName: '',
     image: '',
-    // secondaryDisplayName: '',
     secondaryImage: '',
     message: '',
 }
@@ -19,13 +17,6 @@ export default (state = initialState, action) => {
                 ...state,
                 displayName: action.payload.userInfo.displayName,
                 image: action.payload.userInfo.image,
-                // secondaryDisplayName: action.payload.userInfo.secondaryDisplayName,
-                secondaryImage: action.payload.userInfo.secondaryImage,
-            }
-
-        case UPDATE_USER_INFO:
-            return {
-                ...state,
             }
 
         default:

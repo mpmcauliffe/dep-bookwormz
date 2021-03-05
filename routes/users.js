@@ -17,11 +17,8 @@ router.get('/myinfo', verification, async (req, res) => {
         if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
 
         const userInfo = {
-            // email: user.email,
             displayName: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             image: user.secondaryImage ? user.secondaryImage : user.image,
-            // secondaryDisplayName: user.secondaryDisplayName, 
-            secondaryImage:  user.secondaryImage,
         }
 
         res.send(userInfo)
@@ -51,7 +48,6 @@ router.put('/updatinfo', verification, async (req, res) => {
                 'secondaryDisplayName': updatedFields.secondaryDisplayName,
         } })
 
-        //if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
         const user = await User.findOne({ email })
         const userInfo = {
             displayName: user.secondaryDisplayName,
@@ -80,16 +76,7 @@ router.put('/revertinfo', verification, async (req, res) => {
                 'secondaryDisplayName': '',
         } })
 
-        //if (!user) { res.status(400).send({ message: 'Error: User not found.' }) }
         const user = await User.findOne({ email })
-       
-        // const userInfo = {
-        //     // email: user.email,
-        //     displayName: user.secondaryDisplayName.length > 0 ? user.secondaryDisplayName : user.displayName,
-        //     image: user.image,
-        //     // secondaryDisplayName: user.secondaryDisplayName, 
-        //     secondaryImage:  user.secondaryImage,
-        // }
 
         const userInfo = {
             displayName: user.displayName,

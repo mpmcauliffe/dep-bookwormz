@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_USER_INFO, UPDATE_USER_INFO, DELETE_ACCOUNT, 
+import { GET_USER_INFO, DELETE_ACCOUNT, 
     USER_MESSAGE, SET_LOADING, } from '../types'
 
 
@@ -28,26 +28,46 @@ export const getUserInfo = () => async dispatch => {
 
 // UPDATE
 export const updateUserInfo = userInfo => async dispatch => {
-    const res = await axios.put(`/users/updatinfo/`, userInfo, config)
+    try {
+        const res = await axios.put(`/users/updatinfo/`, userInfo, config)
+        
+        console.log(
+        `%cUPDATED ONE OR MORE OF THE FOLLOWING: YOUR %cPROFILE PORTRAIT %cAND/OR YOUR %cDISPLAY NAME.`,
+        'font-weight: bold', 'color: orange', 'font-weight: bold', 'color: orange',)
 
-    console.log(
-        `%cUpdated ONE OR MORE OF THE FOLLOWING: %c${res.data.displayName} %cAND / OR YOUR PROFILE PORTRAIT`,
-        'font-weight: bold', 'color: green', 'font-weight: bold')
-
-    if (res.status === 200) {
-        dispatch({
-            type:   GET_USER_INFO,
-            payload: { userInfo: res.data }
-        })
-        return
-    }
+        if (res.status === 200) {
+            dispatch({
+                type:   GET_USER_INFO,
+                payload: { userInfo: res.data }
+            })
+            return
+        }
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })
+    }    
 }
 
 // REVERT
 export const revertUserInfo = () => async dispatch => {
-    const res = await axios.put(`/users/revertinfo/`, config)
+    try {
+        const res = await axios.put(`/users/revertinfo/`, config)
 
-    console.log(res)
+        console.log(
+            `%cREVERTED YOUR %cPROFILE PORTRAIT %cAND YOUR %cDISPLAY NAME %cTO ORIGINAL GOOGLE SETTING.`,
+            'font-weight: bold', 'color: orange', 'font-weight: bold', 'color: orange', 'font-weight: bold')
+
+        if (res.status === 200) {
+            dispatch({
+                type:   GET_USER_INFO,
+                payload: { userInfo: res.data }
+            })
+            return
+        }
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })
+    }
 }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

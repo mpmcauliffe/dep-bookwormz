@@ -108,7 +108,11 @@ export const UserAccount_proto = ({
 
     const handleAccountDelete = () => console.log('DELETE!')
 
-    useEffect(() => { getUserInfo() })
+    useEffect(() => {
+        if (!image || !displayName) {
+            getUserInfo() 
+        }  
+    }, [getUserInfo, image, displayName])
 
 
     return (
