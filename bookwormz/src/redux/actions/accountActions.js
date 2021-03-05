@@ -37,7 +37,7 @@ export const updateUserInfo = userInfo => async dispatch => {
 
         if (res.status === 200) {
             dispatch({
-                type:   GET_USER_INFO,
+                type: GET_USER_INFO,
                 payload: { userInfo: res.data }
             })
             return
@@ -59,8 +59,27 @@ export const revertUserInfo = () => async dispatch => {
 
         if (res.status === 200) {
             dispatch({
-                type:   GET_USER_INFO,
+                type: GET_USER_INFO,
                 payload: { userInfo: res.data }
+            })
+            return
+        }
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })
+    }
+}
+
+export const deleteUserAccount = () => async dispatch => {
+    try {
+        const res = await axios.delete(`/users/deleteuser/`, config)
+
+        console.log(`%cDELETED USER ACCOUNT`, 'font-weight: bold, color: red')
+
+        if (res.status === 200) {
+            dispatch({
+                type: DELETE_ACCOUNT,
+                payload: `Deleted account`
             })
             return
         }

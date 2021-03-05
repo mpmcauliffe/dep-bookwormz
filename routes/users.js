@@ -30,8 +30,6 @@ router.get('/myinfo', verification, async (req, res) => {
 })
 
 router.put('/updatinfo', verification, async (req, res) => {
-    console.log(req.body)
-
     const email = getEmail(req.headers['x-auth-token'])
     if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
 
@@ -64,8 +62,6 @@ router.put('/updatinfo', verification, async (req, res) => {
 })
 
 router.put('/revertinfo', verification, async (req, res) => {
-    console.log(req.body)
-
     const email = getEmail(req.headers['x-auth-token'])
     if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
 
@@ -91,5 +87,11 @@ router.put('/revertinfo', verification, async (req, res) => {
     }
 
 })
+
+router.delete('/deleteuser', verification, async (req, res) => {
+    const email = getEmail(req.headers['x-auth-token'])
+    if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+})
+
 
 module.exports = router
