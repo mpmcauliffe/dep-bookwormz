@@ -5,19 +5,17 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, AppButton, } from '../components'
-import { getUserInfo, updateUserInfo, revertUserInfo, } from '../redux/actions/accountActions'
+import { getUserInfo, updateUserInfo, revertUserInfo, 
+    deleteUserAccount, } from '../redux/actions/accountActions'
 
 
 const UserInfoContainer = styled.section`
-    /* height: 80vh; */
     margin-top: 8rem;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
-    /* overflow-y: hidden; */
 
     div { 
         width: 100%;
@@ -79,7 +77,7 @@ const ProfileImage = styled.img`
 `
 
 export const UserAccount_proto = ({ 
-    getUserInfo, updateUserInfo, revertUserInfo,
+    getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount,
     displayName, image, }) => {
 
     const [userInfo, setUserInfo]               = useState({
@@ -106,7 +104,7 @@ export const UserAccount_proto = ({
 
     const handleRevertClick = () => revertUserInfo()
 
-    const handleAccountDelete = () => console.log('DELETE!')
+    const handleAccountDelete = () => deleteUserAccount()
 
     useEffect(() => {
         if (!image || !displayName) {
@@ -202,6 +200,7 @@ UserAccount_proto.propTypes = {
     getUserInfo: PropTypes.func.isRequired,
     updateUserInfo: PropTypes.func.isRequired,
     revertUserInfo: PropTypes.func.isRequired,
+    deleteUserAccount: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
@@ -211,8 +210,7 @@ const mapStateToProps = state => ({
     image: state.account.image,
 })
 
-const UserAccount = connect(mapStateToProps, { getUserInfo, updateUserInfo, revertUserInfo, })(UserAccount_proto)
+const UserAccount = connect(mapStateToProps, 
+    { getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, })
+    (UserAccount_proto)
 export { UserAccount }
-
-// <i className='fas fa-signature' />
-// <i className='fas fa-portrait' />

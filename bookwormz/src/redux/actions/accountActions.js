@@ -76,13 +76,13 @@ export const deleteUserAccount = () => async dispatch => {
 
         console.log(`%cDELETED USER ACCOUNT`, 'font-weight: bold, color: red')
 
-        if (res.status === 200) {
-            dispatch({
-                type: DELETE_ACCOUNT,
-                payload: `Deleted account`
-            })
-            return
-        }
+        // if (res.status === 200) {
+        //     dispatch({
+        //         type: DELETE_ACCOUNT,
+        //         payload: `Deleted account`
+        //     })
+        //     return
+        // }
     } catch (e) {
         console.log(e)
         dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })

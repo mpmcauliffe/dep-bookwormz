@@ -91,6 +91,18 @@ router.put('/revertinfo', verification, async (req, res) => {
 router.delete('/deleteuser', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
     if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+
+    try {
+        const user = await User.findOne({ email })
+        user.remove()
+
+        res.json({ 'user': user.displayName })
+    
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ message: 'Server error' })
+    }
+    
 })
 
 

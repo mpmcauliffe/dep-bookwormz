@@ -19,6 +19,11 @@ export default (state = initialState, action) => {
                 image: action.payload.userInfo.image,
             }
 
+        case DELETE_ACCOUNT:
+            return {
+                ...state,
+            }
+
         default:
             return state
     }
