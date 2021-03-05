@@ -18,9 +18,7 @@ export const BOOK_ERROR                     = 'BOOK_ERROR'
 
 /* ACCOUNT TYPES */
 export const GET_USER_INFO              = 'GET_USER_INFO'
-export const UPDATE_PROFILE_PICTURE     = 'UPDATE_PROFILE_PICTURE'
-export const UPDATE_DISPLAY_NAME        = 'UPDATE_DISPLAY_NAME'
-export const UPDATE_EMAIL_ADDRESS       = 'UPDATE_EMAIL_ADDRESS'
+export const UPDATE_USER_INFO           = 'UPDATE_USER_INFO'
 export const DELETE_ACCOUNT             = 'DELETE_ACCOUNT'
 export const USER_MESSAGE               = 'USER_MESSAGE'
 

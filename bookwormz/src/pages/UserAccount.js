@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, AppButton, } from '../components'
-import { getUserInfo, } from '../redux/actions/accountActions'
+import { getUserInfo, updateUserInfo, } from '../redux/actions/accountActions'
 
 
 const UserInfoContainer = styled.section`
@@ -45,21 +45,21 @@ const FormContainer = styled.form`
     }
 
     div hr {border-top: 1px dotted #aaa; }
-        .update-info div { display: flex; }
-        .update-info input {
-            width: 90vw;
-            margin: 2rem auto;
-            font-size: 2rem;
-            color: ${p => p.theme.primary} !important;
+    .update-info div { display: flex; }
+    .update-info input {
+        width: 80vw;
+        margin: 2rem auto;
+        font-size: 2rem;
+        color: ${p => p.theme.primary} !important;
 
-            padding: 0 0 1rem 5rem !important;
-            border-bottom: .1rem solid ${p => p.theme.silver} !important;
+        padding: 0 0 1rem 5rem !important;
+        border-bottom: .1rem solid ${p => p.theme.silver} !important;
 
-            &:focus { 
-                border-bottom: .3rem solid ${p => p.theme.ruby} !important; 
-                box-shadow: none !important;
-            }
-            &::placeholder { color: ${p => p.theme.primary} }
+        &:focus { 
+            border-bottom: .3rem solid ${p => p.theme.ruby} !important; 
+            box-shadow: none !important;
+        }
+        &::placeholder { color: ${p => p.theme.primary} }
     }
     .update-info i {
         position: absolute;
@@ -68,7 +68,7 @@ const FormContainer = styled.form`
     }
     input:focus + i { color: ${p => p.theme.ruby}; }
 
-    @media (min-width: 601px) { .update-info input { width: 78vw; } }
+    @media (min-width: 601px) { .update-info input { width: 70vw; } }
     @media (min-width: 981px) { .update-info input { width: 60vw; }  }
     @media (min-width: 1441px) { .update-info input { width: 40vw; } }
 `
@@ -78,9 +78,11 @@ const ProfileImage = styled.img`
     border-radius: 50%;
 `
 
-export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
-    const [portrait, setPortrait]               = useState('')
-    const [newDisplayName, setNewDisplayName]   = useState('')
+export const UserAccount_proto = ({ getUserInfo, updateUserInfo, displayName, image, }) => {
+    const [userInfo, setUserInfo]               = useState({
+        portrait: '',
+        newDisplayName: '',
+    })
     const [toggleInputs, setToggleInputs]       = useState(false)
 
     const toggleChangeInputs = () => setToggleInputs(!toggleInputs)
@@ -88,15 +90,15 @@ export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
     const onSubmit = e => {
         e.preventDefault()
 
-        const data = []
-        if (portrait.length > 0) {
-            const isURL = portrait.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
-
-            if (!isURL) {
-                return 
-            }
-            data.push(portrait)
+        const isURL = userInfo.portrait.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+        if (!isURL && userInfo.portrait.length > 0) {
+            console.log(`%cPORTRAIT VALUE %c${userInfo.portrait} %cNOT A URL`, 'font-weight: bold', 'color: red', 'font-weight: bold')
+            return 
         }
+        if (userInfo.portrait.length < 1 && userInfo.newDisplayName.length < 1) {
+            return
+        }
+        updateUserInfo(userInfo)
     }
 
     const handleAccountDelete = () => console.log('DELETE!')
@@ -142,13 +144,19 @@ export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
                                 <div>
                                     <input 
                                         type='text'
-                                        placeholder='New portrait URL' />
+                                        name='portrait'
+                                        placeholder='New portrait URL'
+                                        value={userInfo.portrait}
+                                        onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })} />
                                     <i className='fas fa-portrait fa-3x' />
                                 </div>
                                 <div>
                                     <input 
                                         type='text'
-                                        placeholder='New display name' />
+                                        name='newDisplayName'
+                                        placeholder='New display name'
+                                        value={userInfo.newDisplayName}
+                                        onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })} />
                                     <i className='fas fa-signature fa-3x' />
                                 </div>
                             </div>
@@ -176,6 +184,7 @@ export const UserAccount_proto = ({ getUserInfo, displayName, image, }) => {
 
 UserAccount_proto.propTypes = {
     getUserInfo: PropTypes.func.isRequired,
+    updateUserInfo: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
@@ -185,7 +194,7 @@ const mapStateToProps = state => ({
     image: state.account.image,
 })
 
-const UserAccount = connect(mapStateToProps, { getUserInfo, })(UserAccount_proto)
+const UserAccount = connect(mapStateToProps, { getUserInfo, updateUserInfo, })(UserAccount_proto)
 export { UserAccount }
 
 // <i className='fas fa-signature' />
