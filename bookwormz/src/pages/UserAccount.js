@@ -8,6 +8,7 @@ import { pageTransition, pageVariants, } from './zAnimation'
 import { HeaderSection, MainContent, AppButton, } from '../components'
 import { getUserInfo, updateUserInfo, revertUserInfo, 
     deleteUserAccount, } from '../redux/actions/accountActions'
+import { logout } from '../redux/actions/authActions'
 
 
 const UserInfoContainer = styled.section`
@@ -78,7 +79,7 @@ const ProfileImage = styled.img`
 `
 
 export const UserAccount_proto = ({ 
-    getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount,
+    getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, logout,
     displayName, image, }) => {
 
     const history                               = useHistory()
@@ -103,16 +104,22 @@ export const UserAccount_proto = ({
             return
         }
         updateUserInfo(userInfo)
+
+        setUserInfo({ portrait: '', newDisplayName: '' })
     }
 
     const handleRevertClick = () => revertUserInfo()
 
-    const handleAccountDelete = () => deleteUserAccount(history)
+    const handleAccountDelete = () => {
+        deleteUserAccount(history)
+        logout(history)
+    }
 
     useEffect(() => {
         if (!image || !displayName) {
             getUserInfo() 
         }  
+        getUserInfo()
     }, [getUserInfo, image, displayName])
 
 
@@ -204,6 +211,7 @@ UserAccount_proto.propTypes = {
     updateUserInfo: PropTypes.func.isRequired,
     revertUserInfo: PropTypes.func.isRequired,
     deleteUserAccount: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
 }
@@ -214,6 +222,6 @@ const mapStateToProps = state => ({
 })
 
 const UserAccount = connect(mapStateToProps, 
-    { getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, })
+    { getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, logout, })
     (UserAccount_proto)
 export { UserAccount }

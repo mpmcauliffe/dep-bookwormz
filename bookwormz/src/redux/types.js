@@ -18,8 +18,6 @@ export const BOOK_ERROR                     = 'BOOK_ERROR'
 
 /* ACCOUNT TYPES */
 export const GET_USER_INFO              = 'GET_USER_INFO'
-export const UPDATE_USER_INFO           = 'UPDATE_USER_INFO'
-export const DELETE_ACCOUNT             = 'DELETE_ACCOUNT'
 export const USER_MESSAGE               = 'USER_MESSAGE'
 
 

@@ -3,17 +3,22 @@ import styled, {css} from 'styled-components'
 
 
 const background = ({ library }) => {
-    if (library) { 
-        return css` 
-            background: radial-gradient(
-                circle, rgba(98,39,160,1) 35%, rgba(83,35,134,1) 79%, rgba(69,31,108,1) 100%);
-            .trigger { color: #ffb74d; } 
-        ` 
-    }
+    // if (library) { 
+    //     return css` 
+    //         background: radial-gradient(
+    //             circle, rgba(98,39,160,1) 35%, rgba(83,35,134,1) 79%, rgba(69,31,108,1) 100%);
+    //         .trigger { color: #ffb74d; } 
+    //     ` 
+    // }
 
+    if (library) {
+        return css`
+            background: radial-gradient(circle, rgba(66,66,66,1) 62%, rgba(27,27,27,1) 100%);
+            .trigger { color: #ffb74d; }     
+        `
+    }
     return css` 
-        background: radial-gradient(
-            circle, rgba(191,54,12,1) 35%, rgba(166,51,16,1) 79%, rgba(142,48,19,1) 100%); 
+        background: radial-gradient(circle, rgba(66,66,66,1) 62%, rgba(27,27,27,1) 100%);
         .trigger { color: #81d4fa }
     `
 }

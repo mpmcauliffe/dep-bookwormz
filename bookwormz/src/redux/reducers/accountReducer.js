@@ -1,11 +1,15 @@
-import { GET_USER_INFO, DELETE_ACCOUNT, USER_MESSAGE, } from '../types'
+import { GET_USER_INFO, USER_MESSAGE, } from '../types'
 
 
 const initialState = {
     displayName: '',
     image: '',
     secondaryImage: '',
-    message: '',
+    userMessage: {
+        message: '',
+        style: '',
+        timeDisplay: null,
+    },
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -17,12 +21,23 @@ export default (state = initialState, action) => {
                 ...state,
                 displayName: action.payload.userInfo.displayName,
                 image: action.payload.userInfo.image,
+                userMessage: {
+                    message: action.payload.message,
+                    style: 'green darken-3 rounded',
+                    timeDisplay: 5000,
+                }
             }
 
-        case DELETE_ACCOUNT:
+        case USER_MESSAGE:
             return {
                 ...state,
+                userMessage: {
+                    message: action.payload,
+                    style: 'red accent-4 rounded',
+                    timeDisplay: 5000,
+                }
             }
+        
 
         default:
             return state

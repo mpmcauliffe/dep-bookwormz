@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_USER_INFO, DELETE_ACCOUNT, 
+import { GET_USER_INFO, 
     USER_MESSAGE, SET_LOADING, } from '../types'
 
 
@@ -38,7 +38,7 @@ export const updateUserInfo = userInfo => async dispatch => {
         if (res.status === 200) {
             dispatch({
                 type: GET_USER_INFO,
-                payload: { userInfo: res.data }
+                payload: { userInfo: res.data, message: `Account updated successfuly` }
             })
             return
         }
@@ -60,7 +60,7 @@ export const revertUserInfo = () => async dispatch => {
         if (res.status === 200) {
             dispatch({
                 type: GET_USER_INFO,
-                payload: { userInfo: res.data }
+                payload: { userInfo: res.data, message: `Account reverted successfuly` }
             })
             return
         }
@@ -70,18 +70,16 @@ export const revertUserInfo = () => async dispatch => {
     }
 }
 
-export const deleteUserAccount = history => async dispatch => {
+export const deleteUserAccount = () => async dispatch => {
     try {
         const res = await axios.delete(`/users/deleteuser/`, config)
-console.log(res)
+
         console.log(`%cDELETED %c${res.data.user}'s %cUSER ACCOUNT`, 
             'font-weight: bold', 'color: red', 'font-weight: bold')
 
-        if (res.status === 200) {
-            localStorage.removeItem('token')
-            history.push('/')
+        if (res.status === 200) {            
             dispatch({
-                type: DELETE_ACCOUNT,
+                type: USER_MESSAGE,
                 payload: `Deleted ${res.data.user}'s account.`
             })
             return
