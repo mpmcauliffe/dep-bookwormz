@@ -95,7 +95,7 @@ router.delete('/deleteuser', verification, async (req, res) => {
     try {
         const user = await User.findOne({ email })
         user.remove()
-
+console.log(user)
         res.json({ 'user': user.displayName })
     
     } catch (e) {

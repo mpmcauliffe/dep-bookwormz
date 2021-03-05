@@ -27,7 +27,6 @@ const Navbar_proto = ({ isAuthenticated, bookMessage, }) => {
     }, [bookMessage])
 
 
-
     if (!isAuthenticated) { return null }
 
     return (

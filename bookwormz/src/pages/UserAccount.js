@@ -1,4 +1,5 @@
 import React, { useState, useEffect, } from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -80,6 +81,8 @@ export const UserAccount_proto = ({
     getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount,
     displayName, image, }) => {
 
+    const history                               = useHistory()
+
     const [userInfo, setUserInfo]               = useState({
         portrait: '',
         newDisplayName: '',
@@ -104,7 +107,7 @@ export const UserAccount_proto = ({
 
     const handleRevertClick = () => revertUserInfo()
 
-    const handleAccountDelete = () => deleteUserAccount()
+    const handleAccountDelete = () => deleteUserAccount(history)
 
     useEffect(() => {
         if (!image || !displayName) {

@@ -70,19 +70,22 @@ export const revertUserInfo = () => async dispatch => {
     }
 }
 
-export const deleteUserAccount = () => async dispatch => {
+export const deleteUserAccount = history => async dispatch => {
     try {
         const res = await axios.delete(`/users/deleteuser/`, config)
+console.log(res)
+        console.log(`%cDELETED %c${res.data.user}'s %cUSER ACCOUNT`, 
+            'font-weight: bold', 'color: red', 'font-weight: bold')
 
-        console.log(`%cDELETED USER ACCOUNT`, 'font-weight: bold, color: red')
-
-        // if (res.status === 200) {
-        //     dispatch({
-        //         type: DELETE_ACCOUNT,
-        //         payload: `Deleted account`
-        //     })
-        //     return
-        // }
+        if (res.status === 200) {
+            localStorage.removeItem('token')
+            history.push('/')
+            dispatch({
+                type: DELETE_ACCOUNT,
+                payload: `Deleted ${res.data.user}'s account.`
+            })
+            return
+        }
     } catch (e) {
         console.log(e)
         dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })
