@@ -8,7 +8,8 @@ import store from './redux/store/store'
 
 import { Books, Dashboard, Clubs, Landing, 
     UserAuth, UserAccount, } from './pages'
-import { AnchorButton, MessageBoard, Navbar, SecureRoute, } from './components'
+import { AnchorButton, CreateClub, MessageBoard, Navbar, 
+        SecureRoute, } from './components'
 import setAuthToken from './utils/setAuthToken'
 
 import 'materialize-css/dist/css/materialize.min.css'
