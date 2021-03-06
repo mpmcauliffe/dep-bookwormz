@@ -1,10 +1,14 @@
 import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { clearBookMessage } from '../../redux/actions/bookActions' 
+import { clearUserMessage } from '../../redux/actions/accountActions'
 import M from 'materialize-css/dist/js/materialize.min.js' 
 
 
-export const MessageBoard_proto = ({ bookMessage, userMessage, }) => {
+export const MessageBoard_proto = ({ 
+    clearBookMessage, clearUserMessage,
+    bookMessage, userMessage, }) => {
     
     useEffect(() => {
         if (bookMessage.message) {
@@ -13,6 +17,7 @@ export const MessageBoard_proto = ({ bookMessage, userMessage, }) => {
                 classes: `${bookMessage.style}`, 
                 displayLength: bookMessage.timeDisplay 
             })
+            clearBookMessage()
         }
         if (userMessage.message) {
             M.toast({ 
@@ -20,8 +25,9 @@ export const MessageBoard_proto = ({ bookMessage, userMessage, }) => {
                 classes: `${userMessage.style}`, 
                 displayLength: userMessage.timeDisplay 
             })
+            clearUserMessage()
         }
-    }, [bookMessage, userMessage])
+    }, [clearBookMessage, clearUserMessage, bookMessage, userMessage])
     
     return <div />
 }
@@ -30,6 +36,8 @@ export const MessageBoard_proto = ({ bookMessage, userMessage, }) => {
 MessageBoard_proto.propTypes = {
     bookMessage: PropTypes.object,
     userMessage: PropTypes.object,
+    clearBookMessage: PropTypes.func,
+    clearUserMessage: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
@@ -37,5 +45,5 @@ const mapStateToProps = state => ({
     userMessage: state.account.userMessage,
 })
 
-const MessageBoard = connect(mapStateToProps, { })(MessageBoard_proto)
+const MessageBoard = connect(mapStateToProps, { clearBookMessage, clearUserMessage, })(MessageBoard_proto)
 export { MessageBoard }

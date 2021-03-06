@@ -3,13 +3,17 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { getUserInfo } from '../redux/actions/accountActions'
+import { getBooks, } from '../redux/actions/bookActions'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { MyBookShelf, HeaderSection, MainContent, } from '../components'
 
 
-export const Dashboard_proto = ({ getUserInfo, displayName, }) => {
+export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, }) => {
 
-    useEffect(() => { getUserInfo() }, [])
+    useEffect(() => { 
+        getUserInfo()
+        getBooks() 
+    })
 
     return (
         <motion.div
@@ -38,6 +42,7 @@ export const Dashboard_proto = ({ getUserInfo, displayName, }) => {
 
 Dashboard_proto.propTypes = {
     getUserInfo: PropTypes.func.isRequired,
+    getBooks: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
 }
 
@@ -45,5 +50,5 @@ const mapStateToProps = state => ({
     displayName: state.account.displayName,
 })
 
-const Dashboard = connect(mapStateToProps, { getUserInfo, })(Dashboard_proto)
+const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, })(Dashboard_proto)
 export { Dashboard }

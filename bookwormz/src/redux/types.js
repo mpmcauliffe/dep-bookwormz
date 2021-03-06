@@ -12,6 +12,7 @@ export const REMOVE_BOOK_FROM_LIBRARY       = 'REMOVE_BOOK_FROM_LIBRARY'
 export const NO_BOOKS_TO_LOAD               = 'NO_BOOKS_TO_LOAD,'
 export const MESSAGE                        = 'MESSAGE'
 export const BOOK_ERROR                     = 'BOOK_ERROR'
+export const CLEAR_BOOK_MESSAGE             = 'CLEAR_BOOK_MESSAGE'
 
 /* CLUB TYPES */
 
@@ -19,6 +20,7 @@ export const BOOK_ERROR                     = 'BOOK_ERROR'
 /* ACCOUNT TYPES */
 export const GET_USER_INFO              = 'GET_USER_INFO'
 export const USER_MESSAGE               = 'USER_MESSAGE'
+export const CLEAR_USER_MESSAGE         = 'CLEAR_USER_MESSAGE'
 
 
 export const SET_LOADING      = 'SET_LOADING'

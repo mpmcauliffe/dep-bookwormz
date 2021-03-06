@@ -25,6 +25,7 @@ function App(props) {
         <Provider store={store}>
             <Router>
                 <Navbar />
+                {/*  */}
                 <MessageBoard />
                 <AnimatePresence exitBeforeEnter>
                     <Switch>

@@ -15,7 +15,7 @@ export const MyBookShelf_proto = ({ myBooks, isLoading, }) => {
     useEffect(() => { }, [myBooks, isLoading])
 
     if (isLoading) { return <Spinner /> }
-    //console.log(myBooks)
+    console.log(myBooks)
     if (myBooks.length < 1) { 
         return (
             <EmptyNotification library>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, 
+    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, CLEAR_BOOK_MESSAGE,
     SET_LOADING,  } from '../types'
 
 
@@ -131,5 +131,7 @@ export const removeBook = (bookId, title) => async dispatch => {
         dispatch({ type: BOOK_ERROR, payload: 'Book could not be deleted at this time.' })
     }
 }
+
+export const clearBookMessage = () => dispatch => { dispatch({ type: CLEAR_BOOK_MESSAGE }) }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

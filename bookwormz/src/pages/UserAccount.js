@@ -111,7 +111,7 @@ export const UserAccount_proto = ({
     const handleRevertClick = () => revertUserInfo()
 
     const handleAccountDelete = () => {
-        deleteUserAccount(history)
+        deleteUserAccount()
         logout(history)
     }
 

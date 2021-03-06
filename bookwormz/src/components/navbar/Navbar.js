@@ -1,30 +1,19 @@
-import React, { Fragment, useState, useEffect, } from 'react'
+import React, { Fragment, useState, } from 'react'
 import { Link, useLocation, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { NavLogoLg, NavLogoSm, NavMenuLeft, 
     ShadeScreen, SideMenu, } from './Navbar.comp'
-import M from 'materialize-css/dist/js/materialize.min.js'  
 import './active.css'    
 
 
-const Navbar_proto = ({ isAuthenticated, bookMessage, }) => {
+const Navbar_proto = ({ isAuthenticated, }) => {
     const location = useLocation()
     console.log(`%cPATH: %c${location.pathname}`, 'font-weight: bold', 'color: green')
 
     const [isMenuVisible, setIsMenuVisible] = useState(false)
 
     const toggleMenu = () => setIsMenuVisible(!isMenuVisible)
-
-    useEffect(() => {
-        if(bookMessage.message.length > 1) {
-            M.toast({ 
-                html: `${bookMessage.message}`, 
-                classes: `${bookMessage.style}`, 
-                displayLength: bookMessage.timeDisplay 
-            })
-        }
-    }, [bookMessage])
 
 
     if (!isAuthenticated) { return null }
@@ -92,12 +81,10 @@ const Navbar_proto = ({ isAuthenticated, bookMessage, }) => {
 
 Navbar_proto.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
-    bookMessage: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    bookMessage: state.books.bookMessage,
 })
 
 const Navbar = connect(mapStateToProps, { })(Navbar_proto)

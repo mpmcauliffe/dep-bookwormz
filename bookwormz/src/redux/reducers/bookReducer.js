@@ -1,5 +1,5 @@
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, 
+    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, CLEAR_BOOK_MESSAGE,
     SET_LOADING,  } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
@@ -76,6 +76,17 @@ export default (state = initialState, action) => {
                     message: action.payload,
                     style: 'red accent-4 rounded',
                     timeDisplay: 5000,
+                },
+            }
+
+        case CLEAR_BOOK_MESSAGE:
+            console.log('clear message')
+            return {
+                ...state,
+                bookMessage: {
+                    message: '',
+                    style: '',
+                    timeDisplay: null,
                 },
             }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { GET_USER_INFO, 
-    USER_MESSAGE, SET_LOADING, } from '../types'
+import { GET_USER_INFO, USER_MESSAGE, 
+    CLEAR_USER_MESSAGE, SET_LOADING, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -89,5 +89,7 @@ export const deleteUserAccount = () => async dispatch => {
         dispatch({ type: USER_MESSAGE, payload: 'Couldn\'t complete request.' })
     }
 }
+
+export const clearUserMessage = () => dispatch => dispatch({ type: CLEAR_USER_MESSAGE })
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    
