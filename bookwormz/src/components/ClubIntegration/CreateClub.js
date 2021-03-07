@@ -58,11 +58,13 @@ export const CreateClub = () => {
                     </div>
                     <BookGrid>
                         {bookCovers.map((cover, i) => (
-                            <Fragment>
-                                <img alt='CLUB_BOOK-COVER'
+                            <div className='grid-cell'>
+                                <img 
+                                    alt='CLUB_BOOK-COVER'
+                                    className='club-image'
                                     src={require(`./img/${i}.png`).default} />
                                 <p>{cover.name}</p>
-                            </Fragment>
+                            </div>
                         ))}
                     </BookGrid>
                 </FormContainer>
