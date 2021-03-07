@@ -41,8 +41,10 @@ export const CreateClub = () => {
                 <br/><br/><br/><br/>
 
                 <FormContainer 
+                    createClub
                     onSubmit={onSubmit}
-                    toggleInputs={true}>
+                    toggleInputs={true}
+                    style={{ height: '100rem', overFlowY: 'hidden', }}>
 
                     <div className='update-info'>
                         <div>

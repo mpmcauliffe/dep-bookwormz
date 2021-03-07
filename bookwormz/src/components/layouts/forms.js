@@ -8,6 +8,8 @@ export const FormContainer = styled.form`
     transition: opacity 500ms;
     transition-timing-function: cubic-bezier(1,0,.01,1);
 
+    overflow-y: ${p => p.createClub ? 'hidden' : 'auto'};
+
     div {
         max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
         transition: max-height 500ms;
