@@ -54,6 +54,11 @@ function App(props) {
                             exact
                             path='/clubs'
                             component={Clubs} />
+                        
+                        <SecureRoute
+                            exact
+                            path='/createclub'
+                            component={CreateClub} />
 
                         <SecureRoute
                             exact
