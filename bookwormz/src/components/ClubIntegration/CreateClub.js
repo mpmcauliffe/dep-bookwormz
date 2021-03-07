@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
-import { FormContainer, HeaderSection, MainContent, } from '../../components'
+import { FormContainer, BookGrid, HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 
+
+const bookCovers = [ { name: 'Forest Moon', }, { name: 'Blue Rose', }, 
+    { name: 'Artsy Fartsy', },  { name: 'Dark Horror', }, { name: 'Grimoire' }, 
+    { name: 'War Journal', }, { name: 'Canvas', }, { name: 'Rose Canvas', }, 
+    { name: 'Sea Canvas', }, { name: 'Tablet', }, { name: 'Rose Tablet', }, 
+    { name: 'Sand Tablet', }, ]
 
 const CreateClubLink = styled(Link)`
     margin-top: .3rem; 
@@ -37,7 +43,7 @@ export const CreateClub = () => {
                 <FormContainer 
                     onSubmit={onSubmit}
                     toggleInputs={true}>
-                    
+
                     <div className='update-info'>
                         <div>
                             <input 
@@ -50,7 +56,15 @@ export const CreateClub = () => {
                             <i className='fas fa-users fa-3x' />
                         </div>
                     </div>
-                    
+                    <BookGrid>
+                        {bookCovers.map((cover, i) => (
+                            <Fragment>
+                                <img alt='CLUB_BOOK-COVER'
+                                    src={require(`./img/${i}.png`).default} />
+                                <p>{cover.name}</p>
+                            </Fragment>
+                        ))}
+                    </BookGrid>
                 </FormContainer>
                 
             </MainContent>
