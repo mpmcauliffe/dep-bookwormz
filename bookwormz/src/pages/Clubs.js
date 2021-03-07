@@ -26,16 +26,11 @@ export const Clubs = () => {
                     <h4>Clubs</h4>
                     <CreateClubLink to='/createclub'>
                         <span>Create Club &nbsp;&nbsp;&nbsp;</span>
-                        <i class='fas fa-caret-right fa-2x' />
+                        <i className='fas fa-caret-right fa-2x' />
                     </CreateClubLink>
                 </HeaderSection>
                 <br/><br/><br/><br/>
-                
-                    <Searchbar searchFor='clubs' />
-
-                
-                {/* <div style={{ height: '60rem', width: '100%', backgroundColor: '#453299' }} /> */}
-                
+                <Searchbar searchFor='clubs' />
             </MainContent>
             
         </motion.div>
