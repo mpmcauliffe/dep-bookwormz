@@ -22,6 +22,11 @@ export const CreateClub = () => {
 
     const onSubmit = () => console.log('create club form submit!')
 
+    const handleBookCoverSelect = e => {
+        e.preventDefault()
+        console.log(e.target.name)
+    }
+
     return (
         <motion.div 
             exit={pageVariants.out} 
@@ -43,30 +48,40 @@ export const CreateClub = () => {
                 <FormContainer 
                     createClub
                     onSubmit={onSubmit}
-                    toggleInputs={true}
-                    style={{ height: '100rem', overFlowY: 'hidden', }}>
+                    toggleInputs={true}>
 
-                    <div className='update-info'>
+                    <div  className='update-info'>
                         <div>
                             <input 
                                 type='text'
                                 name='clubName'
                                 placeholder='Name Your Club'
                                 // value={userInfo.portrait}
+                                style={{ margin: '2rem 0 5rem 0' }}
                                 // onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })}
                             />
                             <i className='fas fa-users fa-3x' />
                         </div>
                     </div>
+                    
+                    <div className='input-field'>
+                        <h4>Describe your book club:</h4>
+                        <textarea id='body' name='body'></textarea>
+                    </div>
+
                     <BookGrid>
                         {bookCovers.map((cover, i) => (
-                            <div className='grid-cell'>
+                            <span 
+                                key={cover.name}
+                                className='grid-cell'>
                                 <img 
+                                    name={`${i} — ${cover.name}`}
                                     alt='CLUB_BOOK-COVER'
                                     className='club-image'
+                                    onClick={handleBookCoverSelect}
                                     src={require(`./img/${i}.png`).default} />
-                                <p>{cover.name}</p>
-                            </div>
+                                <p style={{ marginTop: '3rem', }}>{cover.name}</p>
+                            </span>
                         ))}
                     </BookGrid>
                 </FormContainer>

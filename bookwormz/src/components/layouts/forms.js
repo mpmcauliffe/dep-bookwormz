@@ -1,19 +1,32 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+
+const CreateClub = ({ createClub }) => {
+    if (createClub) {
+        return css`
+            overflow-y: ${p => p.createClub ? 'hidden' : 'auto'};
+        `
+    }
+
+    return css`
+        max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
+        opacity: ${p => p.toggleInputs ? 1 : 0};
+        transition: max-height 500ms;
+        transition: opacity 500ms;
+        transition-timing-function: cubic-bezier(1,0,.01,1);
+        div {
+            max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
+            transition: max-height 500ms;
+        }
+    `
+}
 
 export const FormContainer = styled.form`
-    max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
-    opacity: ${p => p.toggleInputs ? 1 : 0};
-    transition: max-height 500ms;
-    transition: opacity 500ms;
-    transition-timing-function: cubic-bezier(1,0,.01,1);
-
-    overflow-y: ${p => p.createClub ? 'hidden' : 'auto'};
-
-    div {
-        max-height: ${p => p.toggleInputs ? '60.2rem' : '1rem'};
-        transition: max-height 500ms;
-    }
+    
+    ${CreateClub}
+    
+    /*  */
+    
 
     div hr {border-top: 1px dotted #aaa; }
     .update-info div { display: flex; }
