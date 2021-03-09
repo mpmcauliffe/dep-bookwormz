@@ -57,29 +57,43 @@ export const CreateClub = () => {
                                 name='clubName'
                                 placeholder='Name Your Club'
                                 // value={userInfo.portrait}
-                                style={{ margin: '2rem 0 5rem 0' }}
+                                style={{ width: '100%', margin: '2rem 0 5rem 0' }}
                                 // onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })}
                             />
                             <i className='fas fa-users fa-3x' />
                         </div>
                     </div>
                     
-                    <div className='input-field'>
-                        <h4>Describe your book club:</h4>
+                    <div className='input-field description-block'>
+                        <i className='fas fa-scroll fa-1x form-icon' />
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>Describe your book club:</span>
                         <textarea id='body' name='body'></textarea>
                     </div>
 
-                    <BookGrid>
+                    <i className='fas fa-book fa-3x form-icon' />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <span className='grid-label'>Choose a book cover to represent your group</span>
+                    <BookGrid id='book-cover-select'>
                         {bookCovers.map((cover, i) => (
                             <span 
                                 key={cover.name}
                                 className='grid-cell'>
-                                <img 
-                                    name={`${i} — ${cover.name}`}
-                                    alt='CLUB_BOOK-COVER'
-                                    className='club-image'
-                                    onClick={handleBookCoverSelect}
-                                    src={require(`./img/${i}.png`).default} />
+                                
+                               
+                                    {/*  */}
+                                    <input 
+                                        type='radio'
+                                        id={`${cover.name}`}
+                                        name='book-cover-select'
+                                        className='book-radio-selector' /> <label htmlFor={`${cover.name}`}>
+                                    <img 
+                                        name={`${i}—${cover.name}`}
+                                        alt='CLUB_BOOK-COVER'
+                                        className='club-image'
+                                        onClick={handleBookCoverSelect}
+                                        src={require(`./img/${i}.png`).default} />
+                                </label>
                                 <p style={{ marginTop: '3rem', }}>{cover.name}</p>
                             </span>
                         ))}

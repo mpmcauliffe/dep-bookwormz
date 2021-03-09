@@ -52,6 +52,18 @@ export const FormContainer = styled.form`
     }
     input:focus + i { color: ${p => p.theme.ruby}; }
 
+    .description-block {
+        font-size: 2rem;
+        textarea { 
+            height: 18rem; 
+            margin: 2rem 0 5rem 0;
+        }
+        textarea:focus { outline: none !important; border: .2rem solid ${p => p.theme.ruby} !important; }
+    }
+    .form-icon { color: ${p => p.theme.silver}; }
+    .grid-label { font-size: 2rem; }
+
+
     @media (min-width: 601px) { .update-info input { width: 70vw; } }
     @media (min-width: 981px) { .update-info input { width: 60vw; }  }
     @media (min-width: 1441px) { .update-info input { width: 40vw; } }
