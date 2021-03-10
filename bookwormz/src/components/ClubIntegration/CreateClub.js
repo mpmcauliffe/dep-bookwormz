@@ -7,11 +7,11 @@ import { motion, } from 'framer-motion'
 import { AppButton, FormContainer, BookGrid, 
     HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
-import { sendClubMessage, } from '../../redux/actions/clubActions'
+import { createClub, sendClubMessage, } from '../../redux/actions/clubActions'
 
 
 const bookCovers = [ { name: 'Forest Moon', }, { name: 'Blue Rose', }, 
-    { name: 'Artsy Fartsy', },  { name: 'Dark Horror', }, { name: 'Grimoire' }, 
+    { name: 'Artsy Fartsy', }, { name: 'Dark Horror', }, { name: 'Grimoire' }, 
     { name: 'War Journal', }, { name: 'Canvas', }, { name: 'Rose Canvas', }, 
     { name: 'Sea Canvas', }, { name: 'Tablet', }, { name: 'Rose Tablet', }, 
     { name: 'Sand Tablet', }, ]
@@ -22,7 +22,7 @@ const CreateClubLink = styled(Link)`
     span { font-size: 2rem; }
 `
 
-export const CreateClub_proto = ({ sendClubMessage, }) => {
+export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
     const [clubName, setClubName]       = useState('')
     const [description, setDescription] = useState('')
     const [bookCover, setBookCover]     = useState('')
@@ -36,6 +36,8 @@ export const CreateClub_proto = ({ sendClubMessage, }) => {
                 selected a book cover.`, style: 'red accent-4 rounded', timeDisplay: 5000 })
             return
         }
+
+        createClub({ clubName, description, bookCover, booknumber, })
     }
 
     const handleBookCoverSelect = e => {
@@ -129,7 +131,7 @@ export const CreateClub_proto = ({ sendClubMessage, }) => {
 
                     <AppButton 
                         onClick={onSubmit}
-                        style={{ margin: '7rem auto 0 auto' }} >Submit</AppButton>
+                        style={{ width: '23rem', margin: '7rem auto 0 auto' }} >Create Club!</AppButton>
                 </FormContainer>
                 
             </MainContent>
@@ -139,12 +141,14 @@ export const CreateClub_proto = ({ sendClubMessage, }) => {
 
 
 CreateClub_proto.propTypes = {
+    createClub: PropTypes.func.isRequired,
     sendClubMessage: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
+    createClub: state.clubs.createClub,
     sendClubMessage: state.clubs.sendClubMessage,
 })
 
-const CreateClub = connect(mapStateToProps, { sendClubMessage, })(CreateClub_proto)
+const CreateClub = connect(mapStateToProps, { sendClubMessage, createClub, })(CreateClub_proto)
 export { CreateClub }

@@ -6,7 +6,20 @@ const ClubSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    description: {
+        type: String,
+        required: true,
+    },
+    bookCoverNumber: {
+        type: String,
+        required: true, 
+    },
     chiefAdmin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref 'User',
+        required: true,
+    },
+    createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref 'User',
         required: true,
