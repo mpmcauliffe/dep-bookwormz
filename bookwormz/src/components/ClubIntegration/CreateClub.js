@@ -37,7 +37,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
             return
         }
 
-        createClub({ clubName, description, bookCover, booknumber, })
+        createClub({ clubName, description, booknumber, })
     }
 
     const handleBookCoverSelect = e => {

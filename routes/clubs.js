@@ -11,7 +11,7 @@ const getEmail                          = require('../helpers/getEmail')
 const router                            = express.Router()
 
 
-router.get('/createclub', verification, (req, res) => {
+router.post('/createclub', verification, (req, res) => {
     console.log(req.body)
 })
 
