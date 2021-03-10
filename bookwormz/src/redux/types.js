@@ -15,7 +15,12 @@ export const BOOK_ERROR                     = 'BOOK_ERROR'
 export const CLEAR_BOOK_MESSAGE             = 'CLEAR_BOOK_MESSAGE'
 
 /* CLUB TYPES */
-
+export const GET_CLUB               = 'GET_CLUB'
+export const GET_ALL_CLUBS          = 'GET_ALL_CLUBS'
+export const CREATE_CLUB            = 'CREATE_CLUB'
+export const SEARCH_CLUBS           = 'SEARCH_CLUB'
+export const CLUB_MESSAGE           = 'CLUB_MESSAGE'
+export const CLEAR_CLUB_MESSAGE     = 'CLEAR_CLUB_MESSAGE'
 
 /* ACCOUNT TYPES */
 export const GET_USER_INFO              = 'GET_USER_INFO'

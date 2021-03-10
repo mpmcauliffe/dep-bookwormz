@@ -80,7 +80,6 @@ export default (state = initialState, action) => {
             }
 
         case CLEAR_BOOK_MESSAGE:
-            console.log('clear message')
             return {
                 ...state,
                 bookMessage: {

@@ -1,9 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect, } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
-import { FormContainer, BookGrid, HeaderSection, MainContent, } from '../../components'
+import { AppButton, FormContainer, BookGrid, 
+    HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
+import { sendClubMessage, } from '../../redux/actions/clubActions'
 
 
 const bookCovers = [ { name: 'Forest Moon', }, { name: 'Blue Rose', }, 
@@ -18,14 +22,35 @@ const CreateClubLink = styled(Link)`
     span { font-size: 2rem; }
 `
 
-export const CreateClub = () => {
+export const CreateClub_proto = ({ sendClubMessage, }) => {
+    const [clubName, setClubName]       = useState('')
+    const [description, setDescription] = useState('')
+    const [bookCover, setBookCover]     = useState('')
+    const [booknumber, setBookNumber]   = useState('')
 
-    const onSubmit = () => console.log('create club form submit!')
+    const onSubmit = e => {
+        e.preventDefault()
+
+        if (!clubName || !bookCover) {
+            sendClubMessage({ message: `Please ensure you have a club name and you've
+                selected a book cover.`, style: 'red accent-4 rounded', timeDisplay: 5000 })
+            return
+        }
+    }
 
     const handleBookCoverSelect = e => {
-        e.preventDefault()
-        console.log(e.target.name)
-    }
+        setBookCover(e.target.name.split('—')[1]) 
+        setBookNumber(e.target.name.split('—')[0])
+    } 
+
+    useEffect(() => {
+        if (bookCover) {
+            console.log(`%c${bookCover} %cselected`, 'color: orange', 'font-weight: bold')
+            sendClubMessage({ message: `You've selected ${bookCover}`, 
+                style: 'green darken-3 rounded', timeDisplay: 5000 })
+        }
+    }, [bookCover, sendClubMessage])
+
 
     return (
         <motion.div 
@@ -53,13 +78,12 @@ export const CreateClub = () => {
                     <div  className='update-info'>
                         <div>
                             <input 
+                                required
                                 type='text'
                                 name='clubName'
-                                placeholder='Name Your Club'
-                                // value={userInfo.portrait}
-                                style={{ width: '100%', margin: '2rem 0 5rem 0' }}
-                                // onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })}
-                            />
+                                placeholder='Name Your Club (required)'
+                                value={clubName}
+                                onChange={e => setClubName(e.target.value)} />
                             <i className='fas fa-users fa-3x' />
                         </div>
                     </div>
@@ -67,26 +91,30 @@ export const CreateClub = () => {
                     <div className='input-field description-block'>
                         <i className='fas fa-scroll fa-1x form-icon' />
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>Describe your book club:</span>
-                        <textarea id='body' name='body'></textarea>
+                        <span>Describe your book club (not required):</span>
+                        <textarea 
+                            id='body' 
+                            name='body'
+                            value={description}
+                            onChange={e => setDescription(e.target.value)} />
                     </div>
 
                     <i className='fas fa-book fa-3x form-icon' />
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <span className='grid-label'>Choose a book cover to represent your group</span>
+                    <span className='grid-label'>Choose a book cover to represent your group (required)</span>
                     <BookGrid id='book-cover-select'>
                         {bookCovers.map((cover, i) => (
                             <span 
                                 key={cover.name}
                                 className='grid-cell'>
                                 
-                               
-                                    {/*  */}
-                                    <input 
+                               <label htmlFor={`${cover.name}`}>
+                                    {/* <input 
                                         type='radio'
                                         id={`${cover.name}`}
                                         name='book-cover-select'
-                                        className='book-radio-selector' /> <label htmlFor={`${cover.name}`}>
+                                        className='book-radio-selector' />  */}
+                                    
                                     <img 
                                         name={`${i}—${cover.name}`}
                                         alt='CLUB_BOOK-COVER'
@@ -98,9 +126,25 @@ export const CreateClub = () => {
                             </span>
                         ))}
                     </BookGrid>
+
+                    <AppButton 
+                        onClick={onSubmit}
+                        style={{ margin: '7rem auto 0 auto' }} >Submit</AppButton>
                 </FormContainer>
                 
             </MainContent>
         </motion.div>
     )
 }
+
+
+CreateClub_proto.propTypes = {
+    sendClubMessage: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+    sendClubMessage: state.clubs.sendClubMessage,
+})
+
+const CreateClub = connect(mapStateToProps, { sendClubMessage, })(CreateClub_proto)
+export { CreateClub }

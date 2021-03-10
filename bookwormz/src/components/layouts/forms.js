@@ -4,8 +4,16 @@ import styled, { css } from 'styled-components'
 const CreateClub = ({ createClub }) => {
     if (createClub) {
         return css`
-            overflow-y: ${p => p.createClub ? 'hidden' : 'auto'};
+            width: 89%;
+            margin: 0 auto;
+            overflow-y: hidden;
+
+            @media (min-width: 601px) {
+                .update-info input { width: 100%; }
+                margin: 2rem auto 5rem auto;
+            }
         `
+        
     }
 
     return css`
@@ -22,11 +30,7 @@ const CreateClub = ({ createClub }) => {
 }
 
 export const FormContainer = styled.form`
-    
-    ${CreateClub}
-    
-    /*  */
-    
+   
 
     div hr {border-top: 1px dotted #aaa; }
     .update-info div { display: flex; }
@@ -62,9 +66,10 @@ export const FormContainer = styled.form`
     }
     .form-icon { color: ${p => p.theme.silver}; }
     .grid-label { font-size: 2rem; }
-
-
+    
     @media (min-width: 601px) { .update-info input { width: 70vw; } }
     @media (min-width: 981px) { .update-info input { width: 60vw; }  }
     @media (min-width: 1441px) { .update-info input { width: 40vw; } }
+    
+    ${CreateClub}
 `

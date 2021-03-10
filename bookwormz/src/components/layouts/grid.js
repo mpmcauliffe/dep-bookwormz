@@ -24,20 +24,20 @@ export const BookGrid = styled.section`
         }
     }
 
-    .book-radio-selector {
+    /* .book-radio-selector {
         height: 3rem;
         width: 3rem;
         border: .3rem solid pink;
     }
-    .book-radio-selector:checked + .club-image {
-        border: 2rem solid red;
-    }
+    
     [type="radio"]:not(:checked), [type="radio"]:checked {
         position: static;
         opacity: 1;
         pointer-events: all;
-        border-radius: 0;
     }
+    .book-radio-selector:checked + .club-image {
+        border: 2rem solid red;
+    } */
     /* input[type=radio] { -webkit-appearance: radio; } */
     /* input[type=radio]:checked + label {
         border: 2rem solid red;
