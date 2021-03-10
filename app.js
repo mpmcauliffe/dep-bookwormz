@@ -61,6 +61,7 @@ app.use('/auth', require('./routes/auth'))
 app.use('https://bookwormz-api.herokuapp.com/auth', require('./routes/auth'))
 app.use('/books', require('./routes/books'))
 app.use('/users', require('./routes/users'))
+app.use('/clubs', require('./routes/clubs'))
 
 /* MORGAN SETUP */
 if (process.env.NODE_ENV === 'development') { app.use(morgan('dev')) }

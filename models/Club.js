@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('./User')
 
 
 const ClubSchema = new mongoose.Schema({ 
@@ -16,7 +17,7 @@ const ClubSchema = new mongoose.Schema({
     },
     chiefAdmin: {
         type: mongoose.Schema.Types.ObjectId,
-        ref 'User',
+        ref: 'User',
         required: true,
     },
     createdBy: {
@@ -33,4 +34,11 @@ const ClubSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     }],
+    books: {
+        type: [String],
+        required: true,
+    },
 })
+
+
+module.exports = mongoose.model('Club', ClubSchema)

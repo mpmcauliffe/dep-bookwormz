@@ -8,8 +8,8 @@ const config = { headers: { 'Content-Type': 'application/json' } }
 export const createClub = clubSettings => async dispatch => {       
     try {
         console.log(clubSettings)
-        // const res = await axios.post(`/clubs/createclub/`, clubSettings, config) 
-        // //console.log(res)
+        const res = await axios.post(`/clubs/createclub/`, clubSettings, config) 
+        console.log(res)
 
         // if (res.data.message === 'double') {
         //     console.log(`%cBOOK ALREADY IN LIBRARY: %c${bookInfo.title}`, 'font-weight: bold', 'color: orange')
