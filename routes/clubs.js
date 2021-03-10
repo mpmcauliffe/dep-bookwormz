@@ -11,8 +11,28 @@ const getEmail                          = require('../helpers/getEmail')
 const router                            = express.Router()
 
 
-router.post('/createclub', verification, (req, res) => {
-    console.log(req.body)
+router.post('/createclub', verification, async (req, res) => {
+    const { clubName, description, bookNumber } = req.body
+    const email = getEmail(req.headers['x-auth-token'])
+
+    try {
+        const user = await User.findOne({ email })
+
+        const newClub = new Club({
+            clubName,
+            description,
+            bookNumber,
+            chiefAdmin: user._id,
+            createdBy: user._id,
+            members: [user._id],
+        })
+        const created = await newClub.save()
+
+        res.send(created)
+
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 

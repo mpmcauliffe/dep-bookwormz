@@ -26,7 +26,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
     const [clubName, setClubName]       = useState('')
     const [description, setDescription] = useState('')
     const [bookCover, setBookCover]     = useState('')
-    const [booknumber, setBookNumber]   = useState('')
+    const [bookNumber, setBookNumber]   = useState('')
 
     const onSubmit = e => {
         e.preventDefault()
@@ -37,7 +37,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
             return
         }
 
-        createClub({ clubName, description, booknumber, })
+        createClub({ clubName, description, bookNumber, })
     }
 
     const handleBookCoverSelect = e => {

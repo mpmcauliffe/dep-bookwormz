@@ -11,7 +11,7 @@ const ClubSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    bookCoverNumber: {
+    bookNumber: {
         type: String,
         required: true, 
     },
@@ -37,6 +37,10 @@ const ClubSchema = new mongoose.Schema({
     books: {
         type: [String],
         required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 })
 
