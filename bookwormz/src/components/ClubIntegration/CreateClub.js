@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
 import { AppButton, FormContainer, BookGrid, 
@@ -28,6 +28,8 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
     const [bookCover, setBookCover]     = useState('')
     const [bookNumber, setBookNumber]   = useState('')
 
+    const history                       = useHistory()
+
     const onSubmit = e => {
         e.preventDefault()
 
@@ -37,7 +39,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
             return
         }
 
-        createClub({ clubName, description, bookNumber, })
+        createClub({ clubName, description, bookNumber, }, history)
     }
 
     const handleBookCoverSelect = e => {

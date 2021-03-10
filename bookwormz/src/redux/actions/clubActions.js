@@ -5,7 +5,7 @@ import {  GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
-export const createClub = clubSettings => async dispatch => {       
+export const createClub = (clubSettings, history) => async dispatch => {       
     try {
         console.log(clubSettings)
         const res = await axios.post(`/clubs/createclub/`, clubSettings, config) 
@@ -15,15 +15,34 @@ export const createClub = clubSettings => async dispatch => {
             console.log(`%cCREATED %c${clubSettings.clubName}`, 'font-weight: bold', 'color: orange')
             dispatch({ 
                 type: CREATE_CLUB, 
-                payload: { book: res.data, message: `${clubSettings.clubName} added to your books.` } 
+                payload: { 
+                    club: res.data, 
+                    message: `${clubSettings.clubName} created.`, 
+                    style: 'green darken-3 rounded', 
+                    timeDisplay: 5000 
+                } 
             })
             return
         }
-        // dispatch({ type: CLUB_MESSAGE, payload: 'Request could not be completed.' })
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Club could not be created.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
 
     } catch (e) {
-        // console.log(e)
-        // dispatch({ type: CLUB_MESSAGE, payload: 'Request could not be completed.' })
+        console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Club could not be created.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
     }
 }
 

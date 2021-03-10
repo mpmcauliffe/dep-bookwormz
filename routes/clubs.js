@@ -28,7 +28,7 @@ router.post('/createclub', verification, async (req, res) => {
         })
         const created = await newClub.save()
 
-        res.send(created)
+        res.json(created)
 
     } catch (e) {
         console.log(e)
