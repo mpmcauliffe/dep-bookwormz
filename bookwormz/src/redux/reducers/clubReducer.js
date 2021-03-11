@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 availableClubs: [ ...state.availableClubs, action.payload.club ],
-                currentClub: action.payload.club,
+                currentClub: { ...action.payload.club },
                 clubMessage: {
                     message: action.payload.message,
                     style: action.payload.style,

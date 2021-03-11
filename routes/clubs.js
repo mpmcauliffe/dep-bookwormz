@@ -11,6 +11,10 @@ const getEmail                          = require('../helpers/getEmail')
 const router                            = express.Router()
 
 
+router.get('/getclub/:clubId', verification, async (req, res) => {
+    console.log(req.params)
+})
+
 router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])

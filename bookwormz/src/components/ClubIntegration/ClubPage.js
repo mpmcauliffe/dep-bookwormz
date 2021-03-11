@@ -1,15 +1,19 @@
 import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link, useHistory, } from 'react-router-dom'
+import { Link, useHistory, useParams, } from 'react-router-dom'
 import { Spinner, } from '../../components'
+import { getClub, } from '../../redux/actions/clubActions'
 
 
-export const Club_proto = ({ currentClub, }) => {
+export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()
 
+    let { clubId } = useParams()
+    console.log(clubId)
     useEffect(() => {
         // function and currentClub
+        getClub(clubId, history)
     }, [])
 
 
@@ -24,12 +28,13 @@ export const Club_proto = ({ currentClub, }) => {
 
 
 Club_proto.propTypes = {
-    currentClub: PropTypes.object.isRequired,
+    getClub: PropTypes.func.isRequired,
+    currentClub: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
     currentClub: state.clubs.currentClub
 })
 
-const Club = connect(mapStateToProps, {  })(Club_proto)
+const Club = connect(mapStateToProps, { getClub, })(Club_proto)
 export { Club }
