@@ -5,14 +5,24 @@ import {  GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
+export const getClub = history => async dispatch => {
+    try {
+        
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export const createClub = (clubSettings, history) => async dispatch => {       
     try {
-        console.log(clubSettings)
         const res = await axios.post(`/clubs/createclub/`, clubSettings, config) 
         console.log(res)
 
         if (res.status === 200) {
             console.log(`%cCREATED %c${clubSettings.clubName}`, 'font-weight: bold', 'color: orange')
+            
+            history.push(`/club/${res.data._id}`)
+            
             dispatch({ 
                 type: CREATE_CLUB, 
                 payload: { 

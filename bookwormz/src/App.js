@@ -9,7 +9,7 @@ import store from './redux/store/store'
 import { Books, Dashboard, Clubs, Landing, 
     UserAuth, UserAccount, } from './pages'
 import { AnchorButton, CreateClub, MessageBoard, Navbar, 
-        SecureRoute, } from './components'
+        SecureRoute, Club, } from './components'
 import setAuthToken from './utils/setAuthToken'
 
 import 'materialize-css/dist/css/materialize.min.css'
@@ -59,6 +59,11 @@ function App(props) {
                             exact
                             path='/createclub'
                             component={CreateClub} />
+
+                        <SecureRoute
+                            exact
+                            path='/club/:clubId'
+                            component={Club} />
 
                         <SecureRoute
                             exact

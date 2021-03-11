@@ -4,6 +4,7 @@ import { GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 
 const initialState = {
     availableClubs: [ ],
+    currentClub: null,
     clubMessage: {
         message: '',
         style: '',
@@ -19,6 +20,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 availableClubs: [ ...state.availableClubs, action.payload.club ],
+                currentClub: action.payload.club,
                 clubMessage: {
                     message: action.payload.message,
                     style: action.payload.style,
