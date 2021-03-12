@@ -43,6 +43,8 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                 <ClubImg 
                     src={require(`./img/${currentClub.bookNumber}.png`).default} />
 
+                <p>{currentClub.description}</p>
+
             </MainContent>
         </motion.div>
     )
