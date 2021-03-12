@@ -5,6 +5,7 @@ import { GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 const initialState = {
     availableClubs: [ ],
     currentClub: null,
+    clubSearchQuery: '',
     clubMessage: {
         message: '',
         style: '',
