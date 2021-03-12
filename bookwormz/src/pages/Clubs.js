@@ -25,7 +25,7 @@ export const Clubs_proto = ({ clubSearchQuery, }) => {
                         <i className='fas fa-caret-right fa-2x' />
                     </HeaderLink>
                 </HeaderSection>
-                <br/><br/><br/><br/>
+                <br /><br /><br /><br />
                 <Searchbar 
                     searchFor='clubs'
                     queryString={clubSearchQuery} />

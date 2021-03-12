@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { Link, useHistory, useParams, } from 'react-router-dom'
-import { HeaderLink, HeaderSection, MainContent, Spinner, } from '../../components'
+import { ClubImg, HeaderLink, HeaderSection, MainContent, 
+    Spinner, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 
@@ -12,7 +13,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
-    //console.log(currentClub)
+    console.log(currentClub)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
     
@@ -38,6 +39,10 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                         <span>&nbsp;&nbsp;&nbsp; Return to Clubs</span>
                     </HeaderLink>
                 </HeaderSection>
+                <br /><br /><br /><br /><br /><br />
+                <ClubImg 
+                    src={require(`./img/${currentClub.bookNumber}.png`).default} />
+
             </MainContent>
         </motion.div>
     )
