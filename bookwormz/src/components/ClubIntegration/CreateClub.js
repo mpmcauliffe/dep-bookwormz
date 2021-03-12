@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link, useHistory, } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
-import { AppButton, FormContainer, BookGrid, 
+import { AppButton, FormContainer, BookGrid, HeaderLink, 
     HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { createClub, sendClubMessage, } from '../../redux/actions/clubActions'
@@ -15,12 +15,6 @@ const bookCovers = [ { name: 'Forest Moon', }, { name: 'Blue Rose', },
     { name: 'War Journal', }, { name: 'Canvas', }, { name: 'Rose Canvas', }, 
     { name: 'Sea Canvas', }, { name: 'Tablet', }, { name: 'Rose Tablet', }, 
     { name: 'Sand Tablet', }, ]
-
-const CreateClubLink = styled(Link)`
-    margin-top: .3rem; 
-    color: ${p => p.theme.ruby};
-    span { font-size: 2rem; }
-`
 
 export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
     const [clubName, setClubName]       = useState('')
@@ -67,10 +61,10 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
             <MainContent>
                 <HeaderSection>
                     <h4>Create a Club</h4>
-                    <CreateClubLink to='/clubs'>
+                    <HeaderLink to='/clubs'>
                         <i className='fas fa-caret-left fa-2x' />
                         <span>&nbsp;&nbsp;&nbsp; Return to Clubs</span>
-                    </CreateClubLink>
+                    </HeaderLink>
                 </HeaderSection>
                 <br/><br/><br/><br/>
 

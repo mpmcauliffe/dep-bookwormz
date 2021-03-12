@@ -1,8 +1,10 @@
 import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { motion, } from 'framer-motion'
 import { Link, useHistory, useParams, } from 'react-router-dom'
-import { Spinner, } from '../../components'
+import { HeaderLink, HeaderSection, MainContent, Spinner, } from '../../components'
+import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 
 
@@ -21,9 +23,23 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     if (!currentClub) { return <Spinner /> }
     
     return (
-        <div>
-            <h4>Club</h4>
-        </div>
+        <motion.div
+            exit={pageVariants.out} 
+            animate={pageVariants.in} 
+            initial={pageVariants.ini} 
+            variants={pageVariants} 
+            transition={pageTransition}>
+            
+            <MainContent>
+                <HeaderSection>
+                    <h4>{currentClub.clubName}</h4>
+                    <HeaderLink to='/clubs'>
+                        <i className='fas fa-caret-left fa-2x' />
+                        <span>&nbsp;&nbsp;&nbsp; Return to Clubs</span>
+                    </HeaderLink>
+                </HeaderSection>
+            </MainContent>
+        </motion.div>
     )
 }
 
