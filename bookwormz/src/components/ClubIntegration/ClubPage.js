@@ -8,13 +8,14 @@ import { getClub, } from '../../redux/actions/clubActions'
 
 export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()
-
-    let { clubId } = useParams()
-    console.log(clubId)
+    let { clubId }                      = useParams()
+    
+    console.log(currentClub)
     useEffect(() => {
-        // function and currentClub
-        getClub(clubId, history)
-    }, [])
+        if (!currentClub) { getClub(clubId, history) }
+    
+    // eslint-disable-next-line
+    }, [getClub, currentClub, clubId])
 
 
     if (!currentClub) { return <Spinner /> }

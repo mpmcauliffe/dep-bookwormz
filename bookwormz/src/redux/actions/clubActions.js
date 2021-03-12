@@ -8,8 +8,19 @@ const config = { headers: { 'Content-Type': 'application/json' } }
 export const getClub = (clubId, history) => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getclub/${clubId}`, config)
+        //console.log(res)
+        dispatch({ type: GET_CLUB, payload: res.data })
+    
     } catch (e) {
         console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Something when wrong. Please check back later.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
     }
 }
 

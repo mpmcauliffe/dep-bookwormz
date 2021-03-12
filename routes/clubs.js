@@ -12,7 +12,15 @@ const router                            = express.Router()
 
 
 router.get('/getclub/:clubId', verification, async (req, res) => {
-    console.log(req.params)
+    const { clubId } = req.params
+
+    try {
+        const club = await Club.findById(clubId)
+        res.json(club)
+        
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.post('/createclub', verification, async (req, res) => {
