@@ -20,6 +20,14 @@ const ClubSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    chiefEmail: {
+        type: String,
+        required: true,
+    },
+    chiefPortraitURL: {
+        type: String,
+        required: true,
+    },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

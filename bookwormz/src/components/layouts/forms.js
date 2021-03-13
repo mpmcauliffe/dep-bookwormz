@@ -32,7 +32,7 @@ const CreateClub = ({ createClub }) => {
 export const FormContainer = styled.form`
    
 
-    div hr {border-top: 1px dotted #aaa; }
+    div hr { border-top: 1px dotted #aaa; }
     .update-info div { display: flex; }
     .update-info input {
         width: 80vw;

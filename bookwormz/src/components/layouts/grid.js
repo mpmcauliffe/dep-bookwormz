@@ -23,24 +23,9 @@ export const BookGrid = styled.section`
             transition: transform 300ms;
         }
     }
+`
 
-    /* .book-radio-selector {
-        height: 3rem;
-        width: 3rem;
-        border: .3rem solid pink;
-    }
+export const ClubHeaderGrid = styled.section`
     
-    [type="radio"]:not(:checked), [type="radio"]:checked {
-        position: static;
-        opacity: 1;
-        pointer-events: all;
-    }
-    .book-radio-selector:checked + .club-image {
-        border: 2rem solid red;
-    } */
-    /* input[type=radio] { -webkit-appearance: radio; } */
-    /* input[type=radio]:checked + label {
-        border: 2rem solid red;
-    }  */
-    /* .grid-cell:hover > .club-image {} */
+
 `

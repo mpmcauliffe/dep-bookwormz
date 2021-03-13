@@ -21,7 +21,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     }, [getClub, currentClub, clubId])
 
 
-    if (!currentClub) { return <Spinner /> }
+    if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
     
     return (
         <motion.div
@@ -30,22 +30,21 @@ export const Club_proto = ({ getClub, currentClub, }) => {
             initial={pageVariants.ini} 
             variants={pageVariants} 
             transition={pageTransition}>
-            
-            <MainContent>
-                <HeaderSection>
-                    <h4>{currentClub.clubName}</h4>
-                    <HeaderLink to='/clubs'>
-                        <i className='fas fa-caret-left fa-2x' />
-                        <span>&nbsp;&nbsp;&nbsp; Return to Clubs</span>
-                    </HeaderLink>
-                </HeaderSection>
-                <br /><br /><br /><br /><br /><br />
-                <ClubImg 
-                    src={require(`./img/${currentClub.bookNumber}.png`).default} />
+                <MainContent>
+                    <HeaderSection>
+                        <h4>{currentClub.clubName}</h4>
+                        <HeaderLink to='/clubs'>
+                            <i className='fas fa-caret-left fa-2x' />
+                            <span>&nbsp;&nbsp;&nbsp; Return to Clubs</span>
+                        </HeaderLink>
+                    </HeaderSection>
+                    <br /><br /><br /><br /><br /><br />
+                    <ClubImg 
+                        src={require(`./img/${currentClub.bookNumber}.png`).default} />
 
-                <p>{currentClub.description}</p>
+                    <p>{currentClub.description}</p>
 
-            </MainContent>
+                </MainContent>
         </motion.div>
     )
 }
