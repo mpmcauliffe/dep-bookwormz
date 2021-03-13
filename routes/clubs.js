@@ -10,14 +10,13 @@ const getEmail                          = require('../helpers/getEmail')
 
 const router                            = express.Router()
 
-
 router.get('/getclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
 
     try {
         const club = await Club.findById(clubId)
         res.json(club)
-        
+
     } catch (e) {
         console.log(e)
     }
@@ -35,6 +34,8 @@ router.post('/createclub', verification, async (req, res) => {
             description,
             bookNumber,
             chiefAdmin: user._id,
+            chiefEmail: user.email,
+            chiefPortraitURL: user.secondaryImage ? user.secondaryImage : user.image,
             createdBy: user._id,
             members: [user._id],
         })
