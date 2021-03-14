@@ -2,11 +2,12 @@ import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
-import { Link, useHistory, useParams, } from 'react-router-dom'
-import { ClubImg, HeaderLink, HeaderSection, MainContent, 
+import { useHistory, useParams, } from 'react-router-dom'
+import { ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent, 
     Spinner, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
+import { truncate, } from '../../helpers/truncate'
 
 
 export const Club_proto = ({ getClub, currentClub, }) => {
@@ -20,7 +21,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     // eslint-disable-next-line
     }, [getClub, currentClub, clubId])
 
-
+// 550 char count
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
     
     return (
@@ -39,10 +40,16 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                         </HeaderLink>
                     </HeaderSection>
                     <br /><br /><br /><br /><br /><br />
-                    <ClubImg 
-                        src={require(`./img/${currentClub.bookNumber}.png`).default} />
+                    <ClubHeaderGrid>
+                        <ClubImg 
+                            alt='club_book_cover'
+                            src={require(`./img/${currentClub.bookNumber}.png`).default} />
 
-                    <p>{currentClub.description}</p>
+                        <div className='info-cell'>
+                            <p>{truncate(currentClub.description, 550)}</p>
+                        </div>
+                    </ClubHeaderGrid>
+                    
 
                 </MainContent>
         </motion.div>

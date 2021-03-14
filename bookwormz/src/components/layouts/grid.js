@@ -26,6 +26,20 @@ export const BookGrid = styled.section`
 `
 
 export const ClubHeaderGrid = styled.section`
-    
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+    column-gap: 2rem;
+    padding: .5rem;
 
+    img { margin: 0 auto; }
+
+    .info-cell {
+        grid-template-rows: 3fr 1fr;
+    }
+
+    @media (min-width: 481px) {
+        grid-template-columns: 1fr 3fr;
+        img { margin: 0; }
+    }
 `
