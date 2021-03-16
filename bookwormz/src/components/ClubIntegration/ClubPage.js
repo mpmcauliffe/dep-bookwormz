@@ -8,7 +8,7 @@ import { ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 import { truncate, } from '../../helpers/truncate'
-
+import './img/mock/'
 
 export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()

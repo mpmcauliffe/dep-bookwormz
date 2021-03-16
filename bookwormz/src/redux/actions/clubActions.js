@@ -16,7 +16,7 @@ export const getClub = (clubId, history) => async dispatch => {
         dispatch({ 
             type: CLUB_MESSAGE, 
             payload: {
-                message: 'Something when wrong. Please check back later.',
+                message: 'Something when wrong. Please try later.',
                 style: 'red accent-4 rounded', 
                 timeDisplay: 5000,
             } 
