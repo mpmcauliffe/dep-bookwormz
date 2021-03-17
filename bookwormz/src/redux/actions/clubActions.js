@@ -5,6 +5,25 @@ import {  GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
+export const getClubs = () => async dispatch => {
+    try {
+        const res = await axios.get('/clubs/getallclubs', config)
+
+        
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Cannot load clubs. Please try later.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
+    }
+}
+
 export const getClub = (clubId, history) => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getclub/${clubId}`, config)
