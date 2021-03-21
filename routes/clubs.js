@@ -22,6 +22,16 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
     }
 })
 
+router.get('/getallclubs', verification, async (req, res) => {
+    try {
+        const club = await Club.findById(clubId)
+        res.json(club)
+
+    } catch (e) {
+        console.log(e)
+    }
+})
+
 router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])

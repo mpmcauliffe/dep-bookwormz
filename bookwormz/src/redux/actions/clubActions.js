@@ -9,7 +9,7 @@ export const getClubs = () => async dispatch => {
     try {
         const res = await axios.get('/clubs/getallclubs', config)
 
-        
+        console.log(res.data)
 
     } catch (e) {
         console.log(e)
