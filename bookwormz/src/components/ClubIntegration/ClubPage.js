@@ -23,7 +23,8 @@ export const Club_proto = ({ getClub, currentClub, }) => {
 
 // 550 char count
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
-    
+
+
     return (
         <motion.div
             exit={pageVariants.out} 

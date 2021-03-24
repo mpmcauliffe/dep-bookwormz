@@ -22,6 +22,12 @@ export default (state = initialState, action) => {
                 ...state,
                 currentClub: { ...action.payload }
             }
+
+        case GET_ALL_CLUBS:
+            return {
+                ...state,
+                availableClubs: [...action.payload],
+            }
         
         case CREATE_CLUB:
             return {

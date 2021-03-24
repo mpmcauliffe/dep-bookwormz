@@ -8,8 +8,9 @@ const config = { headers: { 'Content-Type': 'application/json' } }
 export const getAllClubs = () => async dispatch => {
     try {
         const res = await axios.get('/clubs/getallclubs', config)
-
         console.log(res.data)
+
+        dispatch({ type: GET_ALL_CLUBS, payload: res.data })
 
     } catch (e) {
         console.log(e)
