@@ -60,7 +60,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
                                     alt='CLUB_BOOK-COVER'
                                     className='club-image'
                                     // onClick={handleBookCoverSelect}
-                                    src={require(`../components/clubIntegration/img/${club.bookNumber}.png`).default} />
+                                    src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
                             </label>
                             <p style={{ marginTop: '3rem', }}>{club.clubName}</p>
                         </span>
