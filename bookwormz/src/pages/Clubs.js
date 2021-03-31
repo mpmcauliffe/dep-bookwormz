@@ -1,4 +1,5 @@
 import React, { useEffect, } from 'react'
+import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -52,20 +53,24 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
                 {/*  */}
                 <BookGrid id='book-cover-select'>
                     {availableClubs.map((club, i) => (
-                        <span 
+                        <Link
                             key={club._id}
-                            className='grid-cell'>
-                            
-                           <label htmlFor={`${club.clubName}`}>
-                                <img 
-                                    name={`${i}—${club.clubName}`}
-                                    alt='CLUB_BOOK-COVER'
-                                    className='club-image'
-                                    // onClick={handleBookCoverSelect}
-                                    src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
-                            </label>
-                            <p style={{ marginTop: '3rem', }}>{club.clubName}</p>
-                        </span>
+                            to={`/club/${club._id}`} >
+                            <span     
+                                className='grid-cell'>
+                                
+                                <label htmlFor={`${club.clubName}`}>
+                                    <img 
+                                        name={`${i}—${club.clubName}`}
+                                        alt='CLUB_BOOK-COVER'
+                                        className='club-image'
+                                        // onClick={handleBookCoverSelect}
+                                        src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
+                                </label>
+                                <p style={{ marginTop: '3rem', color: 'black' }}>{club.clubName}</p>
+                            </span>
+                        </Link>
+                        
                     ))}
                 </BookGrid>
             </MainContent>
