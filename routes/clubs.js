@@ -15,6 +15,7 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
+        console.log(club)
         res.json(club)
 
     } catch (e) {

@@ -9,7 +9,9 @@ import { getAllClubs } from '../redux/actions/clubActions'
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) => {
 
-    useEffect(() => { getAllClubs() }, [ ])
+    useEffect(() => { 
+        console.log('useEffect Club.js')
+        getAllClubs() })
 
     if (availableClubs.length < 1) { return <Spinner /> }
 
@@ -67,7 +69,6 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
                     ))}
                 </BookGrid>
             </MainContent>
-            
         </motion.div>
     )
 }

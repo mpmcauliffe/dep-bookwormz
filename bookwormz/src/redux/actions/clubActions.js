@@ -6,6 +6,7 @@ import {  GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 const config = { headers: { 'Content-Type': 'application/json' } }
 
 export const getAllClubs = () => async dispatch => {
+    console.log('get all clubs')
     try {
         const res = await axios.get('/clubs/getallclubs', config)
         console.log(res.data)
