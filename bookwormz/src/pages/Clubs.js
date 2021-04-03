@@ -10,9 +10,7 @@ import { getAllClubs } from '../redux/actions/clubActions'
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) => {
 
-    useEffect(() => { 
-        console.log('useEffect Club.js')
-        getAllClubs() })
+    useEffect(() => { getAllClubs() })
 
     if (availableClubs.length < 1) { return <Spinner /> }
 
@@ -36,21 +34,9 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
                 <Searchbar 
                     searchFor='clubs'
                     queryString={clubSearchQuery} />
-                    {/* //     bookNumber: "5"
-                    // books: []
-                    // chiefAdmin: "60420bd1925e366aa89b048d"
-                    // chiefEmail: "mcauliffe99@gmail.com"
-                    // chiefPortraitURL: "https://lh3.googleusercontent.com/a-/AOh14GibD-j9kmzjWfYIRjMZphnMLqzu45lcOghcXMck3Q=s96-c"
-                    // clubName: "The Big Bear Book Club"
-                    // createdAt: "2021-03-13T04:45:55.291Z"
-                    // createdBy: "60420bd1925e366aa89b048d"
-                    // description: "Bears are carnivoran mammals of the family Ursidae. They are classified as caniforms, or doglike carnivorans. Although only eight species of bears are extant, they are widespread, appearing in a wide variety of habitats throughout the Northern Hemisphere and partially in the Southern Hemisphere. Bears are found on the continents of North America, South America, Europe, and Asia. Common characteristics of modern bears include large bodies with stocky legs, long snouts, small rounded ears, shaggy hair, plantigrade paws with five nonretractile claws, and short tails."
-                    // members: ["60420bd1925e366aa89b048d"]
-                    // visibility: "public"
-                    // __v: 0
-                    // _id: "604c4383fd60c4436c509b88" */}
+                    {/* */}
                     
-                {/*  */}
+                {/* */}
                 <BookGrid id='book-cover-select'>
                     {availableClubs.map((club, i) => (
                         <Link

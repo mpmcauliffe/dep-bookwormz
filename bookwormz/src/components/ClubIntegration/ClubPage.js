@@ -14,7 +14,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
-    console.log(currentClub)
+    // console.log(currentClub)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
     

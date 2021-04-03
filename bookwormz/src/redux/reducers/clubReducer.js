@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 availableClubs: [...action.payload],
+                currentClub: null,
             }
         
         case CREATE_CLUB:
