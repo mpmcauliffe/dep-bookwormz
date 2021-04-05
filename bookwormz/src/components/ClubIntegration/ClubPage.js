@@ -47,7 +47,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                             src={require(`./img/${currentClub.bookNumber}.png`).default} />
 
                         <div className='info-cell'>
-                            <p>{truncate(currentClub.description, 550)}</p>
+                            <p>{currentClub.description}</p>
                         </div>
                     </ClubHeaderGrid>
                     
