@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const User = require('./User')
+const MemberSchema = require('./MemberSchema')
 
 
 const ClubSchema = new mongoose.Schema({ 
@@ -38,10 +39,7 @@ const ClubSchema = new mongoose.Schema({
         default: 'public',
         enum: ['public', 'private'],
     },
-    members: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    }],
+    members: [MemberSchema],
     books: {
         type: [String],
         required: true,
