@@ -50,7 +50,7 @@ router.post('/createclub', verification, async (req, res) => {
         const startingMember = {
             memberId: user._id,
             name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
-            profle: user.secondaryImage ? user.secondaryImage : user.image,
+            profile: user.secondaryImage ? user.secondaryImage : user.image,
             chiefAdmin: true,
         }
         console.log(startingMember)
