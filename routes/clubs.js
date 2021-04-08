@@ -33,12 +33,27 @@ router.get('/getallclubs', verification, async (req, res) => {
     }
 })
 
+// memberId
+// name
+// profile
+// chiefAdmin
+
 router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])
 
+    
+
     try {
         const user = await User.findOne({ email })
+
+        const startingMember = {
+            memberId: user._id,
+            name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
+            profle: user.secondaryImage ? user.secondaryImage : user.image,
+            chiefAdmin: true,
+        }
+        console.log(startingMember)
 
         const newClub = new Club({
             clubName,
@@ -48,8 +63,9 @@ router.post('/createclub', verification, async (req, res) => {
             chiefEmail: user.email,
             chiefPortraitURL: user.secondaryImage ? user.secondaryImage : user.image,
             createdBy: user._id,
-            members: [user._id],
+            members: [startingMember],
         })
+        console.log(newClub)
         const created = await newClub.save()
 
         res.json(created)
