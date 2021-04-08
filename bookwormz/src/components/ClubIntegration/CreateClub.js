@@ -12,9 +12,9 @@ import { createClub, sendClubMessage, } from '../../redux/actions/clubActions'
 
 const bookCovers = [ { name: 'Forest Moon', }, { name: 'Blue Rose', }, 
     { name: 'Artsy Fartsy', }, { name: 'Dark Horror', }, { name: 'Grimoire' }, 
-    { name: 'War Journal', }, { name: 'Canvas', }, { name: 'Rose Canvas', }, 
-    { name: 'Sea Canvas', }, { name: 'Tablet', }, { name: 'Rose Tablet', }, 
-    { name: 'Sand Tablet', }, ]
+    { name: 'War Journal', }, { name: 'Mandlebrot', }, { name: 'Astronomy Domine', }, 
+    { name: 'Canvas', }, { name: 'Rose Canvas', }, { name: 'Sea Canvas', }, { name: 'Tablet', }, 
+    { name: 'Rose Tablet', }, { name: 'Sand Tablet', }, ]
 
 export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
     const [clubName, setClubName]       = useState('')
