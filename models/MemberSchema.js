@@ -17,11 +17,11 @@ const MemberSchema = new Schema({
         type: String,
         required: true,
     },
-    // chiefAdmin: {
-    //     type: Boolean,
-    //     required: true,
-    //     default: false,
-    // },
+    chiefAdmin: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 })
 
 

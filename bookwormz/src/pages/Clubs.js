@@ -12,7 +12,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
 
     useEffect(() => { getAllClubs() })
 
-    if (availableClubs.length < 1) { return <Spinner /> }
+    // if (availableClubs.length < 1) { return <Spinner /> }
 
     return (
         <motion.div 
@@ -37,28 +37,33 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, }) =
                     {/* */}
                     
                 {/* */}
-                <BookGrid id='book-cover-select'>
-                    {availableClubs.map((club, i) => (
-                        <Link
-                            key={club._id}
-                            to={`/club/${club._id}`} >
-                            <span     
-                                className='grid-cell'>
+                {availableClubs.length < 1
+                    ?  <p>There aren't any book clubs at this time.</p>
+                    : (
+                        <BookGrid id='book-cover-select'>
+                            {availableClubs.map((club, i) => (
+                                <Link
+                                    key={club._id}
+                                    to={`/club/${club._id}`} >
+                                    <span     
+                                        className='grid-cell'>
+                                        
+                                        <label htmlFor={`${club.clubName}`}>
+                                            <img 
+                                                name={`${i}—${club.clubName}`}
+                                                alt='CLUB_BOOK-COVER'
+                                                className='club-image'
+                                                // onClick={handleBookCoverSelect}
+                                                src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
+                                        </label>
+                                        <p style={{ marginTop: '3rem', color: 'black' }}>{club.clubName}</p>
+                                    </span>
+                                </Link>
                                 
-                                <label htmlFor={`${club.clubName}`}>
-                                    <img 
-                                        name={`${i}—${club.clubName}`}
-                                        alt='CLUB_BOOK-COVER'
-                                        className='club-image'
-                                        // onClick={handleBookCoverSelect}
-                                        src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
-                                </label>
-                                <p style={{ marginTop: '3rem', color: 'black' }}>{club.clubName}</p>
-                            </span>
-                        </Link>
-                        
-                    ))}
-                </BookGrid>
+                            ))}
+                        </BookGrid>
+                )}
+                
             </MainContent>
         </motion.div>
     )
