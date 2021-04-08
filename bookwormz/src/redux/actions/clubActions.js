@@ -9,7 +9,7 @@ export const getAllClubs = () => async dispatch => {
     console.log('get all clubs')
     try {
         const res = await axios.get('/clubs/getallclubs', config)
-        console.log(res.data)
+        // console.log(res.data)
 
         dispatch({ type: GET_ALL_CLUBS, payload: res.data })
 
