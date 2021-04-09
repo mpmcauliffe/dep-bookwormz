@@ -7,6 +7,13 @@ const Club                              = require('../models/Club')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
 
+const astronomy      = require('./db/astronomyClub')
+const bear           = require('./db/bearClub')
+const horror         = require('./db/horrorClub')
+const infinite       = require('./db/infiniteClub')
+const picture        = require ('./db/pictureBookClub')
+const world          = require('./db/rulesTheWorldClub')
+const data           = [astronomy, bear, horror, infinite, picture, world]
 
 const router                            = express.Router()
 
@@ -42,7 +49,6 @@ router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])
 
-    
 
     try {
         const user = await User.findOne({ email })
@@ -75,8 +81,37 @@ router.post('/createclub', verification, async (req, res) => {
     }
 })
 
-router.post('/fillclub', async (req, res) => {
-    
+const fillClubs = async (clubId, dummieData) => {
+    const club = await Club.findById({ _id: clubId })
+    let newMembers = []
+
+    for(let i=0; i<dummieData.length; i++) {
+        let newMember = {
+            memberId: dummieData[i]._id['$oid'],
+            name: dummieData[i].displayName,
+            profile: dummieData[i].image,
+        }
+
+        members.unshift(newMember)
+    }
+
+    let { members } = club
+    const fullClub = [...newMembers, ...members]
+
+    await Club.findByIdAndUpdate(
+        clubId,
+        { $members: { fullClub } },
+        { new: true }
+    )
+}
+
+router.post('/fillclubs', async (req, res) => {
+    const clubs = ['606e8b1d285e125fe0551aee','606e7dc4285e125fe0551aea','606e7dc4285e125fe0551aea',
+        '606e8b80285e125fe0551af2','606e8ca3285e125fe0551af4','606e8b49285e125fe0551af0']
+
+    for (let i=0; i<clubs.length; i++) {
+        fillClubs(clubs[i], data[i])
+    }
 })
 
 
