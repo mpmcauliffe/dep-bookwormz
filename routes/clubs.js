@@ -75,5 +75,9 @@ router.post('/createclub', verification, async (req, res) => {
     }
 })
 
+router.post('/fillclub', async (req, res) => {
+    
+})
+
 
 module.exports = router
