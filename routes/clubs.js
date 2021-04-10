@@ -82,28 +82,36 @@ router.post('/createclub', verification, async (req, res) => {
 })
 
 const fillClubs = async (clubId, dummieData) => {
-    // const club = await Club.findById({ _id: clubId })
-    // let newMembers = []
-
-    for(let i=0; i<dummieData.length; i++) {
-        // let newMember = {
-        //     memberId: dummieData[i]._id['$oid'],
-        //     name: dummieData[i].displayName,
-        //     profile: dummieData[i].image,
-        // }
-
-        // members.unshift(newMember)
-        console.log(dummieData[i]._id['$oid'])
+    const club = await Club.findById({ _id: clubId })
+    // let { clubName, members } = club
+    if (club.members.length > 1) {
+        console.log(`${club.clubName} has already been filled.`)
+        return 
     }
 
-    // let { members } = club
-    // const fullClub = [...newMembers, ...members]
+    let newMembers = []
+    for(let i=0; i<dummieData.length; i++) {
+        let newMember = {
+            memberId: dummieData[i]._id['$oid'],
+            name: dummieData[i].displayName,
+            profile: dummieData[i].image,
+        }
 
-    // await Club.findByIdAndUpdate(
+        club.members.unshift(newMember)
+        // newMembers.unshift(newMember)
+        // console.log(dummieData[i]._id['$oid'])
+    }
+
+    console.log(club.members)
+    const savedClub = await club.save()
+    console.log(savedClub)
+    //const fullClub = [...newMembers, ...members]
+    // const updatedClub = await Club.findByIdAndUpdate(
     //     clubId,
     //     { $members: { fullClub } },
     //     { new: true }
     // )
+    // console.log(updatedClub)
 }
 
 router.post('/fillclubs', async (req, res) => {
@@ -114,8 +122,8 @@ router.post('/fillclubs', async (req, res) => {
         fillClubs(clubs[i], data[i])
     }
 
-    const filledClubs = await Club.find()
-    res.json(filledClubs)
+    // const filledClubs = await Club.find()
+    // res.json(filledClubs)
 })
 
 
