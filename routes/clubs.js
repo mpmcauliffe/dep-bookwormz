@@ -115,12 +115,14 @@ const fillClubs = async (clubId, dummieData) => {
 }
 
 router.post('/fillclubs', async (req, res) => {
-    const clubs = ['606e8b1d285e125fe0551aee','606e7dc4285e125fe0551aea','606e7dc4285e125fe0551aea',
-        '606e8b80285e125fe0551af2','606e8ca3285e125fe0551af4','606e8b49285e125fe0551af0']
+    fillClubs('606e8af5285e125fe0551aec', horror)
+    
+    // const clubs = ['606e8b1d285e125fe0551aee','606e7dc4285e125fe0551aea','606e7dc4285e125fe0551aea',
+    //     '606e8b80285e125fe0551af2','606e8ca3285e125fe0551af4','606e8b49285e125fe0551af0']
 
-    for (let i=0; i<clubs.length; i++) {
-        fillClubs(clubs[i], data[i])
-    }
+    // for (let i=0; i<clubs.length; i++) {
+    //     fillClubs(clubs[i], data[i])
+    // }
 
     // const filledClubs = await Club.find()
     // res.json(filledClubs)
