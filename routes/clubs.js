@@ -82,27 +82,28 @@ router.post('/createclub', verification, async (req, res) => {
 })
 
 const fillClubs = async (clubId, dummieData) => {
-    const club = await Club.findById({ _id: clubId })
-    let newMembers = []
+    // const club = await Club.findById({ _id: clubId })
+    // let newMembers = []
 
     for(let i=0; i<dummieData.length; i++) {
-        let newMember = {
-            memberId: dummieData[i]._id['$oid'],
-            name: dummieData[i].displayName,
-            profile: dummieData[i].image,
-        }
+        // let newMember = {
+        //     memberId: dummieData[i]._id['$oid'],
+        //     name: dummieData[i].displayName,
+        //     profile: dummieData[i].image,
+        // }
 
-        members.unshift(newMember)
+        // members.unshift(newMember)
+        console.log(dummieData[i]._id['$oid'])
     }
 
-    let { members } = club
-    const fullClub = [...newMembers, ...members]
+    // let { members } = club
+    // const fullClub = [...newMembers, ...members]
 
-    await Club.findByIdAndUpdate(
-        clubId,
-        { $members: { fullClub } },
-        { new: true }
-    )
+    // await Club.findByIdAndUpdate(
+    //     clubId,
+    //     { $members: { fullClub } },
+    //     { new: true }
+    // )
 }
 
 router.post('/fillclubs', async (req, res) => {
@@ -112,6 +113,9 @@ router.post('/fillclubs', async (req, res) => {
     for (let i=0; i<clubs.length; i++) {
         fillClubs(clubs[i], data[i])
     }
+
+    const filledClubs = await Club.find()
+    res.json(filledClubs)
 })
 
 

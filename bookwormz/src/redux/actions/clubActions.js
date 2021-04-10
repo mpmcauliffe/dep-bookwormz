@@ -93,3 +93,33 @@ export const sendClubMessage = messageSettings => dispatch => {
 }
 
 export const clearClubMessage = () => dispatch => { dispatch({ type: CLEAR_CLUB_MESSAGE }) }
+
+export const fillClubs = () => async dispatch => {
+    try {
+        console.log('fill clubs')
+        const res = await axios.post(`/clubs/fillclubs/`)
+        console.log(res.data)
+
+        if (res.status === 200) {
+            dispatch({ 
+                type: CLUB_MESSAGE, 
+                payload: {
+                    message: 'Club members added. Check the database.',
+                    style: 'green darken-3 rounded', 
+                    timeDisplay: 5000,
+                } 
+            })
+        }
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Clubs may not have been filled. Check the database.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
+    }
+}
