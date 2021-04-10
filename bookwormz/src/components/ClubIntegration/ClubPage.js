@@ -51,7 +51,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                         </div>
                     </ClubHeaderGrid>
                     
-
+                    {currentClub.books.length < 1 && <p>There are no books in this club.</p>}
                 </MainContent>
         </motion.div>
     )
