@@ -10,10 +10,7 @@ import { getAllClubs, fillClubs, } from '../redux/actions/clubActions'
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, }) => {
 
-    useEffect(() => { 
-        getAllClubs()
-        fillClubs() 
-    })
+    useEffect(() => { getAllClubs() })
 
     // if (availableClubs.length < 1) { return <Spinner /> }
 
