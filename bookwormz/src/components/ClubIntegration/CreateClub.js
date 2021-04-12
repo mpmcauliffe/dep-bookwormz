@@ -4,8 +4,7 @@ import PropTypes from 'prop-types'
 import { Link, useHistory, } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
-import { AppButton, FormContainer, BookGrid, HeaderLink, 
-    HeaderSection, MainContent, } from '../../components'
+import { AppButton, Buffer, FormContainer, BookGrid, HeaderLink, HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { createClub, sendClubMessage, } from '../../redux/actions/clubActions'
 
@@ -100,6 +99,8 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
                     <i className='fas fa-book fa-3x form-icon' />
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <span className='grid-label'>Choose a book cover to represent your group (required)</span>
+                    <Buffer thickness={7} />
+
                     <BookGrid id='book-cover-select'>
                         {bookCovers.map((cover, i) => (
                             <span 

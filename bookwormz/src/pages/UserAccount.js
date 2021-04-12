@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { HeaderSection, MainContent, AppButton, FormContainer, } from '../components'
+import { HeaderSection, MainContent, AppButton, FormContainer, ProfileImage } from '../components'
 import { getUserInfo, updateUserInfo, revertUserInfo, 
     deleteUserAccount, } from '../redux/actions/accountActions'
 import { logout } from '../redux/actions/authActions'
@@ -33,11 +33,11 @@ const UserInfoContainer = styled.section`
     }
 `
 
-const ProfileImage = styled.img`
-    height: 13rem;
-    width: 13rem;
-    border-radius: 50%;
-`
+// const ProfileImage = styled.img`
+//     height: 13rem;
+//     width: 13rem;
+//     border-radius: 50%;
+// `
 
 export const UserAccount_proto = ({ 
     getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, logout,

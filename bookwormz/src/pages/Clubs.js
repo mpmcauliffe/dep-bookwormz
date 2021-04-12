@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { BookGrid, HeaderLink, HeaderSection, MainContent, Searchbar, Spinner, } from '../components'
+import { BookGrid, Buffer, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
 import { getAllClubs, fillClubs, } from '../redux/actions/clubActions'
 
 
@@ -35,7 +35,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
                     searchFor='clubs'
                     queryString={clubSearchQuery} />
                     {/* */}
-                    
+                <Buffer thickness={15} />
                 {/* */}
                 {availableClubs.length < 1
                     ?  <p>There aren't any book clubs at this time.</p>
