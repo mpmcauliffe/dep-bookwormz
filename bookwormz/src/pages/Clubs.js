@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { BookGrid, Buffer, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
+import { StandarGrid, Buffer, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
 import { getAllClubs, fillClubs, } from '../redux/actions/clubActions'
 
 
@@ -40,7 +40,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
                 {availableClubs.length < 1
                     ?  <p>There aren't any book clubs at this time.</p>
                     : (
-                        <BookGrid id='book-cover-select'>
+                        <StandarGrid id='book-cover-select'>
                             {availableClubs.map((club, i) => (
                                 <Link
                                     key={club._id}
@@ -61,7 +61,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
                                 </Link>
                                 
                             ))}
-                        </BookGrid>
+                        </StandarGrid>
                 )}
                 
             </MainContent>

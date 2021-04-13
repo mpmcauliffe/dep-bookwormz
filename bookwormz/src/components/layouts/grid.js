@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 
-export const BookGrid = styled.section`
+export const StandarGrid = styled.section`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     row-gap: 3rem;

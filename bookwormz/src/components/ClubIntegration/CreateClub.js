@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link, useHistory, } from 'react-router-dom'
 import styled from 'styled-components'
 import { motion, } from 'framer-motion'
-import { AppButton, Buffer, FormContainer, BookGrid, HeaderLink, HeaderSection, MainContent, } from '../../components'
+import { AppButton, Buffer, FormContainer, StandarGrid, HeaderLink, HeaderSection, MainContent, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { createClub, sendClubMessage, } from '../../redux/actions/clubActions'
 
@@ -101,7 +101,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
                     <span className='grid-label'>Choose a book cover to represent your group (required)</span>
                     <Buffer thickness={7} />
 
-                    <BookGrid id='book-cover-select'>
+                    <StandarGrid id='book-cover-select'>
                         {bookCovers.map((cover, i) => (
                             <span 
                                 key={cover.name}
@@ -124,7 +124,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
                                 <p style={{ marginTop: '3rem', }}>{cover.name}</p>
                             </span>
                         ))}
-                    </BookGrid>
+                    </StandarGrid>
 
                     <AppButton 
                         onClick={onSubmit}

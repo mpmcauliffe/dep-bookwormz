@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
 import {  Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
-        ProfileImage, Spinner, } from '../../components'
+        ProfileImage, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 import { truncate, } from '../../helpers/truncate'
@@ -54,11 +54,23 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                     <Buffer thickness={7} />
                     {currentClub.books.length < 1 && <p>There are no books in this club.</p>}
 
-                    {currentClub.members.map(member => (
-                        <ProfileImage 
-                            src={require(`${member.profile}`).default} 
-                            alt='CLUB_MEMBER'/>
-                    ))}
+                    <StandarGrid>
+                        {currentClub.members.map(member => (
+                            <div
+                                key={member.memberId} 
+                                className='grid-cell'>
+                                <ProfileImage 
+                                    src={
+                                        member.profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+                                        ? `${member.profile}` 
+                                        : require(`./img/mock/${member.profile}.png`).default}
+                                    alt='CLUB_MEMBER'/>
+                                    <p>{member.name}</p>
+                            </div>
+                            
+                        ))}
+                    </StandarGrid>
+                    
                 </MainContent>
         </motion.div>
     )

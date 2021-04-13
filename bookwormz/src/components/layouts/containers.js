@@ -43,3 +43,25 @@ export const HeaderSection = styled.section`
         /* h4 { font-size: 2.2rem; }  */
     }
 `
+
+export const UserInfoContainer = styled.section`
+    margin-top: 8rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    div { 
+        width: 100%;
+        margin: 3rem 0 3rem 0; 
+    }
+    h3 { 
+        margin-top: -1rem;
+        text-align: center; 
+    }
+    p { 
+        font-size: 1.8rem;
+        text-align: center;
+    }
+`

@@ -1,43 +1,15 @@
 import React, { useState, useEffect, } from 'react'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { HeaderSection, MainContent, AppButton, FormContainer, ProfileImage } from '../components'
+import { HeaderSection, MainContent, AppButton, FormContainer, ProfileImage,
+    UserInfoContainer, } from '../components'
 import { getUserInfo, updateUserInfo, revertUserInfo, 
     deleteUserAccount, } from '../redux/actions/accountActions'
 import { logout } from '../redux/actions/authActions'
 
-
-const UserInfoContainer = styled.section`
-    margin-top: 8rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    div { 
-        width: 100%;
-        margin: 3rem 0 3rem 0; 
-    }
-    h3 { 
-        margin-top: -1rem;
-        text-align: center; 
-    }
-    p { 
-        font-size: 1.8rem;
-        text-align: center;
-    }
-`
-
-// const ProfileImage = styled.img`
-//     height: 13rem;
-//     width: 13rem;
-//     border-radius: 50%;
-// `
 
 export const UserAccount_proto = ({ 
     getUserInfo, updateUserInfo, revertUserInfo, deleteUserAccount, logout,
