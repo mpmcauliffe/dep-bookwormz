@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
-import {  Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
+import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
         ProfileImage, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
@@ -51,9 +51,16 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                             <p>{currentClub.description}</p>
                         </div>
                     </ClubHeaderGrid>
+                    
                     <Buffer thickness={7} />
                     {currentClub.books.length < 1 && <p>There are no books in this club.</p>}
-
+                    
+                    <BiGrid>
+                        <div style={{ height: '60rem', border: '.5rem solid pink' }} />
+                        <div style={{ height: '60rem', border: '.5rem solid pink' }} />
+                    </BiGrid>
+                    <Buffer thickness={7} />
+                    
                     <StandarGrid>
                         {currentClub.members.map(member => (
                             <div
@@ -72,9 +79,11 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                                         />&nbsp;&nbsp;{member.name}</p>
                                         : <p>{member.name}</p>
                                     }
+
                             </div>
-                            
                         ))}
+
+                        
                     </StandarGrid>
                     
                 </MainContent>
