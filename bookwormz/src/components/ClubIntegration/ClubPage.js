@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
+import { Members, } from './sections'
 import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
-        ProfileImage, Spinner, StandarGrid, } from '../../components'
+        Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
-import { truncate, } from '../../helpers/truncate'
+// import { truncate, } from '../../helpers/truncate'
 
 
 export const Club_proto = ({ getClub, currentClub, }) => {
@@ -64,29 +65,11 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                     <h3>Club Members</h3><Buffer thickness={7} />
                     <StandarGrid>
                         {currentClub.members.map(member => (
-                            <div
-                                key={member.memberId} 
-                                className='grid-cell'>
-                                <ProfileImage 
-                                    src={
-                                        member.profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
-                                        ? `${member.profile}` 
-                                        : require(`./img/mock/${member.profile}.png`).default}
-                                    alt='CLUB_MEMBER'/>
-                                    {member.chiefAdmin 
-                                        ? <p><i 
-                                            className='fas fa-user-shield'
-                                            style={{ color: '#c7c5c7', }} 
-                                        />&nbsp;&nbsp;{member.name}</p>
-                                        : <p>{member.name}</p>
-                                    }
-
-                            </div>
+                            <Members 
+                                member={member}
+                                key={member.memberId} />
                         ))}
-
-                        
                     </StandarGrid>
-                    
                 </MainContent>
         </motion.div>
     )
