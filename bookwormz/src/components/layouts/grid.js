@@ -26,7 +26,7 @@ export const StandarGrid = styled.section`
 `
 export const BiGrid = styled.section`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(48rem, 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr))
 `
 
 export const ClubHeaderGrid = styled.section`

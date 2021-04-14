@@ -99,9 +99,9 @@ const fillClubs = async (clubId, dummieData) => {
         club.members.unshift(newMember)
     }
 
-    console.log(club.members)
+    //console.log(club.members)
     const savedClub = await club.save()
-    console.log(savedClub)
+    //console.log(savedClub)
 }
 
 router.post('/fillclubs', async (req, res) => {

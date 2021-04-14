@@ -85,6 +85,12 @@ export const BookCover = styled.div`
         .author { font-size: 1.9rem }
     }
 `
+export const ClubBookShelf = styled.div`
+    height: 13rem;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+`
 export const CascadeArrowContainer = styled.div`
     height: 2rem;
     width: 100%;

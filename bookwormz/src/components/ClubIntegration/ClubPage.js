@@ -61,6 +61,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                     </BiGrid>
                     <Buffer thickness={7} />
                     
+                    <h3>Club Members</h3><Buffer thickness={7} />
                     <StandarGrid>
                         {currentClub.members.map(member => (
                             <div
