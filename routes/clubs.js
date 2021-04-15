@@ -81,6 +81,29 @@ router.post('/createclub', verification, async (req, res) => {
     }
 })
 
+router.get('/getclubbooks/:clubId', async (req, res) => {
+    const { clubId } = req.params
+
+    try {
+        const club = await Club.findById({ clubId })
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        const clubBookIds = club.books
+
+        const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
+        if (clubBooks.length < 1) { 
+            res.json({ 'clubBooks': 'Club doesn\'t have any books on its shelf at the moment.' }) 
+            return
+        }
+
+        res.json(clubBooks)
+
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+
+
 const fillClubs = async (clubId, dummieData) => {
     const club = await Club.findById({ _id: clubId })
     if (club.members.length > 1) {
