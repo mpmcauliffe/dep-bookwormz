@@ -88,6 +88,10 @@ export const createClub = (clubSettings, history) => async dispatch => {
     }
 }
 
+export const getClubBookShelf = clubId => dispatch => {
+    console.log('getting books')
+}
+
 export const sendClubMessage = messageSettings => dispatch => {
     dispatch({ type: CLUB_MESSAGE, payload: { ...messageSettings } })
 }
