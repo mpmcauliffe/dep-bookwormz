@@ -5,10 +5,10 @@ import { ClubBookShelf, } from '../../bookShelf/Books.comp'
 import { getClubBookShelf } from '../../../redux/actions/clubActions'
 
 
-export const ClubShelf_proto = ({ clubId, getClubBookShelf }) => {
+export const ClubShelf_proto = ({ clubId, getClubBookShelf, clubBooks, }) => {
 
     useEffect(() => {
-        getClubBookShelf(clubId)
+        if (!clubBooks) { getClubBookShelf(clubId) }
     })
 
     return (
@@ -24,10 +24,12 @@ export const ClubShelf_proto = ({ clubId, getClubBookShelf }) => {
 
 ClubShelf_proto.propTypes = {
     getClubBookShelf: PropTypes.func.isRequired,
+    clubBooks: PropTypes.array,
 }
 
 const mapStateToProps = state => ({
-    getClubBookShelf: state.clubs.getClubBookShelf
+    getClubBookShelf: state.clubs.getClubBookShelf,
+    clubBooks: state.clubs.clubBooks,
 })
 
 const ClubShelf = connect(mapStateToProps, { getClubBookShelf, })(ClubShelf_proto)
