@@ -89,7 +89,7 @@ export const createClub = (clubSettings, history) => async dispatch => {
 }
 
 export const getClubBookShelf = clubId => async dispatch => {
-    console.log('getting books')
+    
     try {
         const res = await axios.get(`clubs/getclubbooks/${clubId}`)
 

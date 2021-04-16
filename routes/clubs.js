@@ -22,7 +22,7 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
-        console.log(club)
+        // console.log(club)
         res.json(club)
 
     } catch (e) {
@@ -83,6 +83,7 @@ router.post('/createclub', verification, async (req, res) => {
 
 router.get('/getclubbooks/:clubId', async (req, res) => {
     const { clubId } = req.params
+    console.log('getting books')
 
     try {
         const club = await Club.findById({ clubId })
