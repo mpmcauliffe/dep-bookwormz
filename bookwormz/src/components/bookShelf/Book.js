@@ -91,6 +91,7 @@ export const Book_proto = ({
                     <br/><br/><br/><br/>
                     <span className='info'><a href={`${infoLink}`}>View on Google Books</a></span>
                 </div>
+                <p>{bookId}</p>
             </BookCover>
         </Fragment>
         

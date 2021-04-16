@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
-import { Members, } from './sections'
+import { ClubShelf, Members, } from './sections'
 import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
         Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
@@ -15,8 +15,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
-    console.log(currentClub)
-    //console.log(currentClub?.members)
+    // console.log(currentClub)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
     
@@ -58,7 +57,9 @@ export const Club_proto = ({ getClub, currentClub, }) => {
                     
                     <BiGrid>
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
-                        <div style={{ height: '60rem', border: '.5rem solid pink' }} />
+                        <div style={{ height: '60rem', border: '.5rem solid pink' }}>
+                            <ClubShelf clubId={clubId} />
+                        </div>
                     </BiGrid>
                     <Buffer thickness={7} />
                     

@@ -13,12 +13,11 @@ export const ClubShelf_proto = ({ clubId, getClubBookShelf, clubBooks, }) => {
 
     return (
         <div>
-            {}
-
-        </div>
-        <ClubBookShelf>
+            <ClubBookShelf>
             
-        </ClubBookShelf>
+            </ClubBookShelf>
+        </div>
+        
     )
 }
 
