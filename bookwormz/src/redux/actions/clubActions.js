@@ -88,8 +88,24 @@ export const createClub = (clubSettings, history) => async dispatch => {
     }
 }
 
-export const getClubBookShelf = clubId => dispatch => {
+export const getClubBookShelf = clubId => async dispatch => {
     console.log('getting books')
+    try {
+        const res = await axios.get(`clubs/getclubbooks/${clubId}`)
+
+        console.log(res.data)
+
+    } catch (e) {
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Couldn\'t load club\'s bookshelf.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
+    }
+    
 }
 
 export const sendClubMessage = messageSettings => dispatch => {
