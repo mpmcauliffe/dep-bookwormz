@@ -11,7 +11,7 @@ import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
-export const Club_proto = ({ getClub, currentClub, }) => {
+export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
@@ -21,6 +21,7 @@ export const Club_proto = ({ getClub, currentClub, }) => {
     
     // eslint-disable-next-line
     }, [getClub, currentClub, clubId])
+    console.log(clubBooks)
 
 // 550 char count
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
@@ -80,10 +81,12 @@ export const Club_proto = ({ getClub, currentClub, }) => {
 Club_proto.propTypes = {
     getClub: PropTypes.func.isRequired,
     currentClub: PropTypes.object,
+    clubBooks: PropTypes.array,
 }
 
 const mapStateToProps = state => ({
-    currentClub: state.clubs.currentClub
+    currentClub: state.clubs.currentClub,
+    clubBooks: state.clubs.clubBooks,
 })
 
 const Club = connect(mapStateToProps, { getClub, })(Club_proto)

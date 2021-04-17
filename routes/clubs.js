@@ -36,7 +36,7 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
 
         const clubElements = {
             ...club,
-            ...clubBooks,
+            clubBooks: [...clubBooks],
         }
 
         console.log(clubElements)

@@ -21,7 +21,8 @@ export default (state = initialState, action) => {
         case GET_CLUB:
             return {
                 ...state,
-                currentClub: { ...action.payload }
+                currentClub: { ...action.payload._doc },
+                clubBooks: action.payload.clubBooks,
             }
 
         case GET_ALL_CLUBS:
