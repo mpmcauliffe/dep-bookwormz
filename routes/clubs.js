@@ -22,8 +22,25 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
-        // console.log(club)
-        res.json(club)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return
+        }
+        const clubBookIds = club.books
+
+        const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
+        if (clubBooks.length < 1) { 
+            res.json({ 'clubBooks': 'Club doesn\'t have any books on its shelf at the moment.' }) 
+            return
+        }
+
+        const clubElements = {
+            ...club,
+            ...clubBooks,
+        }
+
+        console.log(clubElements)
+        res.json(clubElements)
 
     } catch (e) {
         console.log(e)

@@ -8,7 +8,7 @@ import { getClubBookShelf } from '../../../redux/actions/clubActions'
 export const ClubShelf_proto = ({ clubId, getClubBookShelf, clubBooks, }) => {
 
     useEffect(() => {
-        if (!clubBooks) { getClubBookShelf(clubId) }
+        // if (!clubBooks) { getClubBookShelf(clubId) }
     })
 
     return (
