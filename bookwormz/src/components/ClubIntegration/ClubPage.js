@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
-import { ClubShelf, Members, } from './sections'
+import { ClubBookItem, Members, } from './sections'
 import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
         Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
@@ -60,8 +60,9 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                     <BiGrid>
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
                         <div>
+                            <h3>Club Book Shelf</h3>
                             {Array.isArray(clubBooks) && clubBooks.map(book => (
-                                    <ClubShelf 
+                                    <ClubBookItem 
                                         book={book}
                                         key={book.bookId} />
                                 ))
