@@ -16,12 +16,13 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     let { clubId }                      = useParams()
     
     // console.log(currentClub)
+    console.log(clubBooks)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
     
     // eslint-disable-next-line
     }, [getClub, currentClub, clubId])
-    console.log(clubBooks)
+    
 
 // 550 char count
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
@@ -58,8 +59,14 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                     
                     <BiGrid>
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
-                        <div style={{ height: '60rem', border: '.5rem solid pink' }}>
-                            <ClubShelf clubId={clubId} />
+                        <div>
+                            {Array.isArray(clubBooks) && clubBooks.map(book => (
+                                    <ClubShelf 
+                                        book={book}
+                                        key={book.bookId} />
+                                ))
+                            }
+                            
                         </div>
                     </BiGrid>
                     <Buffer thickness={7} />

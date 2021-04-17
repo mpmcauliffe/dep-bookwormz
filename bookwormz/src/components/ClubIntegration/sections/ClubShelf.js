@@ -4,11 +4,11 @@ import { ClubBookShelf, } from '../../bookShelf/Books.comp'
 
 
 export const ClubShelf = ({ book, }) => (
-    <div>
-        <ClubBookShelf>
-        
-        </ClubBookShelf>
-    </div>
+
+    <ClubBookShelf>
+    
+    </ClubBookShelf>
+
     
 )
 
