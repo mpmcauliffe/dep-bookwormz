@@ -3,6 +3,7 @@ const needle                            = require('needle')
 const { ensureAuth, ensureGuest, }      = require('../middleware/auth')
 const User                              = require('../models/User')
 const Book                              = require('../models/Book')
+const Club                              = require('../models/Club')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
 
@@ -67,13 +68,18 @@ router.get('/mybooks/', verification, async (req, res) => {
     try {
         const user = await User.findOne({ email })
         if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
-        const bookIds = user.books
 
+        const bookIds = user.books
         const myBooks = await Book.find({ 'bookId': { $in: bookIds } })
         if (myBooks.length < 1) { 
             res.json({ 'myBooks': 'You don\'t have any books in your library at this time.' }) 
             return
         }
+
+        const clubIds = user.clubs
+        const myClubs = await Club.find({ '_id': { $in: clubIds } })
+        console.log(myClubs)
+
         res.json(myBooks)
 
     } catch (e) {
