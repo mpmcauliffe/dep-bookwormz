@@ -14,7 +14,7 @@ const initialState = {
         style: '',
         timeDisplay: null,
     },
-    
+    myClubs: [ ],
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
                 ...state,
                 myBooks: [...action.payload.books],
                 isLoading: false,
+                myClubs: [...action.payload.clubs],
             }
 
         case SEARCH_BOOKS: 
