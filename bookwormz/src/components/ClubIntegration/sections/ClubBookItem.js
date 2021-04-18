@@ -5,10 +5,18 @@ import { ClubBookShelf, } from '../../bookShelf/Books.comp'
 
 export const ClubBookItem = ({ book, }) => (
 
-    <ClubBookShelf>
-        <img src={`${book.image}`} alt='book-cover' />
-        <p><strong>{book.title}</strong></p>
-    </ClubBookShelf>
+    <a href={`${book.infoLink}`}>
+        <ClubBookShelf>
+            <img src={`${book.image}`} alt='book-cover' className='cover' />
+            <div>
+                <p className='title'><strong>{book.title}</strong></p>
+                <div>
+                    <p>{book.authors.map(author => <span>{author}&nbsp;&nbsp;&nbsp;</span>)}</p>
+                </div>
+            </div>
+        </ClubBookShelf>
+    </a>
+    
 
     
 )

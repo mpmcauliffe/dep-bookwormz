@@ -1,4 +1,4 @@
-import React, { useEffect, } from 'react'
+import React, { Fragment, useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -61,10 +61,14 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
                         <div>
                             <h3>Club Book Shelf</h3>
+                            <Buffer thickness={7} />
                             {Array.isArray(clubBooks) && clubBooks.map(book => (
-                                    <ClubBookItem 
-                                        book={book}
-                                        key={book.bookId} />
+                                    <Fragment>
+                                        <ClubBookItem 
+                                            book={book}
+                                            key={book.bookId} />
+                                        <Buffer thickness={.5} />
+                                    </Fragment>
                                 ))
                             }
                             
