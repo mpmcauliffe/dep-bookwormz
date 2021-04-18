@@ -12,7 +12,7 @@ export const getBooks = () => async dispatch => {
 
     try {
         const res = await axios.get(`/books/mybooks/`)
-        // console.log(res)
+        console.log(res)
         if (res.status === 200) {
             if (typeof res.data.myBooks === 'string') { 
                 dispatch({ 
@@ -27,7 +27,7 @@ export const getBooks = () => async dispatch => {
 
             dispatch({ 
                 type: GET_MY_BOOKS, 
-                payload: { books: res.data } 
+                payload: { userDashboard: res.data } 
             })
             return
         }

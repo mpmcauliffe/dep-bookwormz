@@ -23,9 +23,9 @@ export default (state = initialState, action) => {
         case GET_MY_BOOKS:
             return {
                 ...state,
-                myBooks: [...action.payload.books],
+                myBooks: [...action.payload.userDashboard.myBooks],
                 isLoading: false,
-                myClubs: [...action.payload.clubs],
+                myClubs: [...action.payload.userDashboard.myClubs],
             }
 
         case SEARCH_BOOKS: 

@@ -1,16 +1,15 @@
 import React, { useEffect, } from 'react'
-import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { StandarGrid, Buffer, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
+import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
 import { getAllClubs, fillClubs, } from '../redux/actions/clubActions'
 
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, }) => {
 
-    useEffect(() => { getAllClubs() })
+    useEffect(() => { getAllClubs() }, [ ])
 
     // if (availableClubs.length < 1) { return <Spinner /> }
 
@@ -42,24 +41,10 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
                     : (
                         <StandarGrid id='book-cover-select'>
                             {availableClubs.map((club, i) => (
-                                <Link
-                                    key={club._id}
-                                    to={`/club/${club._id}`} >
-                                    <span     
-                                        className='grid-cell'>
-                                        
-                                        <label htmlFor={`${club.clubName}`}>
-                                            <img 
-                                                name={`${i}—${club.clubName}`}
-                                                alt='CLUB_BOOK-COVER'
-                                                className='club-image'
-                                                // onClick={handleBookCoverSelect}
-                                                src={require(`../components/ClubIntegration/img/${club.bookNumber}.png`).default} />
-                                        </label>
-                                        <p style={{ marginTop: '3rem', color: 'black' }}>{club.clubName}</p>
-                                    </span>
-                                </Link>
-                                
+                                <ClubDock
+                                    index={i}
+                                    club={club}
+                                    key={club._id} />
                             ))}
                         </StandarGrid>
                 )}
