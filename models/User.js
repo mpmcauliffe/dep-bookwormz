@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Club = require('./Club')
 
 const Schema = mongoose.Schema
 
@@ -37,10 +38,10 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    // books:[{ 
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Book'
-    // }],
+    clubs:[{ 
+        type: Schema.Types.ObjectId,
+        ref: 'Club'
+    }],
     books: {
         type: [String],
         required: true,
