@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 
@@ -22,4 +23,9 @@ export const ClubDock = ({ club, index, }) => {
             </span>
         </Link>
     )
+}
+
+ClubDock.propTypes = {
+    club: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
 }

@@ -11,7 +11,7 @@ import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
-export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
+const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
@@ -20,8 +20,8 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
     
-    // eslint-disable-next-line
-    }, [getClub, currentClub, clubId])
+    
+    }, [getClub, currentClub, clubId, history])
     
 
 // 550 char count
@@ -63,12 +63,10 @@ export const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                             <h3>Club Book Shelf</h3>
                             <Buffer thickness={7} />
                             {Array.isArray(clubBooks) && clubBooks.map(book => (
-                                    <Fragment>
-                                        <ClubBookItem 
-                                            book={book}
-                                            key={book.bookId} />
+                                    <div key={book.bookId}>
+                                        <ClubBookItem book={book} />
                                         <Buffer thickness={.5} />
-                                    </Fragment>
+                                    </div>
                                 ))
                             }
                             
@@ -101,5 +99,5 @@ const mapStateToProps = state => ({
     clubBooks: state.clubs.clubBooks,
 })
 
-const Club = connect(mapStateToProps, { getClub, })(Club_proto)
-export { Club }
+const ClubPage = connect(mapStateToProps, { getClub, })(Club_proto)
+export { ClubPage }
