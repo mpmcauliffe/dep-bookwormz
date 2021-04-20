@@ -29,10 +29,10 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
         const clubBookIds = club.books
 
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
-        if (clubBooks.length < 1) { 
-            res.json({ 'clubBooks': 'Club doesn\'t have any books on its shelf at the moment.' }) 
-            return
-        }
+        // if (clubBooks.length < 1) { 
+        //     res.json({ 'clubBooks': 'Club doesn\'t have any books on its shelf at the moment.' }) 
+        //     return
+        // }
 
         const clubElements = {
             ...club,

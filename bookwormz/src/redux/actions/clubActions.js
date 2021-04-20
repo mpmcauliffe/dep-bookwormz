@@ -29,7 +29,8 @@ export const getAllClubs = () => async dispatch => {
 export const getClub = (clubId, history) => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getclub/${clubId}`, config)
-        // console.log(res)
+        console.log(res.data.clubBooks)
+
         dispatch({ type: GET_CLUB, payload: res.data })
     
     } catch (e) {
