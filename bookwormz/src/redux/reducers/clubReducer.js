@@ -1,4 +1,4 @@
-import { GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
+import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, SEARCH_CLUBS, RESET_CLUB,
     CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
@@ -26,11 +26,10 @@ export default (state = initialState, action) => {
                 clubBooks: action.payload.clubBooks,
             }
 
-        case GET_ALL_CLUBS:
+        case GET_MULTIPLE_CLUBS:
             return {
                 ...state,
                 availableClubs: [...action.payload],
-                currentClub: null,
             }
         
         case CREATE_CLUB:
@@ -43,6 +42,13 @@ export default (state = initialState, action) => {
                     style: action.payload.style,
                     timeDisplay: action.payload.timeDisplay,
                 },
+            }
+
+        case RESET_CLUB:
+            return {
+                ...state,
+                currentClub: null,
+                clubBooks: [ ],
             }
 
         case CLUB_MESSAGE:

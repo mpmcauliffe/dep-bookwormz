@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {  GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
+import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, SEARCH_CLUBS, RESET_CLUB,
      CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
@@ -11,7 +11,7 @@ export const getAllClubs = () => async dispatch => {
         const res = await axios.get('/clubs/getallclubs', config)
         // console.log(res.data)
 
-        dispatch({ type: GET_ALL_CLUBS, payload: res.data })
+        dispatch({ type: GET_MULTIPLE_CLUBS, payload: res.data })
 
     } catch (e) {
         console.log(e)
@@ -29,6 +29,25 @@ export const getAllClubs = () => async dispatch => {
 export const getClub = (clubId, history) => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getclub/${clubId}`, config)
+        // console.log(res)
+        dispatch({ type: GET_CLUB, payload: res.data })
+    
+    } catch (e) {
+        console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Something when wrong. Please try later.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
+    }
+}
+
+export const getMyClubs = () => async dispatch => {
+    try {
+        const res = await axios.get(`/clubs/getmyclubs/`, config)
         // console.log(res)
         dispatch({ type: GET_CLUB, payload: res.data })
     
@@ -87,6 +106,8 @@ export const createClub = (clubSettings, history) => async dispatch => {
         })
     }
 }
+
+export const resetClubs = () => dispatch => { dispatch({ type: RESET_CLUB, }) }
 
 export const getClubBookShelf = clubId => async dispatch => {
     

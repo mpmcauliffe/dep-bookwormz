@@ -57,6 +57,30 @@ router.get('/getallclubs', verification, async (req, res) => {
     }
 })
 
+router.get('/getmyclubs', verification, async (req, res) => {
+    const email = getEmail(req.headers['x-auth-token'])
+
+    try {
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+
+        const clubIds = user.clubs
+        const myClubs = await Club.find({ '_id': { $in: clubIds } })
+
+        if (myClubs.length < 1) { 
+            res.json({ 'myClubs': 'You have\'t joined any clubs yet.' }) 
+            return
+        }
+
+        res.json(myClubs)
+
+
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+
 // memberId
 // name
 // profile

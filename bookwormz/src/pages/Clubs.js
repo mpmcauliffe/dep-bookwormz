@@ -4,12 +4,15 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
-import { getAllClubs, fillClubs, } from '../redux/actions/clubActions'
+import { getAllClubs, fillClubs, resetClubs } from '../redux/actions/clubActions'
 
 
-export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, }) => {
+export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, resetClubs, }) => {
 
-    useEffect(() => { getAllClubs() }, [ ])
+    useEffect(() => { 
+        getAllClubs()
+        resetClubs() 
+    }, [ ])
 
     // if (availableClubs.length < 1) { return <Spinner /> }
 
@@ -60,6 +63,7 @@ Clubs_proto.propTypes = {
     clubSearchQuery: PropTypes.string.isRequired,
     availableClubs: PropTypes.array.isRequired,
     fillClubs: PropTypes.func,
+    resetClubs: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -69,5 +73,5 @@ const mapStateToProps = state => ({
     fillClubs: state.clubs.fillClubs,
 })
 
-const Clubs = connect(mapStateToProps, { getAllClubs, fillClubs, })(Clubs_proto)
+const Clubs = connect(mapStateToProps, { getAllClubs, fillClubs, resetClubs, })(Clubs_proto)
 export { Clubs }

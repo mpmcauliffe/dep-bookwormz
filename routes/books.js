@@ -71,21 +71,21 @@ router.get('/mybooks/', verification, async (req, res) => {
 
         const bookIds = user.books
         const myBooks = await Book.find({ 'bookId': { $in: bookIds } })
-        // if (myBooks.length < 1) { 
-        //     res.json({ 'myBooks': 'You don\'t have any books in your library at this time.' }) 
-        //     return
-        // }
-
-        const clubIds = user.clubs
-        const myClubs = await Club.find({ '_id': { $in: clubIds } })
-        //console.log(myClubs)
-
-        const userDashboard = {
-            myBooks: [...myBooks],
-            myClubs: [...myClubs],
+        if (myBooks.length < 1) { 
+            res.json({ 'myBooks': 'You don\'t have any books in your library at this time.' }) 
+            return
         }
 
-        res.json(userDashboard)
+        // const clubIds = user.clubs
+        // const myClubs = await Club.find({ '_id': { $in: clubIds } })
+        // //console.log(myClubs)
+
+        // const userDashboard = {
+        //     myBooks: [...myBooks],
+        //     myClubs: [...myClubs],
+        // }
+
+        res.json(myBooks)
 
     } catch (e) {
         console.log(e)

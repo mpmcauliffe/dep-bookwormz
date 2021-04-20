@@ -4,15 +4,17 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { getUserInfo } from '../redux/actions/accountActions'
 import { getBooks, } from '../redux/actions/bookActions'
+import { resetClubs, } from '../redux/actions/clubActions'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { Buffer, ClubDock, MyBookShelf, HeaderSection, MainContent, StandarGrid } from '../components'
 
 
-export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, }) => {
+export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, resetClubs, }) => {
 
     useEffect(() => { 
         getUserInfo()
         getBooks() 
+        resetClubs()
     }, [ ])
     
 
@@ -63,6 +65,7 @@ Dashboard_proto.propTypes = {
     getBooks: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
     myClubs: PropTypes.array.isRequired,
+    resetClubs: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -70,5 +73,5 @@ const mapStateToProps = state => ({
     myClubs: state.books.myClubs,
 })
 
-const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, })(Dashboard_proto)
+const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, resetClubs, })(Dashboard_proto)
 export { Dashboard }
