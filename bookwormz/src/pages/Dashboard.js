@@ -4,18 +4,22 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { getUserInfo } from '../redux/actions/accountActions'
 import { getBooks, } from '../redux/actions/bookActions'
-import { resetClubs, } from '../redux/actions/clubActions'
+import { getMyClubs, resetClubs, } from '../redux/actions/clubActions'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { Buffer, ClubDock, MyBookShelf, HeaderSection, MainContent, StandarGrid } from '../components'
 
 
-export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, resetClubs, }) => {
+export const Dashboard_proto = ({ 
+    getUserInfo, displayName, 
+    getBooks, 
+    getMyClubs, resetClubs, availableClubs,  }) => {
 
     useEffect(() => { 
         getUserInfo()
-        getBooks() 
+        getBooks()
+        getMyClubs() 
         resetClubs()
-        
+
     // eslint-disable-next-line
     }, [ ])
     
@@ -38,11 +42,12 @@ export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, r
 
                 <h3>Your Clubs</h3>
                 <Buffer thickness={9} />
-                {myClubs.length < 1
+                {/* */}
+                {availableClubs.length < 1
                     ?  <p>There aren't any book clubs at this time.</p>
                     : (
                         <StandarGrid id='book-cover-select'>
-                            {myClubs.map((club, i) => (
+                            {availableClubs.map((club, i) => (
                                 <ClubDock
                                     index={i}
                                     club={club}
@@ -55,7 +60,6 @@ export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, r
                 <h3>Your Books</h3>
                 <MyBookShelf />
             </MainContent>
-            
         </motion.div>
         
     )
@@ -64,16 +68,19 @@ export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, r
 
 Dashboard_proto.propTypes = {
     getUserInfo: PropTypes.func.isRequired,
-    getBooks: PropTypes.func.isRequired,
     displayName: PropTypes.string.isRequired,
-    myClubs: PropTypes.array.isRequired,
+
+    getBooks: PropTypes.func.isRequired,
+    
+    getMyClubs: PropTypes.func.isRequired,
     resetClubs: PropTypes.func.isRequired,
+    availableClubs: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({
     displayName: state.account.displayName,
-    myClubs: state.books.myClubs,
+    availableClubs: state.clubs.availableClubs,
 })
 
-const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, resetClubs, })(Dashboard_proto)
+const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, getMyClubs, resetClubs, })(Dashboard_proto)
 export { Dashboard }

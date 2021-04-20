@@ -48,8 +48,8 @@ export const getClub = (clubId, history) => async dispatch => {
 export const getMyClubs = () => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getmyclubs/`, config)
-        // console.log(res)
-        dispatch({ type: GET_CLUB, payload: res.data })
+        // console.log(res.data)
+        dispatch({ type: GET_MULTIPLE_CLUBS, payload: res.data })
     
     } catch (e) {
         console.log(e)

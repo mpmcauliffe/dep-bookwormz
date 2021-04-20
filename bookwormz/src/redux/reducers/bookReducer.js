@@ -14,18 +14,19 @@ const initialState = {
         style: '',
         timeDisplay: null,
     },
-    myClubs: [ ],
+    // myClubs: [ ],
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
     switch(action.type) {
         case GET_MY_BOOKS:
-            return {
+            // console.log(action.payload)
+            return {    
                 ...state,
-                myBooks: [...action.payload.userDashboard.myBooks],
+                myBooks: action.payload,
                 isLoading: false,
-                myClubs: [...action.payload.userDashboard.myClubs],
+                // myClubs: [...action.payload.userDashboard.myClubs],
             }
 
         case SEARCH_BOOKS: 
@@ -70,7 +71,7 @@ export default (state = initialState, action) => {
             }
 
         case BOOK_ERROR:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 bookMessage: {

@@ -12,7 +12,7 @@ export const getBooks = () => async dispatch => {
 
     try {
         const res = await axios.get(`/books/mybooks/`)
-        console.log(res)
+        // console.log(res)
         if (res.status === 200) {
             if (typeof res.data.myBooks === 'string') { 
                 dispatch({ 
@@ -25,10 +25,7 @@ export const getBooks = () => async dispatch => {
                 return
             }
 
-            dispatch({ 
-                type: GET_MY_BOOKS, 
-                payload: { userDashboard: res.data } 
-            })
+            dispatch({ type: GET_MY_BOOKS, payload: res.data, })
             return
         }
         dispatch({ type: BOOK_ERROR, payload: 'Cannot retieve your library at this time.' })
