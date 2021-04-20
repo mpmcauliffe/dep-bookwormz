@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled, {css} from 'styled-components'
 
 
@@ -53,8 +54,17 @@ const MessageContainer = styled.div`
 export const EmptyNotification = props => {
     return (
         <MessageContainer library={props.library}>
-            {props.children}
+            {/* {props.children} */}
+            <span>{props.preMessage}</span>&nbsp;&nbsp;
+            <Link to={props.linkTo}>
+                <span className='trigger'>{props.linkMessage}</span>
+            </Link>
         </MessageContainer>
     )
 }
+
+// <span>You don't have any saved books.</span>&nbsp;&nbsp;
+//    <Link to='/books'>
+//    <span className='trigger'>Search library.</span>
+// </Link> 
 

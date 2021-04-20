@@ -6,7 +6,7 @@ import { getUserInfo } from '../redux/actions/accountActions'
 import { getBooks, } from '../redux/actions/bookActions'
 import { getMyClubs, resetClubs, } from '../redux/actions/clubActions'
 import { pageTransition, pageVariants, } from './zAnimation'
-import { Buffer, ClubDock, MyBookShelf, HeaderSection, MainContent, StandarGrid } from '../components'
+import { Buffer, ClubDock, EmptyNotification, MyBookShelf, HeaderSection, MainContent, StandarGrid } from '../components'
 
 
 export const Dashboard_proto = ({ 
@@ -44,8 +44,12 @@ export const Dashboard_proto = ({
                 <Buffer thickness={9} />
                 {/* */}
                 {availableClubs.length < 1
-                    ?  <p>There aren't any book clubs at this time.</p>
-                    : (
+                    ? (
+                        <EmptyNotification 
+                            linkTo={'/clubs'}
+                            linkMessage={'Find a club'}
+                            preMessage={'You don\'t belong to any clubs.'} />
+                    ) : (
                         <StandarGrid id='book-cover-select'>
                             {availableClubs.map((club, i) => (
                                 <ClubDock

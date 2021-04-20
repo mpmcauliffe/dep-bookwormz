@@ -18,12 +18,11 @@ export const MyBookShelf_proto = ({ myBooks, isLoading, }) => {
     // console.log(myBooks)
     if (myBooks.length < 1) { 
         return (
-            <EmptyNotification library>
-                <span>You don't have any saved books.</span>&nbsp;&nbsp;
-                <Link to='/books'>
-                    <span className='trigger'>Search library.</span>
-                </Link>
-            </EmptyNotification>
+            <EmptyNotification 
+                library
+                linkTo={'/books'}
+                linkMessage={'Search library'}
+                preMessage={'You don\'t have any saved books.'} />
         ) 
     } 
     
@@ -81,3 +80,11 @@ const mapStateToProps = state => ({
 
 const MyBookShelf = connect(mapStateToProps, {  })(MyBookShelf_proto)
 export { MyBookShelf }
+
+
+//              <EmptyNotification library>
+//                <span>You don't have any saved books.</span>&nbsp;&nbsp;
+//                <Link to='/books'>
+//                    <span className='trigger'>Search library.</span>
+//                </Link>
+//             </EmptyNotification>
