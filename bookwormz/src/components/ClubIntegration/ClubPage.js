@@ -19,8 +19,7 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     console.log(clubBooks)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
-    
-    
+
     }, [getClub, currentClub, clubId, history])
     
 

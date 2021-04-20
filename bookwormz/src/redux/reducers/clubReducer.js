@@ -5,7 +5,7 @@ import { GET_CLUB, GET_ALL_CLUBS, CREATE_CLUB, SEARCH_CLUBS,
 const initialState = {
     availableClubs: [ ],
     currentClub: null,
-    clubBooks: null,
+    clubBooks: [ ],
     clubSearchQuery: '',
     clubMessage: {
         message: '',
@@ -19,6 +19,7 @@ export default (state = initialState, action) => {
     switch(action.type) {
 
         case GET_CLUB:
+            console.log(action.payload.clubBooks)
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },
