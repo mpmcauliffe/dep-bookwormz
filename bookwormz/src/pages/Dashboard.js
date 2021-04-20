@@ -15,6 +15,8 @@ export const Dashboard_proto = ({ getUserInfo, getBooks, displayName, myClubs, r
         getUserInfo()
         getBooks() 
         resetClubs()
+        
+    // eslint-disable-next-line
     }, [ ])
     
 
