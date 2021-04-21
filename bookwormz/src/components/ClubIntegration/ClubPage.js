@@ -1,11 +1,11 @@
-import React, { Fragment, useEffect, } from 'react'
+import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
 import { ClubBookItem, Members, } from './sections'
-import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, HeaderLink, HeaderSection, MainContent,
-        Spinner, StandarGrid, } from '../../components'
+import {  BiGrid, Buffer, ClubImg, ClubHeaderGrid, EmptyNotification, HeaderLink, 
+        HeaderSection, MainContent, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
@@ -16,16 +16,14 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     let { clubId }                      = useParams()
     
     // console.log(currentClub)
-    console.log(clubBooks)
+    // console.log(clubBooks)
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
 
     }, [getClub, currentClub, clubId, history])
     
 
-// 550 char count
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
-
 
     return (
         <motion.div
@@ -61,12 +59,18 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                         <div>
                             <h3>Club Book Shelf</h3>
                             <Buffer thickness={7} />
-                            {Array.isArray(clubBooks) && clubBooks.map(book => (
+                            {Array.isArray(clubBooks) && clubBooks.length > 0 
+                                ? clubBooks.map(book => (
                                     <div key={book.bookId}>
                                         <ClubBookItem book={book} />
                                         <Buffer thickness={.5} />
                                     </div>
-                                ))
+                                )) : (
+                                    <EmptyNotification 
+                                        linkTo={''}
+                                        linkMessage={''}
+                                        preMessage={`There aren't any books in ${currentClub.clubName}'s library`} />
+                                )
                             }
                             
                         </div>

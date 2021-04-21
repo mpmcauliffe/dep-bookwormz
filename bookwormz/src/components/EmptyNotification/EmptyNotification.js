@@ -54,7 +54,6 @@ const MessageContainer = styled.div`
 export const EmptyNotification = props => {
     return (
         <MessageContainer library={props.library}>
-            {/* {props.children} */}
             <span>{props.preMessage}</span>&nbsp;&nbsp;
             <Link to={props.linkTo}>
                 <span className='trigger'>{props.linkMessage}</span>
@@ -62,9 +61,3 @@ export const EmptyNotification = props => {
         </MessageContainer>
     )
 }
-
-// <span>You don't have any saved books.</span>&nbsp;&nbsp;
-//    <Link to='/books'>
-//    <span className='trigger'>Search library.</span>
-// </Link> 
-

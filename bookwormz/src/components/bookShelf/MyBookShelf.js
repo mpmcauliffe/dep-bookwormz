@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect, } from 'react'
-import { Link, } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Book, } from './Book'
@@ -80,11 +79,3 @@ const mapStateToProps = state => ({
 
 const MyBookShelf = connect(mapStateToProps, {  })(MyBookShelf_proto)
 export { MyBookShelf }
-
-
-//              <EmptyNotification library>
-//                <span>You don't have any saved books.</span>&nbsp;&nbsp;
-//                <Link to='/books'>
-//                    <span className='trigger'>Search library.</span>
-//                </Link>
-//             </EmptyNotification>
