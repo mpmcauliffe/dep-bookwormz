@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
-import { ClubBookItem, ClubHeader, Members, } from './sections'
+import { ClubBookItem, ClubHeader, ClubShelf, Members, } from './sections'
 import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
@@ -32,7 +32,6 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
             variants={pageVariants} 
             transition={pageTransition}>
                 <MainContent>
-
                     <ClubHeader
                         clubName={currentClub.clubName}
                         clubCover={currentClub.bookNumber}
@@ -43,24 +42,13 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                     
                     <BiGrid>
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
-                        <div>
-                            <h3>Club Book Shelf</h3>
-                            <Buffer thickness={7} />
-                            {Array.isArray(clubBooks) && clubBooks.length > 0 
-                                ? clubBooks.map(book => (
-                                    <div key={book.bookId}>
-                                        <ClubBookItem book={book} />
-                                        <Buffer thickness={.5} />
-                                    </div>
-                                )) : (
-                                    <EmptyNotification 
-                                        linkTo={''}
-                                        linkMessage={''}
-                                        preMessage={`There aren't any books in ${currentClub.clubName}'s library`} />
-                                )
-                            }
-                            
-                        </div>
+                        
+                        <ClubShelf
+                            clubBooks={clubBooks}
+                            clubName={currentClub.clubName}
+                            numberOfBooks={clubBooks.length} />
+
+                        {/* */}
                     </BiGrid>
                     <Buffer thickness={7} />
                     
