@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
-import { ClubBookItem, ClubHeader, ClubShelf, Members, } from './sections'
-import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid, } from '../../components'
+import { ClubHeader, ClubShelf, MemberButton, Members, } from './sections'
+import { BiGrid, Buffer, MainContent, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
@@ -37,7 +37,7 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                         clubCover={currentClub.bookNumber}
                         description={currentClub.description} />
                     <Buffer thickness={3} />
-            
+                    <MemberButton />
                     <Buffer thickness={7} />
                     
                     <BiGrid>

@@ -1,10 +1,9 @@
 import React from 'react'
+import { AppButton } from '../../../components'
 
 
-export const MemberButton_proto = () => {
+export const MemberButton = () => {
     return (
-        <div>
-            
-        </div>
+        <AppButton>Join Club</AppButton>
     )
 }
