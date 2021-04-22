@@ -39,7 +39,7 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
             clubBooks: [...clubBooks],
         }
 
-        console.log(clubElements)
+        // console.log(clubElements)
         res.json(clubElements)
 
     } catch (e) {

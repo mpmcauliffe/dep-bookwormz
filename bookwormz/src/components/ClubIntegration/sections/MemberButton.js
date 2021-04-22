@@ -3,7 +3,12 @@ import { AppButton } from '../../../components'
 
 
 export const MemberButton = () => {
+    const handleJoinGroup = () => {
+        console.log('join group')
+    }
+
     return (
-        <AppButton>Join Club</AppButton>
+        <AppButton
+            onClick={handleJoinGroup} >Join Club</AppButton>
     )
 }

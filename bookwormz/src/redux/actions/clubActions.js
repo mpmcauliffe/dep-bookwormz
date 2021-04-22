@@ -108,6 +108,22 @@ export const createClub = (clubSettings, history) => async dispatch => {
     }
 }
 
+export const joinClub = () => dispatch => {
+    try {
+        
+    } catch (e) {
+        console.log(e)
+        dispatch({ 
+            type: CLUB_MESSAGE, 
+            payload: {
+                message: 'Could not join group please try again later.',
+                style: 'red accent-4 rounded', 
+                timeDisplay: 5000,
+            } 
+        })
+    }
+}
+
 export const resetClubs = () => dispatch => { dispatch({ type: RESET_CLUB, }) }
 
 export const getClubBookShelf = clubId => async dispatch => {
