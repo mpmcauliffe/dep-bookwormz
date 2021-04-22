@@ -19,6 +19,7 @@ const router                            = express.Router()
 
 router.get('/getclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
+    const email = getEmail(req.headers['x-auth-token'])
 
     try {
         const club = await Club.findById(clubId)
@@ -27,16 +28,22 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
             return
         }
         const clubBookIds = club.books
-
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
         // if (clubBooks.length < 1) { 
         //     res.json({ 'clubBooks': 'Club doesn\'t have any books on its shelf at the moment.' }) 
         //     return
         // }
 
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+
+        const clubIds = user.clubs
+        const isClubMember = clubIds.some(id => clubId === id.toString())
+
         const clubElements = {
             ...club,
             clubBooks: [...clubBooks],
+            isClubMember,
         }
 
         // console.log(clubElements)

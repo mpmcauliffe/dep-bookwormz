@@ -7,6 +7,7 @@ const initialState = {
     currentClub: null,
     clubBooks: [ ],
     clubSearchQuery: '',
+    isUserAMember: false,
     clubMessage: {
         message: '',
         style: '',
@@ -19,11 +20,12 @@ export default (state = initialState, action) => {
     switch(action.type) {
 
         case GET_CLUB:
-            // console.log(action.payload.clubBooks)
+            // console.log(action.payload)
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },
                 clubBooks: action.payload.clubBooks,
+                isUserAMember: action.payload.isClubMember,
             }
 
         case GET_MULTIPLE_CLUBS:
