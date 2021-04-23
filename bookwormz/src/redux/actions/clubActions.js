@@ -108,9 +108,11 @@ export const createClub = (clubSettings, history) => async dispatch => {
     }
 }
 
-export const joinClub = () => dispatch => {
+export const joinClub = clubId => async dispatch => {
     try {
-        
+        const res = await axios.put(`/clubs/joinclub/${clubId}`, config)
+
+        console.log(res)
     } catch (e) {
         console.log(e)
         dispatch({ 
