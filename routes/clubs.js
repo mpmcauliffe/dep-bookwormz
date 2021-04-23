@@ -126,6 +126,44 @@ router.post('/createclub', verification, async (req, res) => {
 
     } catch (e) {
         console.log(e)
+        throw e
+    }
+})
+
+router.put('/joinclub/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const email = getEmail(req.headers['x-auth-token'])
+
+    let joinClubResponse = false
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+
+        const isUserInClub = user.clubs.some(club => club.toString() === clubId)
+        if (isUserInClub) { 
+            joinClubResponse = { message: 'User already member in club', isClubMember: true, }
+            res.json(joinClubResponse) 
+            return
+        }
+        user.clubs.unshift(clubId._id)
+        
+        const userInfo = {
+            chiefAdmin: false,
+            memberId: user._id,
+            name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
+            profile: user.secondaryImage ? user.secondaryImage : user.image,
+        }
+        club.members.unshift(userInfo)
+
+        joinClubResponse = { message: `Successfully joined ${club.clubName}.`, isClubMember: true, }
+        res.json(joinClubResponse)
+
+    } catch (e) {
+        console.log(e)
+        throw e
     }
 })
 
