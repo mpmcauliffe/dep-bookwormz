@@ -181,11 +181,12 @@ router.put('/leaveclub/:clubId', verification, async (req, res) => {
         user.clubs = user.clubs.filter(club => club.toString() !== clubId)
         await user.save()
 
-        club.members = club.members.filter(member => member._id !== user._id)
+        club.members = club.members.filter(member => member.memberId.toString() !== user._id.toString())
         await club.save()
 
         if (club.members.length === 0) {
-            await club.remove()
+            console.log('delete club')
+            club.remove()
         }
 
         ClubResponse = { message: `Left ${club.clubName}.`, isClubMember: false, }
