@@ -134,7 +134,7 @@ router.put('/joinclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
     const email = getEmail(req.headers['x-auth-token'])
 
-    let joinClubResponse = false
+    let joinClubResponse
 
     try {
         const club = await Club.findById(clubId)
@@ -148,13 +148,8 @@ router.put('/joinclub/:clubId', verification, async (req, res) => {
             res.json(joinClubResponse) 
             return
         }
-        
         user.clubs.unshift(club._id)
         await user.save()
-
-        // if (club.members.length < 1) {
-
-        // }
 
         const userInfo = {
             chiefAdmin: false,
@@ -165,9 +160,33 @@ router.put('/joinclub/:clubId', verification, async (req, res) => {
         club.members.unshift(userInfo)
         await club.save()
         
-        joinClubResponse = { message: `Successfully joined ${club.clubName}.`, isClubMember: true, }
+        joinClubResponse = { message: `Joined ${club.clubName}.`, isClubMember: true, }
         res.json(joinClubResponse)
 
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+router.put('/leaveclub/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const email = getEmail(req.headers['x-auth-token'])
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+    
+        user.clubs = user.clubs.filter(club => club.toString() !== clubId)
+        user.save()
+
+        club.members = club.members.filter(member => member._id !== user._id)
+        club.save()
+
+        ClubResponse = { message: `Left ${club.clubName}.`, isClubMember: false, }
+        res.json(ClubResponse)
+    
     } catch (e) {
         console.log(e)
         throw e
