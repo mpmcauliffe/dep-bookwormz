@@ -6,7 +6,6 @@ import { ProfileImage } from '../../../components'
 export const Members = ({ member }) => {
     return (
         <div
-            key={member.memberId} 
             className='grid-cell'>
             <ProfileImage 
                 src={
@@ -21,7 +20,6 @@ export const Members = ({ member }) => {
                     />&nbsp;&nbsp;{member.name}</p>
                     : <p>{member.name}</p>
                 }
-
         </div>
     )
 }

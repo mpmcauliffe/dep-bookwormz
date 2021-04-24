@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
 import { ClubHeader, ClubShelf, MemberButton, Members, } from './sections'
-import { BiGrid, Buffer, MainContent, Spinner, StandarGrid, } from '../../components'
+import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
@@ -53,13 +53,22 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                     <Buffer thickness={7} />
                     
                     <h3>Club Members</h3><Buffer thickness={7} />
-                    <StandarGrid>
-                        {currentClub.members.map(member => (
-                            <Members 
-                                member={member}
-                                key={member.memberId} />
-                        ))}
-                    </StandarGrid>
+                    {currentClub.members.length > 0 
+                        ?  (
+                            <StandarGrid>
+                                {currentClub.members.map(member => (
+                                    <Members 
+                                        member={member}
+                                        key={member.memberId} />
+                                ))}
+                            </StandarGrid>
+                        ) : (
+                            <EmptyNotification
+                                linkTo={''}
+                                linkMessage={''}
+                                preMessage={`There aren't any current members of ${currentClub.clubName}`} />
+                        )
+                    }
                 </MainContent>
         </motion.div>
     )
