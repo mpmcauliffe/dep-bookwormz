@@ -152,15 +152,19 @@ router.put('/joinclub/:clubId', verification, async (req, res) => {
         user.clubs.unshift(club._id)
         await user.save()
 
-        // const userInfo = {
-        //     chiefAdmin: false,
-        //     memberId: user._id,
-        //     name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
-        //     profile: user.secondaryImage ? user.secondaryImage : user.image,
+        // if (club.members.length < 1) {
+
         // }
+
+        const userInfo = {
+            chiefAdmin: false,
+            memberId: user._id,
+            name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
+            profile: user.secondaryImage ? user.secondaryImage : user.image,
+        }
         club.members.unshift(userInfo)
         await club.save()
-
+        
         joinClubResponse = { message: `Successfully joined ${club.clubName}.`, isClubMember: true, }
         res.json(joinClubResponse)
 
