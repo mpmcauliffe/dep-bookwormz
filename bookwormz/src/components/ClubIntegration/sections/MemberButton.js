@@ -1,19 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useHistory, } from 'react-router-dom'
 import { AppButton } from '../../../components'
 import { joinClub, leaveClub, } from '../../../redux/actions/clubActions'
 
 
 const MemberButton_proto = ({ isUserAMember, joinClub, leaveClub, currentId, clubName, }) => {
-    
+    const history                       = useHistory()
     
     const handleMemberButtonCLick = () => {
         if (!isUserAMember) { 
             joinClub(clubName, currentId)
             return
         }
-        leaveClub()
+        leaveClub(clubName, currentId, history)
     }
 
     return (

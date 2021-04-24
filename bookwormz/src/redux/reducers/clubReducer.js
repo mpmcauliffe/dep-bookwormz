@@ -60,6 +60,12 @@ export default (state = initialState, action) => {
         case LEAVE_CLUB:
             return {
                 ...state,
+                isUserAMember: action.payload.isClubMember,
+                clubMessage: {
+                    message: action.payload.message,
+                    style: 'red accent-4 rounded', 
+                    timeDisplay: 5000,
+                },
             }
 
         case RESET_CLUB:
