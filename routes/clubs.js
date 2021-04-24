@@ -179,10 +179,14 @@ router.put('/leaveclub/:clubId', verification, async (req, res) => {
         if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
     
         user.clubs = user.clubs.filter(club => club.toString() !== clubId)
-        user.save()
+        await user.save()
 
         club.members = club.members.filter(member => member._id !== user._id)
-        club.save()
+        await club.save()
+
+        if (club.members.length === 0) {
+            await club.remove()
+        }
 
         ClubResponse = { message: `Left ${club.clubName}.`, isClubMember: false, }
         res.json(ClubResponse)

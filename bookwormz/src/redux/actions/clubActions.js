@@ -108,14 +108,13 @@ export const createClub = (clubSettings, history) => async dispatch => {
     }
 }
 
-export const joinClub = clubId => async dispatch => {
-    //const res = await axios.get(`/clubs/getclub/${clubId}`, config)
-    console.log(clubId)
+export const joinClub = (clubName, clubId) => async dispatch => {
     try {
         const res = await axios.put(`/clubs/joinclub/${clubId}`, config)
-        console.log(res)
+        console.log(`%cJOINED %c${clubName}`, 'font-weight: bold', 'color: green')
 
         dispatch({ type: JOIN_CLUB, payload: res.data })
+
     } catch (e) {
         console.log(e)
         dispatch({ 
@@ -129,9 +128,15 @@ export const joinClub = clubId => async dispatch => {
     }
 }
 
-export const leaveClub = () => dispatch => {
+export const leaveClub = (clubName, clubId, history) => async dispatch => {
     try {
-        
+        const res = await axios.put(`/clubs/leaveclub/${clubId}`, config)
+        console.log(`%cLEFT %c${clubName}`, 'font-weight: bold', 'color: red')
+
+        history.push(`/dashboard`)
+
+        dispatch({ type: LEAVE_CLUB, payload: res.data })
+
     } catch (e) {
         console.log(e)
         dispatch({ 

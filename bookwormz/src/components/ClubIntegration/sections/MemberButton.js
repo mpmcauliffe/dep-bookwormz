@@ -5,12 +5,12 @@ import { AppButton } from '../../../components'
 import { joinClub, leaveClub, } from '../../../redux/actions/clubActions'
 
 
-const MemberButton_proto = ({ isUserAMember, joinClub, leaveClub, currentId, }) => {
+const MemberButton_proto = ({ isUserAMember, joinClub, leaveClub, currentId, clubName, }) => {
     
     
     const handleMemberButtonCLick = () => {
         if (!isUserAMember) { 
-            joinClub(currentId)
+            joinClub(clubName, currentId)
             return
         }
         leaveClub()
@@ -29,6 +29,7 @@ MemberButton_proto.propTypes = {
     leaveClub: PropTypes.func.isRequired,
     isUserAMember: PropTypes.bool.isRequired,
     currentId: PropTypes.string.isRequired,
+    clubName: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({

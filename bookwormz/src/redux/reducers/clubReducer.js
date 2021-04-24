@@ -57,6 +57,11 @@ export default (state = initialState, action) => {
                 },
             }
 
+        case LEAVE_CLUB:
+            return {
+                ...state,
+            }
+
         case RESET_CLUB:
             return {
                 ...state,

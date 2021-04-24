@@ -37,7 +37,10 @@ const Club_proto = ({ getClub, currentClub, clubBooks, isUserAMember, }) => {
                         clubCover={currentClub.bookNumber}
                         description={currentClub.description} />
                     <Buffer thickness={3} />
-                    <MemberButton currentId={clubId} />
+                    
+                    <MemberButton 
+                        currentId={clubId}
+                        clubName={currentClub.clubName} />
                     <Buffer thickness={7} />
                     
                     <BiGrid>
