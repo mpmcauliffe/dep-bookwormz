@@ -48,7 +48,7 @@ router.post('/addbook/', verification, async (req, res) => {
 
         const doesUserHaveBook = user.books.some(book => book === bookId)
         if (!doesUserHaveBook) {  
-            user.books.push(book.bookId)
+            user.books.unshift(book.bookId)
             await user.save()
             res.json(book)
             return

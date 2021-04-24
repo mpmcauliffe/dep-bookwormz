@@ -133,7 +133,7 @@ router.post('/createclub', verification, async (req, res) => {
 router.put('/joinclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
     const email = getEmail(req.headers['x-auth-token'])
-console.log(clubId)
+
     let joinClubResponse = false
 
     try {
@@ -148,9 +148,10 @@ console.log(clubId)
             res.json(joinClubResponse) 
             return
         }
-        console.log(club.id)
-        user.clubs.unshift(club._id)
         
+        user.clubs.unshift(club._id)
+        await user.save()
+
         const userInfo = {
             chiefAdmin: false,
             memberId: user._id,
@@ -158,6 +159,7 @@ console.log(clubId)
             profile: user.secondaryImage ? user.secondaryImage : user.image,
         }
         club.members.unshift(userInfo)
+        await club.save()
 
         joinClubResponse = { message: `Successfully joined ${club.clubName}.`, isClubMember: true, }
         res.json(joinClubResponse)
