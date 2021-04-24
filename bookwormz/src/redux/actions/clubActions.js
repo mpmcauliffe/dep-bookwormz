@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, SEARCH_CLUBS, RESET_CLUB,
-     CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
+import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, 
+    RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -109,10 +109,13 @@ export const createClub = (clubSettings, history) => async dispatch => {
 }
 
 export const joinClub = clubId => async dispatch => {
+    //const res = await axios.get(`/clubs/getclub/${clubId}`, config)
+    console.log(clubId)
     try {
         const res = await axios.put(`/clubs/joinclub/${clubId}`, config)
-
         console.log(res)
+
+        dispatch({ type: JOIN_CLUB, payload: res.data })
     } catch (e) {
         console.log(e)
         dispatch({ 

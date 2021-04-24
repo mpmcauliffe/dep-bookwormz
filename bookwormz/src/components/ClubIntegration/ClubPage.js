@@ -10,7 +10,7 @@ import { getClub, } from '../../redux/actions/clubActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
-const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
+const Club_proto = ({ getClub, currentClub, clubBooks, isUserAMember, }) => {
     const history                       = useHistory()
     let { clubId }                      = useParams()
     
@@ -19,7 +19,7 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
     useEffect(() => {
         if (!currentClub) { getClub(clubId, history) }
 
-    }, [getClub, currentClub, clubId, history])
+    }, [getClub, currentClub, clubId, history, isUserAMember])
     
 
     if (!currentClub || Object.keys(currentClub).length === 0) { return <Spinner /> }
@@ -37,7 +37,7 @@ const Club_proto = ({ getClub, currentClub, clubBooks, }) => {
                         clubCover={currentClub.bookNumber}
                         description={currentClub.description} />
                     <Buffer thickness={3} />
-                    <MemberButton />
+                    <MemberButton currentId={clubId} />
                     <Buffer thickness={7} />
                     
                     <BiGrid>
@@ -79,11 +79,13 @@ Club_proto.propTypes = {
     getClub: PropTypes.func.isRequired,
     currentClub: PropTypes.object,
     clubBooks: PropTypes.array,
+    isUserAMember: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     currentClub: state.clubs.currentClub,
     clubBooks: state.clubs.clubBooks,
+    isUserAMember: state.clubs.isUserAMember,
 })
 
 const ClubPage = connect(mapStateToProps, { getClub, })(Club_proto)

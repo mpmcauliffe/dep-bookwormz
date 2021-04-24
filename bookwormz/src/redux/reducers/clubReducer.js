@@ -1,5 +1,5 @@
-import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, SEARCH_CLUBS, RESET_CLUB,
-    CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
+import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, 
+    RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
 const initialState = {
@@ -43,6 +43,17 @@ export default (state = initialState, action) => {
                     message: action.payload.message,
                     style: action.payload.style,
                     timeDisplay: action.payload.timeDisplay,
+                },
+            }
+
+        case JOIN_CLUB:
+            return {
+                ...state,
+                isUserAMember: action.payload.isClubMember,
+                clubMessage: {
+                    message: action.payload.message,
+                    style: 'green darken-3 rounded',
+                    timeDisplay: 5000,
                 },
             }
 
