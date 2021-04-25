@@ -37,8 +37,9 @@ export default (state = initialState, action) => {
         case CREATE_CLUB:
             return {
                 ...state,
-                availableClubs: [ ...state.availableClubs, action.payload.club ],
-                currentClub: { ...action.payload.club },
+                availableClubs: [ ...state.availableClubs, action.payload._doc ],
+                currentClub: { ...action.payload._doc },
+                isUserAMember: action.payload.isClubMember,
                 clubMessage: {
                     message: action.payload.message,
                     style: action.payload.style,

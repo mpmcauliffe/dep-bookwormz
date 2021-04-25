@@ -10,7 +10,7 @@ const ClubSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true,
+        // required: true,
     },
     bookNumber: {
         type: String,

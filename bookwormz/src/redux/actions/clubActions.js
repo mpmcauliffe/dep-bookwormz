@@ -64,7 +64,22 @@ export const getMyClubs = () => async dispatch => {
         })
     }
 }
+// isClubMember: true
 
+// _doc:
+// bookNumber: "0"
+// books: []
+// chiefAdmin: "60420bd1925e366aa89b048d"
+// chiefEmail: "mcauliffe99@gmail.com"
+// chiefPortraitURL: "https://lh3.googleusercontent.com/a-/AOh14GibD-j9kmzjWfYIRjMZphnMLqzu45lcOghcXMck3Q=s96-c"
+// clubName: "new club"
+// createdAt: "2021-04-25T10:34:05.202Z"
+// createdBy: "60420bd1925e366aa89b048d"
+// description: ""
+// members: [{…}]
+// visibility: "public"
+// __v: 0
+// _id: "6085459d66a4c978400b0d41"
 export const createClub = (clubSettings, history) => async dispatch => {       
     try {
         const res = await axios.post(`/clubs/createclub/`, clubSettings, config) 

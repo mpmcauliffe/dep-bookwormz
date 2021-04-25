@@ -88,11 +88,6 @@ router.get('/getmyclubs', verification, async (req, res) => {
     }
 })
 
-// memberId
-// name
-// profile
-// chiefAdmin
-
 router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])
@@ -107,7 +102,6 @@ router.post('/createclub', verification, async (req, res) => {
             profile: user.secondaryImage ? user.secondaryImage : user.image,
             chiefAdmin: true,
         }
-        console.log(startingMember)
 
         const newClub = new Club({
             clubName,
@@ -119,10 +113,18 @@ router.post('/createclub', verification, async (req, res) => {
             createdBy: user._id,
             members: [startingMember],
         })
-        console.log(newClub)
+        // 
         const created = await newClub.save()
+// console.log(created)
+        user.clubs.unshift(created._id)
+        await user.save()
 
-        res.json(created)
+        const createdClub = {
+            ...created,
+            isClubMember: true,
+        }
+
+        res.json(createdClub)
 
     } catch (e) {
         console.log(e)
