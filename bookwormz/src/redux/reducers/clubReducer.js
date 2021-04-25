@@ -35,11 +35,12 @@ export default (state = initialState, action) => {
             }
         
         case CREATE_CLUB:
+            console.log(action.payload)
             return {
                 ...state,
-                availableClubs: [ ...state.availableClubs, action.payload._doc ],
-                currentClub: { ...action.payload._doc },
-                isUserAMember: action.payload.isClubMember,
+                availableClubs: [ ...state.availableClubs, action.payload.club._doc ],
+                currentClub: { ...action.payload.club._doc },
+                isUserAMember: action.payload.club.isClubMember,
                 clubMessage: {
                     message: action.payload.message,
                     style: action.payload.style,
@@ -59,6 +60,7 @@ export default (state = initialState, action) => {
             }
 
         case LEAVE_CLUB:
+            
             return {
                 ...state,
                 isUserAMember: action.payload.isClubMember,
