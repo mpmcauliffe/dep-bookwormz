@@ -92,7 +92,6 @@ router.post('/createclub', verification, async (req, res) => {
     const { clubName, description, bookNumber } = req.body
     const email = getEmail(req.headers['x-auth-token'])
 
-
     try {
         const user = await User.findOne({ email })
 
@@ -187,7 +186,7 @@ router.put('/leaveclub/:clubId', verification, async (req, res) => {
         await club.save()
 
         if (club.members.length === 0) {
-            console.log('delete club')
+            console.log(`\nDELETE CLUB: ${club.clubName}\n`)
             club.remove()
         }
 

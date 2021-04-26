@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
             }
         
         case CREATE_CLUB:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 availableClubs: [ ...state.availableClubs, action.payload.club._doc ],

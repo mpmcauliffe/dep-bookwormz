@@ -87,8 +87,8 @@ export const createClub = (clubSettings, history) => async dispatch => {
 
         if (res.status === 200) {
             console.log(`%cCREATED %c${clubSettings.clubName}`, 'font-weight: bold', 'color: orange')
-            
-            history.push(`/club/${res.data._id}`)
+            console.log(res.data._doc._id)
+            history.push(`/club/${res.data._doc._id}`)
             
             dispatch({ 
                 type: CREATE_CLUB, 
