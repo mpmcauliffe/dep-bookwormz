@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
-const User = require('./User')
-const MemberSchema = require('./MemberSchema')
+const mongoose          = require('mongoose')
+const User              = require('./User')
+const MemberSchema      = require('./MemberSchema')
+const CommentSchema     = require('./CommentSchema')
 
 
 const ClubSchema = new mongoose.Schema({ 
@@ -40,6 +41,7 @@ const ClubSchema = new mongoose.Schema({
         enum: ['public', 'private'],
     },
     members: [MemberSchema],
+    comments: [CommentSchema],
     books: {
         type: [String],
         required: true,
