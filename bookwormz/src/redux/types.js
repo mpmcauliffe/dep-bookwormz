@@ -25,6 +25,12 @@ export const RESET_CLUB             = 'RESET_CLUB'
 export const CLUB_MESSAGE           = 'CLUB_MESSAGE'
 export const CLEAR_CLUB_MESSAGE     = 'CLEAR_CLUB_MESSAGE'
 
+/* COMMENT TYPES */
+export const CREATE_COMMENT         = 'CREATE_COMMENT'
+export const DELETE_COMMENT         = 'DELETE_COMMENT'
+export const GET_COMMENTS           = 'GET_COMMENTS'
+export const EDIT_COMMENT           = 'EDIT_COMMENT'
+
 /* ACCOUNT TYPES */
 export const GET_USER_INFO              = 'GET_USER_INFO'
 export const USER_MESSAGE               = 'USER_MESSAGE'
