@@ -19,7 +19,7 @@ export const ClubShelf = ({ clubBooks, numberOfBooks, clubName, }) => {
                     <EmptyNotification 
                         linkTo={''}
                         linkMessage={''}
-                        preMessage={`There aren't any books in ${clubName}'s library`} />
+                        preMessage={`There aren't any books in this library`} />
                 )
             }
         </div>
