@@ -25,11 +25,16 @@ export const StandarGrid = styled.section`
     }
 `
 export const BiGrid = styled.section`
+    width: 95%;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
     column-gap: 2rem;
 
-    @media (min-width: 481px) { grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr)); }
+    @media (min-width: 540px) { 
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(41rem, 1fr)); 
+    }
 `
 
 export const ClubHeaderGrid = styled.section`
