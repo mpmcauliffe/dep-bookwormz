@@ -22,7 +22,7 @@ export const dummytext = [
         commenterProfile: '../../ClubIntegration/img/mock/sun',
         subject: 'new books',
         content: 'But I like Goldilocks!',
-        replyTo: '1005',
+        replyTo: 'uWa3If7anOnj7Qke',
         created: Date().now
     }, {
         _id: 'WIunan7e7kf3OjaQ',
@@ -30,7 +30,35 @@ export const dummytext = [
         commenterName: 'Jimbo',
         commenterProfile: '../../ClubIntegration/img/mock/jimbo',
         subject: 'new books',
+        replyTo: 'QnaOnafeuj7kI3W7',
+        replyToOrigin: 'uWa3If7anOnj7Qke',
         content: 'Okay. I\'ll allow Goldilocks for your sandwich.',
         created: Date().now
-    },    
+    }, {
+        _id: 'eQ73kjf7IWOannu',
+        commenterId: '1010',
+        commenterName: 'Sefinaz',
+        commenterProfile: '../../ClubIntegration/img/mock/sun',
+        subject: 'new books',
+        replyTo: 'WIunan7e7kf3OjaQ',
+        replyToOrigin: 'uWa3If7anOnj7Qke',
+        content: 'okay',
+        created: Date().now
+    }, {
+        _id: 'eQ73kjf7IWOannu',
+        commenterId: '1010',
+        commenterName: 'Sefinaz',
+        commenterProfile: '../../ClubIntegration/img/mock/sun',
+        subject: 'new books',
+        content: 'okay',
+        created: Date().now
+    }, {
+        _id: '7eO3Wan7jaIfukQn',
+        commenterId: '1009',
+        commenterName: 'Mekong',
+        commenterProfile: '../../ClubIntegration/img/mock/moon',
+        subject: 'Desmond the Moon Bear',
+        content: 'I\'m adding Desmond the Moon Bear',
+        created: Date().now
+    }, 
 ]

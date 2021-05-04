@@ -18,6 +18,7 @@ const CommentSchema = new Schema({
         required: true,
     },
     replyTo: String,
+    replyToOrigin: String,
     subject: String,
     content: {
         type: String,
