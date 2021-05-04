@@ -16,6 +16,7 @@ export const dummytext = [
         content: 'I\'m adding Brown Bear, Brown Bear. Goldilocks is banned',
         created: Date().now
     }, {
+        _id: 'QnaOnafeuj7kI3W7',
         commenterId: '1010',
         commenterName: 'Sefinaz',
         commenterProfile: '../../ClubIntegration/img/mock/sun',
@@ -24,6 +25,7 @@ export const dummytext = [
         replyTo: '1005',
         created: Date().now
     }, {
+        _id: 'WIunan7e7kf3OjaQ',
         commenterId: '1005',
         commenterName: 'Jimbo',
         commenterProfile: '../../ClubIntegration/img/mock/jimbo',
