@@ -23,6 +23,7 @@ export const dummytext = [
         subject: 'new books',
         content: 'But I like Goldilocks!',
         replyTo: 'uWa3If7anOnj7Qke',
+        replyToOrigin: 'uWa3If7anOnj7Qke',
         created: Date().now
     }, {
         _id: 'WIunan7e7kf3OjaQ',
@@ -45,14 +46,6 @@ export const dummytext = [
         content: 'okay',
         created: Date().now
     }, {
-        _id: 'eQ73kjf7IWOannu',
-        commenterId: '1010',
-        commenterName: 'Sefinaz',
-        commenterProfile: '../../ClubIntegration/img/mock/sun',
-        subject: 'new books',
-        content: 'okay',
-        created: Date().now
-    }, {
         _id: '7eO3Wan7jaIfukQn',
         commenterId: '1009',
         commenterName: 'Mekong',
@@ -60,5 +53,73 @@ export const dummytext = [
         subject: 'Desmond the Moon Bear',
         content: 'I\'m adding Desmond the Moon Bear',
         created: Date().now
-    }, 
+    }, {
+        _id: 'WaQ7eIk7unnOa3fj',
+        commenterId: '1004',
+        commenterName: 'Maddy',
+        commenterProfile: '../../ClubIntegration/img/mock/maddy',
+        replyTo: '7eO3Wan7jaIfukQn',
+        replyToOrigin: '7eO3Wan7jaIfukQn',
+        subject: 'Desmond the Moon Bear',
+        content: 'Isn\'t that a cartoon?',
+        created: Date().now,
+    }, {
+        _id: 'nf7nOek7uIaaQWj3',
+        commenterId: '1009',
+        commenterName: 'Mekong',
+        commenterProfile: '../../ClubIntegration/img/mock/moon',
+        subject: 'Desmond the Moon Bear',
+        replyTo: 'WaQ7eIk7unnOa3fj',
+        replyToOrigin: '7eO3Wan7jaIfukQn',
+        content: 'Yep',
+        created: Date().now
+    }, {
+        _id: 'ek7I3nWun7jafQOa',
+        commenterId: '1010',
+        commenterName: 'Sefinaz',
+        commenterProfile: '../../ClubIntegration/img/mock/sun',
+        subject: 'Desmond the Moon Bear',
+        replyTo: 'nf7nOek7uIaaQWj3',
+        replyToOrigin: '7eO3Wan7jaIfukQn',
+        content: 'I love Desmond the Moon Bear!',
+        created: Date().now
+    }, {
+        _id: 'jf7W3naQaOeIn7uk',
+        commenterId: '1013',
+        commenterName: 'Selem',
+        commenterProfile: '../../ClubIntegration/img/mock/sloth',
+        subject: 'Desmond the Moon Bear',
+        replyTo: 'ek7I3nWun7jafQOa',
+        replyToOrigin: '7eO3Wan7jaIfukQn',
+        content: 'You love anything about bears.',
+        created: Date().now
+    }, {
+        _id: 'Ia7n7OWnfkjeua3Q',
+        commenterId: '1010',
+        commenterName: 'Sefinaz',
+        commenterProfile: '../../ClubIntegration/img/mock/sun',
+        subject: 'Desmond the Moon Bear',
+        replyTo: 'jf7W3naQaOeIn7uk',
+        replyToOrigin: '7eO3Wan7jaIfukQn',
+        content: 'Who doesn\'t like all things bears?',
+        created: Date().now
+    }, {
+        _id: 'eaOuIja77WkQf3nn',
+        commenterId: '1015',
+        commenterName: 'Amanda the Panda',
+        commenterProfile: '../../ClubIntegration/img/mock/panda',
+        subject: 'Goodies',
+        content: 'I\'m making a list of snacks to bring to next club meeting.',
+        created: Date().now
+    }, {
+        _id: 'eaOuIja77WkQf3nn',
+        commenterId: '1015',
+        commenterName: 'Kermit the Kermode',
+        commenterProfile: '../../ClubIntegration/img/mock/kermode',
+        replyTo: 'eaOuIja77WkQf3nn',
+        replyToOrigin: 'eaOuIja77WkQf3nn',
+        subject: 'Goodies',
+        content: 'Bears are all about food. I\'ll bring a chewed up salmon!',
+        created: Date().now
+    },
 ]
