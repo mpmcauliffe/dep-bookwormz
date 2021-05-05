@@ -90,6 +90,7 @@ export const ClubBookShelf = styled.div`
 
     display: grid;
     grid-template-columns: 1fr 5fr;
+    gap: 1rem;
     background: #f7f7f7;
 
     div {
