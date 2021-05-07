@@ -2,13 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
 import {  ClubBookItem, } from '../sections'
-import { Buffer, EmptyNotification, } from '../../../components'
+import { Buffer, EmptyNotification, HeaderLink, } from '../../../components'
 import 'simplebar/dist/simplebar.min.css'
+
 
 export const ClubShelf = ({ clubBooks, numberOfBooks, clubName, }) => {
     return (
         <div>
-            <h3>Club Book Shelf</h3>
+            <h3>Club Bookshelf</h3>
+            <Buffer thickness={7} />
+            <HeaderLink>Click to add books from your bookshelf</HeaderLink>
             <Buffer thickness={7} />
             {Array.isArray(clubBooks) && numberOfBooks > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
