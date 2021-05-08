@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useHistory, } from 'react-router-dom'
-import { AppButton } from '../../../components'
-import { joinClub, leaveClub, } from '../../../redux/actions/clubActions'
+import { AppButton } from '../../components'
+import { joinClub, leaveClub, } from '../../redux/actions/clubActions'
 
 
 const MemberButton_proto = ({ isUserAMember, joinClub, leaveClub, currentId, clubName, }) => {

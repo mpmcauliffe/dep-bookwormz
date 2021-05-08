@@ -2,9 +2,9 @@ import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
-import { pageTransition, pageVariants, } from './zAnimation'
-import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../components'
-import { getAllClubs, fillClubs, resetClubs } from '../redux/actions/clubActions'
+import { pageTransition, pageVariants, } from '../zAnimation'
+import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../../components'
+import { getAllClubs, fillClubs, resetClubs } from '../../redux/actions/clubActions'
 
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, resetClubs, }) => {

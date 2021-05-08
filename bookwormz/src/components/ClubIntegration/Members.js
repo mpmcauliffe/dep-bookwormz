@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ProfileImage } from '../../../components'
+import { ProfileImage } from '../../components'
 
 
 export const Members = ({ member }) => {
@@ -11,7 +11,7 @@ export const Members = ({ member }) => {
                 src={
                     member.profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
                     ? `${member.profile}` 
-                    : require(`../img/mock/${member.profile}.png`).default}
+                    : require(`../../assets/mock/${member.profile}.png`).default}
                 alt='CLUB_MEMBER'/>
                 {member.chiefAdmin 
                     ? <p><i 

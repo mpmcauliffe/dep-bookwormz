@@ -129,6 +129,17 @@ export const removeBook = (bookId, title) => async dispatch => {
     }
 }
 
+// GET CLUB BOOKS
+export const getClubBooks = clubId => async dispatch => {
+    try {
+        
+        
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: BOOK_ERROR, payload: 'Could not retrieve club library.' })
+    }
+}
+
 export const clearBookMessage = () => dispatch => { dispatch({ type: CLEAR_BOOK_MESSAGE }) }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

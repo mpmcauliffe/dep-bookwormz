@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
-import {  ClubBookItem, } from '../sections'
-import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
+import {  ClubBookItem, } from './ClubBookItem'
+import { BasicTrigger, Buffer, EmptyNotification, } from '../../components'
 import 'simplebar/dist/simplebar.min.css'
 
 

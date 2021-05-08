@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ClubBookShelf, } from '../../bookShelf/Books.comp'
+import { ClubBookShelf, } from '../bookShelf/Books.comp'
 
 
 export const ClubBookItem = ({ book, }) => {

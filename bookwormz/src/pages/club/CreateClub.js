@@ -118,7 +118,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
                                         alt='CLUB_BOOK-COVER'
                                         className='club-image'
                                         onClick={handleBookCoverSelect}
-                                        src={require(`./img/${i}.png`).default} />
+                                        src={require(`../../assets/covers/${i}.png`).default} />
                                 </label>
                                 <p style={{ marginTop: '3rem', }}>{cover.name}</p>
                             </span>

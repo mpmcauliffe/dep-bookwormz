@@ -1,7 +1,7 @@
 import React, { Fragment, } from 'react'
 import PropTypes from 'prop-types'
 import { MemberButton } from './MemberButton'
-import { ClubHeaderGrid, ClubImg, HeaderLink, HeaderSection,  } from '../..'
+import { ClubHeaderGrid, ClubImg, HeaderLink, HeaderSection,  } from '../'
 
 export const ClubHeader = ({ clubName, clubCover, description }) => {
     return (
@@ -17,7 +17,7 @@ export const ClubHeader = ({ clubName, clubCover, description }) => {
             <ClubHeaderGrid>
                 <ClubImg 
                     alt='club_book_cover'
-                    src={require(`../img/${clubCover}.png`).default} />
+                    src={require(`../../assets/covers/${clubCover}.png`).default} />
 
                 <div className='info-cell'>
                     <p>{description}</p>
