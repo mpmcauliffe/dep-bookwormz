@@ -1,4 +1,4 @@
-import React, { useEffect, } from 'react'
+import React, { useState, useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -7,17 +7,28 @@ import { ClubHeader, ClubShelf, MemberButton, Members, } from './sections'
 import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid, } from '../../components'
 import { pageTransition, pageVariants, } from '../../pages/zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
+import { getBooks, } from '../../redux/actions/bookActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
-const Club_proto = ({ getClub, currentClub, clubBooks, isUserAMember, }) => {
-    const history                       = useHistory()
-    let { clubId }                      = useParams()
+const Club_proto = ({ 
+    getClub, getBooks, 
+    currentClub, clubBooks, myBooks,
+    isUserAMember, }) => {
+        
+    const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
+    const history                                       = useHistory()
+    let { clubId }                                      = useParams()
     
+    const handleClubBookshelfToggle = e => {
+        console.log('toggle clicked!')
+    }
+
     // console.log(currentClub)
     // console.log(clubBooks)
-    useEffect(() => {
+    useEffect(() => { 
         if (!currentClub) { getClub(clubId, history) }
+        if (myBooks.length < 1) { getBooks() }
 
     }, [getClub, currentClub, clubId, history, isUserAMember])
     
@@ -49,7 +60,8 @@ const Club_proto = ({ getClub, currentClub, clubBooks, isUserAMember, }) => {
                         <ClubShelf
                             clubBooks={clubBooks}
                             clubName={currentClub.clubName}
-                            numberOfBooks={clubBooks.length} />
+                            numberOfBooks={clubBooks.length}
+                            switchBookshelf={handleClubBookshelfToggle} />
 
                         {/* */}
                     </BiGrid>
@@ -89,7 +101,9 @@ const mapStateToProps = state => ({
     currentClub: state.clubs.currentClub,
     clubBooks: state.clubs.clubBooks,
     isUserAMember: state.clubs.isUserAMember,
+    getBooks: state.books.getBooks,
+    myBooks: state.books.myBooks,
 })
 
-const ClubPage = connect(mapStateToProps, { getClub, })(Club_proto)
+const ClubPage = connect(mapStateToProps, { getClub, getBooks, })(Club_proto)
 export { ClubPage }
