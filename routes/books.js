@@ -113,5 +113,26 @@ router.delete('/deletebook/:bookId', verification, async (req, res) => {
     }
 })
 
+/* GET CLUB BOOKS */
+router.get('/getclubbooks/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return
+        }
+        const clubBookIds = club.books
+        const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
+
+        // console.log(clubElements)
+        res.json(clubBooks)
+
+    } catch (e) {
+        console.log(e)
+    }
+})
+
 
 module.exports = router
