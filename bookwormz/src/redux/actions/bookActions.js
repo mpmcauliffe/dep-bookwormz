@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, CLEAR_BOOK_MESSAGE,
-    SET_LOADING,  } from '../types'
+    REMOVE_BOOK_FROM_LIBRARY, GET_CLUB_BOOKS, MESSAGE, BOOK_ERROR, 
+    CLEAR_BOOK_MESSAGE, SET_LOADING,  } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -132,8 +132,17 @@ export const removeBook = (bookId, title) => async dispatch => {
 // GET CLUB BOOKS
 export const getClubBooks = clubId => async dispatch => {
     try {
-        
-        
+        const res = await axios.get(`/books/getclubbooks/${clubId}`)
+
+        console.log(res.data)
+        // if (res.status === 200) {
+        //     dispatch({ 
+        //         type: REMOVE_BOOK_FROM_LIBRARY, 
+        //         payload: { book: res.data.removed, message: `${title} was removed from your books.` } 
+        //     })
+        //     return
+        // }
+
     } catch (e) {
         console.log(e)
         dispatch({ type: BOOK_ERROR, payload: 'Could not retrieve club library.' })

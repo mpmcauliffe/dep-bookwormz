@@ -5,7 +5,7 @@ import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARC
 const initialState = {
     availableClubs: [ ],
     currentClub: null,
-    clubBooks: [ ],
+    // clubBooks: [ ],
     clubSearchQuery: '',
     isUserAMember: false,
     clubMessage: {
@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },
-                clubBooks: action.payload.clubBooks,
+                // clubBooks: action.payload.clubBooks,
                 isUserAMember: action.payload.isClubMember,
             }
 
@@ -75,7 +75,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentClub: null,
-                clubBooks: [ ],
+                // clubBooks: [ ],
             }
 
         case CLUB_MESSAGE:

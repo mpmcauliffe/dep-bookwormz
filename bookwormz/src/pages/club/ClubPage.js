@@ -13,12 +13,12 @@ import { getBooks, } from '../../redux/actions/bookActions'
 
 const Club_proto = ({ 
     getClub, getBooks, 
-    currentClub, clubBooks, myBooks,
+    currentClub, //clubBooks, myBooks,
     isUserAMember, }) => {
         
-    const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
-    const history                                       = useHistory()
-    let { clubId }                                      = useParams()
+    
+    const history                      = useHistory()
+    let { clubId }                     = useParams()
     
     const handleClubBookshelfToggle = e => {
         console.log('toggle clicked!')
@@ -58,9 +58,9 @@ const Club_proto = ({
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
                         
                         <ClubShelf
-                            clubBooks={clubBooks}
+                            // clubBooks={clubBooks}
                             clubName={currentClub.clubName}
-                            numberOfBooks={clubBooks.length}
+                            // numberOfBooks={clubBooks.length}
                             switchBookshelf={handleClubBookshelfToggle} />
 
                         {/* */}
@@ -93,13 +93,13 @@ const Club_proto = ({
 Club_proto.propTypes = {
     getClub: PropTypes.func.isRequired,
     currentClub: PropTypes.object,
-    clubBooks: PropTypes.array,
+    // clubBooks: PropTypes.array,
     isUserAMember: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     currentClub: state.clubs.currentClub,
-    clubBooks: state.clubs.clubBooks,
+    // clubBooks: state.clubs.clubBooks,
     isUserAMember: state.clubs.isUserAMember,
     getBooks: state.books.getBooks,
     myBooks: state.books.myBooks,

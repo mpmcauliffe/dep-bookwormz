@@ -1,11 +1,12 @@
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, MESSAGE, BOOK_ERROR, CLEAR_BOOK_MESSAGE,
-    SET_LOADING,  } from '../types'
+    REMOVE_BOOK_FROM_LIBRARY, GET_CLUB_BOOKS, MESSAGE, BOOK_ERROR, 
+    CLEAR_BOOK_MESSAGE, SET_LOADING,  } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
 const initialState = {
     bookSearchQuery: '',
     myBooks: [ ],
+    clubBooks: [ ],
     bookResults: [ ],
     isLoading: false,
     shelfHeight: 100,
