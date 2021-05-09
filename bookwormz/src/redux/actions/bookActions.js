@@ -135,13 +135,13 @@ export const getClubBooks = clubId => async dispatch => {
         const res = await axios.get(`/books/getclubbooks/${clubId}`)
 
         console.log(res.data)
-        // if (res.status === 200) {
-        //     dispatch({ 
-        //         type: REMOVE_BOOK_FROM_LIBRARY, 
-        //         payload: { book: res.data.removed, message: `${title} was removed from your books.` } 
-        //     })
-        //     return
-        // }
+        if (res.status === 200) {
+            dispatch({ 
+                type: GET_CLUB_BOOKS, 
+                payload: res.data, 
+            })
+            return
+        }
 
     } catch (e) {
         console.log(e)

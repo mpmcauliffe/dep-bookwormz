@@ -28,7 +28,7 @@ const Club_proto = ({
     // console.log(clubBooks)
     useEffect(() => { 
         if (!currentClub) { getClub(clubId, history) }
-        if (myBooks.length < 1) { getBooks() }
+        // if (myBooks.length < 1) { getBooks() }
 
     }, [getClub, currentClub, clubId, history, isUserAMember])
     
@@ -59,9 +59,7 @@ const Club_proto = ({
                         
                         <ClubShelf
                             // clubBooks={clubBooks}
-                            clubName={currentClub.clubName}
-                            // numberOfBooks={clubBooks.length}
-                            switchBookshelf={handleClubBookshelfToggle} />
+                            clubName={currentClub.clubName} />
 
                         {/* */}
                     </BiGrid>

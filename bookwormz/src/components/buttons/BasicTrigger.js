@@ -12,4 +12,6 @@ export const BasicTrigger = styled.button`
     font-size: 2rem;
 
     cursor: pointer;
+
+    &:active { background: transparent; }
 `

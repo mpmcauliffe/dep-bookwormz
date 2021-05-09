@@ -5,7 +5,7 @@ import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARC
 const initialState = {
     availableClubs: [ ],
     currentClub: null,
-    // clubBooks: [ ],
+    clubId: null,
     clubSearchQuery: '',
     isUserAMember: false,
     clubMessage: {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     switch(action.type) {
 
         case GET_CLUB:
-            // console.log(action.payload)
+            console.log(action.payload._doc._id)
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },

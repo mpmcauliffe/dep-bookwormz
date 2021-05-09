@@ -61,6 +61,12 @@ export default (state = initialState, action) => {
                 },
             }
 
+        case GET_CLUB_BOOKS:
+            return {
+                ...state,
+                clubBooks: [...action.payload]
+            }
+
         case MESSAGE:
             return {
                 ...state,

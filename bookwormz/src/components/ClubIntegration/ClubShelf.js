@@ -2,6 +2,7 @@ import React, { useState, useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
+import { useParams, } from 'react-router-dom'
 import { ClubBookItem, } from './ClubBookItem'
 import { BasicTrigger, Buffer, EmptyNotification, } from '../../components'
 import { getClubBooks } from '../../redux/actions/bookActions'
@@ -9,16 +10,17 @@ import 'simplebar/dist/simplebar.min.css'
 
 
 export const ClubShelf_proto = ({ getClubBooks,
-    clubBooks, numberOfBooks, clubName, }) => {
+    clubBooks, clubName, }) => {
 
     const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
-    
+    let { clubId }                                      = useParams()
+
     const handleClubBookshelfToggle = e => {
         console.log('toggle clicked!')
     }
-
+console.log(clubBooks)
     useEffect(() => {
-        if (clubBooks.length === 0) { getClubBooks() }
+        if (clubBooks.length === 0) { getClubBooks(clubId) }
     }, [])
 
 
@@ -33,7 +35,7 @@ export const ClubShelf_proto = ({ getClubBooks,
             </BasicTrigger>
             <Buffer thickness={3} />
             
-            {Array.isArray(clubBooks) && numberOfBooks > 0 
+            {Array.isArray(clubBooks) && clubBooks.length > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
                        {clubBooks.map(book => (
                             <div key={book.bookId}>
@@ -54,7 +56,6 @@ export const ClubShelf_proto = ({ getClubBooks,
 
 ClubShelf_proto.propTypes = {
     clubBooks: PropTypes.array.isRequired,
-    numberOfBooks: PropTypes.number.isRequired,
     clubName: PropTypes.string.isRequired,
     getClubBooks: PropTypes.func.isRequired,
 }
@@ -64,5 +65,5 @@ const mapStateToProps = state => ({
     clubBooks: state.books.clubBooks,
 })
 
-const ClubShelf = connect(mapStateToProps, null)(ClubShelf_proto)
+const ClubShelf = connect(mapStateToProps, { getClubBooks, })(ClubShelf_proto)
 export { ClubShelf }
