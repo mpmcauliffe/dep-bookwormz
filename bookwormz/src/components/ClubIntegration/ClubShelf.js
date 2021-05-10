@@ -11,46 +11,54 @@ import 'simplebar/dist/simplebar.min.css'
 
 const clubBookshelfReducer = (state, action) => {
     switch (action.type) {
+        case 'TOGGLE_BOOKSHELF':
+            return {
+                ...state,
+                bookshelfTitle: action.payload ? 'Your Bookshelf' : 'Club Bookshelf',
+                toggleTriggerText: action.payload ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
+                bookshelfMessage: action.payload ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
+            }
         default: 
             return state
     }
 }
 
-const initialState = {
-    showUserBookshelf: false,
-    bookshelfTitle: 'Club Bookshelf',
-    toggleTriggerText: 'Click to switch to YOUR bookshelf',
-    bookshelfMessage: 'There aren\'t any books in this bookshelf',
-    isBookshelfLoaded: false,
-}
+const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', }
 
 export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, }) => {
 
     const [state, dispatch] = useReducer(clubBookshelfReducer, initialState)
 
-    // const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
+    const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
     // const [bookshelfTitle, setBookshelfTitle]           = useState('Club Bookshelf')
     // const [toggleTriggerText, setToggleTriggerText]     = useState('Click to switch to your bookshelf')
     
-     const { showUserBookshelf, bookshelfTitle, bookshelfMessage, toggleTriggerText, isBookshelfLoaded, } = state
+     const { bookshelfTitle, bookshelfMessage, toggleTriggerText, } = state
     
     let { clubId } = useParams()
    
-    const handleClubBookshelfToggle = e => {
-        if (!showUserBookshelf) {
-            setShowUserBookshelf(true)
-            setToggleTriggerText('Click to view club bookshelf')
-            setBookshelfTitle('Your Bookshelf')
-
-            return
-        }
-        setShowUserBookshelf(false)
-        setBookshelfTitle('Club Bookshelf')
-        setToggleTriggerText('Click to switch to your bookshelf')
+    const handleClubBookshelfToggle = () => {
+        setShowUserBookshelf(!showUserBookshelf)
+        dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf })
     }
+    // {
+    //     if (!showUserBookshelf) {
+    //         setShowUserBookshelf(true)
+    //         setToggleTriggerText('Click to view club bookshelf')
+    //         setBookshelfTitle('Your Bookshelf')
+
+    //         return
+    //     }
+    //     setShowUserBookshelf(false)
+    //     setBookshelfTitle('Club Bookshelf')
+    //     setToggleTriggerText('Click to switch to your bookshelf')
+    // }
 
     useEffect(() => {
-        if (clubBooks.length === 0) { getClubBooks(clubId) }
+        if (clubBooks.length === 0) { 
+            getClubBooks(clubId)
+            dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
+        }
     }, [clubBooks, getClubBooks,clubId, showUserBookshelf])
 
 
@@ -77,7 +85,7 @@ export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, }) => {
                     <EmptyNotification 
                         linkTo={''}
                         linkMessage={''}
-                        preMessage={`There aren't any books in this library`} />
+                        preMessage={bookshelfMessage} />
                 )
             }
         </div>
