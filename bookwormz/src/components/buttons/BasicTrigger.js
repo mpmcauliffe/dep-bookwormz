@@ -13,5 +13,5 @@ export const BasicTrigger = styled.button`
 
     cursor: pointer;
 
-    &:active { background: transparent; }
+    &:focus { background: transparent; }
 `

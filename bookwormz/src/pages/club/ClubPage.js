@@ -57,9 +57,7 @@ const Club_proto = ({
                     <BiGrid>
                         <div style={{ height: '60rem', border: '.5rem solid pink' }} />
                         
-                        <ClubShelf
-                            // clubBooks={clubBooks}
-                            clubName={currentClub.clubName} />
+                        <ClubShelf />
 
                         {/* */}
                     </BiGrid>
