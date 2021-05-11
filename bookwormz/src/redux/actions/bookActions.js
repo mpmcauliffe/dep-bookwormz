@@ -134,7 +134,7 @@ export const getClubBooks = clubId => async dispatch => {
     try {
         const res = await axios.get(`/books/getclubbooks/${clubId}`)
 
-        console.log(res.data)
+        // console.log(res.data)
         if (res.status === 200) {
             dispatch({ 
                 type: GET_CLUB_BOOKS, 

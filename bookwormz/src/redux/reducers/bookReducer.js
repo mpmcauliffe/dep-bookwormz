@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
             // console.log(action.payload)
             return {    
                 ...state,
-                myBooks: action.payload,
+                myBooks: [...action.payload],
                 isLoading: false,
                 // myClubs: [...action.payload.userDashboard.myClubs],
             }

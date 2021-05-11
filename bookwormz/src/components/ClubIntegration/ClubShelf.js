@@ -12,53 +12,44 @@ import 'simplebar/dist/simplebar.min.css'
 const clubBookshelfReducer = (state, action) => {
     switch (action.type) {
         case 'TOGGLE_BOOKSHELF':
+            const { showUserBookshelf, clubBooks, myBooks, } = action.payload
             return {
                 ...state,
-                bookshelfTitle: action.payload ? 'Your Bookshelf' : 'Club Bookshelf',
-                toggleTriggerText: action.payload ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
-                bookshelfMessage: action.payload ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
+                bookshelfTitle: showUserBookshelf ? 'Your Bookshelf' : 'Club Bookshelf',
+                toggleTriggerText: showUserBookshelf ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
+                bookshelfMessage: showUserBookshelf ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
+                booksOnDisplay: showUserBookshelf ? myBooks : clubBooks,
             }
         default: 
             return state
     }
 }
 
-const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', }
+const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', booksOnDisplay: [], }
 
-export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, }) => {
+export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
 
     const [state, dispatch] = useReducer(clubBookshelfReducer, initialState)
 
     const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
-    // const [bookshelfTitle, setBookshelfTitle]           = useState('Club Bookshelf')
-    // const [toggleTriggerText, setToggleTriggerText]     = useState('Click to switch to your bookshelf')
-    
-     const { bookshelfTitle, bookshelfMessage, toggleTriggerText, } = state
+
+    const { bookshelfTitle, bookshelfMessage, toggleTriggerText, booksOnDisplay, } = state
     
     let { clubId } = useParams()
-   
+    
     const handleClubBookshelfToggle = () => {
         setShowUserBookshelf(!showUserBookshelf)
-        dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf })
+        const bookshelfSettings = { showUserBookshelf, clubBooks, myBooks, }
+        dispatch({ type: 'TOGGLE_BOOKSHELF', payload: bookshelfSettings })
     }
-    // {
-    //     if (!showUserBookshelf) {
-    //         setShowUserBookshelf(true)
-    //         setToggleTriggerText('Click to view club bookshelf')
-    //         setBookshelfTitle('Your Bookshelf')
 
-    //         return
-    //     }
-    //     setShowUserBookshelf(false)
-    //     setBookshelfTitle('Club Bookshelf')
-    //     setToggleTriggerText('Click to switch to your bookshelf')
-    // }
 
     useEffect(() => {
-        if (clubBooks.length === 0) { 
-            getClubBooks(clubId)
+        //if (clubBooks.length === 0) { 
+            // getClubBooks(clubId)
             dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
-        }
+        
+        // if (myBooks.length === 0) { getBooks() }
     }, [clubBooks, getClubBooks,clubId, showUserBookshelf])
 
 
@@ -95,12 +86,16 @@ export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, }) => {
 ClubShelf_proto.propTypes = {
     clubBooks: PropTypes.array.isRequired,
     getClubBooks: PropTypes.func.isRequired,
+    myBooks: PropTypes.array.isRequired,
+    getBooks: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     getClubBooks: state.books.getClubBooks,
     clubBooks: state.books.clubBooks,
+    getBooks: state.books.getBooks,
+    myBooks: state.books.myBooks,
 })
 
-const ClubShelf = connect(mapStateToProps, { getClubBooks, })(ClubShelf_proto)
+const ClubShelf = connect(mapStateToProps, { getClubBooks, getBooks, })(ClubShelf_proto)
 export { ClubShelf }

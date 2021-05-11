@@ -7,13 +7,13 @@ import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid,
         ClubHeader, ClubShelf, MemberButton, Members,} from '../../components'
 import { pageTransition, pageVariants, } from '../zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
-import { getBooks, } from '../../redux/actions/bookActions'
+import { getClubBooks, getBooks, } from '../../redux/actions/bookActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
 const Club_proto = ({ 
-    getClub, getBooks, 
-    currentClub, //clubBooks, myBooks,
+    getClub, getBooks, getClubBooks, 
+    currentClub, 
     isUserAMember, }) => {
         
     
@@ -29,6 +29,8 @@ const Club_proto = ({
     useEffect(() => { 
         if (!currentClub) { getClub(clubId, history) }
         // if (myBooks.length < 1) { getBooks() }
+        getClubBooks(clubId)
+        getBooks()
 
     }, [getClub, currentClub, clubId, history, isUserAMember])
     
@@ -89,17 +91,19 @@ const Club_proto = ({
 Club_proto.propTypes = {
     getClub: PropTypes.func.isRequired,
     currentClub: PropTypes.object,
-    // clubBooks: PropTypes.array,
     isUserAMember: PropTypes.bool.isRequired,
+
+    getBooks: PropTypes.func.isRequired,
+    getClubBooks: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     currentClub: state.clubs.currentClub,
-    // clubBooks: state.clubs.clubBooks,
     isUserAMember: state.clubs.isUserAMember,
+    
     getBooks: state.books.getBooks,
-    myBooks: state.books.myBooks,
+    getClubBooks: state.books.getClubBooks,
 })
 
-const ClubPage = connect(mapStateToProps, { getClub, getBooks, })(Club_proto)
+const ClubPage = connect(mapStateToProps, { getClub, getBooks, getClubBooks, })(Club_proto)
 export { ClubPage }
