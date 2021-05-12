@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     switch(action.type) {
 
         case GET_CLUB:
-            console.log(action.payload._doc._id)
+            // console.log(action.payload._doc._id)
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },

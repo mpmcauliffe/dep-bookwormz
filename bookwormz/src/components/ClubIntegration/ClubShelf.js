@@ -12,45 +12,36 @@ import 'simplebar/dist/simplebar.min.css'
 const clubBookshelfReducer = (state, action) => {
     switch (action.type) {
         case 'TOGGLE_BOOKSHELF':
-            const { showUserBookshelf, clubBooks, myBooks, } = action.payload
             return {
                 ...state,
-                bookshelfTitle: showUserBookshelf ? 'Your Bookshelf' : 'Club Bookshelf',
-                toggleTriggerText: showUserBookshelf ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
-                bookshelfMessage: showUserBookshelf ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
-                booksOnDisplay: showUserBookshelf ? myBooks : clubBooks,
+                bookshelfTitle: action.payload ? 'Your Bookshelf' : 'Club Bookshelf',
+                toggleTriggerText: action.payload ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
+                bookshelfMessage: action.payload ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
             }
         default: 
             return state
     }
 }
 
-const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', booksOnDisplay: [], }
+const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', }
 
 export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
 
     const [state, dispatch] = useReducer(clubBookshelfReducer, initialState)
 
     const [showUserBookshelf, setShowUserBookshelf]     = useState(false)
+    const [booksOnDisplay, setBooksOnDisplay]           = useState([ ])
 
-    const { bookshelfTitle, bookshelfMessage, toggleTriggerText, booksOnDisplay, } = state
-    
-    let { clubId } = useParams()
-    
-    const handleClubBookshelfToggle = () => {
-        setShowUserBookshelf(!showUserBookshelf)
-        const bookshelfSettings = { showUserBookshelf, clubBooks, myBooks, }
-        dispatch({ type: 'TOGGLE_BOOKSHELF', payload: bookshelfSettings })
-    }
-
+    const { bookshelfTitle, bookshelfMessage, toggleTriggerText, } = state
+        
+    const handleClubBookshelfToggle = () => setShowUserBookshelf(!showUserBookshelf)
 
     useEffect(() => {
-        //if (clubBooks.length === 0) { 
-            // getClubBooks(clubId)
-            dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
-        
-        // if (myBooks.length === 0) { getBooks() }
-    }, [clubBooks, getClubBooks,clubId, showUserBookshelf])
+        showUserBookshelf ? setBooksOnDisplay(myBooks) : setBooksOnDisplay(clubBooks)
+        dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
+
+    // eslint-disable-next-line    
+    }, [showUserBookshelf])
 
 
     return (
@@ -62,13 +53,16 @@ export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, })
                 onClick={handleClubBookshelfToggle}>
                 {toggleTriggerText}
             </BasicTrigger>
+            {showUserBookshelf && <p>Click 'Add' button to add a book to this club's library</p>}
             <Buffer thickness={3} />
             
-            {Array.isArray(clubBooks) && clubBooks.length > 0 
+            {Array.isArray(booksOnDisplay) && booksOnDisplay.length > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
-                       {clubBooks.map(book => (
+                       {booksOnDisplay.map(book => (
                             <div key={book.bookId}>
-                                <ClubBookItem book={book} />
+                                <ClubBookItem 
+                                    book={book}
+                                    isUserBookshelf={showUserBookshelf} />
                                 <Buffer thickness={.5} />
                             </div>))}
                     </Simplebar> 
