@@ -86,7 +86,7 @@ export const BookCover = styled.div`
     }
 `
 export const ClubBookShelf = styled.div`
-    height: 15rem;
+    height: 16rem;
 
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -98,9 +98,14 @@ export const ClubBookShelf = styled.div`
         grid-template-columns: 1fr;
         color: #000;
     }
+    /* ${p => p.isBookOpen ? '103rem' : '16rem'}; */
+    section {
+        display: grid;
+        grid-template-columns: ${p => p.showAddButton ? '1fr 1fr' : '1fr'};
+    }
 
     .cover { height: 14.6rem; width: 10rem; }
-    .title { font-size: 2.2rem; }
+    .title { margin-top: 1rem; font-size: 2.2rem; }
     .author { font-size: 1.7rem; }
 `
 export const CascadeArrowContainer = styled.div`

@@ -13,20 +13,25 @@ export const ClubBookItem = ({ book, isUserBookshelf, }) => {
     }
 
     const bookItem = (
-        <ClubBookShelf>
+        <ClubBookShelf showAddButton={isUserBookshelf}>
             <img src={`${image}`} alt='cover' className='cover' />
             <div>
                 <p className='title'><strong>{title}</strong></p>
-                <div>
+                <section>
                     <p>{authors.map(author => <span key={author}>{author}&nbsp;&nbsp;&nbsp;</span>)}</p>
-                </div> 
-            {isUserBookshelf 
-                && <AppButton
-                name={bookId}
-                title={title}
-                alertButton={false}
-                onClick={addBookToClub}>
-                    Add</AppButton>}
+                    <div style={{ display: 'inline-block' }}>
+                        {isUserBookshelf 
+                            && <AppButton
+                            name={bookId}
+                            title={title}
+                            alertButton={false}
+                            onClick={addBookToClub}
+                            style={{ marginRight: '1rem', float: 'right' }}>
+                                Add</AppButton>}
+                    </div>
+                    
+                </section> 
+            
             </div>
         </ClubBookShelf>
     )
