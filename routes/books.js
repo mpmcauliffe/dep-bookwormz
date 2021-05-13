@@ -134,5 +134,34 @@ router.get('/getclubbooks/:clubId', verification, async (req, res) => {
     }
 })
 
+/* ADD A BOOK TO CLUB */
+router.get('/addbooktoclub/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const { bookId } = req.body
+
+    if (!clubId || !bookId) { res.status(400).send({ message: 'Insufficient data to complete the request' }) }
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        
+        const findBook = await Book.findOne({ bookId: book.bookId })
+        if (!findBook) { res.status(400).send({ message: 'Insufficient data to complete the request' }) }
+
+        const doesClubHaveBook = club.books.some(book => book === bookId)
+        if (!doesClubHaveBook) {  
+            club.books.unshift(bookId)
+            await club.save()
+            res.json(book)
+            return
+        }
+        res.json({ 'message': 'double' })
+
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+
 
 module.exports = router
