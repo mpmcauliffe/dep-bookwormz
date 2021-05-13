@@ -1,6 +1,6 @@
 import { GET_MY_BOOKS, SEARCH_BOOKS, ADD_BOOK_TO_PROFILE, 
-    REMOVE_BOOK_FROM_LIBRARY, GET_CLUB_BOOKS, MESSAGE, BOOK_ERROR, 
-    CLEAR_BOOK_MESSAGE, SET_LOADING,  } from '../types'
+    REMOVE_BOOK_FROM_LIBRARY, GET_CLUB_BOOKS, ADD_BOOK_TO_CLUB,
+    MESSAGE, BOOK_ERROR, CLEAR_BOOK_MESSAGE, SET_LOADING,  } from '../types'
 
 //M.toast({ html: `${bookMessage}`, classes: 'green darken-3 rounded', displayLength: 5000 })
 const initialState = {
@@ -65,6 +65,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 clubBooks: [...action.payload]
+            }
+
+        case ADD_BOOK_TO_CLUB:
+            return {
+                ...state,
+                clubBooks: [...action.payload, ...state.clubBooks],
             }
 
         case MESSAGE:
