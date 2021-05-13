@@ -12,7 +12,7 @@ const router                            = express.Router()
 const API_URL                           = 'https://www.googleapis.com/books/v1/volumes?q='
 
 
-//verification,
+// verification,
 /* SEARCH BOOK USING GOOGLE API */
 router.get('/booksearch/:urlSearchString', verification, (req, res) => {
     const { urlSearchString } = req.params
@@ -76,15 +76,6 @@ router.get('/mybooks/', verification, async (req, res) => {
             return
         }
 
-        // const clubIds = user.clubs
-        // const myClubs = await Club.find({ '_id': { $in: clubIds } })
-        // //console.log(myClubs)
-
-        // const userDashboard = {
-        //     myBooks: [...myBooks],
-        //     myClubs: [...myClubs],
-        // }
-
         res.json(myBooks)
 
     } catch (e) {
@@ -135,7 +126,7 @@ router.get('/getclubbooks/:clubId', verification, async (req, res) => {
 })
 
 /* ADD A BOOK TO CLUB */
-router.get('/addbooktoclub/:clubId', verification, async (req, res) => {
+router.post('/addbooktoclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
     const { bookId } = req.body
 
@@ -145,7 +136,7 @@ router.get('/addbooktoclub/:clubId', verification, async (req, res) => {
         const club = await Club.findById(clubId)
         if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
         
-        const findBook = await Book.findOne({ bookId: book.bookId })
+        const findBook = await Book.findOne({ bookId: bookId })
         if (!findBook) { res.status(400).send({ message: 'Insufficient data to complete the request' }) }
 
         const doesClubHaveBook = club.books.some(book => book === bookId)

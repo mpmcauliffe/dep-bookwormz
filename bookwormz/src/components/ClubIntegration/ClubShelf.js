@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
-import { useParams, } from 'react-router-dom'
 import { ClubBookItem, } from './ClubBookItem'
 import { BasicTrigger, Buffer, EmptyNotification, } from '../../components'
 import { getClubBooks, getBooks, } from '../../redux/actions/bookActions'
@@ -25,7 +24,7 @@ const clubBookshelfReducer = (state, action) => {
 
 const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', }
 
-export const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
+const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
 
     const [state, dispatch] = useReducer(clubBookshelfReducer, initialState)
 
