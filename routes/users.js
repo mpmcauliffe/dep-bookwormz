@@ -31,7 +31,8 @@ router.get('/myinfo', verification, async (req, res) => {
 
 router.put('/updatinfo', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
-    if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+    if (!email) { res.status(400).send({ message: 'Something went wrong' })
+        return }
 
     const { portrait, newDisplayName, } = req.body
     const updatedFields = { }
@@ -63,7 +64,8 @@ router.put('/updatinfo', verification, async (req, res) => {
 
 router.put('/revertinfo', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
-    if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+    if (!email) { res.status(400).send({ message: 'Something went wrong' })
+        return }
 
     try {
         await User.findOneAndUpdate({ email }, 
@@ -90,7 +92,8 @@ router.put('/revertinfo', verification, async (req, res) => {
 
 router.delete('/deleteuser', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
-    if (!email) { res.status(400).send({ message: 'Something went wrong' }) }
+    if (!email) { res.status(400).send({ message: 'Something went wrong' })
+        return }
 
     try {
         const user = await User.findOne({ email })

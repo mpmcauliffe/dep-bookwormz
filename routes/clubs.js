@@ -23,10 +23,9 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
-        if (!club) { 
-            res.status(400).send({ message: 'An error occured. Club not found.' }) 
-            return
-        }
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return }
+
         const clubBookIds = club.books
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
         // if (clubBooks.length < 1) { 
@@ -35,7 +34,8 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
         // }
 
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
 
         const clubIds = user.clubs
         const isClubMember = clubIds.some(id => clubId === id.toString())
@@ -69,7 +69,8 @@ router.get('/getmyclubs', verification, async (req, res) => {
 
     try {
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
 
         const clubIds = user.clubs
         const myClubs = await Club.find({ '_id': { $in: clubIds } })
@@ -114,7 +115,7 @@ router.post('/createclub', verification, async (req, res) => {
         })
         // 
         const created = await newClub.save()
-// console.log(created)
+
         user.clubs.unshift(created._id)
         await user.save()
 
@@ -139,9 +140,12 @@ router.put('/joinclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
-        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' })
+            return }
+        
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
 
         const isUserInClub = user.clubs.some(club => club.toString() === clubId)
         if (isUserInClub) { 
@@ -175,9 +179,12 @@ router.put('/leaveclub/:clubId', verification, async (req, res) => {
 
     try {
         const club = await Club.findById(clubId)
-        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' })
+            return }
+        
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
     
         user.clubs = user.clubs.filter(club => club.toString() !== clubId)
         await user.save()
@@ -205,7 +212,8 @@ router.get('/getclubbooks/:clubId', async (req, res) => {
 
     try {
         const club = await Club.findById({ clubId })
-        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' })
+            return }
         const clubBookIds = club.books
 
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })

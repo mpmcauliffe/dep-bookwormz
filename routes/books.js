@@ -28,7 +28,8 @@ router.get('/booksearch/:urlSearchString', verification, (req, res) => {
 /* SAVE BOOK TO PROFILE */
 router.post('/addbook/', verification, async (req, res) => {
     // console.log(req.body)
-    if (!req.body.bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) }
+    if (!req.body.bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) 
+        return }
 
     const { bookId, title, authors, publisher, publisherDate, infoLink, 
         description, pageCount, printedPageCount, categories, image, } = req.body
@@ -41,7 +42,8 @@ router.post('/addbook/', verification, async (req, res) => {
     try {
         
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'Save cannot be completed. User not found.' })
+            return }
         
         const findBook = await Book.findOne({ bookId: book.bookId })
         if (!findBook) { await book.save() }
@@ -67,7 +69,8 @@ router.get('/mybooks/', verification, async (req, res) => {
 
     try {
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
 
         const bookIds = user.books
         const myBooks = await Book.find({ 'bookId': { $in: bookIds } })
@@ -88,11 +91,13 @@ router.get('/mybooks/', verification, async (req, res) => {
 router.delete('/deletebook/:bookId', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
     const { bookId } = req.params
-    if (!email || !bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' }) }
+    if (!email || !bookId) { res.status(400).send({ message: 'Save cannot be completed. Insufficient book info.' })
+        return }
 
     try {
         const user = await User.findOne({ email })
-        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' }) }
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
         
         user.books = user.books.filter(book => book !== bookId)
         await user.save()
@@ -130,14 +135,17 @@ router.post('/addbooktoclub/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
     const { bookId } = req.body
 
-    if (!clubId || !bookId) { res.status(400).send({ message: 'Insufficient data to complete the request' }) }
+    if (!clubId || !bookId) { res.status(400).send({ message: 'Insufficient data to complete the request' })
+        return }
 
     try {
         const club = await Club.findById(clubId)
-        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' }) }
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' })
+            return }
         
         const findBook = await Book.findOne({ bookId: bookId })
-        if (!findBook) { res.status(400).send({ message: 'Insufficient data to complete the request' }) }
+        if (!findBook) { res.status(400).send({ message: 'Insufficient data to complete the request' })
+            return }
 
         const doesClubHaveBook = club.books.some(book => book === bookId)
         if (!doesClubHaveBook) {  
