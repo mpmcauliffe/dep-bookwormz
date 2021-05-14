@@ -122,7 +122,7 @@ router.get('/getclubbooks/:clubId', verification, async (req, res) => {
         const clubBookIds = club.books
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
 
-        console.log(clubBooks)
+        // console.log(clubBooks)
         res.json(clubBooks)
 
     } catch (e) {
