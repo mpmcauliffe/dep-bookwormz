@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
-import { Comment } from './sections'
+import { Comment } from './Comment'
 import { Buffer, EmptyNotification, } from '../../../components'
-import { dummytext } from './sections/dummytext'
+import { dummytext } from './dummytext'
 import 'simplebar/dist/simplebar.min.css'
 
 

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
 import { ClubBookItem, } from './ClubBookItem'
-import { BasicTrigger, Buffer, EmptyNotification, } from '../../components'
-import { getClubBooks, getBooks, } from '../../redux/actions/bookActions'
+import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
+import { getClubBooks, getBooks, } from '../../../redux/actions/bookActions'
 import 'simplebar/dist/simplebar.min.css'
 
 
@@ -39,8 +39,7 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMe
     useEffect(() => {
         showUserBookshelf ? setBooksOnDisplay(myBooks) : setBooksOnDisplay(clubBooks)
         dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
-console.log(booksOnDisplay)
-console.log(clubBooks)
+
     }, [myBooks, clubBooks, showUserBookshelf])
 
 

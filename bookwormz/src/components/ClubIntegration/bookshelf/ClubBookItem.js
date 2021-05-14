@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useParams, } from 'react-router-dom'
-import { ClubBookShelf, } from '../bookShelf/Books.comp'
-import { AppButton, } from '../../components'
-import { addBookToClub } from '../../redux/actions/bookActions'
+import { ClubBookShelf, } from '../../bookShelf/Books.comp'
+import { AppButton, } from '../../../components'
+import { addBookToClub } from '../../../redux/actions/bookActions'
 
 
 const ClubBookItem_proto = ({ addBookToClub, 
