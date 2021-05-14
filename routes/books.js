@@ -144,14 +144,15 @@ router.post('/addbooktoclub/:clubId', verification, async (req, res) => {
             return }
         
         const findBook = await Book.findOne({ bookId: bookId })
+        //console.log(findBook)
         if (!findBook) { res.status(400).send({ message: 'Insufficient data to complete the request' })
             return }
 
         const doesClubHaveBook = club.books.some(book => book === bookId)
         if (!doesClubHaveBook) {  
             club.books.unshift(bookId)
-            await club.save()
-            res.json(book)
+            // await club.save()
+            res.json({ 'message': 'added' })
             return
         }
         res.json({ 'message': 'double' })

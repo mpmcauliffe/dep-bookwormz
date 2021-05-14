@@ -150,8 +150,8 @@ export const getClubBooks = clubId => async dispatch => {
 }
 
 export const addBookToClub = (clubId, book) => async dispatch => {
-    try {//addbooktoclub
-        const res = await axios.post(`/books/addbooktoclub/${clubId}`, book.bookId)
+    try {console.log(book.bookId)
+        const res = await axios.post(`/books/addbooktoclub/${clubId}`, { bookId: book.bookId })
         console.log(res.data)
         // if (res.status === 200) {
         //     console.log(`%cADD: %c${book.title} %cto club`,  'font-weight: bold', 'color: green', 'font-weight: normal')

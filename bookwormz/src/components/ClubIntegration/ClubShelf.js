@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, } from 'react'
+import React, { Fragment, useState, useEffect, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
@@ -24,7 +24,8 @@ const clubBookshelfReducer = (state, action) => {
 
 const initialState = { bookshelfTitle: '', toggleTriggerText: '', bookshelfMessage: '', }
 
-const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
+
+const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMember, }) => {
 
     const [state, dispatch] = useReducer(clubBookshelfReducer, initialState)
 
@@ -39,8 +40,7 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
         showUserBookshelf ? setBooksOnDisplay(myBooks) : setBooksOnDisplay(clubBooks)
         dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
 
-    // eslint-disable-next-line    
-    }, [showUserBookshelf])
+    }, [myBooks, clubBooks, showUserBookshelf])
 
 
     return (
@@ -48,12 +48,15 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, }) => {
             <h3>{bookshelfTitle}</h3>
             <Buffer thickness={7} />
             
-            <BasicTrigger 
-                onClick={handleClubBookshelfToggle}>
-                {toggleTriggerText}
-            </BasicTrigger>
-            {showUserBookshelf && <p>Click 'Add' button to add a book to this club's library</p>}
-            <Buffer thickness={3} />
+            {isUserAMember 
+                && <Fragment>
+                    <BasicTrigger 
+                        onClick={handleClubBookshelfToggle}>
+                        {toggleTriggerText}
+                    </BasicTrigger>
+                    {showUserBookshelf && <p>Click 'Add' button to add a book to this club's library</p>}
+                    <Buffer thickness={3} />
+                </Fragment>}
             
             {Array.isArray(booksOnDisplay) && booksOnDisplay.length > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
@@ -81,6 +84,7 @@ ClubShelf_proto.propTypes = {
     getClubBooks: PropTypes.func.isRequired,
     myBooks: PropTypes.array.isRequired,
     getBooks: PropTypes.func.isRequired,
+    isUserAMember: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -88,6 +92,7 @@ const mapStateToProps = state => ({
     clubBooks: state.books.clubBooks,
     getBooks: state.books.getBooks,
     myBooks: state.books.myBooks,
+    isUserAMember: state.clubs.isUserAMember,
 })
 
 const ClubShelf = connect(mapStateToProps, { getClubBooks, getBooks, })(ClubShelf_proto)

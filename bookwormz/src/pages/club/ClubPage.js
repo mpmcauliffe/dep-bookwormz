@@ -28,7 +28,7 @@ const Club_proto = ({
     // console.log(clubBooks)
     useEffect(() => { 
         if (!currentClub) { getClub(clubId, history) }
-        // if (myBooks.length < 1) { getBooks() }
+        
         getClubBooks(clubId)
         getBooks()
 
