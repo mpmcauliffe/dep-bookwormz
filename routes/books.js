@@ -122,7 +122,7 @@ router.get('/getclubbooks/:clubId', verification, async (req, res) => {
         const clubBookIds = club.books
         const clubBooks = await Book.find({ 'bookId': { $in: clubBookIds } })
 
-        // console.log(clubElements)
+        console.log(clubBooks)
         res.json(clubBooks)
 
     } catch (e) {
@@ -150,8 +150,8 @@ router.post('/addbooktoclub/:clubId', verification, async (req, res) => {
 
         const doesClubHaveBook = club.books.some(book => book === bookId)
         if (!doesClubHaveBook) {  
-            club.books.unshift(bookId)
-            // await club.save()
+            club.books.push(bookId)
+            await club.save()
             res.json({ 'message': 'added' })
             return
         }

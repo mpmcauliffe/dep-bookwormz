@@ -152,15 +152,28 @@ export const getClubBooks = clubId => async dispatch => {
 export const addBookToClub = (clubId, book) => async dispatch => {
     try {console.log(book.bookId)
         const res = await axios.post(`/books/addbooktoclub/${clubId}`, { bookId: book.bookId })
-        console.log(res.data)
-        // if (res.status === 200) {
-        //     console.log(`%cADD: %c${book.title} %cto club`,  'font-weight: bold', 'color: green', 'font-weight: normal')
-        //     dispatch({ 
-        //         type: ADD_BOOK_TO_CLUB, 
-        //         payload: { book: res.data, message: `${book.title} was removed from your books.` } 
-        //     })
-        //     return
-        // }
+
+        if (res.status === 200) {
+            if (res.data.message === 'double') {
+                console.log(`%cBOOK ALREADY IN CLUB LIBRARY: %c${book.title}`, 'font-weight: bold', 'color: orange')
+                dispatch({ 
+                    type: MESSAGE, 
+                    payload: { 
+                        book: res.data, 
+                        message: `${book.title} is already in this club's library.`, 
+                        style: 'amber darken-4 rounded'
+                    } 
+                })
+                return
+            }
+            console.log(`%cADD: %c${book.title} %cto club`,  'font-weight: bold', 'color: green', 'font-weight: normal')
+            
+            dispatch({ 
+                type: ADD_BOOK_TO_CLUB, 
+                payload: { book, message: `${book.title} added to club library.` } 
+            })
+            return
+        }
 
     } catch (e) {
         console.log(e)

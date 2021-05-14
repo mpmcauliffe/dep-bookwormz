@@ -39,7 +39,8 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMe
     useEffect(() => {
         showUserBookshelf ? setBooksOnDisplay(myBooks) : setBooksOnDisplay(clubBooks)
         dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
-
+console.log(booksOnDisplay)
+console.log(clubBooks)
     }, [myBooks, clubBooks, showUserBookshelf])
 
 

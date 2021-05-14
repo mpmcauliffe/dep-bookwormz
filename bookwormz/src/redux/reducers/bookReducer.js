@@ -8,7 +8,7 @@ const initialState = {
     myBooks: [ ],
     clubBooks: [ ],
     bookResults: [ ],
-    bookAddedToClub: null,
+    //bookAddedToClub: null,
     isLoading: false,
     shelfHeight: 100,
     bookMessage: {
@@ -71,7 +71,12 @@ export default (state = initialState, action) => {
         case ADD_BOOK_TO_CLUB:
             return {
                 ...state,
-                clubBooks: [...action.payload, ...state.clubBooks],
+                clubBooks: [action.payload.book, ...state.clubBooks],
+                bookMessage: {
+                    message: action.payload.message,
+                    style: 'green darken-3 rounded',
+                    timeDisplay: 5000
+                }
             }
 
         case MESSAGE:
