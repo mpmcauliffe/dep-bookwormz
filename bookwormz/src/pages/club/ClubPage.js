@@ -16,14 +16,9 @@ const Club_proto = ({
     currentClub, 
     isUserAMember, }) => {
         
-    
     const history                      = useHistory()
     let { clubId }                     = useParams()
     
-    const handleClubBookshelfToggle = e => {
-        console.log('toggle clicked!')
-    }
-
     // console.log(currentClub)
     // console.log(clubBooks)
     useEffect(() => { 
