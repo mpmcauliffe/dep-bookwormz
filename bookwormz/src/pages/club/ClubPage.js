@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
 import { useHistory, useParams, } from 'react-router-dom'
 import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid, 
-        ClubHeader, ClubShelf, MemberButton, Members,} from '../../components'
+        CommentSection, ClubHeader, ClubShelf, MemberButton, Members,} from '../../components'
 import { pageTransition, pageVariants, } from '../zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 import { getClubBooks, getBooks, } from '../../redux/actions/bookActions'
@@ -52,11 +52,11 @@ const Club_proto = ({
                     <Buffer thickness={7} />
                     
                     <BiGrid>
-                        <div style={{ height: '60rem', border: '.5rem solid pink' }} />
+                        <CommentSection />
                         
                         <ClubShelf />
 
-                        {/* */}
+                        {/* <div style={{ height: '60rem', border: '.5rem solid pink' }} /> */}
                     </BiGrid>
                     <Buffer thickness={7} />
                     

@@ -9,15 +9,17 @@ import 'simplebar/dist/simplebar.min.css'
 
 
 const CommentSection_proto = ({ comments=dummytext, }) => {
+    //console.log(comments)
+
     return (
         <div>
             <h3>Club Conversation</h3>
             <Buffer thickness={7} />
             {Array.isArray(comments) && comments.length > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
-                       {comments.map(book => (
-                            <div key={book.bookId}>
-                                <Comment book={book} />
+                       {comments.map(comment => (
+                            <div key={comment._id}>
+                                <Comment comment={comment} />
                                 <Buffer thickness={.5} />
                             </div>))}
                     </Simplebar> 

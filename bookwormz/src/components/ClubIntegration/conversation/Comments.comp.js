@@ -3,8 +3,9 @@ import styled from 'styled-components'
 
 export const CommentBlock = styled.div`
     .top-bar {
+        height: 11rem;
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: 1fr 5fr;
     }
     .identity {
         display: grid;
@@ -14,9 +15,9 @@ export const CommentBlock = styled.div`
         display: grid;
         grid-template-rows: fit-content(4rem) fit-content(10rem);
     }
-    .image { height: 7rem; width: 7rem; border-radius: 50%; }
-    .name { font-size: 1.2rem; font-weight: 600; }
-    .reply { font-size: 1rem; }
-    .origin { font-size: .8rem; }
-    .content { font-size: 1.1rem; }
+    .image { height: 8rem; width: 8rem; border-radius: 50%; }
+    .name { font-size: 1.4rem; font-weight: 600; }
+    .reply { font-size: 1.2rem; margin-top: -.2rem; }
+    .origin { font-size: 1rem; margin-top: .2rem; }
+    .content { font-size: 1.4rem; }
 `

@@ -2,18 +2,21 @@ import React from 'react'
 import { CommentBlock, } from './Comments.comp'
 
 
+export const Comment = ({ comment }) => {
+    const { commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
 
-export const Comment = ({ commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, }) => {
+    console.log(comment.commenterProfile)
+
     return (
         <CommentBlock>
             <section className='top-bar'>
                 <img  
                     alt='PROFILE_IMG'
                     className='image'
-                    src={require(`${commenterProfile}.png`)} />
+                    src={require(`../../../assets/mock/${commenterProfile}.png`).default} />
 
                 <div className='identity'>
-                    <div>
+                    <div style={{ textAlign: 'right' }}>
                         {replyToOrigin && <p className='origin'>{replyToOrigin}</p>}
                         {replyTo && <p className='reply'>{replyTo}</p>}
                     </div>
@@ -25,7 +28,7 @@ export const Comment = ({ commenterName, commenterProfile, subject, content, cre
             </section>
 
             <section className='bottom-bar'>
-                {subject ? <p className='content'>{content}</p> : <p className='content'><em>No subject</em></p>}
+                {subject ? <p className='content'>{subject}</p> : <p className='content'><em>No subject</em></p>}
                 <p className='content'>{content}</p>
             </section>
         </CommentBlock>
