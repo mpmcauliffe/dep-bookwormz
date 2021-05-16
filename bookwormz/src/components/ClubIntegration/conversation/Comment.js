@@ -7,7 +7,6 @@ import { CommentBlock, } from './Comments.comp'
 export const Comment = ({ comment }) => {
     const { commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
 
-    console.log(comment.commenterProfile)
 
     return (
         <CommentBlock>
@@ -22,7 +21,7 @@ export const Comment = ({ comment }) => {
                         {replyToOrigin && <p className='origin'>{replyToOrigin}</p>}
                         {replyTo && <p className='reply'>{replyTo}</p>}
                     </div>
-                    <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <p className='name'>{commenterName}</p>
                         <p className='content'>{created}</p>
                     </div>
@@ -30,7 +29,7 @@ export const Comment = ({ comment }) => {
             </section>
 
             <section className='bottom-bar'>
-                {subject ? <p className='content'>{subject}</p> : <p className='content'><em>No subject</em></p>}
+                {subject ? <p className='content'>Subject:&nbsp;&nbsp;{subject}</p> : <p className='content'><em>No subject</em></p>}
                 <p className='content'>{content}</p>
             </section>
         </CommentBlock>

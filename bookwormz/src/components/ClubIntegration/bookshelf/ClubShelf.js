@@ -54,7 +54,8 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMe
                         onClick={handleClubBookshelfToggle}>
                         {toggleTriggerText}
                     </BasicTrigger>
-                    {showUserBookshelf && <p>Click 'Add' button to add a book to this club's library</p>}
+                    {/* {showUserBookshelf && <p style={{ position: 'absolute', }}>Click 'Add' button to add a book to this club's library</p>} */}
+                    
                     <Buffer thickness={3} />
                 </Fragment>}
             
