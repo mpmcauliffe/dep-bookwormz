@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link as ScrollLink, 
+    animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
 
 
@@ -10,7 +12,9 @@ export const Comment = ({ comment }) => {
 
     return (
         <CommentBlock>
-            <section className='top-bar'>
+            <section 
+                id={replyToOrigin}
+                className='top-bar'>
                 <img  
                     alt='PROFILE_IMG'
                     className='image'
@@ -18,7 +22,7 @@ export const Comment = ({ comment }) => {
 
                 <div className='identity'>
                     <div style={{ textAlign: 'right' }}>
-                        {replyToOrigin && <p className='origin'>{replyToOrigin}</p>}
+                        <ScrollLink>{replyToOrigin && <p className='origin'>{replyToOrigin}</p>}</ScrollLink>
                         {replyTo && <p className='reply'>{replyTo}</p>}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
