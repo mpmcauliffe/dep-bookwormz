@@ -2,6 +2,8 @@ import React from 'react'
 import { CommentBlock, } from './Comments.comp'
 
 
+//const dummyDate = () => Date().now
+
 export const Comment = ({ comment }) => {
     const { commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
 

@@ -14,7 +14,7 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
     return (
         <div>
             <h3>Club Conversation</h3>
-            <Buffer thickness={7} />
+            <Buffer thickness={15.5} />
             {Array.isArray(comments) && comments.length > 0 
                 ?  (<Simplebar style={{ height: '600px' }}>
                        {comments.map(comment => (

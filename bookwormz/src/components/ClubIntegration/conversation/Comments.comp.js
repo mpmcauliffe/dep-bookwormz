@@ -2,6 +2,10 @@ import styled from 'styled-components'
 
 
 export const CommentBlock = styled.div`
+    padding: 1rem;
+    background: ${p => p.theme.shell};
+    border-radius: .5rem;
+    
     .top-bar {
         height: 11rem;
         display: grid;
