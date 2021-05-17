@@ -16,12 +16,15 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
             <h3>Club Conversation</h3>
             <Buffer thickness={12.5} />
             {Array.isArray(comments) && comments.length > 0 
-                ?  (<Simplebar style={{ height: '600px' }}>
-                       {comments.map(comment => (
+                ?  (<Simplebar id='commentContainer' style={{ height: '600px' }}>
+
+                            {comments.map(comment => (
                             <div key={comment._id}>
                                 <Comment comment={comment} />
                                 <Buffer thickness={.5} />
                             </div>))}
+
+                       
                     </Simplebar> 
                 ) : (
                     <EmptyNotification 
@@ -36,7 +39,7 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
 
 
 CommentSection_proto.propTypes = {
-    comments: PropTypes.array.isRequired,
+    //comments: PropTypes.array.isRequired,
 }
 
 const mapStateToProps = state => ({

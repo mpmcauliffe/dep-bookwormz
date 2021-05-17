@@ -7,13 +7,13 @@ import { CommentBlock, } from './Comments.comp'
 //const dummyDate = () => Date().now
 
 export const Comment = ({ comment }) => {
-    const { commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
+    const { _id, commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
 
 
     return (
         <CommentBlock>
             <section 
-                id={replyToOrigin}
+                id={`${_id}`}
                 className='top-bar'>
                 <img  
                     alt='PROFILE_IMG'
@@ -22,8 +22,22 @@ export const Comment = ({ comment }) => {
 
                 <div className='identity'>
                     <div style={{ textAlign: 'right' }}>
-                        <ScrollLink>{replyToOrigin && <p className='origin'>{replyToOrigin}</p>}</ScrollLink>
-                        {replyTo && <p className='reply'>{replyTo}</p>}
+                        <ScrollLink 
+                            spy={true}
+                            smooth={true}
+                            containerId='commentContainer'
+                            to={replyToOrigin ? replyToOrigin : ''}>
+                            {replyToOrigin 
+                                && <p className='origin'>{replyToOrigin}</p>}
+                        </ScrollLink>
+                        <ScrollLink
+                            spy={true}
+                            smooth={true} 
+                            to={replyTo ? replyTo : ''}
+                            containerId='commentContainer'>
+                            {replyTo 
+                                && <p className='reply'>{replyTo}</p>}
+                        </ScrollLink>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <p className='name'>{commenterName}</p>
