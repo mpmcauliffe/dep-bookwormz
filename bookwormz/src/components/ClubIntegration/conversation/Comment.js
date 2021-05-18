@@ -7,11 +7,14 @@ import { CommentBlock, } from './Comments.comp'
 //const dummyDate = () => Date().now
 
 export const Comment = ({ comment }) => {
-    const { _id, commenterName, commenterProfile, subject, content, created, replyTo, replyToOrigin, } = comment
+    const { _id, commenterName, commenterProfile, subject, content, 
+        created, replyTo, replyToOrigin, color, border, } = comment
 
 
     return (
-        <CommentBlock>
+        <CommentBlock 
+            color={color}
+            border={border}>
             <section 
                 id={`${_id}`}
                 className='top-bar'>
@@ -50,6 +53,11 @@ export const Comment = ({ comment }) => {
                 {subject ? <p className='content'>Subject:&nbsp;&nbsp;{subject}</p> : <p className='content'><em>No subject</em></p>}
                 <p className='content'>{content}</p>
             </section>
+
+            <section className='reply-bar'>
+                <p className='reply reply-button'>Reply</p>
+            </section>
+
         </CommentBlock>
     )
 }

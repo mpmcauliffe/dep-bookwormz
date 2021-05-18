@@ -16,13 +16,15 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
             <h3>Club Conversation</h3>
             <Buffer thickness={12.5} />
             {Array.isArray(comments) && comments.length > 0 
-                ?  (<Simplebar id='commentContainer' style={{ height: '600px' }}>
-
-                            {comments.map(comment => (
-                            <div key={comment._id}>
-                                <Comment comment={comment} />
-                                <Buffer thickness={.5} />
-                            </div>))}
+                ?  (<Simplebar style={{ height: '600px' }}>
+                    <div id='commentContainer'>
+                    {comments.map(comment => (
+                    <div key={comment._id}>
+                        <Comment comment={comment} />
+                        <Buffer thickness={.5} />
+                    </div>))}    
+                    </div>
+                    
 
                        
                     </Simplebar> 
