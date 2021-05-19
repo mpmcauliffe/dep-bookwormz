@@ -12,6 +12,11 @@ export const Comment = ({ comment }) => {
 
     const handleReplyClick = () => setMakeReply(!makeReply)
 
+    const handleReplySubmit = e => {
+
+        console.log('submit')
+    }
+
     const { _id, commenterName, commenterProfile, subject, content, 
         created, replyTo, replyToOrigin, color, border, } = comment
 
@@ -70,7 +75,8 @@ export const Comment = ({ comment }) => {
                     className='input-area'
                     onChange={e => setReplyContent(e.target.value)} />
                 <button 
-                    className='reply-submit'>Submit</button>
+                    className='reply-submit'
+                    onClick={handleReplySubmit}>Submit</button>
             </section>
 
         </CommentBlock>
