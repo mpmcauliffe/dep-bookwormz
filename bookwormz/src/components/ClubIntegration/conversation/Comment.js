@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, } from 'react'
 import { Link as ScrollLink, 
     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
@@ -7,6 +7,10 @@ import { CommentBlock, } from './Comments.comp'
 //const dummyDate = () => Date().now
 
 export const Comment = ({ comment }) => {
+    const [makeReply, setMakeReply] = useState(false)
+
+    const handleReplyClick = () => setMakeReply(!makeReply)
+
     const { _id, commenterName, commenterProfile, subject, content, 
         created, replyTo, replyToOrigin, color, border, } = comment
 
@@ -14,7 +18,8 @@ export const Comment = ({ comment }) => {
     return (
         <CommentBlock 
             color={color}
-            border={border}>
+            border={border}
+            isReplyOpen={makeReply}>
             <section 
                 id={`${_id}`}
                 className='top-bar'>
@@ -55,7 +60,11 @@ export const Comment = ({ comment }) => {
             </section>
 
             <section className='reply-bar'>
-                <p className='reply reply-button'>Reply</p>
+                <p  
+                    onClick={handleReplyClick}
+                    className='content reply-button'>Reply</p>
+
+                {makeReply && <textarea className='input-area' />}
             </section>
 
         </CommentBlock>

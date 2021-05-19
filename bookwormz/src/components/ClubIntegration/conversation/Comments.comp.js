@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 export const CommentBlock = styled.div`
     padding: 1rem;
-    /* background: #fff7f7; */
     background: ${p => p.color};
+    border: .2rem dashed #f7f7f7;
     border-radius: .5rem;
     
     .top-bar {
@@ -22,7 +22,8 @@ export const CommentBlock = styled.div`
     }
     .reply-bar {
         display: grid;
-        height: ${p => p.isReplyOpen ? '50rem' : '5rem'}
+        height: ${p => p.isReplyOpen ? '20rem' : '5rem'};
+        transition: height 750ms;
     }
     .image { height: 8rem; width: 8rem; border-radius: 50%; }
     .name { font-size: 1.4rem; font-weight: 600; }
@@ -31,7 +32,16 @@ export const CommentBlock = styled.div`
     .content { font-size: 1.4rem; }
     .reply-button { 
         text-align: right;
+        color: ${p => p.theme.ruby};
         cursor: pointer; 
+    }
+    .input-area {
+        height: 10rem;
+        width: 100%;
+
+        padding: 1.5rem;
+        font-size: 1.6rem;
+        background: #fafafa;
     }
 `
 
