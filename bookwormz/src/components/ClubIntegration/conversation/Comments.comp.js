@@ -22,7 +22,7 @@ export const CommentBlock = styled.div`
     }
     .reply-bar {
         display: grid;
-        height: ${p => p.isReplyOpen ? '20rem' : '5rem'};
+        height: ${p => p.isReplyOpen ? '25rem' : '5rem'};
         transition: height 750ms;
     }
     .image { height: 8rem; width: 8rem; border-radius: 50%; }
@@ -36,12 +36,24 @@ export const CommentBlock = styled.div`
         cursor: pointer; 
     }
     .input-area {
-        height: 10rem;
+        height: ${p => p.isReplyOpen ? '10rem' : 0};
         width: 100%;
 
-        padding: 1.5rem;
+        padding: .5rem;
         font-size: 1.6rem;
         background: #fafafa;
+    }
+    .reply-text, .input-area {
+        opacity: ${p => p.isReplyOpen ? 1 : 0};
+        transition: all 500ms ease-out;
+    }
+    .reply-submit {
+        height: 4rem;
+        font-size: 1.4rem;
+        background: ${p => p.isSubmitable ? '#229833' : 'transparent'};;
+        color: ${p => p.isSubmitable ? p.color : '#646464'};
+        border: .1rem solid ${p => p.isSubmitable ? '#229833' : '#646464'};
+        border-radius: .3rem;
     }
 `
 

@@ -8,6 +8,7 @@ import { CommentBlock, } from './Comments.comp'
 
 export const Comment = ({ comment }) => {
     const [makeReply, setMakeReply] = useState(false)
+    const [replyContent, setReplyContent] = useState('')
 
     const handleReplyClick = () => setMakeReply(!makeReply)
 
@@ -19,7 +20,8 @@ export const Comment = ({ comment }) => {
         <CommentBlock 
             color={color}
             border={border}
-            isReplyOpen={makeReply}>
+            isReplyOpen={makeReply}
+            isSubmitable={replyContent.length > 0 ? true : false}>
             <section 
                 id={`${_id}`}
                 className='top-bar'>
@@ -60,11 +62,15 @@ export const Comment = ({ comment }) => {
             </section>
 
             <section className='reply-bar'>
-                <p  
-                    onClick={handleReplyClick}
+                <p  onClick={handleReplyClick}
                     className='content reply-button'>Reply</p>
-
-                {makeReply && <textarea className='input-area' />}
+                {/*  */}
+                <span className='reply-text content'>Replying to {commenterName}</span>
+                <textarea 
+                    className='input-area'
+                    onChange={e => setReplyContent(e.target.value)} />
+                <button 
+                    className='reply-submit'>Submit</button>
             </section>
 
         </CommentBlock>
