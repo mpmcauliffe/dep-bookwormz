@@ -14,7 +14,7 @@ const clubBookshelfReducer = (state, action) => {
             return {
                 ...state,
                 bookshelfTitle: action.payload ? 'Your Bookshelf' : 'Club Bookshelf',
-                toggleTriggerText: action.payload ? 'Click to view club bookshelf' : 'Click to view your bookshelf',
+                toggleTriggerText: action.payload ? 'Click here to VIEW club bookshelf' : 'Click here to ADD books from your bookshelf',
                 bookshelfMessage: action.payload ? 'You don\'t have any books in your library' : 'There aren\'t any books in this library',
             }
         default: 
@@ -34,8 +34,6 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMe
 
     const { bookshelfTitle, bookshelfMessage, toggleTriggerText, } = state
         
-    const handleClubBookshelfToggle = () => setShowUserBookshelf(!showUserBookshelf)
-
     useEffect(() => {
         showUserBookshelf ? setBooksOnDisplay(myBooks) : setBooksOnDisplay(clubBooks)
         dispatch({ type: 'TOGGLE_BOOKSHELF', payload: showUserBookshelf }) 
@@ -51,7 +49,7 @@ const ClubShelf_proto = ({ getClubBooks, getBooks, clubBooks, myBooks, isUserAMe
             {isUserAMember 
                 && <Fragment>
                     <BasicTrigger 
-                        onClick={handleClubBookshelfToggle}>
+                        onClick={() => setShowUserBookshelf(!showUserBookshelf)}>
                         {toggleTriggerText}
                     </BasicTrigger>
                     {/* {showUserBookshelf && <p style={{ position: 'absolute', }}>Click 'Add' button to add a book to this club's library</p>} */}

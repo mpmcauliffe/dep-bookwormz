@@ -49,14 +49,20 @@ export const CommentBlock = styled.div`
     }
     .reply-submit {
         height: 4.5rem;
+        
         font-size: 1.6rem;
         background: ${p => p.isSubmitable ? '#578c5e' : 'transparent'};;
         color: ${p => p.isSubmitable ? p.color : '#646464'};
-        border: .1rem solid ${p => p.isSubmitable ? '#229833' : '#646464'};
+        border: .1rem solid ${p => p.isSubmitable ? '#578c5e' : '#646464'};
         border-radius: .3rem;
+
+        cursor: ${p => p.isSubmitable ? 'pointer' : 'default'};
     }
 `
 
 export const InputBlock = styled.div`
+    height: ${p => p.showInputBlock ? '60rem' : 0};
     background: #f7f7f7;
+
+    transition: all 500ms ease-out;
 `

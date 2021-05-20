@@ -1,40 +1,56 @@
-import React from 'react'
+import React, { useState, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
 import { Comment } from './Comment'
-import { Buffer, EmptyNotification, } from '../../../components'
+import { InputBlock, } from './Comments.comp'
+import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
 import { dummytext } from './dummytext'
 import 'simplebar/dist/simplebar.min.css'
 
 
 const CommentSection_proto = ({ comments=dummytext, }) => {
+    const [showInputBlock, setShowInputBlock] = useState(false)
+
+
     //console.log(comments)
 
     return (
         <div>
             <h3>Club Conversation</h3>
-            <Buffer thickness={12.5} />
-            {Array.isArray(comments) && comments.length > 0 
-                ?  (<Simplebar style={{ height: '600px' }}>
-                    <div id='commentContainer'>
-                    {comments.map(comment => (
-                    <div key={comment._id}>
-                        <Comment comment={comment} />
-                        <Buffer thickness={.5} />
-                    </div>))}    
-                    </div>
-                    
+            <Buffer thickness={7} />
+            
+            <BasicTrigger 
+                onClick={() => setShowInputBlock(!showInputBlock)}>
+                Click here to MAKE a new comment
+            </BasicTrigger>
+            <Buffer thickness={3} />
+            {/*  */}
+            <InputBlock showInputBlock={showInputBlock} />
 
-                       
-                    </Simplebar> 
-                ) : (
-                    <EmptyNotification 
-                        linkTo={''}
-                        linkMessage={''}
-                        preMessage={`There aren't any books in this library`} />
-                )
+            {!showInputBlock
+                ? Array.isArray(comments) && comments.length > 0 
+                    ?  (<Simplebar style={{ height: '600px' }}>
+                        <div id='commentContainer'>
+                        {comments.map(comment => (
+                        <div key={comment._id}>
+                            <Comment comment={comment} />
+                            <Buffer thickness={.5} />
+                        </div>))}    
+                        </div>
+                        
+
+                        
+                        </Simplebar> 
+                    ) : (
+                        <EmptyNotification 
+                            linkTo={''}
+                            linkMessage={''}
+                            preMessage={`There aren't any books in this library`} />
+                    )
+                : null
             }
+            
         </div>
     )
 }
