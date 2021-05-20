@@ -43,14 +43,14 @@ export const CommentBlock = styled.div`
         font-size: 1.6rem;
         background: #fafafa;
     }
-    .reply-text, .input-area {
+    .reply-text, .input-area, .reply-submit {
         opacity: ${p => p.isReplyOpen ? 1 : 0};
         transition: all 500ms ease-out;
     }
     .reply-submit {
-        height: 4rem;
-        font-size: 1.4rem;
-        background: ${p => p.isSubmitable ? '#229833' : 'transparent'};;
+        height: 4.5rem;
+        font-size: 1.6rem;
+        background: ${p => p.isSubmitable ? '#578c5e' : 'transparent'};;
         color: ${p => p.isSubmitable ? p.color : '#646464'};
         border: .1rem solid ${p => p.isSubmitable ? '#229833' : '#646464'};
         border-radius: .3rem;
