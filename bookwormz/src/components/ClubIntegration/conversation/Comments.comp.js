@@ -20,7 +20,7 @@ export const CommentBlock = styled.div`
         display: grid;
         grid-template-rows: fit-content(4rem) fit-content(10rem);
     }
-    .reply-bar {
+    .input-bar {
         display: grid;
         height: ${p => p.isReplyOpen ? '25rem' : '5rem'};
         transition: height 750ms;
@@ -43,11 +43,11 @@ export const CommentBlock = styled.div`
         font-size: 1.6rem;
         background: #fafafa;
     }
-    .reply-text, .input-area, .reply-submit {
+    .input-text, .input-area, .input-submit {
         opacity: ${p => p.isReplyOpen ? 1 : 0};
         transition: all 500ms ease-out;
     }
-    .reply-submit {
+    .input-submit {
         height: 4.5rem;
         
         font-size: 1.6rem;
@@ -60,9 +60,22 @@ export const CommentBlock = styled.div`
     }
 `
 
-export const InputBlock = styled.div`
+export const InputBlock = styled(CommentBlock)`
     height: ${p => p.showInputBlock ? '60rem' : 0};
-    background: #f7f7f7;
 
+    background: #f7f7f7;
+    padding: ${p => p.showInputBlock ? '1rem' : 0};
+    /* border: ${p => p.showInputBlock ? '2rem dashed #f7f7f7' : 0}; */
+    border: 0;
     transition: all 500ms ease-out;
+
+    .dummy-image { height: 8rem; width: 8rem; border-radius: 50%; background: lightblue; }
+   /*  .input-area {
+        height: 33rem;
+        width: 100%;
+
+        padding: .5rem;
+        font-size: 1.6rem;
+        background: #fafafa;
+    } */
 `

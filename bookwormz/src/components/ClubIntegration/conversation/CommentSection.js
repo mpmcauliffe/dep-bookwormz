@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
 import { Comment } from './Comment'
+import { MakeComment } from './MakeComment'
 import { InputBlock, } from './Comments.comp'
 import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
 import { dummytext } from './dummytext'
@@ -15,7 +16,7 @@ const conversationReducer = (state, action) => {
         case 'TOGGLE_COMMENT_SECTION':
             return {
                 ...state,
-                
+
             }
 
         default:
@@ -40,7 +41,9 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
             </BasicTrigger>
             <Buffer thickness={3} />
             {/*  */}
-            <InputBlock showInputBlock={showInputBlock} />
+            <InputBlock showInputBlock={showInputBlock}>
+                <MakeComment />
+            </InputBlock>
 
             {!showInputBlock
                 ? Array.isArray(comments) && comments.length > 0 

@@ -66,16 +66,16 @@ export const Comment = ({ comment }) => {
                 <p className='content'>{content}</p>
             </section>
 
-            <section className='reply-bar'>
+            <section className='input-bar'>
                 <p  onClick={handleReplyClick}
                     className='content reply-button'>Reply</p>
                 {/*  */}
-                <span className='reply-text content'>Replying to {commenterName}</span>
+                <span className='input-text content'>Replying to {commenterName}</span>
                 <textarea 
                     className='input-area'
                     onChange={e => setReplyContent(e.target.value)} />
                 <button 
-                    className='reply-submit'
+                    className='input-submit'
                     onClick={handleReplySubmit}>Submit</button>
             </section>
 

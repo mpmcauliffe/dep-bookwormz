@@ -1,10 +1,13 @@
-import React from 'react'
+import { text } from 'body-parser'
+import React, { Fragment, } from 'react'
 
 
 export const MakeComment = () => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <section className='top-bar'>
+                <div className='dummy-image' />
+            </section>
+        </Fragment>
     )
 }
