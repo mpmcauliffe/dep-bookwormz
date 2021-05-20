@@ -1,4 +1,4 @@
-import React, { useState, } from 'react'
+import React, { useState, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
@@ -8,6 +8,20 @@ import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
 import { dummytext } from './dummytext'
 import 'simplebar/dist/simplebar.min.css'
 
+
+
+const conversationReducer = (state, action) => {
+    switch(action.type) {
+        case 'TOGGLE_COMMENT_SECTION':
+            return {
+                ...state,
+                
+            }
+
+        default:
+            return state
+    }
+}
 
 const CommentSection_proto = ({ comments=dummytext, }) => {
     const [showInputBlock, setShowInputBlock] = useState(false)
