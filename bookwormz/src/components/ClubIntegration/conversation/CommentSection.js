@@ -1,4 +1,4 @@
-import React, { useState, useReducer, } from 'react'
+import React, { useState, useEffect, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
@@ -16,7 +16,7 @@ const conversationReducer = (state, action) => {
         case 'TOGGLE_COMMENT_SECTION':
             return {
                 ...state,
-
+                toggleTriggerText: action.payload ? 'Click here to VIEW group comments' : 'Click here to MAKE a new comment',
             }
 
         default:
@@ -24,9 +24,19 @@ const conversationReducer = (state, action) => {
     }
 }
 
-const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
-    const [showInputBlock, setShowInputBlock] = useState(false)
+const initialState = { toggleTriggerText: '', }
 
+const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
+    const [state, dispatch] = useReducer(conversationReducer, initialState)
+    
+    const [showInputBlock, setShowInputBlock]           = useState(false)
+    // const [toggleTriggerText, setToggleTriggerText]     = useState('Click here to MAKE a new comment')
+
+    const { toggleTriggerText, } = state
+
+    useEffect(() => { 
+        dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showInputBlock, })
+    }, [showInputBlock])
 
     //console.log(comments)
 
@@ -37,7 +47,7 @@ const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
             
             <BasicTrigger 
                 onClick={() => setShowInputBlock(!showInputBlock)}>
-                Click here to MAKE a new comment
+                {toggleTriggerText}
             </BasicTrigger>
             <Buffer thickness={3} />
             {/*  */}
@@ -50,16 +60,13 @@ const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
             {!showInputBlock
                 ? Array.isArray(comments) && comments.length > 0 
                     ?  (<Simplebar style={{ height: '600px' }}>
-                        <div id='commentContainer'>
-                        {comments.map(comment => (
-                        <div key={comment._id}>
-                            <Comment comment={comment} />
-                            <Buffer thickness={.5} />
-                        </div>))}    
-                        </div>
-                        
-
-                        
+                            <div id='commentContainer'>
+                                {comments.map(comment => (
+                                    <div key={comment._id}>
+                                        <Comment comment={comment} />
+                                        <Buffer thickness={.5} />
+                                    </div>))}    
+                            </div>
                         </Simplebar> 
                     ) : (
                         <EmptyNotification 
