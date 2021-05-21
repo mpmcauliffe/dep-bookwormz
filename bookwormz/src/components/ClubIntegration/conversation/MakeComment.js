@@ -1,5 +1,6 @@
-import React, { Fragment, useState, } from 'react'
+import React, { useState, } from 'react'
 import PropTypes from 'prop-types'
+import { UnboundForm } from './Comments.comp'
 import { Buffer, } from '../../../components'
 
 export const MakeComment = ({ userProfile, displayName }) => {
@@ -10,7 +11,7 @@ export const MakeComment = ({ userProfile, displayName }) => {
     const handleNewCommentSubmit = () => {}
 
     return (
-        <Fragment>
+        <UnboundForm>
             <section className='top-bar'>
                 {/* <div className='dummy-image' /> */}
                 
@@ -43,14 +44,14 @@ export const MakeComment = ({ userProfile, displayName }) => {
                 <textarea
                     value={newComment} 
                     className='input-area new-comment-input'
-                    onChange={e => setNewComment(e.target.vaule)} />
+                    onChange={e => setNewComment(e.target.value)} />
                 <Buffer thickness={9} />
 
                 <button 
-                    className='input-submit'
+                    className='input-submit new-submit'
                     onClick={handleNewCommentSubmit}>Submit</button>
             </section>
-        </Fragment>
+        </UnboundForm>
     )
 }
 

@@ -77,5 +77,9 @@ export const InputBlock = styled(CommentBlock)`
         &:focus { border: .2rem solid #578c5e; !important }
     }
 
+    .new-submit { background: #578c5e; color: #f7f7f7; cursor: pointer; }
+
     .dummy-image { height: 8rem; width: 8rem; border-radius: 50%; background: lightblue; }
 `
+
+export const UnboundForm = styled.div``
