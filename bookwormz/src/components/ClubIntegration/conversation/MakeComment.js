@@ -12,7 +12,12 @@ export const MakeComment = ({ userProfile, displayName }) => {
     return (
         <Fragment>
             <section className='top-bar'>
-                <div className='dummy-image' />
+                {/* <div className='dummy-image' /> */}
+                
+                <img  
+                    alt='IMG_self' 
+                    className='image'
+                    src={`${userProfile}`} />
 
                 <div className='identity'>
                     <div />
@@ -30,13 +35,17 @@ export const MakeComment = ({ userProfile, displayName }) => {
                     <input
                         value={subject}
                         placeholder='Subject'
-                        className='subject-input' />
+                        className='subject-input'
+                        onChange={e => setSubject(e.target.value)} />
                     <Buffer thickness={5} />
                 </div>
+                
                 <textarea
                     value={newComment} 
-                    className='input-area new-comment-input' />
+                    className='input-area new-comment-input'
+                    onChange={e => setNewComment(e.target.vaule)} />
                 <Buffer thickness={9} />
+
                 <button 
                     className='input-submit'
                     onClick={handleNewCommentSubmit}>Submit</button>
