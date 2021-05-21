@@ -22,7 +22,7 @@ export const CommentBlock = styled.div`
     }
     .input-bar {
         display: grid;
-        height: ${p => p.isReplyOpen ? '25rem' : '5rem'};
+        height: ${p => p.isReplyOpen || p.showInputBlock ? '25rem' : '5rem'};
         transition: height 750ms;
     }
     .image { height: 8rem; width: 8rem; border-radius: 50%; }
@@ -36,7 +36,7 @@ export const CommentBlock = styled.div`
         cursor: pointer; 
     }
     .input-area {
-        height: ${p => p.isReplyOpen ? '10rem' : 0};
+        height: ${p => p.isReplyOpen || p.showInputBlock ? '10rem' : 0};
         width: 100%;
 
         padding: .5rem;
@@ -44,7 +44,7 @@ export const CommentBlock = styled.div`
         background: #fafafa;
     }
     .input-text, .input-area, .input-submit {
-        opacity: ${p => p.isReplyOpen ? 1 : 0};
+        opacity: ${p => p.isReplyOpen || p.showInputBlock ? 1 : 0};
         transition: all 500ms ease-out;
     }
     .input-submit {
