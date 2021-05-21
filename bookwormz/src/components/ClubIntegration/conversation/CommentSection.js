@@ -24,7 +24,7 @@ const conversationReducer = (state, action) => {
     }
 }
 
-const CommentSection_proto = ({ comments=dummytext, }) => {
+const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
     const [showInputBlock, setShowInputBlock] = useState(false)
 
 
@@ -42,7 +42,9 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
             <Buffer thickness={3} />
             {/*  */}
             <InputBlock showInputBlock={showInputBlock}>
-                <MakeComment />
+                <MakeComment
+                    userProfile={image}
+                    displayName={displayName} />
             </InputBlock>
 
             {!showInputBlock
@@ -75,10 +77,13 @@ const CommentSection_proto = ({ comments=dummytext, }) => {
 
 CommentSection_proto.propTypes = {
     //comments: PropTypes.array.isRequired,
+    image: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
-
+    image: state.account.image,
+    displayName: state.account.displayName,
 })
 
 const CommentSection = connect(mapStateToProps, {  })(CommentSection_proto)

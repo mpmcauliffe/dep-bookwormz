@@ -1,7 +1,8 @@
 import React, { Fragment, useState, } from 'react'
+import PropTypes from 'prop-types'
 import { Buffer, } from '../../../components'
 
-export const MakeComment = () => {
+export const MakeComment = ({ userProfile, displayName }) => {
 
     const [subject, setSubject] = useState('')
     const [newComment, setNewComment] = useState('')
@@ -16,7 +17,7 @@ export const MakeComment = () => {
                 <div className='identity'>
                     <div />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p className='name'>Your Name Here</p>
+                        <p className='name'>{displayName}</p>
                         <p className='content'>Today's Date Here</p>
                     </div>
                 </div>
@@ -27,10 +28,14 @@ export const MakeComment = () => {
                     {/** <i className='fas fa-pen-alt fa-2x' />*/}
                     <Buffer thickness={7} />
                     <input
-                        placeholder='Subject' />
+                        value={subject}
+                        placeholder='Subject'
+                        className='subject-input' />
                     <Buffer thickness={5} />
                 </div>
-                <textarea className='input-area new-comment-input' />
+                <textarea
+                    value={newComment} 
+                    className='input-area new-comment-input' />
                 <Buffer thickness={9} />
                 <button 
                     className='input-submit'
@@ -38,4 +43,10 @@ export const MakeComment = () => {
             </section>
         </Fragment>
     )
+}
+
+
+MakeComment.propTypes = {
+    userProfile: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
 }

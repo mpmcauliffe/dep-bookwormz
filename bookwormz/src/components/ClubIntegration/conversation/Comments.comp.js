@@ -69,17 +69,13 @@ export const InputBlock = styled(CommentBlock)`
     border: 0;
     transition: all 500ms ease-out;
 
+    .subject-input { &:focus { border-bottom: .2rem solid #578c5e; !important } } }
+
     .new-comment-input {
         height: 15rem;
+        outline: none;
+        &:focus { border: .2rem solid #578c5e; !important }
     }
 
     .dummy-image { height: 8rem; width: 8rem; border-radius: 50%; background: lightblue; }
-   /*  .input-area {
-        height: 33rem;
-        width: 100%;
-
-        padding: .5rem;
-        font-size: 1.6rem;
-        background: #fafafa;
-    } */
 `
