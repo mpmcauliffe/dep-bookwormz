@@ -1,8 +1,13 @@
-import { text } from 'body-parser'
-import React, { Fragment, } from 'react'
-
+import React, { Fragment, useState, } from 'react'
+import { Buffer, } from '../../../components'
 
 export const MakeComment = () => {
+
+    const [subject, setSubject] = useState('')
+    const [newComment, setNewComment] = useState('')
+
+    const handleNewCommentSubmit = () => {}
+
     return (
         <Fragment>
             <section className='top-bar'>
@@ -19,10 +24,17 @@ export const MakeComment = () => {
 
             <section className='input-bar'>
                 <div>
-                    <i className='fas fa-pen-alt fa-3x' />
-                    <input />
+                    {/** <i className='fas fa-pen-alt fa-2x' />*/}
+                    <Buffer thickness={7} />
+                    <input
+                        placeholder='Subject' />
+                    <Buffer thickness={5} />
                 </div>
-                <textarea className='input-area' />
+                <textarea className='input-area new-comment-input' />
+                <Buffer thickness={9} />
+                <button 
+                    className='input-submit'
+                    onClick={handleNewCommentSubmit}>Submit</button>
             </section>
         </Fragment>
     )

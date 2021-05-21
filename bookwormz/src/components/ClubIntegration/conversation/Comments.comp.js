@@ -69,6 +69,10 @@ export const InputBlock = styled(CommentBlock)`
     border: 0;
     transition: all 500ms ease-out;
 
+    .new-comment-input {
+        height: 15rem;
+    }
+
     .dummy-image { height: 8rem; width: 8rem; border-radius: 50%; background: lightblue; }
    /*  .input-area {
         height: 33rem;
