@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { LandingContainer, } from './Landing.comp'
@@ -15,7 +15,8 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
     if (error.length > 0) { 
         M.toast({ html: error, classes: 'red accent-4 rounded', displayLength: 9000 })
     }
-
+    
+    useEffect(() => { window.scroll(0, 0) }, [])
 
     return (
         <LandingContainer>

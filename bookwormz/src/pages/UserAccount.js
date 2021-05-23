@@ -53,6 +53,9 @@ export const UserAccount_proto = ({
             getUserInfo() 
         }  
         getUserInfo()
+
+        window.scroll(0, 0)
+        
     }, [getUserInfo, image, displayName])
 
 

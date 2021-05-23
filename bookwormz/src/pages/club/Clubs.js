@@ -12,6 +12,10 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
     useEffect(() => { 
         getAllClubs()
         resetClubs() 
+
+        window.scroll(0, 0)
+    
+    // eslint-disable-next-line
     }, [ ])
 
     // if (availableClubs.length < 1) { return <Spinner /> }

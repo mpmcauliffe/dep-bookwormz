@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -7,6 +7,7 @@ import { BookShelf, HeaderSection, MainContent, Searchbar, } from '../components
 
 
 export const Books_proto = ({ bookSearchQuery, }) => {
+    useEffect(() => { window.scroll(0, 0) }, [])
 
     return (
         <motion.div 

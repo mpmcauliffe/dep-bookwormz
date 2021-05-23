@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -29,6 +29,9 @@ const Club_proto = ({
         getBooks()
         getUserInfo()
 
+        window.scroll(0, 0)
+
+    // eslint-disable-next-line
     }, [getClub, currentClub, clubId, history, isUserAMember])
     
 

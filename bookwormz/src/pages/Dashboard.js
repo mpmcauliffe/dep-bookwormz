@@ -20,6 +20,8 @@ export const Dashboard_proto = ({
         getMyClubs() 
         resetClubs()
 
+        window.scroll(0, 0)
+        
     // eslint-disable-next-line
     }, [ ])
     
