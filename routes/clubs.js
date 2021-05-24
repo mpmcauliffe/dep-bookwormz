@@ -7,12 +7,12 @@ const Club                              = require('../models/Club')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
 
-const astronomy      = require('./db/astronomyClub')
-const bear           = require('./db/bearClub')
-const horror         = require('./db/horrorClub')
-const infinite       = require('./db/infiniteClub')
-const picture        = require ('./db/pictureBookClub')
-const world          = require('./db/rulesTheWorldClub')
+const astronomy      = require('./db/clubFill/astronomyClub')
+const bear           = require('./db/clubFill/bearClub')
+const horror         = require('./db/clubFill/horrorClub')
+const infinite       = require('./db/clubFill/infiniteClub')
+const picture        = require ('./db/clubFill/pictureBookClub')
+const world          = require('./db/clubFill/rulesTheWorldClub')
 const data           = [astronomy, bear, horror, infinite, picture, world]
 
 const router                            = express.Router()
