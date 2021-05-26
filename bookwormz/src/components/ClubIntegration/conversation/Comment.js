@@ -20,6 +20,9 @@ export const Comment = ({ comment }) => {
     const { _id, commenterName, commenterProfile, subject, content, 
         created, replyTo, replyToOrigin, color, border, } = comment
 
+    // commenterName >>> name
+    // commenterProfile >>> profile
+    // created >>> createdOn
 
     return (
         <CommentBlock 

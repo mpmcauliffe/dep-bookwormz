@@ -5,15 +5,15 @@ const Schema = mongoose.Schema
 
 
 const CommentSchema = new Schema({
-    commenterId: {
+    memberId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    commenterName: {
+    name: {
         type: String,
         required: true,
     },
-    commenterProfile: {
+    profile: {
         type: String,
         required: true,
     },
@@ -24,7 +24,7 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
-    createdAt: {
+    createdOn: {
         type: Date,
         default: Date.now,
     },

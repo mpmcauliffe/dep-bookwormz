@@ -20,6 +20,7 @@ export const Members = ({ member }) => {
                     />&nbsp;&nbsp;{member.name}</p>
                     : <p>{member.name}</p>
                 }
+                <p>{member._id}</p>
         </div>
     )
 }
