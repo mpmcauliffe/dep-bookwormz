@@ -1,0 +1,25 @@
+module.exports = [
+    {
+        // _id: 'QIWOejnaknafu377',
+        memberId: '607114bee688ab3770b25932',
+        name: 'Sefinaz',
+        profile: 'sun',
+        subject: 'Welcome to the Picture Book Club',
+        content: 'I love bear art! #BearScribble',
+        createdOn: '25 MAY 2021',
+        color: '#fff7f7',
+        border: '#ddd7d7',
+    }, {
+        // _id: 'uWa3If7anOnj7Qke',
+        memberId: '607114bde688ab3770b2590c',
+        name: 'Semiramis',
+        profile: 'polar',
+        subject: 'Welcome to the Picture Book Club',
+        content: 'I like to bite and make scratches in ice. But that\'s hard to put in a book.',
+        replyTo: 'uWa3If7anOnj7Qke',
+        replyToOrigin: 'uWa3If7anOnj7Qke',
+        createdOn: '25 MAY 2021',
+        color: '#fff7f7',
+        border: '#ddd7d7',
+    }, 
+]
