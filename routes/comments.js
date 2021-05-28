@@ -24,7 +24,20 @@ router.delete('/deletcomment/:clubId/:commentId', verification, async (req, res)
 })
 
 router.get('/getcomments/:clubId', verification, async (req, res) => {
-    
+    const { clubId } = req.params
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return
+        }
+        
+        res.json(club.comments)
+
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.put('/updatecomment/:clubId/:commentId', verification, async (req, res) => {
