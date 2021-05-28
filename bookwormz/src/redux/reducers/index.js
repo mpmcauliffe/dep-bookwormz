@@ -10,5 +10,5 @@ export default combineReducers({
     books: bookReducer,
     account: accountReducer,
     clubs: clubReducer,
-    comment: commentReducer,
+    comments: commentReducer,
  })

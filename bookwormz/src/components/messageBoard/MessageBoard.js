@@ -9,7 +9,7 @@ import M from 'materialize-css/dist/js/materialize.min.js'
 
 export const MessageBoard_proto = ({ 
     clearBookMessage, clearUserMessage, clearClubMessage,
-    bookMessage, userMessage, clubMessage, }) => {
+    bookMessage, userMessage, clubMessage, commentMessage, }) => {
     
     useEffect(() => {
         if (bookMessage.message) {

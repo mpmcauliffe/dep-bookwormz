@@ -230,7 +230,7 @@ router.get('/getclubbooks/:clubId', async (req, res) => {
     }
 })
 
-
+// STRICTLY TO FILL CLUBS WITH DUMMY ACCOUNTS
 const fillClubs = async (clubId, dummieData) => {
     const club = await Club.findById({ _id: clubId })
     if (club.members.length > 1) {
@@ -254,9 +254,10 @@ const fillClubs = async (clubId, dummieData) => {
     //console.log(savedClub)
 }
 
+// STRICTLY TO FILL CLUBS WITH DUMMY ACCOUNTS
 router.post('/fillclubs', async (req, res) => {
     
-    const clubs = ['606e8b1d285e125fe0551aee','606e7dc4285e125fe0551aea','606e7dc4285e125fe0551aea',
+    const clubs = ['606e8b1d285e125fe0551aee','606e7dc4285e125fe0551aea','606e8af5285e125fe0551aec',
         '606e8b80285e125fe0551af2','606e8ca3285e125fe0551af4','606e8b49285e125fe0551af0']
 
     for (let i=0; i<clubs.length; i++) {

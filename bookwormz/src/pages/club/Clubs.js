@@ -5,14 +5,15 @@ import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from '../zAnimation'
 import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../../components'
 import { getAllClubs, fillClubs, resetClubs } from '../../redux/actions/clubActions'
+import { fillComments, } from '../../redux/actions/commentActions'
 
 
-export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, resetClubs, }) => {
+export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, fillComments, resetClubs, }) => {
 
     useEffect(() => { 
         getAllClubs()
         resetClubs() 
-
+        // fillComments() DO NOT TURN ON
         window.scroll(0, 0)
     
     // eslint-disable-next-line
@@ -67,6 +68,7 @@ Clubs_proto.propTypes = {
     clubSearchQuery: PropTypes.string.isRequired,
     availableClubs: PropTypes.array.isRequired,
     fillClubs: PropTypes.func,
+    fillComments: PropTypes.func.isRequired,
     resetClubs: PropTypes.func.isRequired,
 }
 
@@ -75,7 +77,8 @@ const mapStateToProps = state => ({
     clubSearchQuery: state.clubs.clubSearchQuery,
     availableClubs: state.clubs.availableClubs,
     fillClubs: state.clubs.fillClubs,
+    fillComments: state.comments.fillComments,
 })
 
-const Clubs = connect(mapStateToProps, { getAllClubs, fillClubs, resetClubs, })(Clubs_proto)
+const Clubs = connect(mapStateToProps, { getAllClubs, fillClubs, fillComments, resetClubs, })(Clubs_proto)
 export { Clubs }

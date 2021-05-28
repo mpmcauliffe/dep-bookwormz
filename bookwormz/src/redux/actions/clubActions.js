@@ -178,6 +178,7 @@ export const sendClubMessage = messageSettings => dispatch => {
 
 export const clearClubMessage = () => dispatch => { dispatch({ type: CLEAR_CLUB_MESSAGE }) }
 
+// STRICTLY TO FILL CLUBS WITH DUMMY ACCOUNTS
 export const fillClubs = () => async dispatch => {
     try {
         console.log('fill clubs')
