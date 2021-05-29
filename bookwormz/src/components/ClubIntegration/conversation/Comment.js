@@ -17,12 +17,13 @@ export const Comment = ({ comment }) => {
         console.log('submit')
     }
 
-    const { _id, commenterName, commenterProfile, subject, content, 
-        created, replyTo, replyToOrigin, color, border, } = comment
-
     // commenterName >>> name
     // commenterProfile >>> profile
     // created >>> createdOn
+
+    const { _id, name, profile, subject, content, 
+        created, replyTo, replyToOrigin, color, border, } = comment
+
 
     return (
         <CommentBlock 
@@ -36,7 +37,7 @@ export const Comment = ({ comment }) => {
                 <img  
                     alt='PROFILE_IMG'
                     className='image'
-                    src={require(`../../../assets/mock/${commenterProfile}.png`).default} />
+                    src={require(`../../../assets/mock/${profile}.png`).default} />
 
                 <div className='identity'>
                     <div style={{ textAlign: 'right' }}>
@@ -58,7 +59,7 @@ export const Comment = ({ comment }) => {
                         </ScrollLink>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <p className='name'>{commenterName}</p>
+                        <p className='name'>{name}</p>
                         <p className='content'>{created}</p>
                     </div>
                 </div>
@@ -73,7 +74,7 @@ export const Comment = ({ comment }) => {
                 <p  onClick={handleReplyClick}
                     className='content reply-button'>Reply</p>
                 {/*  */}
-                <span className='input-text content'>Replying to {commenterName}</span>
+                <span className='input-text content'>Replying to {name}</span>
                 <textarea 
                     className='input-area'
                     onChange={e => setReplyContent(e.target.value)} />

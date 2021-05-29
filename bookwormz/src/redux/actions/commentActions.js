@@ -2,6 +2,8 @@ import axios from 'axios'
 import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, COMMENT_MESSAGE, } from '../types'
 
 
+const config = { headers: { 'Content-Type': 'application/json' } }
+
 export const createComment = () => async dispatch => {
 
 }
@@ -10,8 +12,23 @@ export const deleteComment = () => async dispatch => {
 
 }
 
-export const getComments = () => async dispatch => {
+export const getComments = clubId => async dispatch => {
+    try {
+        const res = await axios.get(`/comments/getcomments/${clubId}`)
 
+        // console.log(res.data)
+        if (res.status === 200) {
+            dispatch({ 
+                type: GET_COMMENTS, 
+                payload: res.data, 
+            })
+            return
+        }
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: COMMENT_MESSAGE, payload: 'Could not retrieve club library.' })
+    }
 }
 
 export const editComment = () => async dispatch => {

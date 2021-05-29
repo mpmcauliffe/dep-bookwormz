@@ -6,7 +6,7 @@ import { Comment } from './Comment'
 import { MakeComment } from './MakeComment'
 import { InputBlock, } from './Comments.comp'
 import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
-import { dummytext } from './dummytext'
+// import { dummytext } from './dummytext'
 import 'simplebar/dist/simplebar.min.css'
 
 
@@ -26,7 +26,7 @@ const conversationReducer = (state, action) => {
 
 const initialState = { toggleTriggerText: '', }
 
-const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
+const CommentSection_proto = ({ comments, image, displayName, }) => {
     const [state, dispatch] = useReducer(conversationReducer, initialState)
     
     const [showInputBlock, setShowInputBlock]           = useState(false)
@@ -36,9 +36,9 @@ const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
 
     useEffect(() => { 
         dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showInputBlock, })
-    }, [showInputBlock])
+    }, [showInputBlock, comments])
 
-    //console.log(comments)
+    console.log(comments)
 
     return (
         <div>
@@ -83,12 +83,13 @@ const CommentSection_proto = ({ comments=dummytext, image, displayName, }) => {
 
 
 CommentSection_proto.propTypes = {
-    //comments: PropTypes.array.isRequired,
+    comments: PropTypes.array.isRequired,
     image: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
+    comments: state.comments.comments,
     image: state.account.image,
     displayName: state.account.displayName,
 })

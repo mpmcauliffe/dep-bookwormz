@@ -8,12 +8,13 @@ import { BiGrid, Buffer, EmptyNotification, MainContent, Spinner, StandarGrid,
 import { pageTransition, pageVariants, } from '../zAnimation'
 import { getClub, } from '../../redux/actions/clubActions'
 import { getClubBooks, getBooks, } from '../../redux/actions/bookActions'
+import { getComments, } from '../../redux/actions/commentActions'
 import { getUserInfo, } from '../../redux/actions/accountActions'
 // import { truncate, } from '../../helpers/truncate'
 
 
 const Club_proto = ({ 
-    getClub, getBooks, getClubBooks, getUserInfo,
+    getClub, getBooks, getClubBooks, getUserInfo, getComments,
     currentClub, 
     isUserAMember, }) => {
         
@@ -26,8 +27,10 @@ const Club_proto = ({
         if (!currentClub) { getClub(clubId, history) }
         
         getClubBooks(clubId)
+        getComments(clubId)
         getBooks()
         getUserInfo()
+        
 
         window.scroll(0, 0)
 
@@ -97,6 +100,8 @@ Club_proto.propTypes = {
     getClubBooks: PropTypes.func.isRequired,
 
     getUserInfo: PropTypes.func.isRequired,
+
+    getComments: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -105,7 +110,9 @@ const mapStateToProps = state => ({
     
     getBooks: state.books.getBooks,
     getClubBooks: state.books.getClubBooks,
+
+    getComments: state.comments.getComments,
 })
 
-const ClubPage = connect(mapStateToProps, { getClub, getBooks, getClubBooks, getUserInfo, })(Club_proto)
+const ClubPage = connect(mapStateToProps, { getClub, getBooks, getClubBooks, getUserInfo, getComments, })(Club_proto)
 export { ClubPage }

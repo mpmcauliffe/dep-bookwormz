@@ -2,6 +2,8 @@ import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, COMMENT_MES
 
 
 const initialState = {
+
+    comments: [ ],
     commentMessage: {
         message: '',
         style: '',
@@ -23,8 +25,10 @@ export default (state = initialState, action) => {
             }
 
         case GET_COMMENTS: 
+            // console.log(action.payload)
             return {
                 ...state,
+                comments: [...action.payload],
             }
 
         case EDIT_COMMENT: 
