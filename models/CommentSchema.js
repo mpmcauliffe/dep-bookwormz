@@ -17,17 +17,23 @@ const CommentSchema = new Schema({
         type: String,
         required: true,
     },
-    replyTo: [String],
-    replyToOrigin: [String],
+
     subject: String,
     content: {
         type: String,
         required: true,
     },
+
+    replyTo: [String],
+    replyToOrigin: [String],
+    
     createdOn: {
         type: Date,
         default: Date.now,
     },
+    
+    color: String,
+    border: String,
 })
 
 

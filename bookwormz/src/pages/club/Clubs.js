@@ -13,7 +13,7 @@ export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fill
     useEffect(() => { 
         getAllClubs()
         resetClubs() 
-        // fillComments() DO NOT TURN ON
+        fillComments() // DO NOT TURN ON
         window.scroll(0, 0)
     
     // eslint-disable-next-line

@@ -67,6 +67,8 @@ const fillComments = async (clubId, dummyData) => {
             replyTo: [],
             replyToOrigin: [],
             createdOn: dummyData[i].createdOn,
+            color: dummyData[i].color,
+            border: dummyData[i].border,
         }
         console.log(newComment)
         club.comments.push(newComment)
