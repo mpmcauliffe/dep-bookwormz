@@ -65,8 +65,9 @@ export const InputBlock = styled(CommentBlock)`
 
     background: #f7f7f7;
     padding: ${p => p.showInputBlock ? '1rem' : 0};
-    /* border: ${p => p.showInputBlock ? '2rem dashed #f7f7f7' : 0}; */
-    border: 0;
+    border: ${p => p.showInputBlock ? '2rem dashed #f7f7f7' : 0};
+    /* border: 0; */
+    opacity: ${p => p.showInputBlock ? 1 : 0};
     transition: all 500ms ease-out;
 
     .subject-input { &:focus { border-bottom: .2rem solid #578c5e; !important } } }

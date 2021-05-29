@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
             }
 
         case GET_COMMENTS: 
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 comments: [...action.payload],
