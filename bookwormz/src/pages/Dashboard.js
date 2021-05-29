@@ -5,6 +5,7 @@ import { motion, } from 'framer-motion'
 import { getUserInfo } from '../redux/actions/accountActions'
 import { getBooks, } from '../redux/actions/bookActions'
 import { getMyClubs, resetClubs, } from '../redux/actions/clubActions'
+import { resetComments, } from '../redux/actions/commentActions'
 import { pageTransition, pageVariants, } from './zAnimation'
 import { Buffer, ClubDock, EmptyNotification, MyBookShelf, HeaderSection, MainContent, StandarGrid } from '../components'
 
@@ -19,6 +20,7 @@ export const Dashboard_proto = ({
         getBooks()
         getMyClubs() 
         resetClubs()
+        resetComments()
 
         window.scroll(0, 0)
         

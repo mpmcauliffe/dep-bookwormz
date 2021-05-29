@@ -1,4 +1,5 @@
-import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, COMMENT_MESSAGE, } from '../types'
+import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, 
+    RESET_COMMENTS, COMMENT_MESSAGE, } from '../types'
 
 
 const initialState = {
@@ -25,10 +26,16 @@ export default (state = initialState, action) => {
             }
 
         case GET_COMMENTS: 
-            // console.log(action.payload)
+            console.log(action.payload)
             return {
                 ...state,
                 comments: [...action.payload],
+            }
+
+        case RESET_COMMENTS: 
+            return {
+                ...state,
+                comments: [ ],
             }
 
         case EDIT_COMMENT: 

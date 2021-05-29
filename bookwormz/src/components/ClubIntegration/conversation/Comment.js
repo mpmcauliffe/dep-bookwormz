@@ -17,10 +17,6 @@ export const Comment = ({ comment }) => {
         console.log('submit')
     }
 
-    // commenterName >>> name
-    // commenterProfile >>> profile
-    // created >>> createdOn
-
     const { _id, name, profile, subject, content, 
         created, replyTo, replyToOrigin, color, border, } = comment
 
@@ -41,22 +37,14 @@ export const Comment = ({ comment }) => {
 
                 <div className='identity'>
                     <div style={{ textAlign: 'right' }}>
-                        <ScrollLink 
-                            spy={true}
-                            smooth={true}
-                            containerId='commentContainer'
-                            to={replyToOrigin ? replyToOrigin : ''}>
+                    
                             {replyToOrigin 
                                 && <p className='origin'>{replyToOrigin}</p>}
-                        </ScrollLink>
-                        <ScrollLink
-                            spy={true}
-                            smooth={true} 
-                            to={replyTo ? replyTo : ''}
-                            containerId='commentContainer'>
+                        
+                        
                             {replyTo 
                                 && <p className='reply'>{replyTo}</p>}
-                        </ScrollLink>
+                        
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <p className='name'>{name}</p>

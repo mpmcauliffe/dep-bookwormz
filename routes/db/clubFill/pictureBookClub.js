@@ -65,7 +65,7 @@ module.exports = [
         "displayName": "Jack",
         "firstName": "Jack",
         "lastName": "Sparrow",
-        "image": "./img/mock/jacksparrow.png",
+        "image": "./img/mock/jack.png",
         "secondaryDisplayName": "",
         "secondaryImage": "",
         "createdAt": {

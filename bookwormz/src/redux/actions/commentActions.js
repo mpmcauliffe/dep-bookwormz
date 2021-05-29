@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, COMMENT_MESSAGE, } from '../types'
+import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, 
+    RESET_COMMENTS, COMMENT_MESSAGE, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -34,6 +35,9 @@ export const getComments = clubId => async dispatch => {
 export const editComment = () => async dispatch => {
     
 }
+
+export const resetComments = () => dispatch => { dispatch({ type: RESET_COMMENTS, }) }
+
 
 // STRICTLY TO FILL CLUBS WITH DUMMY COMMENTS
 export const fillComments = () => async dispatch => {

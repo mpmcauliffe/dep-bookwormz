@@ -38,7 +38,7 @@ const CommentSection_proto = ({ comments, image, displayName, }) => {
         dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showInputBlock, })
     }, [showInputBlock, comments])
 
-    console.log(comments)
+    // console.log(comments)
 
     return (
         <div>

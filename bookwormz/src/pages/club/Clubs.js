@@ -5,15 +5,16 @@ import { motion, } from 'framer-motion'
 import { pageTransition, pageVariants, } from '../zAnimation'
 import { StandarGrid, Buffer, ClubDock, HeaderLink, HeaderSection, MainContent, Searchbar, } from '../../components'
 import { getAllClubs, fillClubs, resetClubs } from '../../redux/actions/clubActions'
-import { fillComments, } from '../../redux/actions/commentActions'
+import { fillComments, resetComments, } from '../../redux/actions/commentActions'
 
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, fillComments, resetClubs, }) => {
 
     useEffect(() => { 
         getAllClubs()
-        resetClubs() 
-        fillComments() // DO NOT TURN ON
+        resetClubs()
+        resetComments() 
+        // fillComments() // ONLY USE TO FILL CLUBS WITH DUMMY COMMENTS
         window.scroll(0, 0)
     
     // eslint-disable-next-line
