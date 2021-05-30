@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import { useParams, } from 'react-router-dom'
 import { ClubBookShelf, } from '../../bookShelf/Books.comp'
 import { AppButton, } from '../../../components'
-import { addBookToClub } from '../../../redux/actions/bookActions'
+import { addBookToClub, removeBookFromClub, } from '../../../redux/actions/bookActions'
 
 
-const ClubBookItem_proto = ({ addBookToClub, 
+const ClubBookItem_proto = ({ addBookToClub, removeBookFromClub,  
     book, isUserBookshelf, isCheifAdmin, }) => {
     
     const { clubId } = useParams()
@@ -37,7 +37,7 @@ const ClubBookItem_proto = ({ addBookToClub,
                             name={bookId}
                             title={title}
                             alertButton={true}
-                            onClick={() => addBookToClub(clubId, book)}
+                            onClick={() => removeBookFromClub(clubId, book)}
                             style={{ marginRight: '1rem', float: 'right' }}>
                                 Remove</AppButton>
                             : null }
@@ -62,6 +62,7 @@ const ClubBookItem_proto = ({ addBookToClub,
 
 ClubBookItem_proto.propTypes = {
     addBookToClub: PropTypes.func.isRequired,
+    removeBookFromClub: PropTypes.func.isRequired,
     book: PropTypes.object.isRequired,
     isUserBookshelf: PropTypes.bool.isRequired,
     isCheifAdmin: PropTypes.bool.isRequired,
@@ -69,8 +70,9 @@ ClubBookItem_proto.propTypes = {
 
 const mapStateToProps = state => ({
     addBookToClub: state.books.addBookToClub,
+    removeBookFromClub: state.books.removeBookFromClub,
     isCheifAdmin: state.clubs.isCheifAdmin,
 })
 
-const ClubBookItem = connect(mapStateToProps, { addBookToClub, })(ClubBookItem_proto)
+const ClubBookItem = connect(mapStateToProps, { addBookToClub, removeBookFromClub, })(ClubBookItem_proto)
 export { ClubBookItem }

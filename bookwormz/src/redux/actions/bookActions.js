@@ -181,6 +181,26 @@ export const addBookToClub = (clubId, book) => async dispatch => {
     }
 }
 
+export const removeBookFromClub = (clubId, book) => async dispatch => {
+    try {// console.log(book.bookId)
+        const res = await axios.put(`/books/removebookfromclub/${clubId}`, { bookId: book.bookId })
+
+        if (res.data.message === 'removed') {
+            console.log(`%cREMOVE: %c${book.title} %cfrom club`,  'font-weight: bold', 'color: green', 'font-weight: normal')
+            
+            dispatch({ 
+                type: ADD_BOOK_TO_CLUB, 
+                payload: { book, message: `${book.title} removed from club library.` } 
+            })
+            return
+        }
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: BOOK_ERROR, payload: 'Could not remove book to library.' })
+    }
+}
+
 export const clearBookMessage = () => dispatch => { dispatch({ type: CLEAR_BOOK_MESSAGE }) }
 
 export const setLoading = () => dispatch => { dispatch({ type: SET_LOADING }) }    

@@ -163,5 +163,29 @@ router.post('/addbooktoclub/:clubId', verification, async (req, res) => {
     }
 })
 
+/* REMOVE BOOK FROM CLUB */
+router.put('/removebookfromclub/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const { bookId } = req.body
+
+    if (!clubId || !bookId) { res.status(400).send({ message: 'Insufficient data to complete the request' })
+        return }
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { res.status(400).send({ message: 'An error occured. Club not found.' })
+            return }
+  
+        club.books = club.books.filter(book => book !== bookId)
+        club.save()
+
+        res.json({ message: 'removed' })
+
+    } catch (e) {
+        console.log(e)
+        throw e
+    }
+})
+
 
 module.exports = router

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, } from 'react'
+import React, { Fragment, useState, useEffect, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
@@ -26,7 +26,7 @@ const conversationReducer = (state, action) => {
 
 const initialState = { toggleTriggerText: '', }
 
-const CommentSection_proto = ({ comments, image, displayName, }) => {
+const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) => {
     const [state, dispatch] = useReducer(conversationReducer, initialState)
     
     const [showInputBlock, setShowInputBlock]           = useState(false)
@@ -44,12 +44,16 @@ const CommentSection_proto = ({ comments, image, displayName, }) => {
         <div>
             <h3>Club Conversation</h3>
             <Buffer thickness={7} />
+            {isUserAMember
+                && <Fragment>
+                    <BasicTrigger 
+                        onClick={() => setShowInputBlock(!showInputBlock)}>
+                        {toggleTriggerText}
+                    </BasicTrigger>
+                    <Buffer thickness={3} />
+                </Fragment> 
+            }
             
-            <BasicTrigger 
-                onClick={() => setShowInputBlock(!showInputBlock)}>
-                {toggleTriggerText}
-            </BasicTrigger>
-            <Buffer thickness={3} />
             {/*  */}
             <InputBlock showInputBlock={showInputBlock}>
                 <MakeComment
@@ -86,12 +90,14 @@ CommentSection_proto.propTypes = {
     comments: PropTypes.array.isRequired,
     image: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
+    isUserAMember: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     comments: state.comments.comments,
     image: state.account.image,
     displayName: state.account.displayName,
+    isUserAMember: state.clubs.isUserAMember,
 })
 
 const CommentSection = connect(mapStateToProps, {  })(CommentSection_proto)
