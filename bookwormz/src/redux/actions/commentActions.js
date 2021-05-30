@@ -28,7 +28,7 @@ export const getComments = clubId => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ type: COMMENT_MESSAGE, payload: 'Could not retrieve club library.' })
+        dispatch({ type: COMMENT_MESSAGE, payload: 'Could not retrieve comments.' })
     }
 }
 

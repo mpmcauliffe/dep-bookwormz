@@ -40,10 +40,18 @@ router.get('/getclub/:clubId', verification, async (req, res) => {
         const clubIds = user.clubs
         const isClubMember = clubIds.some(id => clubId === id.toString())
 
+        let isUserChiefAdmin = false
+        if (isClubMember) {
+            isUserChiefAdmin = club.members.some(member => 
+                member.memberId.toString() === user._id.toString()
+                && member.chiefAdmin
+            )
+        }
+
         const clubElements = {
             ...club,
-            // clubBooks: [...clubBooks],
             isClubMember,
+            isUserChiefAdmin,
         }
 
         // console.log(clubElements)

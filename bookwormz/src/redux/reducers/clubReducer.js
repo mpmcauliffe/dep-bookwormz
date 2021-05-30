@@ -8,6 +8,7 @@ const initialState = {
     clubId: null,
     clubSearchQuery: '',
     isUserAMember: false,
+    isCheifAdmin: false,
     clubMessage: {
         message: '',
         style: '',
@@ -20,12 +21,12 @@ export default (state = initialState, action) => {
     switch(action.type) {
 
         case GET_CLUB:
-            // console.log(action.payload._doc._id)
+            // console.log(action.payload.isUserChiefAdmin)
             return {
                 ...state,
                 currentClub: { ...action.payload._doc },
-                // clubBooks: action.payload.clubBooks,
                 isUserAMember: action.payload.isClubMember,
+                isCheifAdmin: action.payload.isUserChiefAdmin,
             }
 
         case GET_MULTIPLE_CLUBS:
@@ -60,7 +61,6 @@ export default (state = initialState, action) => {
             }
 
         case LEAVE_CLUB:
-            
             return {
                 ...state,
                 isUserAMember: action.payload.isClubMember,
@@ -75,6 +75,8 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 currentClub: null,
+                isUserAMember: false,
+                isCheifAdmin: false,
                 // clubBooks: [ ],
             }
 

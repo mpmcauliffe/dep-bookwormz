@@ -8,7 +8,7 @@ import { addBookToClub } from '../../../redux/actions/bookActions'
 
 
 const ClubBookItem_proto = ({ addBookToClub, 
-    book, isUserBookshelf, }) => {
+    book, isUserBookshelf, isCheifAdmin, }) => {
     
     const { clubId } = useParams()
     const { bookId, title, infoLink, image, authors } = book
@@ -32,6 +32,17 @@ const ClubBookItem_proto = ({ addBookToClub,
                             style={{ marginRight: '1rem', float: 'right' }}>
                                 Add</AppButton>}
                     </div>
+                    <div style={{ display: 'inline-block' }}>
+                        {isCheifAdmin && !isUserBookshelf 
+                            ? <AppButton
+                            name={bookId}
+                            title={title}
+                            alertButton={true}
+                            onClick={() => addBookToClub(clubId, book)}
+                            style={{ marginRight: '1rem', float: 'right' }}>
+                                Remove</AppButton>
+                            : null }
+                    </div>
                 </section> 
             </div>
         </ClubBookShelf>
@@ -50,10 +61,12 @@ ClubBookItem_proto.propTypes = {
     addBookToClub: PropTypes.func.isRequired,
     book: PropTypes.object.isRequired,
     isUserBookshelf: PropTypes.bool.isRequired,
+    isCheifAdmin: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     addBookToClub: state.books.addBookToClub,
+    isCheifAdmin: state.clubs.isCheifAdmin,
 })
 
 const ClubBookItem = connect(mapStateToProps, { addBookToClub, })(ClubBookItem_proto)

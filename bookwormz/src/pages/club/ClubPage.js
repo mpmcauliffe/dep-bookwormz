@@ -16,7 +16,7 @@ import { getUserInfo, } from '../../redux/actions/accountActions'
 const Club_proto = ({ 
     getClub, getBooks, getClubBooks, getUserInfo, getComments,
     currentClub, 
-    isUserAMember, }) => {
+    isUserAMember, isCheifAdmin, }) => {
         
     const history                      = useHistory()
     let { clubId }                     = useParams()
@@ -60,7 +60,8 @@ const Club_proto = ({
                     <Buffer thickness={7} />
                     
                     <BiGrid>
-                        <CommentSection />
+                        <CommentSection
+                            isUserAMember={isUserAMember} />
                         
                         <ClubShelf />
 
