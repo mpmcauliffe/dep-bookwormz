@@ -101,7 +101,8 @@ export const ClubBookShelf = styled.div`
     /* ${p => p.isBookOpen ? '103rem' : '16rem'}; */
     section {
         display: grid;
-        grid-template-columns: ${p => p.showAddButton ? '1fr 1fr' : '1fr'};
+        grid-template-columns: ${p => p.showButton ? '1fr 1fr' : '1fr'};
+        /* grid-template-columns: ${p => p.showAddButton ? '1fr 1fr' : '1fr'}; */
     }
 
     .cover { height: 14.6rem; width: 10rem; }

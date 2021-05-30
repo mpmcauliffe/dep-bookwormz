@@ -15,7 +15,7 @@ const ClubBookItem_proto = ({ addBookToClub,
     
 
     const bookItem = (
-        <ClubBookShelf showAddButton={isUserBookshelf}>
+        <ClubBookShelf showButton={isUserBookshelf || isCheifAdmin ? true : false}>
             <img src={`${image}`} alt='cover' className='cover' />
             <div>
                 <p className='title'><strong>{title}</strong></p>
@@ -31,8 +31,7 @@ const ClubBookItem_proto = ({ addBookToClub,
                             onClick={() => addBookToClub(clubId, book)}
                             style={{ marginRight: '1rem', float: 'right' }}>
                                 Add</AppButton>}
-                    </div>
-                    <div style={{ display: 'inline-block' }}>
+                            
                         {isCheifAdmin && !isUserBookshelf 
                             ? <AppButton
                             name={bookId}
@@ -43,6 +42,10 @@ const ClubBookItem_proto = ({ addBookToClub,
                                 Remove</AppButton>
                             : null }
                     </div>
+                    {/* 
+                    <div style={{ display: 'inline-block' }}>
+                        
+                    </div> */}
                 </section> 
             </div>
         </ClubBookShelf>
