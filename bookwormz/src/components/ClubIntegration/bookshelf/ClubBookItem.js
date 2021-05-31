@@ -14,7 +14,7 @@ const ClubBookItem_proto = ({ addBookToClub, removeBookFromClub,
     const { bookId, title, infoLink, image, authors } = book
     
 
-    const bookItem = (
+    return (
         <ClubBookShelf showButton={isUserBookshelf || isCheifAdmin ? true : false}>
             <img src={`${image}`} alt='cover' className='cover' />
             <div>
@@ -42,22 +42,26 @@ const ClubBookItem_proto = ({ addBookToClub, removeBookFromClub,
                                 Remove</AppButton>
                             : null }
                     </div>
-                    {/* 
-                    <div style={{ display: 'inline-block' }}>
-                        
-                    </div> */}
+                    {/*  */}
                 </section> 
+                {!isUserBookshelf
+                    && <div className='link'>
+                        <a href={`${infoLink}`}>
+                            <p style={{ color: '#000' }}>view book on google</p>
+                        </a>
+                    </div>
+                }
             </div>
         </ClubBookShelf>
     )
 
-    if (isUserBookshelf) { return bookItem }
+    // if (isUserBookshelf) { return bookItem }
     
-    return (
-        <a href={`${infoLink}`}>
-            {bookItem}
-        </a>    
-    )
+    // return (
+    //     <a href={`${infoLink}`}>
+    //         {bookItem}
+    //     </a>    
+    // )
 }
 
 ClubBookItem_proto.propTypes = {

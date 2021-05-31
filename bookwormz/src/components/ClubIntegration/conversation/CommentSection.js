@@ -76,7 +76,7 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
                         <EmptyNotification 
                             linkTo={''}
                             linkMessage={''}
-                            preMessage={`There aren't any books in this library`} />
+                            preMessage={`There are currently no comments in this club`} />
                     )
                 : null
             }
