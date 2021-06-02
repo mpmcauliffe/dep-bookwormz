@@ -9,6 +9,7 @@ export const CommentBlock = styled.div`
     
     .top-bar {
         height: 9rem;
+        /* height: ${p => p.showInputBlock ? '9rem' : 0}; */
         display: grid;
         grid-template-columns: 1fr 5fr;
     }

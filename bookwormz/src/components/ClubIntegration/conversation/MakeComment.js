@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { UnboundForm } from './Comments.comp'
 import { Buffer, } from '../../../components'
 
-export const MakeComment = ({ userProfile, displayName }) => {
+export const MakeComment = ({ userProfile, displayName, }) => {
 
     const [subject, setSubject] = useState('')
     const [newComment, setNewComment] = useState('')

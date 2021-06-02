@@ -38,6 +38,15 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
         dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showInputBlock, })
     }, [showInputBlock, comments])
 
+    const InputAssemby = (
+        <InputBlock showInputBlock={showInputBlock}>
+            <MakeComment
+                userProfile={image}
+                displayName={displayName}
+                showInputBlock={showInputBlock} />
+        </InputBlock>
+    )
+
     // console.log(comments)
 
     return (
@@ -53,13 +62,16 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
                     <Buffer thickness={3} />
                 </Fragment> 
             }
-            
             {/*  */}
-            <InputBlock showInputBlock={showInputBlock}>
-                <MakeComment
-                    userProfile={image}
-                    displayName={displayName} />
-            </InputBlock>
+            {showInputBlock  
+                ? <InputBlock showInputBlock={showInputBlock}>
+                    <MakeComment
+                        userProfile={image}
+                        displayName={displayName}
+                        showInputBlock={showInputBlock} />
+                </InputBlock>
+                : null
+            }
 
             {!showInputBlock
                 ? Array.isArray(comments) && comments.length > 0 
