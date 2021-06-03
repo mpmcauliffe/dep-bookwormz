@@ -40,14 +40,20 @@ export const Comment_proto = ({ comment, isCheifAdmin, }) => {
                 <div className='identity'>
                     <div style={{ display: 'flex', justifyContent: 'space-between', }}>
                         <div>
-                            {replyToOrigin 
-                                && <p className='origin'>{replyToOrigin}</p>}
-                            <p className='origin'>Thread originator: some name</p>
-                            {/*  */}
-                            {replyTo 
-                                && <p className='reply'>{replyTo}</p>}
-                            <p className='origin'>Reply to: some name</p>
-                            {/*  */}
+                            {replyToOrigin.length !== 0 
+                                && <p className='origin'>Thread originator:&nbsp; {replyToOrigin[1]}</p>}
+                            
+                            {/*<p className='origin'>Thread originator: some name</p>  */}
+                            {replyTo.length !== 0 
+                                && <div className='reply-container'>
+                                    <p className='reply'>Replying to:&nbsp; {replyTo[1]}</p>
+                                    <img
+                                        alt='reply_to'
+                                        class='reply-image'
+                                        src={require(`../../../assets/mock/${replyTo[2]}.png`).default} />
+                                </div>}
+                            
+                            {/*<p className='origin'>Reply to: some name</p>  */}
                         </div>
                         {/*  */}
                         {isCheifAdmin
