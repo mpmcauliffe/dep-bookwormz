@@ -1,12 +1,14 @@
 import React, { useState, } from 'react'
-import { Link as ScrollLink, 
-    animateScroll as scroll } from 'react-scroll'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+// import { Link as ScrollLink, 
+//     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
 
 
 //const dummyDate = () => Date().now
-
-export const Comment = ({ comment }) => {
+//<i class="fas fa-trash"></i>
+export const Comment_proto = ({ comment, isCheifAdmin, }) => {
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
 
@@ -36,14 +38,23 @@ export const Comment = ({ comment }) => {
                     src={require(`../../../assets/mock/${profile}.png`).default} />
 
                 <div className='identity'>
-                    <div style={{ textAlign: 'right' }}>
-                    
+                    <div style={{ display: 'flex', justifyContent: 'space-between', }}>
+                        <div>
                             {replyToOrigin 
                                 && <p className='origin'>{replyToOrigin}</p>}
-                        
-                        
+                            <p className='origin'>Thread originator: some name</p>
+                            {/*  */}
                             {replyTo 
                                 && <p className='reply'>{replyTo}</p>}
+                            <p className='origin'>Reply to: some name</p>
+                            {/*  */}
+                        </div>
+                        {/*  */}
+                        {isCheifAdmin
+                            && <i 
+                                className='fas fa-trash fa-2x'
+                                style={{ opacity: .1, cursor: 'pointer', }} />
+                        }
                         
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -74,3 +85,15 @@ export const Comment = ({ comment }) => {
         </CommentBlock>
     )
 }
+
+
+Comment_proto.propTypes = {
+    isCheifAdmin: PropTypes.bool.isRequired,
+}
+
+const mapStateToProps = state => ({
+    isCheifAdmin: state.clubs.isCheifAdmin,
+})
+
+const Comment = connect(mapStateToProps, {  })(Comment_proto)
+export { Comment }
