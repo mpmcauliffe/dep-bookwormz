@@ -4,22 +4,36 @@ import PropTypes from 'prop-types'
 // import { Link as ScrollLink, 
 //     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
+import { replyToComment, } from '../../../redux/actions/commentActions'
 
 
 //const dummyDate = () => Date().now
 //<i class="fas fa-trash"></i>
-export const Comment_proto = ({ comment, isCheifAdmin, }) => {
+export const Comment_proto = ({ replyToComment, comment, isCheifAdmin, }) => {
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
 
     const handleReplyClick = () => setMakeReply(!makeReply)
 
     const handleReplySubmit = e => {
-
-        console.log('submit')
+        const anchor = {
+            anchorId: _id,
+            anchorMemberId: memberId,
+            anchorName: name,
+            anchorProfile: profile,
+            color,
+            border,
+        }
+        const origin = {
+            originMemberId: replyToOrigin[0] ?? 0,
+            originName: replyToOrigin[1] ?? 0,
+            originProfile: replyToOrigin[2] ?? 0,
+            originAnchorId: replyToOrigin[3] ?? 0,
+        }
+        console.log(origin)
     }
 
-    const { _id, name, profile, subject, content, 
+    const { _id, memberId, name, profile, subject, content, 
         created, replyTo, replyToOrigin, color, border, } = comment
 
 
@@ -46,10 +60,10 @@ export const Comment_proto = ({ comment, isCheifAdmin, }) => {
                             {/*<p className='origin'>Thread originator: some name</p>  */}
                             {replyTo.length !== 0 
                                 && <div className='reply-container'>
-                                    <p className='reply'>Replying to:&nbsp; {replyTo[1]}</p>
+                                    <p className='reply'>Replying to&nbsp;{replyTo[1]}</p>
                                     <img
                                         alt='reply_to'
-                                        class='reply-image'
+                                        className='reply-image'
                                         src={require(`../../../assets/mock/${replyTo[2]}.png`).default} />
                                 </div>}
                             
@@ -59,7 +73,7 @@ export const Comment_proto = ({ comment, isCheifAdmin, }) => {
                         {isCheifAdmin
                             && <i 
                                 className='fas fa-trash fa-2x'
-                                style={{ opacity: .1, cursor: 'pointer', }} />
+                                style={{ opacity: .2, cursor: 'pointer', }} />
                         }
                         
                     </div>
@@ -95,11 +109,13 @@ export const Comment_proto = ({ comment, isCheifAdmin, }) => {
 
 Comment_proto.propTypes = {
     isCheifAdmin: PropTypes.bool.isRequired,
+    replyToComment: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     isCheifAdmin: state.clubs.isCheifAdmin,
+    replyToComment: state.comments.replyToComment,
 })
 
-const Comment = connect(mapStateToProps, {  })(Comment_proto)
+const Comment = connect(mapStateToProps, { replyToComment, })(Comment_proto)
 export { Comment }

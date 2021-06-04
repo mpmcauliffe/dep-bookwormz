@@ -9,6 +9,10 @@ export const createComment = () => async dispatch => {
 
 }
 
+export const replyToComment = (anchor, origin) => async dispatch => {
+
+}
+
 export const deleteComment = () => async dispatch => {
 
 }
