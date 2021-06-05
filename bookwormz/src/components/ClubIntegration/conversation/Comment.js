@@ -1,19 +1,22 @@
 import React, { useState, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useParams, } from 'react-router-dom'
 // import { Link as ScrollLink, 
 //     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
-import { replyToComment, } from '../../../redux/actions/commentActions'
+import { postComment, } from '../../../redux/actions/commentActions'
 
 
 //const dummyDate = () => Date().now
 //<i class="fas fa-trash"></i>
-export const Comment_proto = ({ replyToComment, comment, isCheifAdmin, }) => {
+export const Comment_proto = ({ postComment, comment, isCheifAdmin, }) => {
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
 
     const handleReplyClick = () => setMakeReply(!makeReply)
+
+    const { clubId }                     = useParams()
 
     const handleReplySubmit = e => {
         const anchor = {
@@ -30,7 +33,8 @@ export const Comment_proto = ({ replyToComment, comment, isCheifAdmin, }) => {
             originProfile: replyToOrigin[2] ?? 0,
             originAnchorId: replyToOrigin[3] ?? 0,
         }
-        console.log(origin)
+        // console.log(origin)
+        postComment(anchor, origin, replyContent, clubId)
     }
 
     const { _id, memberId, name, profile, subject, content, 
@@ -109,13 +113,13 @@ export const Comment_proto = ({ replyToComment, comment, isCheifAdmin, }) => {
 
 Comment_proto.propTypes = {
     isCheifAdmin: PropTypes.bool.isRequired,
-    replyToComment: PropTypes.func.isRequired,
+    postComment: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
     isCheifAdmin: state.clubs.isCheifAdmin,
-    replyToComment: state.comments.replyToComment,
+    postComment: state.comments.postComment,
 })
 
-const Comment = connect(mapStateToProps, { replyToComment, })(Comment_proto)
+const Comment = connect(mapStateToProps, { postComment, })(Comment_proto)
 export { Comment }

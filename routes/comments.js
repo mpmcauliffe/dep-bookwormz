@@ -40,6 +40,8 @@ router.get('/getcomments/:clubId', verification, async (req, res) => {
     }
 })
 
+router.post('postcomment/')
+
 router.put('/updatecomment/:clubId/:commentId', verification, async (req, res) => {
     
 })

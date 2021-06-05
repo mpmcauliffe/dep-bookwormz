@@ -9,8 +9,21 @@ export const createComment = () => async dispatch => {
 
 }
 
-export const replyToComment = (anchor, origin) => async dispatch => {
-
+export const postComment = (anchor, origin, content, clubId) => async dispatch => {
+    if (!content) {
+        dispatch({ 
+            type: COMMENT_MESSAGE, 
+            payload: { 
+                message: `Comments and replies cannot be empty`,
+                style: 'amber darken-4 rounded'
+            }})
+        return
+    }
+    try {
+        const res = await axios.post(`/comments/postcomment/${clubId}`)
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 export const deleteComment = () => async dispatch => {
@@ -73,3 +86,9 @@ export const fillComments = () => async dispatch => {
         })
     }
 }
+
+
+// payload: { 
+//     message: `You're library is currently empty.`,
+//     style: 'amber darken-4 rounded'
+// }
