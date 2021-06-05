@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, 
-    RESET_COMMENTS, COMMENT_MESSAGE, } from '../types'
+    RESET_COMMENTS, COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -20,7 +20,8 @@ export const postComment = (anchor, origin, content, clubId) => async dispatch =
         return
     }
     try {
-        const res = await axios.post(`/comments/postcomment/${clubId}`)
+        const res = await axios.post(`/comments/postcomment/${clubId}`, anchor, origin, content, config)
+        console.log(res.data)
     } catch (e) {
         console.log(e)
     }
@@ -55,6 +56,7 @@ export const editComment = () => async dispatch => {
 
 export const resetComments = () => dispatch => { dispatch({ type: RESET_COMMENTS, }) }
 
+export const clearCommentMessage = () => dispatch => { dispatch({ type: CLEAR_COMMENT_MESSAGE }) }
 
 // STRICTLY TO FILL CLUBS WITH DUMMY COMMENTS
 export const fillComments = () => async dispatch => {
