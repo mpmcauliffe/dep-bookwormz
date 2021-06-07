@@ -13,17 +13,23 @@ export const postComment = (anchor, origin, content, clubId) => async dispatch =
     if (!content) {
         dispatch({ 
             type: COMMENT_MESSAGE, 
-            payload: { 
-                message: `Comments and replies cannot be empty`,
-                style: 'amber darken-4 rounded'
-            }})
+            payload: { message: `Comments and replies cannot be empty`, style: 'amber darken-4 rounded' }})
         return
     }
+
     try {
-        const res = await axios.post(`/comments/postcomment/${clubId}`, anchor, origin, content, config)
+        const commentItems = { anchor, origin, content, }
+        console.log(anchor)
+        const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
         console.log(res.data)
     } catch (e) {
         console.log(e)
+        dispatch({ 
+            type: COMMENT_MESSAGE, 
+            payload: { 
+                message: `Comment could not be posted`,
+                style: 'red accent-4 rounded'
+            }})
     }
 }
 

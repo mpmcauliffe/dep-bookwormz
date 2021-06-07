@@ -20,7 +20,7 @@ router.post('/postcomment/:clubId', verification, async (req, res) => {
 })
 
 router.delete('/deletcomment/:clubId/:commentId', verification, async (req, res) => {
-    
+
 })
 
 router.get('/getcomments/:clubId', verification, async (req, res) => {
@@ -40,7 +40,15 @@ router.get('/getcomments/:clubId', verification, async (req, res) => {
     }
 })
 
-router.post('postcomment/')
+router.put('/postcomment/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const { 
+        anchor: { anchorId, anchorMemberId, anchorName, anchorProfile, color, border, } 
+        origin: { originMemberId, originName, originProfile, originAnchorId, },
+        content, 
+    } = req.body
+    console.log(anchorId)
+})
 
 router.put('/updatecomment/:clubId/:commentId', verification, async (req, res) => {
     
