@@ -30,8 +30,7 @@ router.get('/getcomments/:clubId', verification, async (req, res) => {
         const club = await Club.findById(clubId)
         if (!club) { 
             res.status(400).send({ message: 'An error occured. Club not found.' }) 
-            return
-        }
+            return }
         
         res.json(club.comments)
 
@@ -42,12 +41,42 @@ router.get('/getcomments/:clubId', verification, async (req, res) => {
 
 router.put('/postcomment/:clubId', verification, async (req, res) => {
     const { clubId } = req.params
+    const email = getEmail(req.headers['x-auth-token'])
+
     const { 
-        anchor: { anchorId, anchorMemberId, anchorName, anchorProfile, color, border, } 
+        anchor: { anchorId, anchorMemberId, anchorName, anchorProfile, color, border, }, 
         origin: { originMemberId, originName, originProfile, originAnchorId, },
         content, 
+        subject,
+        locator,
     } = req.body
-    console.log(anchorId)
+    // console.log(anchorId)
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return }
+
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
+        
+        const newComment = {
+            replyTo: anchorName ? [anchorMemberId, anchorName, anchorProfile] : [ ],
+            replyToOrigin: originName ? [originMemberId, originName, originProfile, originAnchorId] : [ ],
+            name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
+            profile: user.secondaryImage ? user.secondaryImage : user.image,
+            color: color ? color : '',
+            border: border ? border : '',
+            memberId: user._id,
+            content,
+            subject,
+        }
+        
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.put('/updatecomment/:clubId/:commentId', verification, async (req, res) => {

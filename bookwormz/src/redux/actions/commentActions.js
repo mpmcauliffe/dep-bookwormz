@@ -9,7 +9,7 @@ export const createComment = () => async dispatch => {
 
 }
 
-export const postComment = (anchor, origin, content, clubId) => async dispatch => {
+export const postComment = (anchor, origin, content, subject, clubId, locator) => async dispatch => {
     if (!content) {
         dispatch({ 
             type: COMMENT_MESSAGE, 
@@ -18,7 +18,7 @@ export const postComment = (anchor, origin, content, clubId) => async dispatch =
     }
 
     try {
-        const commentItems = { anchor, origin, content, }
+        const commentItems = { anchor, origin, content, subject, locator, }
         console.log(anchor)
         const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
         console.log(res.data)

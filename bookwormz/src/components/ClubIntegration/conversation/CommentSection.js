@@ -66,9 +66,10 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
                 ? Array.isArray(comments) && comments.length > 0 
                     ?  (<Simplebar style={{ height: '600px' }}>
                             <div id='commentContainer'>
-                                {comments.map(comment => (
+                                {comments.map((comment, index) => (
                                     <div key={comment._id}>
                                         <Comment 
+                                            locator={index}
                                             comment={comment}
                                             isUserAMember={isUserAMember} />
                                         <Buffer thickness={.5} />

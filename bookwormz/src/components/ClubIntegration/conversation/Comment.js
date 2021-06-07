@@ -10,7 +10,7 @@ import { postComment, } from '../../../redux/actions/commentActions'
 
 //const dummyDate = () => Date().now
 //<i class="fas fa-trash"></i>
-export const Comment_proto = ({ postComment, comment, isCheifAdmin, }) => {
+export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) => {
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
 
@@ -18,6 +18,9 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, }) => {
 
     const { clubId }                     = useParams()
 
+    const { _id, memberId, name, profile, subject, content, 
+        created, replyTo, replyToOrigin, color, border, } = comment
+    
     const handleReplySubmit = e => {
         const anchor = {
             anchorId: _id,
@@ -34,11 +37,10 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, }) => {
             originAnchorId: replyToOrigin[3] ?? 0,
         }
         // console.log(origin)
-        postComment(anchor, origin, replyContent, clubId)
+        postComment(anchor, origin, replyContent, subject, clubId, locator)
     }
 
-    const { _id, memberId, name, profile, subject, content, 
-        created, replyTo, replyToOrigin, color, border, } = comment
+    
 
 
     return (
@@ -114,6 +116,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, }) => {
 Comment_proto.propTypes = {
     isCheifAdmin: PropTypes.bool.isRequired,
     postComment: PropTypes.func.isRequired,
+    locator: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
