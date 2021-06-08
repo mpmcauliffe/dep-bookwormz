@@ -4,6 +4,7 @@ const User                              = require('../models/User')
 const Club                              = require('../models/Club')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
+const getColor                          = require('../helpers/getColor')
 
 const astronomy      = require('./db/commentFill/astronomyClub')
 const bear           = require('./db/commentFill/bearClub')
@@ -67,12 +68,13 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             replyToOrigin: originName ? [originMemberId, originName, originProfile, originAnchorId] : [ ],
             name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             profile: user.secondaryImage ? user.secondaryImage : user.image,
-            color: color ? color : '',
-            border: border ? border : '',
+            color: color ? color : getColor(club.comments[club.comments.length-1], 1),
+            border: border ? border : getColor(club.comments[club.comments.length-1], 2),
             memberId: user._id,
             content,
             subject,
         }
+        console.log(getColor())
         
     } catch (e) {
         console.log(e)

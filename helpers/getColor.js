@@ -10,5 +10,5 @@ const grayColors = Object.freeze({
 })
 
 module.exports = (modifyingObject, shadeModifier) => {
-
+    return grayColors.GREEN
 }
