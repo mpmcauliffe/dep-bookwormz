@@ -4,6 +4,7 @@ const User                              = require('../models/User')
 const Club                              = require('../models/Club')
 const verification                      = require('../middleware/verification')
 const getEmail                          = require('../helpers/getEmail')
+const shiftArray                        = require('../helpers/shiftArray')
 const getColor                          = require('../helpers/getColor')
 
 const astronomy      = require('./db/commentFill/astronomyClub')
@@ -49,7 +50,7 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
         origin: { originMemberId, originName, originProfile, originAnchorId, },
         content, subject, locator,
     } = req.body
-    console.log(color)
+    // console.log(color)
 
     try {
         const club = await Club.findById(clubId)
@@ -66,15 +67,17 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             replyToOrigin: originName ? [originMemberId, originName, originProfile, originAnchorId] : [ ],
             name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             profile: user.secondaryImage ? user.secondaryImage : user.image,
-            // color: color ? color : getColor(club.comments[club.comments.length-1].color, 1),
-            // border: border ? border : getColor(club.comments[club.comments.length-1].border, 2),
-            color: color ? getColor(color) : '',
-            border: border ? getColor(border) : '',
+            color: color ? color : getColor(club.comments[club.comments.length-1].color, 1),
+            border: border ? border : getColor(club.comments[club.comments.length-1].border, 2),
             memberId: user._id,
             content,
             subject,
         }
-        console.log(newComment)
+        const indexModifier = shiftArray(club.comments, newComment, locator)
+        console.log(indexModifier)
+        // shiftArray(club.comments, newComment, locator)
+        
+        // console.log(newComment)
 
     } catch (e) {
         console.log(e)

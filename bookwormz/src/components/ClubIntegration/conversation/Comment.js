@@ -31,12 +31,12 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
             border,
         }
         const origin = {
-            originMemberId: replyToOrigin[0] ?? 0,
-            originName: replyToOrigin[1] ?? 0,
-            originProfile: replyToOrigin[2] ?? 0,
-            originAnchorId: replyToOrigin[3] ?? 0,
+            originMemberId: replyToOrigin[0],
+            originName: replyToOrigin[1],
+            originProfile: replyToOrigin[2],
+            originAnchorId: replyToOrigin[3],
         }
-        // console.log(origin)
+        console.log(origin)
         postComment(anchor, origin, replyContent, subject, clubId, locator)
     }
 
