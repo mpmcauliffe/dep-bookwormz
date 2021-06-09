@@ -2,6 +2,7 @@ import React, { useState, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useParams, } from 'react-router-dom'
+import moment from 'moment'
 // import { Link as ScrollLink, 
 //     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
@@ -19,7 +20,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
     const { clubId }                     = useParams()
 
     const { _id, memberId, name, profile, subject, content, 
-        created, replyTo, replyToOrigin, color, border, } = comment
+        createdOn, replyTo, replyToOrigin, color, border, } = comment
     
     const handleReplySubmit = e => {
         const anchor = {
@@ -40,7 +41,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
         postComment(anchor, origin, replyContent, subject, clubId, locator)
     }
 
-    
+    console.log(createdOn)
 
 
     return (
@@ -88,7 +89,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <p className='name'>{name}</p>
-                        <p className='content'>{created}</p>
+                        <p className='content'>{moment(createdOn).format('MMMM Do YYYY')}</p>
                     </div>
                 </div>
             </section>
