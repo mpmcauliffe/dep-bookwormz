@@ -87,7 +87,7 @@ export const CreateClub_proto = ({ createClub, sendClubMessage, }) => {
                     <div className='input-field description-block'>
                         <i className='fas fa-scroll fa-1x form-icon' />
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>Describe your book club (not required):</span>
+                        <span>Describe your book club (not required)</span>
                         <textarea 
                             id='body' 
                             name='body'

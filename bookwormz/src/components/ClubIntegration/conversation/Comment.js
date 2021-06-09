@@ -3,14 +3,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { useParams, } from 'react-router-dom'
 import moment from 'moment'
-// import { Link as ScrollLink, 
-//     animateScroll as scroll } from 'react-scroll'
 import { CommentBlock, } from './Comments.comp'
 import { postComment, } from '../../../redux/actions/commentActions'
 
 
-//const dummyDate = () => Date().now
-//<i class="fas fa-trash"></i>
 export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) => {
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
@@ -40,8 +36,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
         console.log(origin)
         postComment(anchor, origin, replyContent, subject, clubId, locator)
     }
-
-    console.log(createdOn)
+    // console.log()
 
 
     return (
@@ -67,7 +62,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                             {replyToOrigin.length !== 0 
                                 && <p className='origin'>Thread originator:&nbsp; {replyToOrigin[1]}</p>}
                             
-                            {/*<p className='origin'>Thread originator: some name</p>  */}
+                            {/* */}
                             {replyTo.length !== 0 
                                 && <div className='reply-container'>
                                     <p className='reply'>Replying to&nbsp;{replyTo[1]}</p>
@@ -77,7 +72,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                                         src={require(`../../../assets/mock/${replyTo[2]}.png`).default} />
                                 </div>}
                             
-                            {/*<p className='origin'>Reply to: some name</p>  */}
+                            {/* */}
                         </div>
                         {/*  */}
                         {isCheifAdmin

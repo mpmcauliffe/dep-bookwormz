@@ -24,7 +24,7 @@ export const MakeComment = ({ userProfile, displayName, }) => {
                     <div />
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <p className='name'>{displayName}</p>
-                        <p className='content'>Today's Date Here</p>
+                        {/* <p className='content'>Today's Date Here</p> */}
                     </div>
                 </div>
             </section>
