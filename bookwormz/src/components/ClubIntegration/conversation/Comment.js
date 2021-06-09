@@ -55,7 +55,10 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                 <img  
                     alt='PROFILE_IMG'
                     className='image'
-                    src={require(`../../../assets/mock/${profile}.png`).default} />
+                    src={
+                        profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+                        ? `${profile}`
+                        : require(`../../../assets/mock/${profile}.png`).default} />
 
                 <div className='identity'>
                     <div style={{ display: 'flex', justifyContent: 'space-between', }}>
