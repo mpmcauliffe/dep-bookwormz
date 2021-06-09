@@ -47,11 +47,9 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
     const { 
         anchor: { anchorId, anchorMemberId, anchorName, anchorProfile, color, border, }, 
         origin: { originMemberId, originName, originProfile, originAnchorId, },
-        content, 
-        subject,
-        locator,
+        content, subject, locator,
     } = req.body
-    // console.log(anchorId)
+    console.log(color)
 
     try {
         const club = await Club.findById(clubId)
@@ -68,14 +66,16 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             replyToOrigin: originName ? [originMemberId, originName, originProfile, originAnchorId] : [ ],
             name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             profile: user.secondaryImage ? user.secondaryImage : user.image,
-            color: color ? color : getColor(club.comments[club.comments.length-1], 1),
-            border: border ? border : getColor(club.comments[club.comments.length-1], 2),
+            // color: color ? color : getColor(club.comments[club.comments.length-1].color, 1),
+            // border: border ? border : getColor(club.comments[club.comments.length-1].border, 2),
+            color: color ? getColor(color) : '',
+            border: border ? getColor(border) : '',
             memberId: user._id,
             content,
             subject,
         }
-        console.log(getColor())
-        
+        console.log(newComment)
+
     } catch (e) {
         console.log(e)
     }
