@@ -31,11 +31,18 @@ router.delete('/deletecomment/:clubId/:commentId/:originId/:locator', verificati
             return }
 
         const isCommentAnOrigin = club.comments[locator].replyTo.length === 0
-        console.log(isCommentAnOrigin)
-        // club.comments = club.comments.filter(comment => comment.replyToOrigin[3] !== commentId)
 
-        // console.log(club.comments)
-        // console.log(commentId)
+        const deletedComment = club.comments.splice(locator, 1)
+        
+        console.log(club.comments)
+    
+        club.comments = club.comments.filter(comment => isCommentAnOrigin
+                ? comment.replyToOrigin[3] !== commentId
+                : comment.replyTo[3] !== commentId)
+
+        club.save()
+
+        res.send(club.comments)
 
     } catch (e) {
         console.log(e)

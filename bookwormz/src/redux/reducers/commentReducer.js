@@ -1,5 +1,5 @@
-import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, 
-    RESET_COMMENTS, COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
+import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, 
+    COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
 
 
 const initialState = {
@@ -15,15 +15,10 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
     switch(action.type) {
-        case CREATE_COMMENT: 
+        case REFRESH_COMMENTS: 
             return {
                 ...state,
                 comments: action.payload,
-            }
-        
-        case DELETE_COMMENT: 
-            return {
-                ...state,
             }
 
         case GET_COMMENTS: 
@@ -37,11 +32,6 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 comments: [ ],
-            }
-
-        case EDIT_COMMENT: 
-            return {
-                ...state,
             }
 
         case COMMENT_MESSAGE:

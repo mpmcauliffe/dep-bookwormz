@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT, 
-    RESET_COMMENTS, COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
+import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, 
+    COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -15,9 +15,10 @@ export const createComment = (name, profile, subject, comment, clubId) => async 
     try {
         const commentItems = { name, profile, subject, comment }
         const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
-        console.log(res.data)
+        // console.log(res.data)
 
-        dispatch({ type: CREATE_COMMENT, payload: res.data })
+        console.log(``)
+        dispatch({ type: REFRESH_COMMENTS, payload: res.data })
 
     } catch (e) {
         console.log(e)
@@ -43,7 +44,7 @@ export const postReply = (anchor, origin, content, subject, clubId, locator) => 
         const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
         // console.log(res.data)
 
-        dispatch({ type: CREATE_COMMENT, payload: res.data })
+        dispatch({ type: REFRESH_COMMENTS, payload: res.data })
 
     } catch (e) {
         console.log(e)

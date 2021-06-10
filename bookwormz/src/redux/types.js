@@ -29,9 +29,7 @@ export const CLEAR_CLUB_MESSAGE     = 'CLEAR_CLUB_MESSAGE'
 
 /* COMMENT TYPES */
 export const GET_COMMENTS           = 'GET_COMMENTS'
-export const CREATE_COMMENT         = 'CREATE_COMMENT'
-export const DELETE_COMMENT         = 'DELETE_COMMENT'
-export const EDIT_COMMENT           = 'EDIT_COMMENT'
+export const REFRESH_COMMENTS       = 'REFRESH_COMMENTS'
 export const RESET_COMMENTS         = 'RESET_COMMENTS'
 export const COMMENT_MESSAGE        = 'COMMENT_MESSAGE'
 export const CLEAR_COMMENT_MESSAGE  = 'CLEAR_COMMENT_MESSAGE'
