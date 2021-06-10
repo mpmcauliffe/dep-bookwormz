@@ -74,7 +74,7 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             subject,
         }
         const indexModifier = shiftArray(club.comments, newComment, locator)
-        // console.log(indexModifier)
+        console.log(indexModifier)
         // shiftArray(club.comments, newComment, locator)
         
         club.comments.splice(indexModifier, 0, newComment)

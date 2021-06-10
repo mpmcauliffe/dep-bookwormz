@@ -19,9 +19,11 @@ export const postComment = (anchor, origin, content, subject, clubId, locator) =
 
     try {
         const commentItems = { anchor, origin, content, subject, locator, }
-        // console.log(anchor)
         const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
         console.log(res.data)
+
+        dispatch({ type: CREATE_COMMENT, payload: res.data })
+
     } catch (e) {
         console.log(e)
         dispatch({ 

@@ -69,7 +69,10 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                                     <img
                                         alt='reply_to'
                                         className='reply-image'
-                                        src={require(`../../../assets/mock/${replyTo[2]}.png`).default} />
+                                        src={
+                                            profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+                                            ? `${profile}`
+                                            : require(`../../../assets/mock/${replyTo[2]}.png`).default} />
                                 </div>}
                             
                             {/* */}

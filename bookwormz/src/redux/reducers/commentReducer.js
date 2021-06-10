@@ -18,6 +18,7 @@ export default (state = initialState, action) => {
         case CREATE_COMMENT: 
             return {
                 ...state,
+                comments: action.payload,
             }
         
         case DELETE_COMMENT: 

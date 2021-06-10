@@ -1,11 +1,12 @@
 module.exports = (inputArray, newObject, locator) => {
 
-    console.log(newObject.replyToOrigin)
+    // console.log(newObject.replyToOrigin)
     for (let i=locator; i<inputArray.length; i++) {
        if (inputArray[i].replyToOrigin[3].toString() !== newObject.replyToOrigin[3].toString()) {
            return i
        } 
     }
+    return inputArray.length
 }    
 
 // x=[1,2,3,4,6,7,8,9]
