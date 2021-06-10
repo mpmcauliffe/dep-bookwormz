@@ -1,19 +1,24 @@
 import React, { useState, } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useParams, } from 'react-router-dom'
 import { UnboundForm } from './Comments.comp'
 import { Buffer, } from '../../../components'
+import { createComment } from '../../../redux/actions/commentActions'
 
-export const MakeComment = ({ userProfile, displayName, }) => {
+export const MakeComment_proto = ({ createComment, userProfile, displayName, }) => {
 
-    const [subject, setSubject] = useState('')
-    const [newComment, setNewComment] = useState('')
+    const [subject, setSubject]         = useState('')
+    const [newComment, setNewComment]   = useState('')
 
-    const handleNewCommentSubmit = () => {}
+    const { clubId }                    = useParams()
+
+    const handleNewCommentSubmit = () => createComment(displayName, userProfile, subject, newComment, clubId)
 
     return (
         <UnboundForm>
             <section className='top-bar'>
-                {/* <div className='dummy-image' /> */}
+                {/* */}
                 
                 <img  
                     alt='IMG_self' 
@@ -56,7 +61,15 @@ export const MakeComment = ({ userProfile, displayName, }) => {
 }
 
 
-MakeComment.propTypes = {
+MakeComment_proto.propTypes = {
     userProfile: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
+    createComment: PropTypes.func.isRequired,
 }
+
+const mapStateToProps = state => ({
+    createComment: state.comments.createComment,
+})
+
+const MakeComment = connect(mapStateToProps, { createComment, })(MakeComment_proto)
+export { MakeComment }

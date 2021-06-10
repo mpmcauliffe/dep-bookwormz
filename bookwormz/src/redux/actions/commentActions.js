@@ -5,20 +5,15 @@ import { CREATE_COMMENT, DELETE_COMMENT, GET_COMMENTS, EDIT_COMMENT,
 
 const config = { headers: { 'Content-Type': 'application/json' } }
 
-export const createComment = () => async dispatch => {
-
-}
-
-export const postComment = (anchor, origin, content, subject, clubId, locator) => async dispatch => {
-    if (!content) {
+export const createComment = (name, profile, subject, comment, clubId) => async dispatch => {
+    if (!comment) {
         dispatch({ 
             type: COMMENT_MESSAGE, 
             payload: { message: `Comments and replies cannot be empty`, style: 'amber darken-4 rounded' }})
         return
     }
-
     try {
-        const commentItems = { anchor, origin, content, subject, locator, }
+        const commentItems = { name, profile, subject, comment }
         const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
         console.log(res.data)
 
@@ -35,8 +30,43 @@ export const postComment = (anchor, origin, content, subject, clubId, locator) =
     }
 }
 
-export const deleteComment = () => async dispatch => {
+export const postReply = (anchor, origin, content, subject, clubId, locator) => async dispatch => {
+    if (!content) {
+        dispatch({ 
+            type: COMMENT_MESSAGE, 
+            payload: { message: `Comments and replies cannot be empty`, style: 'amber darken-4 rounded' }})
+        return
+    }
 
+    try {
+        const commentItems = { anchor, origin, content, subject, locator, }
+        const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
+        // console.log(res.data)
+
+        dispatch({ type: CREATE_COMMENT, payload: res.data })
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ 
+            type: COMMENT_MESSAGE, 
+            payload: { 
+                message: `Comment could not be posted`,
+                style: 'red accent-4 rounded'
+            }})
+    }
+}
+
+export const deleteComment = (commentId, originId, clubId, locator) => async dispatch => {
+    try {
+        const res = await axios.delete(`/comments/deletecomment/${clubId}/${commentId}/${originId}/${locator}`, config)
+
+    } catch (e) {
+        console.log(e)
+        dispatch({ type: COMMENT_MESSAGE, 
+            payload: {
+                message: 'Could not delete comment', 
+                style: 'red accent-4 rounded', }})
+    }
 }
 
 export const getComments = clubId => async dispatch => {
@@ -54,7 +84,10 @@ export const getComments = clubId => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ type: COMMENT_MESSAGE, payload: 'Could not retrieve comments.' })
+        dispatch({ type: COMMENT_MESSAGE, 
+            payload: {
+                message: 'Could not retrieve comments.', 
+                style: 'red accent-4 rounded', }})
     }
 }
 

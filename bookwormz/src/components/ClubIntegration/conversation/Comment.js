@@ -4,10 +4,12 @@ import PropTypes from 'prop-types'
 import { useParams, } from 'react-router-dom'
 import moment from 'moment'
 import { CommentBlock, } from './Comments.comp'
-import { postComment, } from '../../../redux/actions/commentActions'
+import { postReply, deleteComment, } from '../../../redux/actions/commentActions'
 
 
-export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) => {
+export const Comment_proto = ({ postReply, deleteComment, 
+    comment, isCheifAdmin, userId, locator, }) => {
+    
     const [makeReply, setMakeReply] = useState(false)
     const [replyContent, setReplyContent] = useState('')
 
@@ -18,7 +20,7 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
     const { _id, memberId, name, profile, subject, content, 
         createdOn, replyTo, replyToOrigin, color, border, } = comment
     
-    const handleReplySubmit = e => {
+    const handleReplySubmit = () => {
         const anchor = {
             anchorId: _id,
             anchorMemberId: memberId,
@@ -34,8 +36,9 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
             originAnchorId: replyToOrigin[3],
         }
         console.log(origin)
-        postComment(anchor, origin, replyContent, subject, clubId, locator)
+        postReply(anchor, origin, replyContent, subject, clubId, locator)
     }
+    const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
     // console.log()
 
 
@@ -78,11 +81,12 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
                             {/* */}
                         </div>
                         {/*  */}
-                        {isCheifAdmin
-                            && <i 
+                        {isCheifAdmin || userId === memberId
+                            ? <i 
+                                onClick={handleDeleteClick}
                                 className='fas fa-trash fa-2x'
                                 style={{ opacity: .2, cursor: 'pointer', }} />
-                        }
+                            : null }
                         
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -116,15 +120,20 @@ export const Comment_proto = ({ postComment, comment, isCheifAdmin, locator, }) 
 
 
 Comment_proto.propTypes = {
+    postReply: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired,
     isCheifAdmin: PropTypes.bool.isRequired,
-    postComment: PropTypes.func.isRequired,
+    userId: PropTypes.string.isRequired,
     locator: PropTypes.number.isRequired,
+    
 }
 
 const mapStateToProps = state => ({
+    postReply: state.comments.postReply,
+    deleteComment: state.comments.deleteComment,
     isCheifAdmin: state.clubs.isCheifAdmin,
-    postComment: state.comments.postComment,
+    userId: state.account.userId,
 })
 
-const Comment = connect(mapStateToProps, { postComment, })(Comment_proto)
+const Comment = connect(mapStateToProps, { postReply, deleteComment, })(Comment_proto)
 export { Comment }

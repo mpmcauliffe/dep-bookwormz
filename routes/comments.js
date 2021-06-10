@@ -21,8 +21,25 @@ router.post('/postcomment/:clubId', verification, async (req, res) => {
 
 })
 
-router.delete('/deletcomment/:clubId/:commentId', verification, async (req, res) => {
+router.delete('/deletecomment/:clubId/:commentId/:originId/:locator', verification, async (req, res) => {
+    const { clubId, commentId, originAnchorId, locator, } = req.params
+    
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return }
 
+        const isCommentAnOrigin = club.comments[locator].replyTo.length === 0
+        console.log(isCommentAnOrigin)
+        // club.comments = club.comments.filter(comment => comment.replyToOrigin[3] !== commentId)
+
+        // console.log(club.comments)
+        // console.log(commentId)
+
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.get('/getcomments/:clubId', verification, async (req, res) => {
@@ -63,7 +80,7 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             return }
         
         const newComment = {
-            replyTo: anchorName ? [anchorMemberId, anchorName, anchorProfile] : [ ],
+            replyTo: anchorName ? [anchorMemberId, anchorName, anchorProfile, anchorId] : [ ],
             replyToOrigin: originName ? [originMemberId, originName, originProfile, originAnchorId] : [ ],
             name: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             profile: user.secondaryImage ? user.secondaryImage : user.image,
@@ -74,11 +91,11 @@ router.put('/postcomment/:clubId', verification, async (req, res) => {
             subject,
         }
         const indexModifier = shiftArray(club.comments, newComment, locator)
-        console.log(indexModifier)
+        // console.log(indexModifier)
         // shiftArray(club.comments, newComment, locator)
         
         club.comments.splice(indexModifier, 0, newComment)
-        //console.log(club.comments)
+        // console.log(club.comments)
         // console.log(newComment)
 
         await club.save()

@@ -19,6 +19,7 @@ router.get('/myinfo', verification, async (req, res) => {
         const userInfo = {
             displayName: user.secondaryDisplayName ? user.secondaryDisplayName : user.displayName,
             image: user.secondaryImage ? user.secondaryImage : user.image,
+            userId: user._id,
         }
 
         res.send(userInfo)
