@@ -61,6 +61,8 @@ export const deleteComment = (commentId, originId, clubId, locator) => async dis
     try {
         const res = await axios.delete(`/comments/deletecomment/${clubId}/${commentId}/${originId}/${locator}`, config)
 
+        dispatch({ type: REFRESH_COMMENTS, payload: res.data })
+
     } catch (e) {
         console.log(e)
         dispatch({ type: COMMENT_MESSAGE, 

@@ -16,7 +16,7 @@ export const Comment_proto = ({ postReply, deleteComment,
     const handleReplyClick = () => setMakeReply(!makeReply)
 
     const { clubId }                     = useParams()
-
+console.log(comment)
     const { _id, memberId, name, profile, subject, content, 
         createdOn, replyTo, replyToOrigin, color, border, } = comment
     
@@ -35,8 +35,9 @@ export const Comment_proto = ({ postReply, deleteComment,
             originProfile: replyToOrigin[2],
             originAnchorId: replyToOrigin[3],
         }
-        console.log(origin)
+        // console.log(origin)
         postReply(anchor, origin, replyContent, subject, clubId, locator)
+        setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
     // console.log()
@@ -73,8 +74,8 @@ export const Comment_proto = ({ postReply, deleteComment,
                                         alt='reply_to'
                                         className='reply-image'
                                         src={
-                                            profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
-                                            ? `${profile}`
+                                            replyTo[2].match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+                                            ? `${replyTo[2]}`
                                             : require(`../../../assets/mock/${replyTo[2]}.png`).default} />
                                 </div>}
                             
