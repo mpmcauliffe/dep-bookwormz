@@ -4,25 +4,28 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { triggerAuthError, } from '../../redux/actions/authActions'
 import { searchBooks, setLoading, } from '../../redux/actions/bookActions'
-import { searchClubs, } from '../../redux/actions/clubActions'
+import { searchClubs, clearSearchClubs, } from '../../redux/actions/clubActions'
 import { checkUser, } from '../../middleware/checkUser'
 import { SearchContainer, SearchForm, } from './Search.comp'
 
-
+// <i className='fas fa-times' />
 export const Searchbar_proto = ({ 
     searchBooks, setLoading, triggerAuthError,
     searchFor, queryString, 
-    searchClubs,
+    searchClubs, clearSearchClubs,
 }) => {
     const [txt, setTxt] = useState('')
     const history = useHistory()
 
     const changeTxt = e => {
         setTxt(e.target.value)
+    
+        if (searchFor === 'clubs') { searchClubs(txt) }
+    }
 
-        if (searchFor === 'clubs') {
-            searchClubs(txt)
-        }
+    const clearSearch = () => {
+        setTxt('')
+        clearSearchClubs()
     }
 
     const onSubmit = e => {
@@ -59,6 +62,12 @@ export const Searchbar_proto = ({
                     name='search' 
                     className='input-bar' />
                 <i className='fas fa-search fa-3x' />
+                {txt.length > 0 && searchFor === 'clubs'
+                    ? <i  
+                    onClick={clearSearch}
+                    className='fas fa-times fa-3x'
+                    style={{ left: '55.5%', color: '#982233', cursor: 'pointer', }} />
+                    : null}
             </SearchContainer>
         </SearchForm>
     )
@@ -72,11 +81,14 @@ Searchbar_proto.propTypes = {
     searchFor: PropTypes.string.isRequired,
     queryString: PropTypes.string.isRequired,
     searchClubs: PropTypes.func.isRequired,
+    clearSearchClubs: PropTypes.func.isRequired,
 }
 
 // const mapStateToProps = state => ({
 //     queryString: state.books.bookSearchQuery,
 // })
 
-const Searchbar = connect(null, { searchBooks, setLoading, triggerAuthError, searchClubs, })(Searchbar_proto)
+const Searchbar = connect(null, 
+    { searchBooks, setLoading, triggerAuthError, searchClubs, clearSearchClubs, })
+(Searchbar_proto)
 export { Searchbar }
