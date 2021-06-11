@@ -16,7 +16,7 @@ export const Comment_proto = ({ postReply, deleteComment,
     const handleReplyClick = () => setMakeReply(!makeReply)
 
     const { clubId }                     = useParams()
-console.log(comment)
+
     const { _id, memberId, name, profile, subject, content, 
         createdOn, replyTo, replyToOrigin, color, border, } = comment
     
@@ -37,6 +37,7 @@ console.log(comment)
         }
         // console.log(origin)
         postReply(anchor, origin, replyContent, subject, clubId, locator)
+        setReplyContent('')
         setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
@@ -108,6 +109,7 @@ console.log(comment)
                 {/*  */}
                 <span className='input-text content'>Replying to {name}</span>
                 <textarea 
+                    value={replyContent}
                     className='input-area'
                     onChange={e => setReplyContent(e.target.value)} />
                 <button 

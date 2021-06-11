@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, 
+import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, TOGGLE_NEW_INPUT,
     COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
 
 
@@ -13,11 +13,10 @@ export const createComment = (name, profile, subject, comment, clubId) => async 
         return
     }
     try {
+        //console.log(name, profile, subject, comment)
         const commentItems = { name, profile, subject, comment }
-        const res = await axios.put(`/comments/postcomment/${clubId}`, commentItems, config)
-        // console.log(res.data)
-
-        console.log(``)
+        const res = await axios.post(`/comments/postcomment/${clubId}`, commentItems, config)
+        
         dispatch({ type: REFRESH_COMMENTS, payload: res.data })
 
     } catch (e) {
@@ -99,6 +98,8 @@ export const editComment = () => async dispatch => {
 }
 
 export const resetComments = () => dispatch => { dispatch({ type: RESET_COMMENTS, }) }
+
+export const toggleNewCommentInput = () => dispatch => { dispatch({ type: TOGGLE_NEW_INPUT, }) }
 
 export const clearCommentMessage = () => dispatch => { dispatch({ type: CLEAR_COMMENT_MESSAGE }) }
 

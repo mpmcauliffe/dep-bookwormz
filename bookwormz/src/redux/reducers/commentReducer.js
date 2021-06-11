@@ -1,10 +1,10 @@
-import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, 
+import { REFRESH_COMMENTS, GET_COMMENTS, RESET_COMMENTS, TOGGLE_NEW_INPUT,
     COMMENT_MESSAGE, CLEAR_COMMENT_MESSAGE, } from '../types'
 
 
 const initialState = {
-
     comments: [ ],
+    showNewCommentInput: false,
     commentMessage: {
         message: '',
         style: '',
@@ -19,6 +19,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 comments: action.payload,
+                showNewCommentInput: false,
             }
 
         case GET_COMMENTS: 
@@ -26,12 +27,20 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 comments: [...action.payload],
+                showNewCommentInput: false,
             }
 
         case RESET_COMMENTS: 
             return {
                 ...state,
                 comments: [ ],
+                showNewCommentInput: false,
+            }
+
+        case TOGGLE_NEW_INPUT:
+            return {
+                ...state,
+                showNewCommentInput: !state.showNewCommentInput,
             }
 
         case COMMENT_MESSAGE:

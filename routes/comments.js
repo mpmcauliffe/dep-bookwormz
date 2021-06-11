@@ -18,7 +18,45 @@ const router                            = express.Router()
 
 
 router.post('/postcomment/:clubId', verification, async (req, res) => {
+    const { clubId } = req.params
+    const email = getEmail(req.headers['x-auth-token'])
 
+    const { name, profile, subject, comment, } = req.body
+    // console.log(color)
+
+    try {
+        const club = await Club.findById(clubId)
+        if (!club) { 
+            res.status(400).send({ message: 'An error occured. Club not found.' }) 
+            return }
+
+        const user = await User.findOne({ email })
+        if (!user) { res.status(400).send({ message: 'An error occured. User not found.' })
+            return }
+        
+        const newComment = {
+            replyTo: [ ],
+            replyToOrigin: [user._id.toString(), name, profile],
+            color: getColor(club.comments[club.comments.length-1].color, 1),
+            border: getColor(club.comments[club.comments.length-1].border, 2),
+            memberId: user._id,
+            content: comment,
+            name,
+            profile,
+            subject,
+        }
+
+        club.comments.splice(club.comments.length, 0, newComment)
+        await club.save()
+
+        club.comments[club.comments.length-1].replyToOrigin.splice(3, 0, club.comments[club.comments.length-1]._id.toString())
+        await club.save()
+
+        res.send(club.comments)
+
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 router.delete('/deletecomment/:clubId/:commentId/:originId/:locator', verification, async (req, res) => {
@@ -33,8 +71,7 @@ router.delete('/deletecomment/:clubId/:commentId/:originId/:locator', verificati
         const isCommentAnOrigin = club.comments[locator].replyTo.length === 0
 
         const deletedComment = club.comments.splice(locator, 1)
-        
-        console.log(club.comments)
+        //console.log(club.comments)
     
         club.comments = club.comments.filter(comment => isCommentAnOrigin
                 ? comment.replyToOrigin[3] !== commentId

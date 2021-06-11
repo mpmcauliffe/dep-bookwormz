@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useReducer, } from 'react'
+import React, { Fragment, useEffect, useReducer, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Simplebar from 'simplebar-react'
@@ -6,7 +6,7 @@ import { Comment } from './Comment'
 import { MakeComment } from './MakeComment'
 import { InputBlock, } from './Comments.comp'
 import { BasicTrigger, Buffer, EmptyNotification, } from '../../../components'
-// import { dummytext } from './dummytext'
+import { toggleNewCommentInput } from '../../../redux/actions/commentActions'
 import 'simplebar/dist/simplebar.min.css'
 
 
@@ -26,19 +26,19 @@ const conversationReducer = (state, action) => {
 
 const initialState = { toggleTriggerText: '', }
 
-const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) => {
+const CommentSection_proto = ({ 
+    toggleNewCommentInput, 
+    comments, showNewCommentInput,
+    image, displayName, isUserAMember, }) => {
+
     const [state, dispatch] = useReducer(conversationReducer, initialState)
-    
-    const [showInputBlock, setShowInputBlock]           = useState(false)
-    // const [toggleTriggerText, setToggleTriggerText]     = useState('Click here to MAKE a new comment')
 
     const { toggleTriggerText, } = state
 
     useEffect(() => { 
-        dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showInputBlock, })
-    }, [showInputBlock, comments])
+        dispatch({ type: 'TOGGLE_COMMENT_SECTION', payload: showNewCommentInput, })
+    }, [showNewCommentInput, comments])
 
-    // console.log(comments)
 
     return (
         <div>
@@ -47,22 +47,23 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
             {isUserAMember
                 && <Fragment>
                     <BasicTrigger 
-                        onClick={() => setShowInputBlock(!showInputBlock)}>
+                        //onClick={() => setShowInputBlock(!showInputBlock)}
+                        onClick={toggleNewCommentInput}>
                         {toggleTriggerText}
                     </BasicTrigger>
                     <Buffer thickness={3} />
                 </Fragment> 
             }
             {/*  */}
-            {showInputBlock  
-                && <InputBlock showInputBlock={showInputBlock}>
+            {showNewCommentInput  
+                && <InputBlock showInputBlock={showNewCommentInput}>
                     <MakeComment
                         userProfile={image}
                         displayName={displayName}
-                        showInputBlock={showInputBlock} />
+                        showInputBlock={showNewCommentInput} />
                 </InputBlock>}
 
-            {!showInputBlock
+            {!showNewCommentInput
                 ? Array.isArray(comments) && comments.length > 0 
                     ?  (<Simplebar style={{ height: '600px' }}>
                             <div id='commentContainer'>
@@ -92,17 +93,25 @@ const CommentSection_proto = ({ comments, image, displayName, isUserAMember, }) 
 
 CommentSection_proto.propTypes = {
     comments: PropTypes.array.isRequired,
+    showNewCommentInput: PropTypes.bool.isRequired,
+    toggleNewCommentInput: PropTypes.func.isRequired,
+    
     image: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
+    
     isUserAMember: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
     comments: state.comments.comments,
+    showNewCommentInput: state.comments.showNewCommentInput,
+    toggleNewCommentInput: state.comments.toggleNewCommentInput,
+    
     image: state.account.image,
     displayName: state.account.displayName,
+    
     isUserAMember: state.clubs.isUserAMember,
 })
 
-const CommentSection = connect(mapStateToProps, {  })(CommentSection_proto)
+const CommentSection = connect(mapStateToProps, { toggleNewCommentInput, })(CommentSection_proto)
 export { CommentSection }

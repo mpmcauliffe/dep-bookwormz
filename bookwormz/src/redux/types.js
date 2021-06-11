@@ -31,6 +31,7 @@ export const CLEAR_CLUB_MESSAGE     = 'CLEAR_CLUB_MESSAGE'
 export const GET_COMMENTS           = 'GET_COMMENTS'
 export const REFRESH_COMMENTS       = 'REFRESH_COMMENTS'
 export const RESET_COMMENTS         = 'RESET_COMMENTS'
+export const TOGGLE_NEW_INPUT       = 'TOGGLE_NEW_INPUT'
 export const COMMENT_MESSAGE        = 'COMMENT_MESSAGE'
 export const CLEAR_COMMENT_MESSAGE  = 'CLEAR_COMMENT_MESSAGE'
 
