@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, 
+import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, CLEAR_SEARCH_CLUBS,
     RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
@@ -149,6 +149,10 @@ export const leaveClub = (clubName, clubId, history) => async dispatch => {
         })
     }
 }
+
+export const searchClubs = searchString => dispatch => { dispatch({ type: SEARCH_CLUBS, payload: searchString, }) }
+
+export const clearSearchClubs = () => dispatch => { dispatch({ type: CLEAR_SEARCH_CLUBS }) }
 
 export const resetClubs = () => dispatch => { dispatch({ type: RESET_CLUB, }) }
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { triggerAuthError, } from '../../redux/actions/authActions'
 import { searchBooks, setLoading, } from '../../redux/actions/bookActions'
+import { searchClubs, } from '../../redux/actions/clubActions'
 import { checkUser, } from '../../middleware/checkUser'
 import { SearchContainer, SearchForm, } from './Search.comp'
 
@@ -11,11 +12,18 @@ import { SearchContainer, SearchForm, } from './Search.comp'
 export const Searchbar_proto = ({ 
     searchBooks, setLoading, triggerAuthError,
     searchFor, queryString, 
+    searchClubs,
 }) => {
     const [txt, setTxt] = useState('')
     const history = useHistory()
 
-    const changeTxt = e => setTxt(e.target.value)
+    const changeTxt = e => {
+        setTxt(e.target.value)
+
+        if (searchFor === 'clubs') {
+            searchClubs(txt)
+        }
+    }
 
     const onSubmit = e => {
         e.preventDefault()
@@ -63,11 +71,12 @@ Searchbar_proto.propTypes = {
     triggerAuthError: PropTypes.func.isRequired,
     searchFor: PropTypes.string.isRequired,
     queryString: PropTypes.string.isRequired,
+    searchClubs: PropTypes.func.isRequired,
 }
 
 // const mapStateToProps = state => ({
 //     queryString: state.books.bookSearchQuery,
 // })
 
-const Searchbar = connect(null, { searchBooks, setLoading, triggerAuthError, })(Searchbar_proto)
+const Searchbar = connect(null, { searchBooks, setLoading, triggerAuthError, searchClubs, })(Searchbar_proto)
 export { Searchbar }

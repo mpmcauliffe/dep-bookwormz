@@ -37,8 +37,8 @@ router.post('/postcomment/:clubId', verification, async (req, res) => {
         const newComment = {
             replyTo: [ ],
             replyToOrigin: [user._id.toString(), name, profile],
-            color: getColor(club.comments[club.comments.length-1].color, 1),
-            border: getColor(club.comments[club.comments.length-1].border, 2),
+            color: club.comments.length > 0 ? getColor(club.comments[club.comments.length-1].color, 1) : getColor('', 1),
+            border: club.comments.length > 0 ? getColor(club.comments[club.comments.length-1].border, 2) : getColor('', 1),
             memberId: user._id,
             content: comment,
             name,

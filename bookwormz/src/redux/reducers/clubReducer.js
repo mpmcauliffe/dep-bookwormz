@@ -1,9 +1,10 @@
-import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, 
+import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, CLEAR_SEARCH_CLUBS,
     RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
 const initialState = {
     availableClubs: [ ],
+    clubStore: [ ],
     currentClub: null,
     clubId: null,
     clubSearchQuery: '',
@@ -33,6 +34,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 availableClubs: [...action.payload],
+                clubStore: [...action.payload],
             }
         
         case CREATE_CLUB:
@@ -40,6 +42,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 availableClubs: [ ...state.availableClubs, action.payload.club._doc ],
+                clubStore: [ ...state.availableClubs, action.payload.club._doc ],
                 currentClub: { ...action.payload.club._doc },
                 isUserAMember: action.payload.club.isClubMember,
                 clubMessage: {
@@ -69,6 +72,20 @@ export default (state = initialState, action) => {
                     style: 'red accent-4 rounded', 
                     timeDisplay: 5000,
                 },
+            }
+
+        case SEARCH_CLUBS:
+            return {
+                ...state,
+                // clubStore: state.availableClubs,
+                availableClubs: state.clubStore.filter(club => club.clubName.toLowerCase().includes(action.payload.toLowerCase()))
+            }
+
+        case CLEAR_SEARCH_CLUBS:
+            return {
+                ...state,
+                availableClubs: state.clubStore,
+                // clubStore: [ ],
             }
 
         case RESET_CLUB:
