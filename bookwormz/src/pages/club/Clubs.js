@@ -1,4 +1,4 @@
-import React, { useState, useEffect, } from 'react'
+import React, { useEffect, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { motion, } from 'framer-motion'
@@ -10,8 +10,8 @@ import { fillComments, resetComments, } from '../../redux/actions/commentActions
 
 export const Clubs_proto = ({ getAllClubs, clubSearchQuery, availableClubs, fillClubs, fillComments, resetClubs, }) => {
 
-    const [noClubsMessage, setNoClubsMessage] = useState('here aren\'t any book clubs at this time.')
-    
+    // const [noClubsMessage, setNoClubsMessage] = useState('here aren\'t any book clubs at this time.')
+
 
     useEffect(() => { 
         getAllClubs()
