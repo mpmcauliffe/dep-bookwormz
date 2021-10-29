@@ -10,7 +10,6 @@ import { toggleNewCommentInput } from '../../../redux/actions/commentActions'
 import 'simplebar/dist/simplebar.min.css'
 
 
-
 const conversationReducer = (state, action) => {
     switch(action.type) {
         case 'TOGGLE_COMMENT_SECTION':
