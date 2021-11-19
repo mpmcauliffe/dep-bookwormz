@@ -28,11 +28,32 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
             </section>
             
             <section className='container__links'>
-                <a  // href='http://localhost:5000/auth/google' 
-                    href='https://bookwormz-api.herokuapp.com/auth/google' 
+                <a  href='http://localhost:5000/auth/google' 
+                    // href='https://bookwormz-api.herokuapp.com/auth/google' 
                     className='link__btn link__btn-google'>
                     <i className='fab fa-google left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Google
+                </a>
+
+                <a  href='http://localhost:5000/auth/google' 
+                    // href='https://bookwormz-api.herokuapp.com/auth/google' 
+                    className='link__btn link__btn-facebook'>
+                    <i className='fab fa-facebook left fa-1x'>
+                        </i>&nbsp;&nbsp;&nbsp; Log in with Facebook
+                </a>
+
+                <a  href='http://localhost:5000/auth/google' 
+                    // href='https://bookwormz-api.herokuapp.com/auth/google' 
+                    className='link__btn link__btn-twitter'>
+                    <i className='fab fa-twitter left fa-1x'>
+                        </i>&nbsp;&nbsp;&nbsp; Log in with Twitter
+                </a>
+
+                <a  href='http://localhost:5000/auth/google' 
+                    // href='https://bookwormz-api.herokuapp.com/auth/google' 
+                    className='link__btn link__btn-github'>
+                    <i className='fab fa-github left fa-1x'>
+                        </i>&nbsp;&nbsp;&nbsp; Log in with Github
                 </a>
             </section>
         </LandingContainer>
