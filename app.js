@@ -23,6 +23,8 @@ connectDB()
 
 /* PASSPORT SETUP */
 require('./config/passportGoogle')(passport)
+require('./config/passportFacebook')(passport)
+require('./config/passportTwitter')(passport)
 
 /* CORS */
 app.use(cors())
