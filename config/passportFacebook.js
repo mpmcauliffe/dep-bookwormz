@@ -1,7 +1,7 @@
 const FacebookStrategy = require('passport-facebook').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/User')
-const userPass = require('../mongoose/userPass')
+const userPass = require('../helpers/userPass')
 
 
 let trustProxy = false
