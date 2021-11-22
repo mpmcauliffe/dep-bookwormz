@@ -59,8 +59,8 @@ export const LandingContainer = styled.div`
 
     .link__btn-google {
         background: radial-gradient(circle, rgba(233,84,72,1) 35%, rgba(219,68,55,1) 79%, rgba(185,57,46,1) 100%);
-        border-top: .1rem solid #e95448;
-        border-bottom: .1rem solid #b9392e;
+        border-top: .3rem solid #e95448;
+        border-bottom: .3rem solid #b9392e;
     }
     .link__btn-facebook {
         background: radial-gradient(circle, rgba(97,137,219,1) 35%, rgba(66,103,178,1) 79%, rgba(51,80,140,1) 100%);}
