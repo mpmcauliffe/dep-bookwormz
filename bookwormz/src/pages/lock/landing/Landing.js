@@ -35,8 +35,8 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                         </i>&nbsp;&nbsp;&nbsp; Log in with Google
                 </a>
 
-                <a  href='http://localhost:5000/auth/facebook' 
-                    // href='https://bookwormz-api.herokuapp.com/auth/facebook' 
+                <a  // href='http://localhost:5000/auth/facebook' 
+                    href='https://bookwormz-api.herokuapp.com/auth/facebook' 
                     className='link__btn link__btn-facebook'>
                     <i className='fab fa-facebook left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Facebook

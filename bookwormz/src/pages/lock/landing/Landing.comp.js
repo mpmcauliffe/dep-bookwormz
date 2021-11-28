@@ -59,13 +59,22 @@ export const LandingContainer = styled.div`
 
     .link__btn-google {
         background: radial-gradient(circle, rgba(233,84,72,1) 35%, rgba(219,68,55,1) 79%, rgba(185,57,46,1) 100%);
-        border-top: .3rem solid #e95448;
-        border-bottom: .3rem solid #b9392e;
+        border-top: .2rem solid #e95448;
+        border-bottom: .2rem solid #b9392e;
     }
     .link__btn-facebook {
-        background: radial-gradient(circle, rgba(97,137,219,1) 35%, rgba(66,103,178,1) 79%, rgba(51,80,140,1) 100%);}
+        background: radial-gradient(circle, rgba(97,137,219,1) 35%, rgba(66,103,178,1) 79%, rgba(51,80,140,1) 100%);
+        border-top: .2rem solid #6189db;
+        border-bottom: .2rem solid #33508c;
+    }
     .link__btn-twitter {
-        background: radial-gradient(circle, rgba(55,179,255,1) 35%, rgba(29,161,242,1) 79%, rgba(27,148,222,1) 100%);}
+        background: radial-gradient(circle, rgba(55,179,255,1) 35%, rgba(29,161,242,1) 79%, rgba(27,148,222,1) 100%);
+        border-top: .2rem solid #37b3ff;
+        border-bottom: .2rem solid #1b94de;
+    }
     .link__btn-github {
-        background: radial-gradient(circle, rgba(93,91,91, 1) 35%, rgba(63,61,61, 1) 79%, rgba(33,31,31, 1) 100%);}
+        background: radial-gradient(circle, rgba(93,91,91, 1) 35%, rgba(63,61,61, 1) 79%, rgba(33,31,31, 1) 100%);
+        border-top: .2rem solid #5d5b5b;
+        border-bottom: .2rem solid #211f1f;    
+    }
 `

@@ -73,10 +73,12 @@ router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }))
 
 router.get('/facebook/callback',
     passport.authenticate('facebook', { failureRedirect: '/' }),
-    function(req, res) {
+    
+    (req, res) => {
     // Successful authentication, redirect home.
-    // res.redirect('http://localhost:3000')
-    // res.redirect('https://agitated-shannon-3f318f.netlify.app/') 
+    // res.redirect('http://localhost:3000/userauth')
+ 
+    res.redirect('https://bookwormz-api.herokuapp.com/userauth')
 })
 
 
