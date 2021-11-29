@@ -46,7 +46,8 @@
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "react-style-tag": "^2.0.4"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

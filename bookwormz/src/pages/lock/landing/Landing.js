@@ -56,10 +56,10 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                         </i>&nbsp;&nbsp;&nbsp; Log in with Github
                 </a>
             </section>
+            
         </LandingContainer>
     )
 }
-
 
 Landing_proto.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
