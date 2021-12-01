@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/mpmcauliffe/bookwormz-passport#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
@@ -36,6 +37,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
+    "express-validator": "^6.13.0",
     "jsonwebtoken": "^8.5.1",
     "materialize-css": "^1.0.0",
     "mongo-connect": "0.0.6",
