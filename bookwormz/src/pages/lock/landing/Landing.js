@@ -28,7 +28,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
             </section>
             
             <section className='container__links'>
-                <a  // href='http://localhost:5000/auth/google' 
+              {/**   <a  // href='http://localhost:5000/auth/google' 
                     href='https://bookwormz-api.herokuapp.com/auth/google' 
                     className='link__btn link__btn-google'>
                     <i className='fab fa-google left fa-1x'>
@@ -54,7 +54,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                     className='link__btn link__btn-github'>
                     <i className='fab fa-github left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Github
-                </a>
+                </a>*/}
             </section>
             
         </LandingContainer>
