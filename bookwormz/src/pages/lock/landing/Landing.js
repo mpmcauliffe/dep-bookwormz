@@ -26,7 +26,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                     alt='BookWormZ__img'
                     src={require(`./bkw-transparent.png`).default} />
             </section>
-            
+            {/* */}
             <section className='container__links'> 
                 <a  // href='http://localhost:5000/auth/google' 
                     href='https://bookwormz-api.herokuapp.com/auth/google' 

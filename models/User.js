@@ -6,7 +6,11 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, 'Please provide your email'],
+    },
+    password: {
+        type: String,
+        required: [true, 'Please input a password'],
     },
     userId: {
         type: String,
@@ -14,18 +18,16 @@ const UserSchema = new Schema({
     },
     displayName: {
         type: String,
-        required: true,
+        required: [true, 'Please provide a screen name'],
     },
     secondaryDisplayName: {
         type: String,
     },
     firstName: {
         type: String,
-        required: true,
     },
     lastName: {
         type: String,
-        required: true,
     },
     image: {
         type: String,
