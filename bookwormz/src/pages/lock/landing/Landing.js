@@ -27,13 +27,14 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                     src={require(`./bkw-transparent.png`).default} />
             </section>
             
-            <section className='container__links'>
-              {/**   <a  // href='http://localhost:5000/auth/google' 
+            <section className='container__links'> 
+                <a  // href='http://localhost:5000/auth/google' 
                     href='https://bookwormz-api.herokuapp.com/auth/google' 
                     className='link__btn link__btn-google'>
                     <i className='fab fa-google left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Google
                 </a>
+              {/**  
 
                 <a  // href='http://localhost:5000/auth/facebook' 
                     href='https://bookwormz-api.herokuapp.com/auth/facebook' 
