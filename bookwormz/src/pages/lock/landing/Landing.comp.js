@@ -27,7 +27,7 @@ export const LandingContainer = styled.div`
         letter-spacing: 2px;
     }
 
-    .container__links {
+    .container__form {
         height: 260px;
         margin-top: 39px;
 
@@ -37,6 +37,11 @@ export const LandingContainer = styled.div`
         align-items: center;
         /* border: 1px solid blue; */
     }
+
+    section form {
+        width: 360px;
+    }
+
     .link__btn {
         height: 60px;
         width: 333px;

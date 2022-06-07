@@ -56,6 +56,13 @@ export const FormContainer = styled.form`
     }
     input:focus + i { color: ${p => p.theme.ruby}; }
 
+    .update-info svg {
+        position: absolute;
+        margin: 2rem 2rem 0 0;
+        color: ${p => p.theme.silver};
+    }
+    input:focus + svg { color: ${p => p.theme.ruby}; }
+    
     .description-block {
         font-size: 2rem;
         textarea { 

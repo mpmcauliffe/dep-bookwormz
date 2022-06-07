@@ -1,3 +1,6 @@
+export * from './auth/Login'
+export * from './auth/Register'
+
 export * from './bookShelf/BookShelf'
 export * from './bookShelf/MyBookShelf'
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { LandingContainer, } from './Landing.comp'
+import { Register, } from '../../../components'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
@@ -24,17 +25,22 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                 <img 
                     className='header'
                     alt='BookWormZ__img'
-                    src={require(`./bkw-transparent.png`).default} />
+                    src={require(`./bkw-transparent.png`).default} />    
             </section>
-            {/* */}
-            <section className='container__links'> 
+            
+            <section className='container__form'>
+                <Register />
+            </section>
+            
+            
+            {/** <section className='container__links'> 
                 <a  // href='http://localhost:5000/auth/google' 
                     href='https://bookwormz-api.herokuapp.com/auth/google' 
                     className='link__btn link__btn-google'>
                     <i className='fab fa-google left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Google
                 </a>
-              {/**  
+               
 
                 <a  // href='http://localhost:5000/auth/facebook' 
                     href='https://bookwormz-api.herokuapp.com/auth/facebook' 
@@ -55,8 +61,8 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                     className='link__btn link__btn-github'>
                     <i className='fab fa-github left fa-1x'>
                         </i>&nbsp;&nbsp;&nbsp; Log in with Github
-                </a>*/}
-            </section>
+                </a>
+            </section>*/}
             
         </LandingContainer>
     )
