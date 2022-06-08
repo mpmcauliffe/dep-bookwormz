@@ -5,6 +5,7 @@ export * from './bookShelf/BookShelf'
 export * from './bookShelf/MyBookShelf'
 
 export * from './buttons/AnchorButton'
+export * from './buttons/AuthButton'
 export * from './buttons/BasicTrigger'
 export * from './buttons/Buttons.comp'
 

@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { LandingContainer, } from './Landing.comp'
-import { Register, } from '../../../components'
+import { Login, Register, } from '../../../components'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 const Landing_proto = ({ isAuthenticated, error, history }) => {
-
+    
 
     if (isAuthenticated) {
         history.push('/dashboard')

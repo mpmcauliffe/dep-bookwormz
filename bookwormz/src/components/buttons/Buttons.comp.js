@@ -48,6 +48,7 @@ export const AppButton = styled.button`
     }
 `
 
+
 AppButton.propTypes = {
     alertButton: PropTypes.bool,
 }
