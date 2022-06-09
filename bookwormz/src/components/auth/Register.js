@@ -18,22 +18,30 @@ export const Register = () => {
 
     const onChange = e => setFormInfo({ ...formInfo, [e.target.name]: e.target.value })
         
-
     const onSubmit = e => {
         e.preventDefault()
 
-        const reg = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/ 
-        && reg.test(email)
+        // checks
+        const warningClasses = 'red accent-4 rounded'
         
+        const reg = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/ 
+        if (!reg.test(email)) {
+            M.toast({ html: 'Please enter a valid email.', classes: warningClasses, })
+            return
+        }
+        if (password.length < 6) {
+            M.toast({ html: 'Password must be a minimum of 6 characters.', classes: warningClasses, })
+            return
+        }
         if (password !== password2) {
-            M.toast({ html: 'Passwords do not match!' })
+            M.toast({ html: 'Passwords do not match!', classes: warningClasses, })
             return
         }
     }
 
     return (
         <FormContainer
-            action='submit' 
+            onSubmit={onSubmit}
             toggleInputs={true}>
             <Buffer thickness={12} />
             <div className='update-info'>
@@ -86,7 +94,7 @@ export const Register = () => {
             
             <AuthButton 
                 toggle={true}
-                onSubmit={onSubmit}>
+                onClick={onSubmit}>
                 Submit
             </AuthButton>
         </FormContainer>
