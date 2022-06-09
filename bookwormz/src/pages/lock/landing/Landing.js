@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { LandingContainer, } from './Landing.comp'
-import { Login, Register, } from '../../../components'
+import { Buffer, Login, Register, } from '../../../components'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 
 const Landing_proto = ({ isAuthenticated, error, history }) => {
-    
+    const [useLogin, setUseLogin]               = useState(false) 
+    // const [formToggleText, setFormToggleText]   = useState('Already have and account? Login!')   
 
     if (isAuthenticated) {
         history.push('/dashboard')
@@ -16,6 +17,8 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
     if (error.length > 0) { 
         M.toast({ html: error, classes: 'red accent-4 rounded', displayLength: 9000 })
     }
+
+    const handleToggleClick = () => setUseLogin(!useLogin)
     
     useEffect(() => { window.scroll(0, 0) }, [])
 
@@ -29,7 +32,33 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
             </section>
             
             <section className='container__form'>
-                <Register />
+                {useLogin 
+                    ? (
+                        <>
+                            <h4 style={{ color: '#982233' }}>Login</h4>
+                            <p 
+                                onClick={handleToggleClick}
+                                style={{ color: '#982233', 
+                                        cursor: 'pointer',
+                                        // marginTop: '6rem',
+                                        textDecoration: 'underline', }}>
+                                Don't have an account? Sign up!
+                            </p>
+                            <Login />
+                        </>
+                    ) : <> 
+                            
+                            <h4 style={{ color: '#982233', }}>Sign up</h4>
+                            <p 
+                                onClick={handleToggleClick}
+                                style={{ color: '#982233', 
+                                        cursor: 'pointer',
+                                        // marginTop: '6rem',
+                                        textDecoration: 'underline', }}>
+                                Already have and account? Login!
+                            </p>
+                            <Register />
+                        </>}
             </section>
             
             

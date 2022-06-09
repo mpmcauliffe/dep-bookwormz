@@ -43,7 +43,8 @@ export const Register = () => {
         <FormContainer
             onSubmit={onSubmit}
             toggleInputs={true}>
-            <Buffer thickness={12} />
+            <Buffer thickness={3} />
+
             <div className='update-info'>
                 <div>
                     <input 

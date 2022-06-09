@@ -1,18 +1,36 @@
-import { Buffer, FormContainer, } from '../../components'
-import { FaUser, FaAt, FaLockOpen, FaLock, } from 'react-icons/fa'
+import { useState, } from 'react'
+import { AuthButton, Buffer, FormContainer, } from '../../components'
+import { FaAt, FaLock, } from 'react-icons/fa'
 
 
 export const Login = () => {
+    const [formInfo, setFormInfo] = useState({
+        email: '',
+        password: '',
+    })
+    const { email, password, } = formInfo
+
+    const onChange = e => setFormInfo({ ...formInfo, [e.target.name]: e.target.value })
+
+    const onSubmit = e => {
+        e.preventDefault()
+    }
+
     return (
-        <FormContainer toggleInputs={true}>
+        <FormContainer 
+            onSubmit={onSubmit}
+            toggleInputs={true}>
+            <Buffer thickness={3} />
+
             <div className='update-info'>
                 <div>
                     <input 
                         required
                         type='email'
                         name='email'
-                        // value={email}
-                        placeholder='Please enter your email' />
+                        value={email}
+                        onChange={onChange}
+                        placeholder='Email' />
                     <FaAt size={25} style={{  }} />
                 </div>
 
@@ -21,13 +39,19 @@ export const Login = () => {
                         required
                         type='password'
                         name='password'
-                        // value={password}
-                        placeholder='Please enter a password' />
+                        value={password}
+                        onChange={onChange}
+                        placeholder='Password' />
                     <FaLock size={25} style={{  }} />
                 </div>
             </div>
+            <Buffer thickness={6} />
             
-            
+            <AuthButton 
+                toggle={true}
+                onClick={onSubmit}>
+                Submit
+            </AuthButton>
         </FormContainer>
     )
 }

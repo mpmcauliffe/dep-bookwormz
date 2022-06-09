@@ -28,7 +28,7 @@ export const LandingContainer = styled.div`
     }
 
     .container__form {
-        height: 260px;
+        height: 500px;
         margin-top: 39px;
 
         display: flex;
@@ -39,7 +39,7 @@ export const LandingContainer = styled.div`
     }
 
     section form {
-        width: 360px;
+        width: 333px;
     }
 
     .link__btn {
