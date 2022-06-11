@@ -38,47 +38,54 @@ console.log(req.user.email)
 /* REGISTER USER */
 router.post('/register', async (req, res) => {
     const { displayName, email, password, } = req.body
-    console.log(displayName)
+    
 
     // validation
-    // if (!displayName || !email || !password) {
-    //     res.status(400)
-    //     throw new Error('Please include all fields.')
-    // }
+    if (!displayName || !email || !password) {
+        res.status(400)
+        throw new Error('Please include all fields.')
+    }
 
-    // try {
-    //     // check if User exits
-    //     const userExists = await User.findOne({ email })
-    //     if (userExists) {
-    //         res.status(400)
-    //         throw new Error('User already exists')
-    //     }
+    try {
+        // check if User exits
+        const userExists = await User.findOne({ email })
+        
+        if (userExists) {
+            res.status(400)
+            throw new Error('User already exists')
+        }
 
-    //     // Hash password
-    //     const salt              = await bcrypt.genSalt(10)
-    //     const hashedPassword    = await bcrypt.hash(password, salt)
+        // Hash password
+        const salt              = await bcrypt.genSalt(10)
+        const hashedPassword    = await bcrypt.hash(password, salt)
+        
+        // Create user
+        const user = await User.create({
+            displayName,
+            email,
+            password: hashedPassword,
+        })
+        console.log(email, user)
+        if (user) {
+            const token = jwt.sign(payload, secret, (err, token) => {
+                if (err) { console.log(err) }
+                //res.send(`<h3>${token}</h3>`)
+                //console.log(token)
+                res.status(201).json({ token })
+            })
+            // res.status(201).json({
+            //     // _id: user._id,
+            //     displayName: user.displayName,
+            //     email: user.email,
+            //     token: generateToken(user._id),
+            // })
+        }
 
-    //     // Create user
-    //     const user = await User.create({
-    //         displayName,
-    //         email,
-    //         password: hashedPassword,
-    //     })
-
-    //     if (user) {
-    //         res.status(201).json({
-    //             _id: user._id,
-    //             displayName: user.displayName,
-    //             email: user.email,
-    //             token: generateToken(user._id),
-    //         })
-    //     }
-
-    // } catch (error) {
-    //     console.log(`Error: ${error.message}`.red.underline.bold)
-    //     res.status(400)
-    //     throw new Error('Invalid user data')
-    // }
+    } catch (error) {
+        console.log(`Error: ${error.message}`)
+        res.status(400)
+        throw new Error('Invalid user data')
+    }
 })
 
 /* LOGOUT RTE */

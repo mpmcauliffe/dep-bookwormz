@@ -1,6 +1,6 @@
 import React, { Fragment, } from 'react'
 import PropTypes from 'prop-types'
-import { MemberButton } from './MemberButton'
+// import { MemberButton } from './MemberButton'
 import { ClubHeaderGrid, ClubImg, HeaderLink, HeaderSection,  } from '../'
 
 export const ClubHeader = ({ clubName, clubCover, description }) => {

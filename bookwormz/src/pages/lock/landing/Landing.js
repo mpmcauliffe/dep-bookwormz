@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { LandingContainer, } from './Landing.comp'
-import { Buffer, Login, Register, } from '../../../components'
+import { Login, Register, } from '../../../components'
 import M from 'materialize-css/dist/js/materialize.min.js'
 
 

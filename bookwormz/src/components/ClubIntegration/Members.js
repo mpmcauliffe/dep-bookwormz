@@ -9,6 +9,7 @@ export const Members = ({ member }) => {
             className='grid-cell'>
             <ProfileImage 
                 src={
+                    // eslint-disable-next-line
                     member.profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
                     ? `${member.profile}` 
                     : require(`../../assets/mock/${member.profile}.png`).default}

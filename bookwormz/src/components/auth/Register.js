@@ -1,6 +1,7 @@
 import { useState, } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useHistory, } from 'react-router-dom'
 import { AuthButton, Buffer, FormContainer, } from '../../components'
 import { registerUser, } from '../../redux/actions/authActions'
 import { FaUser, FaAt, FaLock, } from 'react-icons/fa'
@@ -14,10 +15,10 @@ const Register_proto = ({ registerUser, }) => {
         password: '',
         password2: '',
     })
-    
     // const [isFormComplete, setIsFormComplete] = useState(false)
-
     const { displayName, email, password, password2, } = formInfo
+
+    const history = useHistory()
 
     const onChange = e => setFormInfo({ ...formInfo, [e.target.name]: e.target.value })
         
@@ -27,6 +28,7 @@ const Register_proto = ({ registerUser, }) => {
         // checks
         const warningClasses = 'red accent-4 rounded'
         
+        // eslint-disable-next-line
         const reg = /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/ 
         if (!reg.test(email)) {
             M.toast({ html: 'Please enter a valid email.', classes: warningClasses, })
@@ -41,7 +43,7 @@ const Register_proto = ({ registerUser, }) => {
             return
         }
 
-        registerUser(formInfo)
+        registerUser(history, formInfo)
     }
 
     return (

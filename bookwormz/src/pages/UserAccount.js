@@ -28,6 +28,7 @@ export const UserAccount_proto = ({
     const onSubmit = e => {
         e.preventDefault()
 
+        // eslint-disable-next-line
         const isURL = userInfo.portrait.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
         if (!isURL && userInfo.portrait.length > 0) {
             console.log(`%cPORTRAIT VALUE %c${userInfo.portrait} %cNOT A URL`, 'font-weight: bold', 'color: red', 'font-weight: bold')

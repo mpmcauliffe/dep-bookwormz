@@ -57,6 +57,7 @@ export const Comment_proto = ({ postReply, deleteComment,
                     alt='PROFILE_IMG'
                     className='image'
                     src={
+                        // eslint-disable-next-line
                         profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
                         ? `${profile}`
                         : require(`../../../assets/mock/${profile}.png`).default} />
@@ -75,6 +76,7 @@ export const Comment_proto = ({ postReply, deleteComment,
                                         alt='reply_to'
                                         className='reply-image'
                                         src={
+                                            // eslint-disable-next-line
                                             replyTo[2].match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
                                             ? `${replyTo[2]}`
                                             : require(`../../../assets/mock/${replyTo[2]}.png`).default} />

@@ -7,20 +7,20 @@ const config = { headers: { 'Content-Type': 'application/json' } }
 
 /* register user */
 export const registerUser = (history, userData) => async dispatch => {
-    console.log(history, userData);
+    // console.log(history, userData);
     try {
-        const res = await axios.get('/auth/register', userData, config)
-        // console.log(res)
-        if (typeof res.data.token === 'undefined') {
-            history.push('/')
-            dispatch({ type: ERROR })
-            return
-        }
+        const res = await axios.post('/auth/register', userData, config)
+        console.log(res)
+        // if (typeof res.data.token === 'undefined') {
+        //     history.push('/')
+        //     dispatch({ type: ERROR })
+        //     return
+        // }
         
-        localStorage.setItem('token', res.data.token)
-        setUser()
-        history.push('/dashboard')    
-        dispatch({ type: LOGIN })
+        // localStorage.setItem('token', res.data.token)
+        // setUser()
+        // history.push('/dashboard')    
+        // dispatch({ type: LOGIN })
         
     } catch (e) {
         history.push('/')
