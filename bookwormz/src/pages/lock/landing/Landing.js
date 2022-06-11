@@ -33,8 +33,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
             
             <section className='container__form'>
                 {useLogin 
-                    ? (
-                        <>
+                    ? (<>
                             <h4 style={{ color: '#982233' }}>Login</h4>
                             <p 
                                 onClick={handleToggleClick}
@@ -46,8 +45,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                             </p>
                             <Login />
                         </>
-                    ) : <> 
-                            
+                    ) : (<> 
                             <h4 style={{ color: '#982233', }}>Sign up</h4>
                             <p 
                                 onClick={handleToggleClick}
@@ -58,7 +56,7 @@ const Landing_proto = ({ isAuthenticated, error, history }) => {
                                 Already have and account? Login!
                             </p>
                             <Register />
-                        </>}
+                        </>)}
             </section>
             
             

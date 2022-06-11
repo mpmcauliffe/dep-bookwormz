@@ -1,10 +1,13 @@
 import { useState, } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { AuthButton, Buffer, FormContainer, } from '../../components'
+import { registerUser, } from '../../redux/actions/authActions'
 import { FaUser, FaAt, FaLock, } from 'react-icons/fa'
 import M from 'materialize-css/dist/js/materialize.min.js' 
 
 
-export const Register = () => {
+const Register_proto = ({ registerUser, }) => {
     const [formInfo, setFormInfo] = useState({
         displayName: '',
         email: '',
@@ -37,6 +40,8 @@ export const Register = () => {
             M.toast({ html: 'Passwords do not match!', classes: warningClasses, })
             return
         }
+
+        registerUser(formInfo)
     }
 
     return (
@@ -101,3 +106,13 @@ export const Register = () => {
         </FormContainer>
     )
 }
+
+
+Register_proto.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({ })
+
+const Register = connect(mapStateToProps, { registerUser, })(Register_proto)
+export { Register }
