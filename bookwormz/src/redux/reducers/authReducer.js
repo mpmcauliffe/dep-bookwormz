@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                error: ''
+                error: '',
             }
 
         case ERROR:

@@ -50,10 +50,7 @@ router.post('/register', async (req, res) => {
         // check if User exits
         const userExists = await User.findOne({ email })
         
-        if (userExists) {
-            res.status(400)
-            throw new Error('User already exists')
-        }
+        if (userExists) { res.json({ message: 'User all ready exists' }).end() }
 
         // Hash password
         const salt              = await bcrypt.genSalt(10)
@@ -64,29 +61,38 @@ router.post('/register', async (req, res) => {
             displayName,
             email,
             password: hashedPassword,
+            image: (Math.floor(Math.random() * 7) + 1).toString()
         })
-        console.log(email, user)
+
+        // Build token components
+        const secret        = process.env.JWT_SECRET
+        const payload       = { user: { email, } }
+        
         if (user) {
             const token = jwt.sign(payload, secret, (err, token) => {
                 if (err) { console.log(err) }
                 //res.send(`<h3>${token}</h3>`)
                 //console.log(token)
-                res.status(201).json({ token })
-            })
-            // res.status(201).json({
-            //     // _id: user._id,
-            //     displayName: user.displayName,
-            //     email: user.email,
-            //     token: generateToken(user._id),
-            // })
+                res.status(201).json({ token }).end()
+            }) 
         }
+        
 
     } catch (error) {
-        console.log(`Error: ${error.message}`)
+        console.log(`Error: ${error.message}`.red.underline.bold)
         res.status(400)
         throw new Error('Invalid user data')
     }
 })
+
+
+// res.status(201).json({
+//     // _id: user._id,
+//     displayName: user.displayName,
+//     email: user.email,
+//     token: generateToken(user._id),
+// })
+
 
 /* LOGOUT RTE */
 // @desc Logout user

@@ -10,20 +10,27 @@ export const registerUser = (history, userData) => async dispatch => {
     // console.log(history, userData);
     try {
         const res = await axios.post('/auth/register', userData, config)
-        console.log(res)
-        // if (typeof res.data.token === 'undefined') {
-        //     history.push('/')
-        //     dispatch({ type: ERROR })
-        //     return
-        // }
+        // console.log(res)
         
-        // localStorage.setItem('token', res.data.token)
-        // setUser()
-        // history.push('/dashboard')    
-        // dispatch({ type: LOGIN })
+        if (res.data.message) {
+            history.push('/')
+            dispatch({ type: TRIGGER_AUTH_ERROR, payload: 'User already exists!' })
+            return
+        }
+        if (typeof res.data.token === 'undefined') {
+            history.push('/')
+            dispatch({ type: ERROR, payload: 'Something went wrong.', })
+            return
+        }
+        
+        localStorage.setItem('token', res.data.token)
+        setUser()
+        history.push('/dashboard')    
+        dispatch({ type: LOGIN })
         
     } catch (e) {
         history.push('/')
+        console.log(e)
         dispatch({ type: ERROR })
     }
 }
