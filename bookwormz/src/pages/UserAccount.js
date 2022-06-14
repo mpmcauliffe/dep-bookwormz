@@ -56,7 +56,7 @@ export const UserAccount_proto = ({
         getUserInfo()
 
         window.scroll(0, 0)
-        
+        console.log(image);
     }, [getUserInfo, image, displayName])
 
 
@@ -75,8 +75,10 @@ export const UserAccount_proto = ({
 
                 <UserInfoContainer>
                     <ProfileImage 
-                        src={`${image}`} 
-                        alt='IMG_self'/>
+                        src={`profile/${image}`}
+                        alt='IMG_self'
+                        // src={isNaN(image.substring(0,1)) ? require(`${image}`).default : require(`../assets/profile/${image}.svg`).defualt} 
+                        />
                     
                     <div>
                         <p><em>display name</em></p>

@@ -1,19 +1,26 @@
 import { useState, } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { useHistory, } from 'react-router-dom'
+import { loginUser, } from '../../redux/actions/authActions'
 import { AuthButton, Buffer, FormContainer, } from '../../components'
 import { FaAt, FaLock, } from 'react-icons/fa'
 
 
-export const Login = () => {
+export const Login_proto = ({ loginUser, }) => {
     const [formInfo, setFormInfo] = useState({
         email: '',
         password: '',
     })
     const { email, password, } = formInfo
 
+    const history = useHistory()
+
     const onChange = e => setFormInfo({ ...formInfo, [e.target.name]: e.target.value })
 
     const onSubmit = e => {
         e.preventDefault()
+        loginUser(history, formInfo)
     }
 
     return (
@@ -57,3 +64,13 @@ export const Login = () => {
         </FormContainer>
     )
 }
+
+
+Login_proto.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({ })
+
+const Login = connect(mapStateToProps, { loginUser, })(Login_proto)
+export { Login }

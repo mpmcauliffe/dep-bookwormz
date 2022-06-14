@@ -11,18 +11,20 @@ const router = express.Router()
 /* ASSIGN TOKEN */
 // @desc sends token
 // @route /auth/token
-router.get('/token', ensureAuth, (req, res) => {
-    const secret      = process.env.JWT_SECRET
-    const userId      = req.user._id
-console.log(req.user.email)
+router.post('/token', async (req, res) => {
+    const secret                    = process.env.JWT_SECRET
+    const { email, password}        = req.body
+    
     try {
-        const payload = {
-            user: {
-                email: req.user.email,
-            }
-        }
         //res.send({ "bears": "are cute" })
         //console.log(payload)
+        let user = await User.findOne({ email })
+        if (!user) { res.status(400).json({ msg: 'Invalid credentials' }) }
+
+        const isMatch = await bcrypt.compare(password, user.password)
+        if(!isMatch) { return res.status(400).json({ msg: 'Invalid credentials' }) }
+        
+        const payload = { user: { email, } }
         const token = jwt.sign(payload, secret, (err, token) => {
             if (err) { console.log(err) }
             //res.send(`<h3>${token}</h3>`)
@@ -61,7 +63,7 @@ router.post('/register', async (req, res) => {
             displayName,
             email,
             password: hashedPassword,
-            image: (Math.floor(Math.random() * 7) + 1).toString()
+            image: `${(Math.floor(Math.random() * 7) + 1).toString()}.svg`
         })
 
         // Build token components
@@ -76,7 +78,7 @@ router.post('/register', async (req, res) => {
                 res.status(201).json({ token }).end()
             }) 
         }
-        
+
 
     } catch (error) {
         console.log(`Error: ${error.message}`.red.underline.bold)

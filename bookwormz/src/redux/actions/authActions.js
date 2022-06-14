@@ -36,9 +36,10 @@ export const registerUser = (history, userData) => async dispatch => {
 }
 
 /* authenticates user */
-export const login = history => async dispatch => {
+export const loginUser = (history, userData) => async dispatch => {
+    console.log(userData);
     try {
-        const res = await axios.get('/auth/token')
+        const res = await axios.post('/auth/token', userData, config)
         // console.log(res)
         if (typeof res.data.token === 'undefined') {
             history.push('/')
