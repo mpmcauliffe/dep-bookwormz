@@ -37,7 +37,7 @@ export const registerUser = (history, userData) => async dispatch => {
 
 /* authenticates user */
 export const loginUser = (history, userData) => async dispatch => {
-    console.log(userData);
+    // console.log(userData);
     try {
         const res = await axios.post('/auth/token', userData, config)
         // console.log(res)

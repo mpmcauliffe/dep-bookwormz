@@ -41,7 +41,7 @@ export const Comment_proto = ({ postReply, deleteComment,
         setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
-    // console.log()
+    console.log(replyTo)
 
 
     return (

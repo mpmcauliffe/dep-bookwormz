@@ -44,8 +44,8 @@ router.put('/updatinfo', verification, async (req, res) => {
     try {
         await User.findOneAndUpdate({ email }, 
             { '$set': { 
-                'secondaryImage': updatedFields.secondaryImage, 
-                'secondaryDisplayName': updatedFields.secondaryDisplayName,
+                'image': updatedFields.secondaryImage, 
+                'displaName': updatedFields.secondaryDisplayName,
         } })
 
         const user = await User.findOne({ email })
