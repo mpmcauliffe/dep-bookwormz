@@ -7,8 +7,11 @@ const ButtonGradient = ({ alertButton }) => {
         return css`
             background: transparent;
             color: #ad1f1f;
-            border: .1rem solid #ad1f1f;
-            /* border-top: .1rem solid #f96161;
+            border-style: solid;
+            border-width: .3rem;
+            border-image: linear-gradient(180deg rgba(215,27,27,1),rgba(194,27,27,1),rgba(173,31,31,1)) 1;
+            /* border: .1rem solid #ad1f1f;
+            border-top: .1rem solid #f96161;
             border-bottom: .1rem solid #380c0c;
             background: radial-gradient(circle, 
                 rgba(215,27,27,1) 35%, rgba(194,27,27,1) 79%, rgba(173,31,31,1) 100%); */
@@ -17,8 +20,11 @@ const ButtonGradient = ({ alertButton }) => {
     return css`
         background: transparent;
         color: #1a4617;
-        border: .1rem solid #1a4617;
-        /* border-top: .1rem solid #4ad040;
+        border-style: solid;
+        border-width: .3rem;
+        border-image: linear-gradient(180deg, rgba(41,111,35,1),rgba(41,111,35,1),rgba(26,70,23,1)) 1;
+        /* border: .1rem solid #1a4617;
+         border-top: .1rem solid #4ad040;
         border-bottom: .1rem solid #10280f;
         background: radial-gradient(circle, 
             rgba(41,111,35,1) 35%, rgba(34,93,29,1) 79%, rgba(26,70,23,1) 100%); */
@@ -28,6 +34,7 @@ const ButtonGradient = ({ alertButton }) => {
 export const AppButton = styled.button`
     height: 1rem;
     width: 22rem;
+    margin: 0 auto;
     padding: 1.5rem;
 
     display: flex;
