@@ -75,7 +75,7 @@ export const UserAccount_proto = ({
 
                 <UserInfoContainer>
                     <ProfileImage 
-                        src={`profile/${image}`}
+                        src={`${process.env.PUBLIC_URL}/profile/${image}`}
                         alt='IMG_self'
                         // src={isNaN(image.substring(0,1)) ? require(`${image}`).default : require(`../assets/profile/${image}.svg`).defualt} 
                         />
