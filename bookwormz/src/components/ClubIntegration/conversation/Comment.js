@@ -9,16 +9,18 @@ import { postReply, deleteComment, } from '../../../redux/actions/commentActions
 
 export const Comment_proto = ({ postReply, deleteComment, 
     comment, isCheifAdmin, userId, locator, }) => {
-    
-    const [makeReply, setMakeReply] = useState(false)
-    const [replyContent, setReplyContent] = useState('')
-
-    const handleReplyClick = () => setMakeReply(!makeReply)
-
-    const { clubId }                     = useParams()
 
     const { _id, memberId, name, profile, subject, content, 
         createdOn, replyTo, replyToOrigin, color, border, } = comment
+
+    const [makeReply, setMakeReply]                         = useState(false)
+    const [replyContent, setReplyContent]                   = useState('')
+    const [isPublicProfile, setIsPublicProfile]             = useState(!isNaN(profile.substring(0,1)))
+    
+    const { clubId }                                        = useParams()
+
+    const handleReplyClick = () => setMakeReply(!makeReply)
+
     
     const handleReplySubmit = () => {
         const anchor = {
@@ -41,7 +43,7 @@ export const Comment_proto = ({ postReply, deleteComment,
         setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
-    console.log(replyTo)
+    // console.log(replyTo)
 
 
     return (
@@ -53,14 +55,20 @@ export const Comment_proto = ({ postReply, deleteComment,
             <section 
                 id={`${_id}`}
                 className='top-bar'>
-                <img  
-                    alt='PROFILE_IMG'
-                    className='image'
-                    src={
+                {isPublicProfile
+                    ? <img 
+                        className='image'
+                        alt='CLUB_MEMBER'
+                        src={`${process.env.PUBLIC_URL}/profile/${profile}`} />   
+                    : <img  
+                        alt='PROFILE_IMG'
+                        className='image'
+                        src={
                         // eslint-disable-next-line
                         profile.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
                         ? `${profile}`
-                        : require(`../../../assets/mock/${profile}.png`).default} />
+                        : require(`../../../assets/mock/${profile}.png`).default} />}
+                
 
                 <div className='identity'>
                     <div style={{ display: 'flex', justifyContent: 'space-between', }}>
@@ -72,14 +80,20 @@ export const Comment_proto = ({ postReply, deleteComment,
                             {replyTo.length !== 0 
                                 && <div className='reply-container'>
                                     <p className='reply'>Replying to&nbsp;{replyTo[1]}</p>
-                                    <img
-                                        alt='reply_to'
-                                        className='reply-image'
-                                        src={
-                                            // eslint-disable-next-line
-                                            replyTo[2].match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
-                                            ? `${replyTo[2]}`
-                                            : require(`../../../assets/mock/${replyTo[2]}.png`).default} />
+                                    {isPublicProfile
+                                        ? <img 
+                                                alt='reply_to'
+                                                className='reply-image'
+                                                src={`${process.env.PUBLIC_URL}/profile/${profile}`} />   
+                                        : <img
+                                                alt='reply_to'
+                                                className='reply-image'
+                                                src={
+                                                    // eslint-disable-next-line
+                                                    replyTo[2].match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+                                                    ? `${replyTo[2]}`
+                                                    : require(`../../../assets/mock/${replyTo[2]}.png`).default} />
+                                    }
                                 </div>}
                             
                             {/* */}

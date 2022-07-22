@@ -7,7 +7,7 @@ export const Members = ({ member }) => {
     // eslint-disable-next-line
     const [isPublicProfile, setIsPublicProfile] = useState(!isNaN(member.profile.substring(0,1)))
     
-    console.log(member.profile);
+    // console.log(member.profile);
 
     return (
         <div

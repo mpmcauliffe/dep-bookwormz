@@ -75,7 +75,7 @@ export const getComments = clubId => async dispatch => {
     try {
         const res = await axios.get(`/comments/getcomments/${clubId}`)
 
-        // console.log(res.data)
+        console.log(res.data)
         if (res.status === 200) {
             dispatch({ 
                 type: GET_COMMENTS, 
