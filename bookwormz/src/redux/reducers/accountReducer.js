@@ -17,7 +17,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type) {
         case GET_USER_INFO:
-            console.log(action.payload.userInfo)
+            // console.log(action.payload.userInfo)
             return {
                 ...state,
                 displayName: action.payload.userInfo.displayName,

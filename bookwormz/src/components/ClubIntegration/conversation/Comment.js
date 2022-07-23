@@ -43,7 +43,7 @@ export const Comment_proto = ({ postReply, deleteComment,
         setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
-    // console.log(replyTo)
+    console.log(replyTo)
 
 
     return (
@@ -84,7 +84,7 @@ export const Comment_proto = ({ postReply, deleteComment,
                                         ? <img 
                                                 alt='reply_to'
                                                 className='reply-image'
-                                                src={`${process.env.PUBLIC_URL}/profile/${profile}`} />   
+                                                src={`${process.env.PUBLIC_URL}/profile/${replyTo[2]}`} />   
                                         : <img
                                                 alt='reply_to'
                                                 className='reply-image'
