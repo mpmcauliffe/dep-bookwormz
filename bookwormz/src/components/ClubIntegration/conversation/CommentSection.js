@@ -41,7 +41,9 @@ const CommentSection_proto = ({
 
     return (
         <div>
-            <h3>Club Conversation</h3>
+            {isUserAMember 
+                ? <h3>Club Conversation</h3>
+                : <h4>Join club to engage in the conversation.</h4>}
             <Buffer thickness={7} />
             {isUserAMember
                 && <Fragment>

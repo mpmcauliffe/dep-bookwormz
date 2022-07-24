@@ -53,6 +53,7 @@ export default (state = initialState, action) => {
             }
 
         case JOIN_CLUB:
+            console.log(action.payload.isClubMember);
             return {
                 ...state,
                 isUserAMember: action.payload.isClubMember,

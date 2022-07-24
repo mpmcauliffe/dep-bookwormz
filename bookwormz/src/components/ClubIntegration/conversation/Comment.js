@@ -8,14 +8,14 @@ import { postReply, deleteComment, } from '../../../redux/actions/commentActions
 
 
 export const Comment_proto = ({ postReply, deleteComment, 
-    comment, isCheifAdmin, userId, locator, }) => {
+    comment, isCheifAdmin, userId, locator, isUserAMember, }) => {
 
     const { _id, memberId, name, profile, subject, content, 
         createdOn, replyTo, replyToOrigin, color, border, } = comment
 
     const [makeReply, setMakeReply]                         = useState(false)
     const [replyContent, setReplyContent]                   = useState('')
-    const [isPublicProfile, setIsPublicProfile]             = useState(!isNaN(profile.substring(0,1)))
+    // const [isPublicProfile, setIsPublicProfile]             = useState(!isNaN(profile.substring(0,1)))
     
     const { clubId }                                        = useParams()
 
@@ -43,7 +43,7 @@ export const Comment_proto = ({ postReply, deleteComment,
         setMakeReply(false)
     }
     const handleDeleteClick = () => deleteComment(_id, replyToOrigin[3], clubId, locator)
-    console.log(replyTo)
+    // console.log(replyTo)
 
 
     return (
@@ -55,7 +55,7 @@ export const Comment_proto = ({ postReply, deleteComment,
             <section 
                 id={`${_id}`}
                 className='top-bar'>
-                {isPublicProfile
+                {!isNaN(profile.substring(0,1))
                     ? <img 
                         className='image'
                         alt='CLUB_MEMBER'
@@ -80,7 +80,7 @@ export const Comment_proto = ({ postReply, deleteComment,
                             {replyTo.length !== 0 
                                 && <div className='reply-container'>
                                     <p className='reply'>Replying to&nbsp;{replyTo[1]}</p>
-                                    {isPublicProfile
+                                    {!isNaN(replyTo[2].substring(0,1)) 
                                         ? <img 
                                                 alt='reply_to'
                                                 className='reply-image'
@@ -120,8 +120,8 @@ export const Comment_proto = ({ postReply, deleteComment,
             </section>
 
             <section className='input-bar'>
-                <p  onClick={handleReplyClick}
-                    className='content reply-button'>Reply</p>
+                {isUserAMember && <p  onClick={handleReplyClick}
+                    className='content reply-button'>Reply</p>}
                 {/*  */}
                 <span className='input-text content'>Replying to {name}</span>
                 <textarea 
@@ -132,7 +132,6 @@ export const Comment_proto = ({ postReply, deleteComment,
                     className='input-submit'
                     onClick={handleReplySubmit}>Submit</button>
             </section>
-
         </CommentBlock>
     )
 }

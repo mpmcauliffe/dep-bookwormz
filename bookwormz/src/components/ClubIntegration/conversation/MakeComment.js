@@ -14,16 +14,21 @@ export const MakeComment_proto = ({ createComment, userProfile, displayName, }) 
     const { clubId }                    = useParams()
 
     const handleNewCommentSubmit = () => createComment(displayName, userProfile, subject, newComment, clubId)
-
+console.log(userProfile);
     return (
         <UnboundForm>
             <section className='top-bar'>
                 {/* */}
+                {!isNaN(userProfile.substring(0,1))
+                    ? <img 
+                        alt='IMG_self'
+                        className='image'
+                        src={`${process.env.PUBLIC_URL}/profile/${userProfile}`} />
+                    : <img  
+                        alt='IMG_self' 
+                        className='image'
+                        src={`${userProfile}`} />}
                 
-                <img  
-                    alt='IMG_self' 
-                    className='image'
-                    src={`${userProfile}`} />
 
                 <div className='identity'>
                     <div />
