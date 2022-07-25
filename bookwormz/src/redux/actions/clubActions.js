@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {  GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, CLEAR_SEARCH_CLUBS,
-    RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
+import {  GET_CLUB, GET_MULTIPLE_CLUBS, GET_MY_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, 
+    SEARCH_CLUBS, CLEAR_SEARCH_CLUBS, RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
 const config = { headers: { 'Content-Type': 'application/json' } }
@@ -15,14 +15,14 @@ export const getAllClubs = () => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Cannot load clubs. Please try later.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Cannot load clubs. Please try later.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -35,14 +35,14 @@ export const getClub = (clubId, history) => async dispatch => {
     
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Something when wrong. Please try later.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Something when wrong. Please try later.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -50,18 +50,18 @@ export const getMyClubs = () => async dispatch => {
     try {
         const res = await axios.get(`/clubs/getmyclubs/`, config)
         // console.log(res.data)
-        dispatch({ type: GET_MULTIPLE_CLUBS, payload: res.data })
+        dispatch({ type: GET_MY_CLUBS, payload: res.data })
     
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Something when wrong. Please try later.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Something when wrong. Please try later.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -86,25 +86,25 @@ export const createClub = (clubSettings, history) => async dispatch => {
             })
             return
         }
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Club could not be created.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Club could not be created.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
 
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Club could not be created.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Club could not be created.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -117,14 +117,14 @@ export const joinClub = (clubName, clubId) => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Could not join group please try again later.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Could not join group please try again later.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -139,14 +139,14 @@ export const leaveClub = (clubName, clubId, history) => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Could not leave group please try again later.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Could not leave group please try again later.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }
 
@@ -164,14 +164,14 @@ export const getClubBookShelf = clubId => async dispatch => {
         console.log(res.data)
 
     } catch (e) {
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Couldn\'t load club\'s bookshelf.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Couldn\'t load club\'s bookshelf.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
     
 }
@@ -202,13 +202,13 @@ export const fillClubs = () => async dispatch => {
 
     } catch (e) {
         console.log(e)
-        dispatch({ 
-            type: CLUB_MESSAGE, 
-            payload: {
-                message: 'Clubs may not have been filled. Check the database.',
-                style: 'red accent-4 rounded', 
-                timeDisplay: 5000,
-            } 
-        })
+        // dispatch({ 
+        //     type: CLUB_MESSAGE, 
+        //     payload: {
+        //         message: 'Clubs may not have been filled. Check the database.',
+        //         style: 'red accent-4 rounded', 
+        //         timeDisplay: 5000,
+        //     } 
+        // })
     }
 }

@@ -13,7 +13,7 @@ import { Buffer, ClubDock, EmptyNotification, MyBookShelf, HeaderSection, MainCo
 export const Dashboard_proto = ({ 
     getUserInfo, displayName, 
     getBooks, 
-    getMyClubs, resetClubs, availableClubs,  }) => {
+    getMyClubs, resetClubs, myClubs,  }) => {
 
     useEffect(() => { 
         getUserInfo()
@@ -47,22 +47,21 @@ export const Dashboard_proto = ({
                 <h3>Your Clubs</h3>
                 <Buffer thickness={9} />
                 {/* */}
-                {availableClubs.length < 1
+                {Array.isArray(myClubs) 
                     ? (
+                        <StandarGrid id='book-cover-select'>
+                            {myClubs.map((club, i) => (
+                                <ClubDock
+                                    index={i}
+                                    club={club}
+                                    key={club._id} />))}
+                        </StandarGrid>
+                    ) : (
                         <EmptyNotification 
                             linkTo={'/clubs'}
                             linkMessage={'Find a club'}
                             preMessage={'You don\'t belong to any clubs.'} />
-                    ) : (
-                        <StandarGrid id='book-cover-select'>
-                            {availableClubs.map((club, i) => (
-                                <ClubDock
-                                    index={i}
-                                    club={club}
-                                    key={club._id} />
-                            ))}
-                        </StandarGrid>
-                )}
+                    )}
                 
                 <Buffer thickness={13} />
                 <h3>Your Books</h3>
@@ -82,12 +81,15 @@ Dashboard_proto.propTypes = {
     
     getMyClubs: PropTypes.func.isRequired,
     resetClubs: PropTypes.func.isRequired,
-    availableClubs: PropTypes.array.isRequired,
+    myClubs: PropTypes.oneOfType([
+        PropTypes.array.isRequired,
+        PropTypes.object.isRequired,
+    ]),
 }
 
 const mapStateToProps = state => ({
     displayName: state.account.displayName,
-    availableClubs: state.clubs.availableClubs,
+    myClubs: state.clubs.myClubs,
 })
 
 const Dashboard = connect(mapStateToProps, { getUserInfo, getBooks, getMyClubs, resetClubs, })(Dashboard_proto)

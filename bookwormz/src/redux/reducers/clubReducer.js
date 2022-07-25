@@ -1,9 +1,10 @@
-import { GET_CLUB, GET_MULTIPLE_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, SEARCH_CLUBS, CLEAR_SEARCH_CLUBS,
-    RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
+import { GET_CLUB, GET_MULTIPLE_CLUBS, GET_MY_CLUBS, CREATE_CLUB, JOIN_CLUB, LEAVE_CLUB, 
+    SEARCH_CLUBS, CLEAR_SEARCH_CLUBS, RESET_CLUB, CLUB_MESSAGE, CLEAR_CLUB_MESSAGE, } from '../types'
 
 
 const initialState = {
     availableClubs: [ ],
+    myClubs: [ ],
     clubStore: [ ],
     currentClub: null,
     clubId: null,
@@ -36,7 +37,15 @@ export default (state = initialState, action) => {
                 availableClubs: [...action.payload],
                 clubStore: [...action.payload],
             }
-        
+
+        case GET_MY_CLUBS:
+            // console.log(action.payload); 
+            return {
+                ...state,
+                myClubs: Array.isArray(action.payload) ? [...action.payload] : action.payload,
+                clubStore: Array.isArray(action.payload) ? [...action.payload] : action.payload,
+            }
+
         case CREATE_CLUB:
             // console.log(action.payload)
             return {

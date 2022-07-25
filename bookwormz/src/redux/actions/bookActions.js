@@ -102,7 +102,7 @@ export const addBook = bookInfo => async dispatch => {
             })
             return
         }
-        dispatch({ type: BOOK_ERROR, payload: 'Request could not be completed.' })
+        // dispatch({ type: BOOK_ERROR, payload: 'Request could not be completed.' })
 
     } catch (e) {
         console.log(e)

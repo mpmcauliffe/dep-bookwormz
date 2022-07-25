@@ -19,6 +19,7 @@ export const CLEAR_BOOK_MESSAGE             = 'CLEAR_BOOK_MESSAGE'
 /* CLUB TYPES */
 export const GET_CLUB               = 'GET_CLUB'
 export const GET_MULTIPLE_CLUBS     = 'GET_MULTIPLE_CLUBS'
+export const GET_MY_CLUBS           = 'GET_MY_CLUBS'
 export const CREATE_CLUB            = 'CREATE_CLUB'
 export const JOIN_CLUB              = 'JOIN_CLUB'
 export const LEAVE_CLUB             = 'LEAVE_CLUB'
