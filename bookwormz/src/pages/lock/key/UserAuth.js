@@ -1,5 +1,5 @@
 import React, { useEffect, } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { loginUser, logout } from '../../../redux/actions/authActions'
@@ -18,6 +18,10 @@ const UserAuth_proto = ({ loginUser, logout, isAuthenticated, }) => {
             setTimeout(() => { logout(history) }, 1000)
         }
     })
+
+    // if (isAuthenticated) { <Redirect to='/dashboard' /> }
+
+    // if (!isAuthenticated) { <Redirect to='/Landing' /> }
 
     return <Spinner />
 }

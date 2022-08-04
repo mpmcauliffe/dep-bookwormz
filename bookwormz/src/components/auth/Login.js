@@ -9,8 +9,8 @@ import { FaAt, FaLock, } from 'react-icons/fa'
 
 export const Login_proto = ({ loginUser, }) => {
     const [formInfo, setFormInfo] = useState({
-        email: '',
-        password: '',
+        email: 'ozzy@bear.com',
+        password: '123456',
     })
     const { email, password, } = formInfo
 

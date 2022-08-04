@@ -19,6 +19,7 @@ router.post('/token', async (req, res) => {
         //res.send({ "bears": "are cute" })
         //console.log(payload)
         let user = await User.findOne({ email })
+
         if (!user) { res.status(400).json({ msg: 'Invalid credentials' }) }
 
         const isMatch = await bcrypt.compare(password, user.password)
