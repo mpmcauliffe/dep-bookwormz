@@ -89,9 +89,9 @@ export const logout = history => async dispatch => {
         dispatch({ type: LOGOUT })
         // const name = 'connect.sid'
         // document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
-        const res = await axios.get('/auth/logout')
+        // const res = await axios.get('/auth/logout')
 
-        console.log(res)
+        // console.log(res)
                 
     } catch (e) {
         history.push('/dashboard')
