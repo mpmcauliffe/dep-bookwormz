@@ -34,7 +34,7 @@ router.put('/updatinfo', verification, async (req, res) => {
     const email = getEmail(req.headers['x-auth-token'])
     if (!email) { res.status(400).send({ message: 'Something went wrong' })
         return }
-
+console.log('body', req.body)
     const { portrait, newDisplayName, } = req.body
     const updatedFields = { }
 
@@ -44,14 +44,14 @@ router.put('/updatinfo', verification, async (req, res) => {
     try {
         await User.findOneAndUpdate({ email }, 
             { '$set': { 
-                'image': updatedFields.secondaryImage, 
-                'displaName': updatedFields.secondaryDisplayName,
+                // 'image': updatedFields.secondaryImage, 
+                'displayName': updatedFields.secondaryDisplayName,
         } })
 
         const user = await User.findOne({ email })
         const userInfo = {
-            displayName: user.secondaryDisplayName,
-            image: user.secondaryImage,
+            displayName: user.displayName,
+            // image: user.secondaryImage,
         }
         
         res.send(userInfo)

@@ -37,6 +37,10 @@ export const UserAccount_proto = ({
         if (userInfo.portrait.length < 1 && userInfo.newDisplayName.length < 1) {
             return
         }
+
+        if (userInfo.portrait === '') { setUserInfo({ ...userInfo, portrait: image }) }
+        if (userInfo.newDisplayName === '') { setUserInfo({ ...userInfo, newDisplayName: displayName }) }
+
         updateUserInfo(userInfo)
 
         setUserInfo({ portrait: '', newDisplayName: '' })
@@ -56,7 +60,7 @@ export const UserAccount_proto = ({
         getUserInfo()
 
         window.scroll(0, 0)
-        console.log(image);
+        console.log(displayName);
     }, [getUserInfo, image, displayName])
 
 
@@ -97,6 +101,7 @@ export const UserAccount_proto = ({
                             
                             <div 
                                 className='update-info'>
+                                {/* 
                                 <div>
                                     <input 
                                         type='text'
@@ -105,7 +110,7 @@ export const UserAccount_proto = ({
                                         value={userInfo.portrait}
                                         onChange={e => setUserInfo({ ...userInfo, [e.target.name]: e.target.value })} />
                                     <i className='fas fa-portrait fa-3x' />
-                                </div>
+                                </div>*/}
                                 <div>
                                     <input 
                                         type='text'
@@ -119,13 +124,14 @@ export const UserAccount_proto = ({
                             <AppButton 
                                 onClick={onSubmit}
                                 style={{ margin: '7rem 0 0 0' }} >Submit</AppButton>
+                            {/* 
                             <p 
                                 onClick={handleRevertClick}
                                 style={{ color: '#982233', 
                                         cursor: 'pointer',
                                         marginTop: '15rem',
                                         textDecoration: 'underline', }}>
-                                Revert to original portrait and display name</p>
+                                Revert to original portrait and display name</p>*/}
                         </div>
                     </FormContainer>
                 </UserInfoContainer>
